@@ -45,7 +45,7 @@ p:last-child {
             background-color: var(--e-global-color-accent);
             border-radius: 5px;
             padding: 10px 14px;
-            font-size: 15px;
+            font-size: 15px !important;
             font-weight: bold;
         }
     }
