@@ -20,6 +20,6 @@ add_shortcode('_learndash_course_meta', '_learndash_course_meta');
 
 
 function _learndash_status_bubble() {
-    return learndash_course_status();
+    return learndash_course_status(get_the_ID());
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
