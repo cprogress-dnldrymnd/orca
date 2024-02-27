@@ -16,7 +16,7 @@ p:last-child {
     margin-bottom: 0 !important;
 }
 
-.learndash-wrapper {
+.learndash-wrapper.learndash-wrapper.learndash-wrapper {
     .ld-progress {
         display: flex;
         flex-wrap: nowrap;
@@ -29,7 +29,7 @@ p:last-child {
             }
         } 
         .ld-progress-steps {
-            display: none !important;
+            display: none ;
         }
     }
 }
