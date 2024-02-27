@@ -18,8 +18,11 @@ p:last-child {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row; }
-  .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
-    color: var(--e-global-color-51e6256, #42BDF4); }
+  .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading {
+    flex: 0 0 auto;
+    margin-right: 24px; }
+    .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
+      color: var(--e-global-color-51e6256, #42BDF4); }
   .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-steps {
     display: none; }
 
