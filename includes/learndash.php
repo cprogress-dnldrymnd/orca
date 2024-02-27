@@ -23,4 +23,4 @@ function _learndash_status_bubble() {
     $course_status = learndash_course_status(get_the_ID());
     return learndash_status_bubble($course_status);
 }
-add_shortcode('_learndash_status_bubble', '_learndash_course_meta');
+add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
