@@ -24,8 +24,17 @@ p:last-child {
     flex: 0 0 auto;
     margin-left: 24px; }
     .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
-      color: var(--e-global-color-51e6256, #42BDF4); }
+      color: var(--e-global-color-51e6256, #42bdf4); }
   .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-steps {
     display: none; }
+
+.post-type-archive-sfwd-courses .elementor-post-info__terms-list {
+  font-size: 0; }
+  .post-type-archive-sfwd-courses .elementor-post-info__terms-list a {
+    background-color: var(--e-global-color-accent);
+    border-radius: 5px;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */

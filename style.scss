@@ -28,12 +28,25 @@ p:last-child {
             margin-left: 24px;
             .ld-progress-stats {
                 .ld-progress-percentage {
-                    color: var(--e-global-color-51e6256, #42BDF4);
+                    color: var(--e-global-color-51e6256, #42bdf4);
                 }
             }
-        } 
+        }
         .ld-progress-steps {
-            display: none ;
+            display: none;
+        }
+    }
+}
+
+.post-type-archive-sfwd-courses {
+    .elementor-post-info__terms-list {
+        font-size: 0;
+        a {
+            background-color: var(--e-global-color-accent);
+            border-radius: 5px;
+            padding: 10px 14px;
+            font-size: 15px;
+            font-weight: bold;
         }
     }
 }
