@@ -17,3 +17,9 @@ function _learndash_course_meta()
     return $html;
 }
 add_shortcode('_learndash_course_meta', '_learndash_course_meta');
+
+
+function _learndash_status_bubble() {
+    return learndash_status_bubble();
+}
+add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
