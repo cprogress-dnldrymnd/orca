@@ -10,17 +10,26 @@ License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 */
+
 /* Add your custom styles here */
 p:last-child {
-  margin-bottom: 0 !important; }
+    margin-bottom: 0 !important;
+}
 
-.learndash-wrapper .ld-progress {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row; }
-  .learndash-wrapper .ld-progress .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
-    color: var(--e-global-color-51e6256, #42BDF4); }
-  .learndash-wrapper .ld-progress .ld-progress-steps {
-    display: none !important; }
-
-/*# sourceMappingURL=style.css.map */
+.learndash-wrapper {
+    .ld-progress {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        .ld-progress-heading {
+            .ld-progress-stats {
+                .ld-progress-percentage {
+                    color: var(--e-global-color-51e6256, #42BDF4);
+                }
+            }
+        } 
+        .ld-progress-steps {
+            display: none !important;
+        }
+    }
+}
