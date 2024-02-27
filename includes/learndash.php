@@ -5,3 +5,15 @@ function _learndash_course_progress()
 }
 
 add_shortcode('_learndash_course_progress', '_learndash_course_progress');
+
+
+function _learndash_course_meta()
+{
+    $html = '<div class="course-meta">';
+    $html .= '<p><strong>Duration:</strong> 2 weeks</p>';
+    $html .= '<p><strong>Certification:</strong> ORCA Certified</p>';
+    $html .= '</div>';
+
+    return $html;
+}
+add_shortcode('_learndash_course_meta', '_learndash_course_meta');
