@@ -40,6 +40,7 @@ p:last-child {
 .course-meta {
   font-size: 16px; }
 
+.post-type-archive-sfwd-courses .ld-status,
 .single-sfwd-courses .ld-status {
   padding: 10px 15px;
   border-radius: 5px;
@@ -47,11 +48,14 @@ p:last-child {
   font-weight: bold;
   line-height: 1;
   display: inline-block; }
+  .post-type-archive-sfwd-courses .ld-status.ld-status-progress,
   .single-sfwd-courses .ld-status.ld-status-progress {
     background-color: var(--e-global-color-db51a67);
     color: var(--e-global-color-5e743c3); }
+  .post-type-archive-sfwd-courses .ld-status.ld-status-waiting,
   .single-sfwd-courses .ld-status.ld-status-waiting {
     background-color: #ffd200; }
+
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--e-global-color-5e743c3); }
 .single-sfwd-courses .ld-progress-steps {
