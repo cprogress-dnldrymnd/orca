@@ -66,7 +66,7 @@ function _learndash_linked_product()
             array(
                 'key'   => '_related_course',
                 'value' => get_the_ID(),
-                'compare' => 'IN'
+                'compare' => 'EXISTS'
             )
         )
     );
