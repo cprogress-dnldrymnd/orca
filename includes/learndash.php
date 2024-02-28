@@ -1,4 +1,9 @@
 <?php
+function _user_has_access()
+{
+    return sfwd_lms_has_access_fn(get_the_ID(), get_current_user_id());
+}
+
 function _learndash_course_progress()
 {
     return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
@@ -21,12 +26,12 @@ add_shortcode('_learndash_course_meta', '_learndash_course_meta');
 
 function _learndash_status_bubble()
 {
-    $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
 
-     //return var_dump(learndash_user_get_enrolled_courses(get_current_user_id()));
-
-     return sfwd_lms_has_access_fn(get_the_ID(), get_current_user_id());
-    //return learndash_status_bubble($course_status);
+    //return var_dump(learndash_user_get_enrolled_courses(get_current_user_id()));
+    if (_user_has_access()) {
+        $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
+        return learndash_status_bubble($course_status);
+    }
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 
