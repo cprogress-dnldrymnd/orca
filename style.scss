@@ -55,3 +55,16 @@ p:last-child {
 .course-meta {
     font-size: 16px;
 }
+
+
+.single-sfwd-courses {
+    .ld-status {
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 15px;
+      font-weight: bold;
+      &.ld-status-progress {
+        background-color: var(--e-global-color-db51a67);
+      }
+    }
+  }
