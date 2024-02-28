@@ -60,8 +60,22 @@ add_action('wp_footer', 'learndash_wp_footer');
 function _learndash_linked_product()
 {
     ob_start();
+    $args = array(
+        'post_type'  => 'product',
+        'meta_query' => array(
+            array(
+                'key'   => '_related_course',
+                'value' => get_the_ID(),
+                'compare' => 'IN'
+            )
+        )
+    );
+    $postslist = get_posts($args);
+
+
     ?>
     <pre>
+        <?php var_dump($postslist) ?>
         <?php var_dump(get_post_meta(498)) ?>
     </pre>
 <?php return ob_get_clean();
