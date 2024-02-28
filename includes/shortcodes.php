@@ -10,7 +10,9 @@ function breadcrumbs()
     }
 
     if (is_single()) {
-        $html .= '<li><a href="' . get_post_type_archive_link(get_post_type())  . '">' . get_post_type() . '</a></li>';
+        $post_type_obj = get_post_type_object(get_post_type());
+        $post_type = $post_type_obj->labels->name; //Ice Creams.
+        $html .= '<li><a href="' . get_post_type_archive_link(get_post_type())  . '">' . $post_type . '</a></li>';
         $html .= '<li><span>' . get_the_title() . '</span></li>';
     }
 
