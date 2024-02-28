@@ -6,7 +6,12 @@ function breadcrumbs()
     $html .= '<li><a href="' . get_site_url() . '">Home</a></li>';
 
     if (is_post_type_archive()) {
-        $html .= '<li><a href="' . get_site_url() . '">'.get_the_archive_title().'</a></li>';
+        $html .= '<li><span>' . get_the_archive_title() . '</span></li>';
+    }
+
+    if (is_single()) {
+        $html .= '<li><a href="' . get_site_url() . '">' . get_post_type() . '</a></li>';
+        $html .= '<li><span>' . get_the_title() . '</span></li>';
     }
 
     $html .= '</ul>';
