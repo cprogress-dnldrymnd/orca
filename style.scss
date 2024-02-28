@@ -75,3 +75,28 @@ p:last-child {
         font-size: 16px;
     }
 }
+
+.breadcrumbs-holder {
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 18px;
+        li {
+            span {
+                font-weight: bold;
+            }
+            &:not(:last-child) {
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    height: 10px;
+                    width: 10px;
+                    border-top: 1px solid;
+                    border-left: 1px solid;
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+}
