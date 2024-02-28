@@ -8,7 +8,7 @@ function _learndash_course_progress()
 {
     if (_user_has_access()) {
 
-        return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
+       // return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
     }
 }
 
