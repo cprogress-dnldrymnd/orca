@@ -58,7 +58,7 @@ add_action('wp_footer', 'learndash_wp_footer');
 
 
 
-**
+/**
  * Example usage for learndash_settings_fields filter.
  */
 add_filter(
