@@ -50,7 +50,7 @@ function learndash_wp_footer()
                 jQuery('.ld-progress-steps').appendTo('#course-progress .learndash-wrapper');
             });
         </script>
-    <?php
+<?php
     }
 }
 
@@ -70,15 +70,11 @@ function _learndash_linked_product()
             )
         )
     );
-    $postslist = get_posts($args);
+    $products = get_posts($args);
 
-
-    ?>
-    <pre>
-        <?php var_dump($postslist) ?>
-        <?php var_dump(get_post_meta(498)) ?>
-    </pre>
-<?php return ob_get_clean();
+    if ($products) {
+        return '<a href="/shop/?add-to-cart=498" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="498" data-product_sku="" aria-label="Read more about “Marine Surveyors”" aria-describedby="" rel="nofollow">Add to cart</a>';
+    }
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
