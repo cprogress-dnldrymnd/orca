@@ -62,6 +62,7 @@ p:last-child {
         font-size: 15px;
         font-weight: bold;
         line-height: 1;
+        display: inline-block;
         &.ld-status-progress {
             background-color: var(--e-global-color-db51a67); //green
             color: var(--e-global-color-5e743c3); //white
