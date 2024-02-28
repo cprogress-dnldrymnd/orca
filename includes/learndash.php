@@ -29,7 +29,6 @@ add_shortcode('_learndash_course_meta', '_learndash_course_meta');
 
 function _learndash_status_bubble()
 {
-
     //return var_dump(learndash_user_get_enrolled_courses(get_current_user_id()));
     if (_user_has_access()) {
         $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
@@ -41,10 +40,27 @@ function _learndash_status_bubble()
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 
 
+function learndash_wp_head()
+{
+    if (!_user_has_access()) {
+?>
+        <style>
+            #course-info-left {
+                display: none;
+            }
+            #course-info-right {
+                width: 100% !important
+            }
+        </style>
+    <?php
+    }
+}
+add_action('wp_head', 'learndash_wp_head');
+
 function learndash_wp_footer()
 {
     if (get_post_type() == 'sfwd-courses') {
-?>
+    ?>
         <script>
             jQuery(document).ready(function() {
                 jQuery('.ld-progress-steps').appendTo('#course-progress .learndash-wrapper');

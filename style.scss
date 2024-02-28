@@ -159,5 +159,9 @@ p:last-child {
         display: inline-block;
         background-color: var(--e-global-color-primary);
         color: var(--e-global-color-5e743c3); //white
+        
+        &.loading {
+            
+        }
     }
 }
