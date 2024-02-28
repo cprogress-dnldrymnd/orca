@@ -113,7 +113,8 @@ p:last-child {
 .course-add-to-cart {
   display: flex;
   align-items: center; }
-  .course-add-to-cart .add_to_cart_button {
+  .course-add-to-cart .add_to_cart_button,
+  .course-add-to-cart .added_to_cart {
     margin-left: 10px;
     padding: 10px 15px;
     border-radius: 5px;
@@ -122,6 +123,9 @@ p:last-child {
     line-height: 1;
     display: inline-block;
     background-color: var(--e-global-color-primary);
+    color: var(--e-global-color-5e743c3); }
+  .course-add-to-cart .add_to_cart_button {
+    background-color: var(--e-global-color-secondary);
     color: var(--e-global-color-5e743c3); }
 
 /*# sourceMappingURL=style.css.map */

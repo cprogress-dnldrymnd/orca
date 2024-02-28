@@ -140,8 +140,7 @@ p:last-child {
     }
     &:hover {
         &:before {
-        transform: rotate(45deg);
-
+            transform: rotate(45deg);
         }
     }
 }
@@ -149,7 +148,8 @@ p:last-child {
 .course-add-to-cart {
     display: flex;
     align-items: center;
-    .add_to_cart_button {
+    .add_to_cart_button,
+    .added_to_cart {
         margin-left: 10px;
         padding: 10px 15px;
         border-radius: 5px;
@@ -159,9 +159,12 @@ p:last-child {
         display: inline-block;
         background-color: var(--e-global-color-primary);
         color: var(--e-global-color-5e743c3); //white
-        
+
         &.loading {
-            
         }
+    }
+    .add_to_cart_button {
+        background-color: var(--e-global-color-secondary);
+        color: var(--e-global-color-5e743c3); //white
     }
 }
