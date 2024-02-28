@@ -33,7 +33,7 @@ function learndash_wp_footer()
 ?>
         <script>
             jQuery(document).ready(function() {
-                jQuery('.ld-progress-steps').appendTo('.learndash-wrapper');
+                jQuery('.ld-progress-steps').appendTo('#course-progress .learndash-wrapper');
             });
         </script>
 <?php
