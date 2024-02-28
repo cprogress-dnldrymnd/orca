@@ -6,7 +6,10 @@ function _user_has_access()
 
 function _learndash_course_progress()
 {
-    return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
+    if (_user_has_access()) {
+
+        return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
+    }
 }
 
 add_shortcode('_learndash_course_progress', '_learndash_course_progress');
@@ -31,6 +34,8 @@ function _learndash_status_bubble()
     if (_user_has_access()) {
         $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
         return learndash_status_bubble($course_status);
+    } else {
+        return 'No Access';
     }
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
