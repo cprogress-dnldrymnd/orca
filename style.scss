@@ -77,7 +77,11 @@ p:last-child {
 }
 
 .breadcrumbs-holder {
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--e-global-color-51e6256);
+    padding-bottom: 10px;
     ul {
+        padding: 0;
         list-style: none;
         display: flex;
         flex-wrap: wrap;
