@@ -23,7 +23,7 @@ function _learndash_status_bubble()
 {
     $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
 
-     return var_dump(learndash_user_get_enrolled_courses());
+     return var_dump(learndash_user_get_enrolled_courses(get_current_user_id()));
 
     //return learndash_status_bubble($course_status);
 }
