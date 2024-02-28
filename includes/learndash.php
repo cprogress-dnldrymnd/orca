@@ -71,19 +71,21 @@ function _learndash_linked_product()
         )
     );
     $products = get_posts($args);
-    $html = '<div class="course-add-to-cart">';
-    $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
 
 
     if ($products) {
+
+        $html = '<div class="course-add-to-cart">';
+        $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
+
         if (count($products) == 1) {
 
             $html .= '<a href="/shop/?add-to-cart=' . $products[0]->ID . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $products[0]->ID . '"  aria-describedby="" rel="nofollow">Add to basket</a>';
         }
-    }
-    $html .= '</div>';
+        $html .= '</div>';
 
-    return $html;
+        return $html;
+    }
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
