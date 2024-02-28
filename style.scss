@@ -16,7 +16,6 @@ p:last-child {
     margin-bottom: 0 !important;
 }
 
-
 .learndash-wrapper.learndash-wrapper.learndash-wrapper {
     .ld-progress {
         display: flex;
@@ -56,17 +55,16 @@ p:last-child {
     font-size: 16px;
 }
 
-
 .single-sfwd-courses {
     .ld-status {
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 15px;
-      font-weight: bold;
-      line-height: 1;
-      &.ld-status-progress {
-        background-color: var(--e-global-color-db51a67);
-        color: var(--e-global-color-5e743c3);
-      }
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 1;
+        &.ld-status-progress {
+            background-color: var(--e-global-color-db51a67); //green
+            color: var(--e-global-color-5e743c3); //white
+        }
     }
-  }
+}
