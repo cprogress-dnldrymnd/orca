@@ -62,13 +62,7 @@ function _learndash_linked_product()
     ob_start();
     $args = array(
         'post_type'  => 'product',
-        'meta_query' => array(
-            array(
-                'key'   => '_related_course',
-                'value' => get_the_ID(),
-                'compare' => 'IN'
-            )
-        )
+      
     );
     $postslist = get_posts($args);
 
