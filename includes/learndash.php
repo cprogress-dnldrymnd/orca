@@ -107,7 +107,7 @@ function _learndash_has_linked_product()
     );
     $products = get_posts($args);
 
-    if ($products) {
+    if (count($products) == 1) {
         return $products;
     } else {
         return false;
@@ -120,10 +120,8 @@ function _learndash_linked_product()
     $html = '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
 
     if ($products) {
-        if (count($products) == 1) {
-            $html .= _add_to_cart_button($products[0]->ID);
-            return $html;
-        }
+        $html .= _add_to_cart_button($products[0]->ID);
+        return $html;
     }
 }
 
