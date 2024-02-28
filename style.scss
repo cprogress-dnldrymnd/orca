@@ -120,8 +120,8 @@ p:last-child {
     align-items: center;
     justify-content: center;
     svg {
-        height: 18px;
-        width: 18px;
+        height: 18px !important;
+        width: 18px !important;
     }
     &:before {
         position: absolute;

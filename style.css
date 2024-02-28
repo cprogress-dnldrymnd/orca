@@ -92,8 +92,8 @@ p:last-child {
   align-items: center;
   justify-content: center; }
   .elementor-swiper-button svg {
-    height: 18px;
-    width: 18px; }
+    height: 18px !important;
+    width: 18px !important; }
   .elementor-swiper-button:before {
     position: absolute;
     top: 0;
