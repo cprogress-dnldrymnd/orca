@@ -67,8 +67,11 @@ p:last-child {
             color: var(--e-global-color-5e743c3); //white
         }
     }
+    .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
+        background-color: var(--e-global-color-5e743c3); //white
+    }
     .ld-progress-steps {
-        color: #7E7E7E;
+        color: #7e7e7e;
         font-size: 16px;
     }
 }
