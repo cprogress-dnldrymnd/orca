@@ -73,8 +73,11 @@ function _learndash_linked_product()
     $products = get_posts($args);
     $status = '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     if ($products) {
-        $add_to_cart = '<a href="/shop/?add-to-cart=498" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="498" data-product_sku="" aria-label="Read more about “Marine Surveyors”" aria-describedby="" rel="nofollow">Add to cart</a>';
-        return $status . $add_to_cart;
+        if (count($products) == 1) {
+
+            $add_to_cart = '<a href="/shop/?add-to-cart=' . $products[0]->ID . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $products[0]->ID . '"  aria-describedby="" rel="nofollow">Add to basket</a>';
+            return $status . $add_to_cart;
+        }
     }
 }
 
