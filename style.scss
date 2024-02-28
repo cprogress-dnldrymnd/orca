@@ -135,6 +135,9 @@ p:last-child {
         transform: 400ms;
     }
     &:hover {
+        &:before {
         transform: rotate(45deg);
+
+        }
     }
 }

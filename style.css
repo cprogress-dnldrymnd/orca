@@ -104,7 +104,7 @@ p:last-child {
     height: 34px;
     border-radius: 100px;
     transform: 400ms; }
-  .elementor-swiper-button:hover {
+  .elementor-swiper-button:hover:before {
     transform: rotate(45deg); }
 
 /*# sourceMappingURL=style.css.map */
