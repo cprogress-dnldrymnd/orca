@@ -157,13 +157,15 @@ p:last-child {
         font-weight: bold;
         line-height: 1;
         display: inline-block;
-        background-color: var(--e-global-color-primary);
-        color: var(--e-global-color-5e743c3); //white
 
         &.loading {
         }
     }
     .add_to_cart_button {
+        background-color: var(--e-global-color-primary);
+        color: var(--e-global-color-5e743c3); //white
+    }
+    .added_to_cart {
         background-color: var(--e-global-color-secondary);
         color: var(--e-global-color-5e743c3); //white
     }

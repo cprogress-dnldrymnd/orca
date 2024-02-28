@@ -121,10 +121,11 @@ p:last-child {
     font-size: 15px;
     font-weight: bold;
     line-height: 1;
-    display: inline-block;
+    display: inline-block; }
+  .course-add-to-cart .add_to_cart_button {
     background-color: var(--e-global-color-primary);
     color: var(--e-global-color-5e743c3); }
-  .course-add-to-cart .add_to_cart_button {
+  .course-add-to-cart .added_to_cart {
     background-color: var(--e-global-color-secondary);
     color: var(--e-global-color-5e743c3); }
 
