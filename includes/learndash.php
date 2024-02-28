@@ -95,7 +95,7 @@ function _learndash_linked_product()
             $html .= '<a href="/shop/?add-to-cart=' . $products[0]->ID . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $products[0]->ID . '"  aria-describedby="" rel="nofollow">Add to basket</a>';
 
 
-            return $html;
+            return '';
         }
     }
 }
