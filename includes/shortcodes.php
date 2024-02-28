@@ -1,6 +1,7 @@
 <?php
 function breadcrumbs() {
     $html = '<div class="breadcrumbs-holder">';
+    $html .= '</div>';
     return $html;
 }
 
