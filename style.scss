@@ -145,3 +145,18 @@ p:last-child {
         }
     }
 }
+
+.course-add-to-cart {
+    display: flex;
+    align-items: center;
+    .add_to_cart_button {
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 1;
+        display: inline-block;
+        background-color: var(--e-global-color-primary);
+        color: var(--e-global-color-5e743c3); //white
+    }
+}

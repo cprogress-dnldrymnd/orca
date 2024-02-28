@@ -110,4 +110,17 @@ p:last-child {
   .elementor-swiper-button:hover:before {
     transform: rotate(45deg); }
 
+.course-add-to-cart {
+  display: flex;
+  align-items: center; }
+  .course-add-to-cart .add_to_cart_button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-block;
+    background-color: var(--e-global-color-primary);
+    color: var(--e-global-color-5e743c3); }
+
 /*# sourceMappingURL=style.css.map */
