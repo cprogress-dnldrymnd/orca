@@ -93,7 +93,7 @@ function _add_to_cart_button($product_id)
 
 add_shortcode('_add_to_cart_button', '_add_to_cart_button');
 
-function _learndash_linked_product()
+function _learndash_has_linked_product()
 {
     $args = array(
         'post_type'  => 'product',
@@ -106,6 +106,15 @@ function _learndash_linked_product()
         )
     );
     $products = get_posts($args);
+
+    if ($products) {
+        return $products;
+    }
+}
+
+function _learndash_linked_product()
+{
+    $products = _learndash_has_linked_product();
     $html = '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
 
     if ($products) {
