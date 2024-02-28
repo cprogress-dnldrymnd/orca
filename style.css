@@ -124,9 +124,32 @@ p:last-child {
     display: inline-block; }
   .course-add-to-cart .add_to_cart_button {
     background-color: var(--e-global-color-primary);
-    color: var(--e-global-color-5e743c3); }
+    color: var(--e-global-color-5e743c3);
+    display: flex;
+    align-items: center; }
+    .course-add-to-cart .add_to_cart_button svg {
+      width: 0; }
+    .course-add-to-cart .add_to_cart_button.loading svg {
+      width: 30px;
+      -webkit-animation: spin 4s infinite linear; }
   .course-add-to-cart .added_to_cart {
     background-color: var(--e-global-color-accent);
     color: var(--e-global-color-5e743c3); }
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg); }
+  to {
+    -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg); } }
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
 
 /*# sourceMappingURL=style.css.map */

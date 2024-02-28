@@ -157,16 +157,50 @@ p:last-child {
         font-weight: bold;
         line-height: 1;
         display: inline-block;
-
-        &.loading {
-        }
     }
     .add_to_cart_button {
         background-color: var(--e-global-color-primary);
         color: var(--e-global-color-5e743c3); //white
+        display: flex;
+        align-items: center;
+        svg {
+            width: 0;
+        }
+
+        &.loading {
+            svg {
+                width: 30px;
+                -webkit-animation: spin 4s infinite linear;
+            }
+        }
     }
     .added_to_cart {
         background-color: var(--e-global-color-accent);
         color: var(--e-global-color-5e743c3); //white
+    }
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
