@@ -101,7 +101,8 @@ function _learndash_linked_product()
 
     if ($products) {
         if (count($products) == 1) {
-            return _add_to_cart_button($products[0]->ID);
+            $html .= _add_to_cart_button($products[0]->ID);
+            return $html;
         }
     }
 }
