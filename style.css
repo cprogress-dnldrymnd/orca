@@ -50,8 +50,7 @@ p:last-child {
     background-color: var(--e-global-color-db51a67);
     color: var(--e-global-color-5e743c3); }
   .single-sfwd-courses .ld-status.ld-status-waiting {
-    background-color: #ffd200;
-    color: var(--e-global-color-5e743c3); }
+    background-color: #ffd200; }
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--e-global-color-5e743c3); }
 .single-sfwd-courses .ld-progress-steps {
