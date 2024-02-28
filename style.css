@@ -55,6 +55,34 @@ p:last-child {
   .post-type-archive-sfwd-courses .ld-status.ld-status-waiting,
   .single-sfwd-courses .ld-status.ld-status-waiting {
     background-color: #ffd200; }
+.post-type-archive-sfwd-courses .add_to_cart_button,
+.post-type-archive-sfwd-courses .added_to_cart,
+.single-sfwd-courses .add_to_cart_button,
+.single-sfwd-courses .added_to_cart {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block; }
+.post-type-archive-sfwd-courses .add_to_cart_button,
+.single-sfwd-courses .add_to_cart_button {
+  background-color: var(--e-global-color-primary);
+  color: var(--e-global-color-5e743c3);
+  display: flex;
+  align-items: center; }
+  .post-type-archive-sfwd-courses .add_to_cart_button svg,
+  .single-sfwd-courses .add_to_cart_button svg {
+    width: 0; }
+  .post-type-archive-sfwd-courses .add_to_cart_button.loading svg,
+  .single-sfwd-courses .add_to_cart_button.loading svg {
+    width: 30px;
+    -webkit-animation: spin 4s infinite linear; }
+.post-type-archive-sfwd-courses .added_to_cart,
+.single-sfwd-courses .added_to_cart {
+  background-color: var(--e-global-color-accent);
+  color: var(--e-global-color-5e743c3); }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--e-global-color-5e743c3); }
@@ -117,28 +145,6 @@ p:last-child {
 .course-add-to-cart {
   display: flex;
   align-items: center; }
-  .course-add-to-cart .add_to_cart_button,
-  .course-add-to-cart .added_to_cart {
-    margin-left: 10px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 1;
-    display: inline-block; }
-  .course-add-to-cart .add_to_cart_button {
-    background-color: var(--e-global-color-primary);
-    color: var(--e-global-color-5e743c3);
-    display: flex;
-    align-items: center; }
-    .course-add-to-cart .add_to_cart_button svg {
-      width: 0; }
-    .course-add-to-cart .add_to_cart_button.loading svg {
-      width: 30px;
-      -webkit-animation: spin 4s infinite linear; }
-  .course-add-to-cart .added_to_cart {
-    background-color: var(--e-global-color-accent);
-    color: var(--e-global-color-5e743c3); }
 
 @-moz-keyframes spin {
   from {

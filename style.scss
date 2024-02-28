@@ -72,6 +72,36 @@ p:last-child {
             background-color: #ffd200;
         }
     }
+    .add_to_cart_button,
+    .added_to_cart {
+        margin-left: 10px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 1;
+        display: inline-block;
+    }
+    .add_to_cart_button {
+        background-color: var(--e-global-color-primary);
+        color: var(--e-global-color-5e743c3); //white
+        display: flex;
+        align-items: center;
+        svg {
+            width: 0;
+        }
+
+        &.loading {
+            svg {
+                width: 30px;
+                -webkit-animation: spin 4s infinite linear;
+            }
+        }
+    }
+    .added_to_cart {
+        background-color: var(--e-global-color-accent);
+        color: var(--e-global-color-5e743c3); //white
+    }
 }
 
 .single-sfwd-courses {
@@ -152,36 +182,6 @@ p:last-child {
 .course-add-to-cart {
     display: flex;
     align-items: center;
-    .add_to_cart_button,
-    .added_to_cart {
-        margin-left: 10px;
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 1;
-        display: inline-block;
-    }
-    .add_to_cart_button {
-        background-color: var(--e-global-color-primary);
-        color: var(--e-global-color-5e743c3); //white
-        display: flex;
-        align-items: center;
-        svg {
-            width: 0;
-        }
-
-        &.loading {
-            svg {
-                width: 30px;
-                -webkit-animation: spin 4s infinite linear;
-            }
-        }
-    }
-    .added_to_cart {
-        background-color: var(--e-global-color-accent);
-        color: var(--e-global-color-5e743c3); //white
-    }
 }
 
 @-moz-keyframes spin {
