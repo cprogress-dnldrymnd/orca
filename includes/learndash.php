@@ -65,7 +65,7 @@ function _learndash_linked_product()
         'meta_query' => array(
             array(
                 'key'   => '_related_course',
-                'value' => get_the_ID(),
+                'value' => serialize(intval(get_the_ID())),
                 'compare' => 'LIKE'
             )
         )
