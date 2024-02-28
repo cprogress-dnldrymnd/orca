@@ -126,7 +126,7 @@ p:last-child {
     background-color: var(--e-global-color-primary);
     color: var(--e-global-color-5e743c3); }
   .course-add-to-cart .added_to_cart {
-    background-color: var(--e-global-color-secondary);
+    background-color: var(--e-global-color-accent);
     color: var(--e-global-color-5e743c3); }
 
 /*# sourceMappingURL=style.css.map */
