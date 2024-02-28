@@ -10,7 +10,7 @@ function breadcrumbs()
     }
 
     if (is_single()) {
-        $html .= '<li><a href="' . get_site_url() . '">' . get_post_type() . '</a></li>';
+        $html .= '<li><a href="' . get_post_type_archive_link(get_post_type())  . '">' . get_post_type() . '</a></li>';
         $html .= '<li><span>' . get_the_title() . '</span></li>';
     }
 
