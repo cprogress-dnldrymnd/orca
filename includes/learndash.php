@@ -65,8 +65,8 @@ function _learndash_linked_product()
         'meta_query' => array(
             array(
                 'key'   => '_related_course',
-                'value' => array(get_the_ID()),
-                'compare' => 'IN'
+                'value' => get_the_ID(),
+                'compare' => 'LIKE'
             )
         )
     );
