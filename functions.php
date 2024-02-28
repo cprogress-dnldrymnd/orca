@@ -42,5 +42,6 @@ function post_id() {
 
 add_shortcode('post_id', 'post_id');
 
+require_once('includes/post-types.php');
 require_once('includes/learndash.php');
 require_once('includes/shortcodes.php');
