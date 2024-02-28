@@ -132,5 +132,9 @@ p:last-child {
         width: 34px;
         height: 34px;
         border-radius: 100px;
+        transform: 400ms;
+    }
+    &:hover {
+        transform: rotate(45deg);
     }
 }
