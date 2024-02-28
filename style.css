@@ -87,7 +87,13 @@ p:last-child {
 .elementor-swiper-button {
   width: 34px;
   height: 34px;
-  border-radius: 100px; }
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .elementor-swiper-button svg {
+    height: 18px;
+    width: 18px; }
   .elementor-swiper-button:before {
     position: absolute;
     top: 0;
