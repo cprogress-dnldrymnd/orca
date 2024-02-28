@@ -103,7 +103,7 @@ p:last-child {
     width: 34px;
     height: 34px;
     border-radius: 100px;
-    transform: 400ms; }
+    transition: 400ms; }
   .elementor-swiper-button:hover:before {
     transform: rotate(45deg); }
 
