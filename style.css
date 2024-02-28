@@ -44,8 +44,10 @@ p:last-child {
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 15px;
-  font-weight: bold; }
+  font-weight: bold;
+  line-height: 1; }
   .single-sfwd-courses .ld-status.ld-status-progress {
-    background-color: var(--e-global-color-db51a67); }
+    background-color: var(--e-global-color-db51a67);
+    color: var(--e-global-color-5e743c3); }
 
 /*# sourceMappingURL=style.css.map */
