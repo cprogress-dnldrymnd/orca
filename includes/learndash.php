@@ -28,16 +28,14 @@ add_shortcode('_learndash_course_meta', '_learndash_course_meta');
 
 function _learndash_status_bubble()
 {
-    if (_user_has_access()) {
-        $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
-        return learndash_status_bubble($course_status);
-    }
+    $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
+    return learndash_status_bubble($course_status);
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 
 function _learndash_status()
 {
-    if (_learndash_status_bubble()) {
+    if (_user_has_access()) {
         return _learndash_status_bubble();
     } else {
         return do_shortcode('<div class="course-add-to-cart">[_learndash_linked_product]</div>');
