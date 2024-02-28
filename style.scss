@@ -82,19 +82,27 @@ p:last-child {
         display: flex;
         flex-wrap: wrap;
         font-size: 18px;
+        align-items: center;
         li {
+            display: flex;
+            align-items: center;
             span {
                 font-weight: bold;
+            }
+            a {
+                color: var(--e-global-color-bc39366); //black
             }
             &:not(:last-child) {
                 &::after {
                     content: "";
                     display: inline-block;
-                    height: 10px;
-                    width: 10px;
+                    height: 8px;
+                    width: 8px;
                     border-top: 1px solid;
                     border-left: 1px solid;
-                    transform: rotate(90deg);
+                    transform: rotate(135deg);
+                    margin-left: 10px;
+                    margin-right: 10px;
                 }
             }
         }
