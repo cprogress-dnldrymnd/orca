@@ -8,7 +8,7 @@ function _learndash_course_progress()
 {
     if (_user_has_access()) {
 
-       // return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
+        return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
     }
 }
 
@@ -75,7 +75,6 @@ add_action('wp_footer', 'learndash_wp_footer');
 
 function _learndash_linked_product()
 {
-    ob_start();
     $args = array(
         'post_type'  => 'product',
         'meta_query' => array(
