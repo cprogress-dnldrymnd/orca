@@ -50,8 +50,21 @@ function learndash_wp_footer()
                 jQuery('.ld-progress-steps').appendTo('#course-progress .learndash-wrapper');
             });
         </script>
-<?php
+    <?php
     }
 }
 
 add_action('wp_footer', 'learndash_wp_footer');
+
+
+function _learndash_linked_product()
+{
+    ob_start();
+    ?>
+    <pre>
+        <?php var_dump(get_post_meta(498)) ?>
+    </pre>
+<?php return ob_get_clean();
+}
+
+add_shortcode('_learndash_linked_product', '_learndash_linked_product');
