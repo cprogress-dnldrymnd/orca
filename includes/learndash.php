@@ -109,6 +109,8 @@ function _learndash_has_linked_product()
 
     if ($products) {
         return $products;
+    } else {
+        return false;
     }
 }
 
