@@ -35,7 +35,7 @@ function _learndash_status_bubble()
         $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
         return learndash_status_bubble($course_status);
     } else {
-        return '';
+        return do_shortcode('[_learndash_linked_product]');
     }
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
