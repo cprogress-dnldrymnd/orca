@@ -43,8 +43,6 @@ function _learndash_status()
 }
 add_shortcode('_learndash_status', '_learndash_status');
 
-
-
 function learndash_wp_head()
 {
     if (!_user_has_access()) {
@@ -55,7 +53,7 @@ function learndash_wp_head()
             }
 
             #course-info-right {
-                width: 100% !important
+                width: 100% !important;
             }
         </style>
     <?php
@@ -91,7 +89,6 @@ function learndash_wp_footer()
 
 add_action('wp_footer', 'learndash_wp_footer');
 
-
 function _add_to_cart_button($product_id)
 {
     $html = '<a href="/shop/?add-to-cart=' . $product_id . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $product_id . '"  aria-describedby="" rel="nofollow">Add to basket';
@@ -100,8 +97,6 @@ function _add_to_cart_button($product_id)
 
     return $html;
 }
-
-
 
 function _learndash_has_linked_product()
 {
@@ -131,6 +126,7 @@ function _learndash_linked_product($atts)
         shortcode_atts(
             array(
                 'hide_bubble' => 'false',
+                'show_price' => 'false',
             ),
             $atts
         )
@@ -146,6 +142,13 @@ function _learndash_linked_product($atts)
 
 
     if ($products) {
+
+        $product = wc_get_product($courseID);
+
+        if ($show_price == 'true') {
+            $html .= $product->get_price();
+        }
+
         $html .= _add_to_cart_button($products[0]->ID);
         return $html;
     }
