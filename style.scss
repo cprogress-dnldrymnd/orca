@@ -226,9 +226,19 @@ p:last-child {
     }
 }
 
-
 .woocommerce-notices-wrapper {
     a {
         font-family: "Source Sans Pro";
     }
+}
+
+
+div#sticky-add-to-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transition: 500ms;
+    transform: translateY(100%);
 }

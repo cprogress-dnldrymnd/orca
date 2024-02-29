@@ -71,6 +71,19 @@ function learndash_wp_footer()
             jQuery(document).ready(function() {
                 jQuery('.ld-progress-steps').appendTo('#course-progress .learndash-wrapper');
             });
+
+
+
+            var lastScrollTop = 0;
+            jQuery(window).scroll(function(event) {
+                var st = jQuery(this).scrollTop();
+                if (st == 500) {
+                    jQuery('div#sticky-add-to-cart').addClass('show-sticky');
+                } else {
+                    jQuery('div#sticky-add-to-cart').removeClass('show-sticky');
+                }
+                lastScrollTop = st;
+            });
         </script>
 <?php
     }
@@ -141,8 +154,9 @@ function _learndash_linked_product($atts)
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
 
 
-function _learndash_sticky_add_to_cart() {
-    if(!_user_has_access()) {
+function _learndash_sticky_add_to_cart()
+{
+    if (!_user_has_access()) {
         return do_shortcode('[elementor-template id="550"]');
     }
 }
