@@ -11,5 +11,4 @@ function filter_woocommerce_cart_redirect_after_error($redirect, $product_id)
 
     return $redirect;
 }
-
 add_filter('woocommerce_cart_redirect_after_error', 'filter_woocommerce_cart_redirect_after_error', 10, 2);
