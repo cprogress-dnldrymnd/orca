@@ -87,6 +87,12 @@ p:last-child {
   padding: 10px;
   line-height: 1.5;
   text-align: center; }
+  .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button.added {
+    display: none; }
+.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .added_to_cart {
+  margin-left: 0;
+  width: 100%;
+  text-align: center; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--e-global-color-5e743c3); }

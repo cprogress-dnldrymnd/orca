@@ -110,6 +110,14 @@ p:last-child {
         padding: 10px;
         line-height: 1.5;
         text-align: center;
+        &.added {
+            display: none;
+        }
+    }
+    .added_to_cart {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
     }
 }
 
