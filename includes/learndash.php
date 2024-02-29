@@ -112,7 +112,7 @@ function _learndash_has_linked_product()
     }
 }
 
-function _learndash_linked_product()
+function _learndash_linked_product($atts)
 {
     extract(
         shortcode_atts(
