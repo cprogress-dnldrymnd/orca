@@ -28,21 +28,6 @@ p:last-child {
   .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-steps {
     display: none; }
 
-.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .elementor-post-info__terms-list {
-  font-size: 0; }
-  .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .elementor-post-info__terms-list a {
-    background-color: var(--e-global-color-accent);
-    border-radius: 5px;
-    padding: 10px 14px;
-    font-size: 15px !important;
-    font-weight: bold; }
-.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button {
-  margin-left: 0;
-  font-size: 15.75px;
-  padding: 10px;
-  line-height: 1.5;
-  text-align: center; }
-
 .course-meta {
   font-size: 16px; }
 
@@ -84,6 +69,21 @@ p:last-child {
   background-color: var(--e-global-color-accent);
   color: var(--e-global-color-5e743c3);
   display: inline-block; }
+
+.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .elementor-post-info__terms-list {
+  font-size: 0; }
+  .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .elementor-post-info__terms-list a {
+    background-color: var(--e-global-color-accent);
+    border-radius: 5px;
+    padding: 10px 14px;
+    font-size: 15px !important;
+    font-weight: bold; }
+.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button {
+  margin-left: 0;
+  font-size: 15.75px;
+  padding: 10px;
+  line-height: 1.5;
+  text-align: center; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--e-global-color-5e743c3); }
