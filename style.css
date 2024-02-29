@@ -1,170 +1,69 @@
-/* 
-Theme Name: Orca Theme
-Description: Orca Theme is a child theme of Hello Elementor.
-Author: Digitally Disruptive
-Author URI: https://digitallydisruptive.co.uk/
-Template: hello-elementor
-Version: 2.0.0
-Text Domain: orca
-License: GNU General Public License v3 or later.
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+/*
+Error: Invalid CSS after ".": expected class name, was ".post-type-arch..."
+        on line 41 of style.scss
+
+36:             display: none;
+37:         }
+38:     }
+39: }
+40: 
+41: ..post-type-archive-sfwd-courses {
+42:     .elementor-post-info__terms-list {
+43:         font-size: 0;
+44:         a {
+45:             background-color: var(--e-global-color-accent);
+46:             border-radius: 5px;
+
+Backtrace:
+style.scss:41
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1308:in `expected'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1238:in `expected'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1233:in `tok!'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1097:in `ident!'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/static_parser.rb:194:in `class_selector'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/static_parser.rb:156:in `simple_selector_sequence'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/static_parser.rb:108:in `selector'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/static_parser.rb:83:in `selector_comma_sequence'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1216:in `expr!'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/scss/static_parser.rb:20:in `parse_selector'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:434:in `visit_rule'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:443:in `on_file_changed'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:320:in `block in watch'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/config.rb:23:in `call'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:115:in `_process_changes'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:19:in `block in loop_for'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop_for'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:84:in `_wait_for_changes'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:42:in `block in setup'
+C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/internals/thread_pool.rb:6:in `block in add'
 */
-/* Add your custom styles here */
-p:last-child {
-  margin-bottom: 0 !important; }
-
-.learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  margin-top: 0;
-  margin-bottom: 0; }
-  .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading {
-    flex: 0 0 auto;
-    margin-left: 24px; }
-    .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
-      color: var(--e-global-color-51e6256, #42bdf4); }
-  .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-steps {
-    display: none; }
-
-.post-type-archive-sfwd-courses .elementor-post-info__terms-list {
-  font-size: 0; }
-  .post-type-archive-sfwd-courses .elementor-post-info__terms-list a {
-    background-color: var(--e-global-color-accent);
-    border-radius: 5px;
-    padding: 10px 14px;
-    font-size: 15px !important;
-    font-weight: bold; }
-.post-type-archive-sfwd-courses .add_to_cart_button {
-  margin-left: 0;
-  font-size: 15.75px;
-  padding: 10px;
-  line-height: 1.5; }
-
-.course-meta {
-  font-size: 16px; }
-
-.post-type-archive-sfwd-courses .ld-status,
-.single-sfwd-courses .ld-status {
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 1;
-  display: inline-block; }
-  .post-type-archive-sfwd-courses .ld-status.ld-status-progress,
-  .single-sfwd-courses .ld-status.ld-status-progress {
-    background-color: var(--e-global-color-db51a67);
-    color: var(--e-global-color-5e743c3); }
-  .post-type-archive-sfwd-courses .ld-status.ld-status-waiting,
-  .single-sfwd-courses .ld-status.ld-status-waiting {
-    background-color: #ffd200; }
-.post-type-archive-sfwd-courses .add_to_cart_button,
-.post-type-archive-sfwd-courses .added_to_cart,
-.single-sfwd-courses .add_to_cart_button,
-.single-sfwd-courses .added_to_cart {
-  margin-left: 10px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 1;
-  display: inline-block; }
-.post-type-archive-sfwd-courses .add_to_cart_button,
-.single-sfwd-courses .add_to_cart_button {
-  background-color: var(--e-global-color-primary);
-  color: var(--e-global-color-5e743c3);
-  display: flex;
-  align-items: center; }
-  .post-type-archive-sfwd-courses .add_to_cart_button svg,
-  .single-sfwd-courses .add_to_cart_button svg {
-    width: 0; }
-  .post-type-archive-sfwd-courses .add_to_cart_button.loading svg,
-  .single-sfwd-courses .add_to_cart_button.loading svg {
-    width: 30px;
-    -webkit-animation: spin 4s infinite linear; }
-.post-type-archive-sfwd-courses .added_to_cart,
-.single-sfwd-courses .added_to_cart {
-  background-color: var(--e-global-color-accent);
-  color: var(--e-global-color-5e743c3); }
-
-.single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
-  background-color: var(--e-global-color-5e743c3); }
-.single-sfwd-courses .ld-progress-steps {
-  color: #7e7e7e;
-  font-size: 16px; }
-
-.breadcrumbs-holder {
-  margin-bottom: 40px;
-  border-bottom: 1px solid var(--e-global-color-51e6256);
-  padding-bottom: 10px; }
-  .breadcrumbs-holder ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 18px;
-    align-items: center; }
-    .breadcrumbs-holder ul li {
-      display: flex;
-      align-items: center; }
-      .breadcrumbs-holder ul li span {
-        font-weight: bold; }
-      .breadcrumbs-holder ul li a {
-        color: var(--e-global-color-bc39366); }
-      .breadcrumbs-holder ul li:not(:last-child)::after {
-        content: "";
-        display: inline-block;
-        height: 8px;
-        width: 8px;
-        border-top: 1px solid;
-        border-left: 1px solid;
-        transform: rotate(135deg);
-        margin-left: 10px;
-        margin-right: 10px; }
-
-.elementor-swiper-button {
-  width: 34px;
-  height: 34px;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  .elementor-swiper-button svg {
-    height: 18px !important;
-    width: 18px !important; }
-  .elementor-swiper-button:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='white' stroke-width='5' stroke-dasharray='50%25%2c 13%25' stroke-dashoffset='86' stroke-linecap='butt'/%3e%3c/svg%3e");
-    width: 34px;
-    height: 34px;
-    border-radius: 100px;
-    transition: 400ms; }
-  .elementor-swiper-button:hover:before {
-    transform: rotate(45deg); }
-
-.course-add-to-cart {
-  display: flex;
-  align-items: center; }
-
-@-moz-keyframes spin {
-  from {
-    -moz-transform: rotate(0deg); }
-  to {
-    -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(360deg); } }
-@keyframes spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-
-/*# sourceMappingURL=style.css.map */
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \".\": expected class name, was \".post-type-arch...\"\A         on line 41 of style.scss\A \A 36:             display: none;\A 37:         }\A 38:     }\A 39: }\A 40: \A 41: ..post-type-archive-sfwd-courses {\A 42:     .elementor-post-info__terms-list {\A 43:         font-size: 0;\A 44:         a {\A 45:             background-color: var(--e-global-color-accent);\A 46:             border-radius: 5px;"; }
