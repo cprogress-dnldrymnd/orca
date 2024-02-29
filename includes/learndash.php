@@ -77,7 +77,7 @@ function learndash_wp_footer()
             var lastScrollTop = 0;
             jQuery(window).scroll(function(event) {
                 var st = jQuery(this).scrollTop();
-                if (st == 500) {
+                if (st > 500) {
                     jQuery('div#sticky-add-to-cart').addClass('show-sticky');
                 } else {
                     jQuery('div#sticky-add-to-cart').removeClass('show-sticky');
