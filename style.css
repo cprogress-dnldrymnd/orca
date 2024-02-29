@@ -40,7 +40,8 @@ p:last-child {
   margin-left: 0;
   font-size: 15.75px;
   padding: 10px;
-  line-height: 1.5; }
+  line-height: 1.5;
+  text-align: center; }
 
 .course-meta {
   font-size: 16px; }
