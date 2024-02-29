@@ -64,6 +64,9 @@ p:last-child {
   .add_to_cart_button.loading svg {
     width: 30px;
     -webkit-animation: spin 4s infinite linear; }
+  .add_to_cart_button:hover {
+    background-color: var(--e-global-color-accent);
+    color: var(--e-global-color-5e743c3); }
 
 .added_to_cart {
   background-color: var(--e-global-color-accent);

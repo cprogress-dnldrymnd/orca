@@ -38,8 +38,6 @@ p:last-child {
     }
 }
 
-
-
 .course-meta {
     font-size: 16px;
 }
@@ -84,13 +82,16 @@ p:last-child {
             -webkit-animation: spin 4s infinite linear;
         }
     }
+    &:hover {
+        background-color: var(--e-global-color-accent);
+        color: var(--e-global-color-5e743c3); //white
+    }
 }
 .added_to_cart {
     background-color: var(--e-global-color-accent);
     color: var(--e-global-color-5e743c3); //white
     display: inline-block;
 }
-
 
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses {
     .elementor-post-info__terms-list {
