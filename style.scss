@@ -62,55 +62,51 @@ p:last-child {
     font-size: 16px;
 }
 
-.post-type-archive-sfwd-courses,
-.single-sfwd-courses, .elementor_library-template-default {
-    .ld-status {
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 1;
-        display: inline-block;
-        &.ld-status-progress {
-            background-color: var(--e-global-color-db51a67); //green
-            color: var(--e-global-color-5e743c3); //white
-        }
-        &.ld-status-waiting {
-            background-color: #ffd200;
-        }
-    }
-    .add_to_cart_button,
-    .added_to_cart {
-        margin-left: 10px;
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 1;
-    }
-    .add_to_cart_button {
-        background-color: var(--e-global-color-primary);
+.ld-status.ld-status {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-block;
+    &.ld-status-progress {
+        background-color: var(--e-global-color-db51a67); //green
         color: var(--e-global-color-5e743c3); //white
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    }
+    &.ld-status-waiting {
+        background-color: #ffd200;
+    }
+}
+.add_to_cart_button,
+.added_to_cart {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+}
+.add_to_cart_button {
+    background-color: var(--e-global-color-primary);
+    color: var(--e-global-color-5e743c3); //white
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        width: 0;
+    }
+
+    &.loading {
         svg {
-            width: 0;
-        }
-
-        &.loading {
-            svg {
-                width: 30px;
-                -webkit-animation: spin 4s infinite linear;
-            }
+            width: 30px;
+            -webkit-animation: spin 4s infinite linear;
         }
     }
-    .added_to_cart {
-        background-color: var(--e-global-color-accent);
-        color: var(--e-global-color-5e743c3); //white
-        display: inline-block;
-
-    }
+}
+.added_to_cart {
+    background-color: var(--e-global-color-accent);
+    color: var(--e-global-color-5e743c3); //white
+    display: inline-block;
 }
 
 .single-sfwd-courses {
