@@ -46,3 +46,4 @@ require_once('includes/post-types.php');
 require_once('includes/learndash.php');
 require_once('includes/shortcodes.php');
 require_once('includes/hooks.php');
+require_once('includes/woocommerce.php');
