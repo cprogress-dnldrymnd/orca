@@ -117,7 +117,7 @@ function _learndash_linked_product()
     extract(
         shortcode_atts(
             array(
-                'hide_bubble' => false,
+                'hide_bubble' => 'false',
             ),
             $atts
         )
@@ -126,8 +126,8 @@ function _learndash_linked_product()
     $products = _learndash_has_linked_product();
 
     $html = '';
-    
-    if(!$hide_bubble) {
+
+    if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     }
 
