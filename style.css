@@ -36,6 +36,11 @@ p:last-child {
     padding: 10px 14px;
     font-size: 15px !important;
     font-weight: bold; }
+.post-type-archive-sfwd-courses .add_to_cart_button {
+  margin-left: 0;
+  font-size: 15.75px;
+  padding: 10px;
+  line-height: 1.5; }
 
 .course-meta {
   font-size: 16px; }
