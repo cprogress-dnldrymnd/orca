@@ -87,13 +87,13 @@ p:last-child {
         font-size: 15px;
         font-weight: bold;
         line-height: 1;
-        display: inline-block;
     }
     .add_to_cart_button {
         background-color: var(--e-global-color-primary);
         color: var(--e-global-color-5e743c3); //white
         display: flex;
         align-items: center;
+        justify-content: center;
         svg {
             width: 0;
         }
@@ -108,6 +108,8 @@ p:last-child {
     .added_to_cart {
         background-color: var(--e-global-color-accent);
         color: var(--e-global-color-5e743c3); //white
+        display: inline-block;
+
     }
 }
 
