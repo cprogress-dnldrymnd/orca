@@ -232,7 +232,6 @@ p:last-child {
     }
 }
 
-
 div#sticky-add-to-cart {
     position: fixed;
     bottom: 0;
@@ -241,4 +240,7 @@ div#sticky-add-to-cart {
     z-index: 1;
     transition: 500ms;
     transform: translateY(100%);
+    &.show-sticky {
+        transform: translateY(0);
+    }
 }
