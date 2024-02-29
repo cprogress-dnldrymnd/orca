@@ -90,7 +90,8 @@ p:last-child {
   line-height: 1.5;
   margin-left: 0;
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  padding: 10px 5px; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--e-global-color-5e743c3); }
