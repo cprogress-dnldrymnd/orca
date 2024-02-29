@@ -13,3 +13,8 @@ function filter_woocommerce_cart_redirect_after_error($redirect, $product_id)
 }
 
 add_filter('woocommerce_cart_redirect_after_error', 'filter_woocommerce_cart_redirect_after_error', 10, 2);
+
+
+function _learndash_sticky_add_to_cart() {
+    
+}
