@@ -146,3 +146,5 @@ function _learndash_sticky_add_to_cart() {
         return do_shortcode('[elementor-template id="550"]');
     }
 }
+
+add_shortcode('_learndash_sticky_add_to_cart', '_learndash_sticky_add_to_cart');
