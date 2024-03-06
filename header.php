@@ -20,9 +20,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <?php wp_body_open(); ?>
     <div id="page" class="site">
-
         <header id="masthead" class="site-header">
             <nav class="header-navbar py-2">
                 <div class="container">
