@@ -86,3 +86,25 @@ function _course_breakdown()
     }
 }
 add_shortcode('_course_breakdown', '_course_breakdown');
+
+
+function _image($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'key' => '',
+                'size' => '',
+            ),
+            $atts
+        )
+    );
+    $image_url = wp_get_attachment_image_url($key, $size);
+
+    if ($image_url) {
+        $html = '<div class="elementor-widget-image">';
+        $html = '<img src="' . $image_url . '" >';
+        $html .= '</div>';
+        return $html;
+    }
+}
