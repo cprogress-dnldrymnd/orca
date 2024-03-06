@@ -313,11 +313,11 @@ function _course_banner()
     if ($banner_heading || $banner_description) {
         $html = '<div class="course-banner position-relative background-primary">';
 
-        $html .= '<div class="inner color-white position-relative ">';
 
         if ($banner_background_image) {
             $html .= do_shortcode("[_image id='$banner_background_image' size='large' class='not-absolute image-box-background']");
         }
+        $html .= '<div class="inner color-white position-relative ">';
 
         if ($banner_heading) {
             $html .= "<h2><strong> $banner_heading </strong></h2>";
