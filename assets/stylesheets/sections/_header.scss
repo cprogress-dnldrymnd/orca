@@ -4,6 +4,10 @@
             width: 82px;
             height: 82px;
             object-fit: contain;
+            @include responsive(xs-sm) {
+                width: 60px;
+                height: 60px;
+            }
         }
     }
     .search {

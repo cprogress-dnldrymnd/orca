@@ -11309,6 +11309,10 @@ h5, .h5 {
   width: 82px;
   height: 82px;
   object-fit: contain; }
+  @media screen and (max-width: 991px) {
+    #masthead .navbar-brand img {
+      width: 60px;
+      height: 60px; } }
 #masthead .search {
   border: none;
   border-bottom: 1px solid;
