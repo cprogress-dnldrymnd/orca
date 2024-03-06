@@ -178,8 +178,9 @@ function new_default_content($content)
 }
 add_filter('the_content', 'new_default_content', 9999);
 
+/*
 function action_learndash_focus_header_before() {
     echo do_shortcode('[elementor-template id="122"]');
 }
 
-add_action('learndash-focus-header-before', 'action_learndash_focus_header_before');
+add_action('learndash-focus-header-before', 'action_learndash_focus_header_before');*/
