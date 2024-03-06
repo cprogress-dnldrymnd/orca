@@ -11123,10 +11123,10 @@ img {
   line-height: 1;
   font-weight: bold;
   border-radius: 8px; }
-.btn.btn .btn-primary {
+.btn.btn.btn-primary {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color); }
-.btn.btn .btn-black {
+.btn.btn.btn-black {
   background-color: var(--black-color);
   border: 1px solid var(--black-color);
   color: var(--white-color); }
