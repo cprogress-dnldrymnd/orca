@@ -185,14 +185,16 @@ function action_learndash_focus_header_before() {
 
 add_action('learndash-focus-header-before', 'action_learndash_focus_header_before');*/
 
-function action_learndash_before_section_heading() {
+function action_learndash_before_section_heading()
+{
     echo 'exsds';
 }
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
 
-function action_learndash_lesson_row_after() {
-    echo 'xsxss';
+function action_learndash_lesson_row_after($course_id, $group_id, $user_id)
+{
+    echo 'xsxss' . $group_id;
 }
 
-add_action('learndash_group_course_row_after', 'action_learndash_lesson_row_after');
+add_action('learndash-lesson-row-after', 'action_learndash_lesson_row_after');
