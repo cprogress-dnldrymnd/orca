@@ -188,7 +188,7 @@ add_action('learndash-focus-header-before', 'action_learndash_focus_header_befor
 function action_learndash_before_section_heading()
 {
     if (is_single() && get_post_type() == 'sfwd-courses') {
-        echo '</div><div>';
+        echo '</div><div class="lesson-parent-item">';
     }
 }
 
