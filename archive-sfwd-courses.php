@@ -7,7 +7,7 @@
                 <?php the_post() ?>
                 <div class="col-lg-4">
                     <div class="column-holder">
-                       
+                        <?= do_shortcode('[_image id="' . get_post_thumbnail_id() . '" ]') ?>
                     </div>
                 </div>
             <?php } ?>

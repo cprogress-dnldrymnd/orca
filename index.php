@@ -1,3 +1,18 @@
 <?php get_header() ?>
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore fugit error vel placeat qui fugiat quaerat veniam? Fugit quasi praesentium totam nisi exercitationem dolores veritatis labore corporis. Doloribus, ipsum molestiae.
+
+<section class="archive-courses">
+    <div class="container">
+        <div class="row">
+            <?php while (have_post()) { ?>
+                <?php the_post() ?>
+                <div class="col-lg-4">
+                    <div class="column-holder">
+                        <?= do_shortcode('[_image id="' . get_post_thumbnail_id() . '" ]') ?>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</section>
+
 <?php get_footer() ?>
