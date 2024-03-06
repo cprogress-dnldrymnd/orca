@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <button class="menu-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            <button class="menu-toggler btn btn-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                                 <span>
                                     <span class="menu-toggler-icon"></span>
                                     <span class="menu-toggler-text">Menu</span>
