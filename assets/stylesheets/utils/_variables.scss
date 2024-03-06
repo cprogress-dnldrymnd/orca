@@ -4,7 +4,6 @@
 $base-url: "./assets/" !default;
 $image-url: "./assets/images/" !default;
 $font-url: "./assets/fonts/" !default;
-$primary-font: "Source Sans 3", sans-serif;
 $primary-color: #2A6EBB;
 $secondary-color: #54595F;
 $accent-color: #33A19A;
@@ -14,7 +13,6 @@ $black-color: #000000;
 $blue-color: #42BDF4;
 $green-color: #B4D012;
 :root {
-    --primary-font: {$primary-font};
     --primary-color: #{$primary-color};
     --secondary-color: #{$secondary-color};
     --accent-color: #{$accent-color};

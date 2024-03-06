@@ -11053,7 +11053,6 @@ button.swiper-pagination-bullet {
   to {
     transform: rotate(360deg); } }
 :root {
-  --primary-font: Source Sans 3, sans-serif;
   --primary-color: #2A6EBB;
   --secondary-color: #54595F;
   --accent-color: #33A19A;
@@ -11086,7 +11085,7 @@ button.swiper-pagination-bullet {
     max-width: 1470px; } }
 
 body {
-  font-family: var(--primary-font); }
+  font-family: "Source Sans 3", sans-serif; }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: bold; }
