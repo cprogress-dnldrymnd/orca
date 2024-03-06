@@ -148,3 +148,12 @@
         }
     }
 }
+
+
+.single-course-section {
+    > div {
+        @include not-last-child {
+            margin-bottom: 40px;
+        }
+    }
+}

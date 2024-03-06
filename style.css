@@ -11524,6 +11524,9 @@ section.archive-grid .column-holder {
     .image-box-course .meta-box > div:not(:last-child) {
       margin-right: 10px; }
 
+.single-course-section > div:not(:last-child) {
+  margin-bottom: 40px; }
+
 /* Add your custom styles here */
 .elementor-swiper-button {
   width: 34px;
