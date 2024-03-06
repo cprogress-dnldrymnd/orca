@@ -153,3 +153,30 @@ function _description($atts)
     return "<div class='description-box'> " . wpautop($description) . " </div>";
 }
 add_shortcode('_description', '_description');
+
+function _post_taxonomy_terms($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'taxonomy' => ''
+            ),
+            $atts
+        )
+    );
+
+    if ($taxonomy) {
+        $terms = get_the_terms($post->ID, array($taxonomy));
+        $html = "<div class='taxonomy-terms d-flex'>";
+
+        foreach ($terms as $term) {
+            $html .= '<a href="' . get_term_link($term->term_id) . '">';
+            $html .= $term->name;
+            $html .= '</a>';
+        }
+
+        $html .= "</div>";
+
+        return $html;
+    }
+}
