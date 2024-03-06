@@ -190,3 +190,9 @@ function action_learndash_before_section_heading() {
 }
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
+
+function action_learndash_lesson_row_after() {
+    echo 'xsxss';
+}
+
+add_action('learndash-lesson-row-after', 'action_learndash_lesson_row_after');
