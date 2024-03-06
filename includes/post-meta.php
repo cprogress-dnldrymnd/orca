@@ -13,7 +13,7 @@ Container::make('post_meta', 'CTA')
     ->where('post_type', '=', 'sfwd-courses')
     ->set_priority('high')
 
-    ->add_fields(
+    ->add_tab('CTA',
         array(
             Field::make('text', 'cta_heading', __('CTA Heading')),
             Field::make('rich_text', 'cta_description', __('CTA Description')),
