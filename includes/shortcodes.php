@@ -79,10 +79,14 @@ function _course_highlight()
 
     if ($highlight_heading || $highlight_description) {
         $html = '<div class="course-highlight">';
-        $html .= '<div class="row align-items-center gy-4>"';
-
+        $html .= '<div class="row align-items-center gy-4">';
         $html .= '<div class="col-md-8">';
-       
+        if ($highlight_heading) {
+            $html .= "<p><strong> $highlight_heading </strong></p>";
+        }
+        if ($highlight_description) {
+            $html .= wpautop($highlight_description);
+        }
         $html .= '</div>';
 
         if ($highlight_image) {
