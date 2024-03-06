@@ -72,8 +72,9 @@
                                     </div>
                                 </div>
                             <?php } ?>
+                            <div class="col-12 hr"></div>
+
                             <div class="col-12">
-                                <hr>
                                 <?php
                                 wp_nav_menu(array(
                                     'theme_location' => 'footer-main-menu',
@@ -84,9 +85,11 @@
                                     'depth' => 2,
                                 ));
                                 ?>
-                                <hr>
+
 
                             </div>
+
+                            <div class="col-12 hr"></div>
 
                             <?php if (is_active_sidebar('footer_bottom')) { ?>
                                 <div class="col-12">
