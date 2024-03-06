@@ -28,7 +28,7 @@
                     'container' => false,
                     'menu_class' => '',
                     'fallback_cb' => '__return_false',
-                    'items_wrap' => '<ul id="%1$s" class="menu" >%3$s</ul>',
+                    'items_wrap' => '<ul id="%1$s" class="menu footer-main-menu" >%3$s</ul>',
                     'depth' => 2,
                 ));
                 ?>

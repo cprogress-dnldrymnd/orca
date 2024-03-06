@@ -1,5 +1,5 @@
 .footer-decoration {
-    >div {
+    > div {
         margin-bottom: 4.5px;
         border-bottom: 1px solid var(--primary-color);
     }
@@ -8,6 +8,28 @@
 #site-footer {
     text-decoration: none;
     ul {
-        
+        display: flex;
+        align-items: center;
+        &.footer-main-menu {
+            display: flex;
+            align-items: center;
+            li {
+                display: flex;
+                align-items: center;
+                &:not(:last-child) {
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        height: 8px;
+                        width: 8px;
+                        border-top: 1px solid;
+                        border-left: 1px solid;
+                        transform: rotate(135deg);
+                        margin-left: 10px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
     }
 }
