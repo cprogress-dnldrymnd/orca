@@ -109,9 +109,9 @@ function _image($atts)
     $html = '<div class="image-box">';
 
     if ($image_url) {
-        $html = '<img src="' . $image_url . '" >';
+        $html .= '<img src="' . $image_url . '" >';
     } else {
-        $html = '<img src="/wp-content/plugins/elementor/assets/images/placeholder.png" >';
+        $html .= '<img src="/wp-content/plugins/elementor/assets/images/placeholder.png" >';
     }
     $html .= '</div>';
 
