@@ -283,6 +283,7 @@ div#sticky-add-to-cart {
 .learndash-wrapper.learndash-wrapper .ld-focus {
     .ld-focus-header {
         position: sticky;
+        border-top: 1px solid #e2e7ed;
     }
     .ld-focus-sidebar {
 
@@ -290,4 +291,7 @@ div#sticky-add-to-cart {
 }
 body.ld-in-focus-mode.admin-bar {
     padding-top: 0 !important;
+    div[data-elementor-type="header"] {
+        margin-left: 350px;
+    }
 }
