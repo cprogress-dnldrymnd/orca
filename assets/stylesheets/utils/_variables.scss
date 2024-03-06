@@ -14,7 +14,7 @@ $black-color: #000000;
 $blue-color: #42BDF4;
 $green-color: #B4D012;
 :root {
-    --primary-font: #{$primary-font};
+    --primary-font: {$primary-font};
     --primary-color: #{$primary-color};
     --secondary-color: #{$secondary-color};
     --accent-color: #{$accent-color};
