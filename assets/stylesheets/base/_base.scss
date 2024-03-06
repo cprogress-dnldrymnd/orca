@@ -1,5 +1,17 @@
 .list-inline-icons {
     li {
+        a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            color: var(--black-color);
+            svg {
+                width: 16px;
+                flex: 0 0 16px;
+                height: 16px;
+                margin-right: 10px;
+            }
+        }
         @include not-last-child {
             margin-right: 1rem;
         }
