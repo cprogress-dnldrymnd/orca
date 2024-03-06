@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col d-flex flex-lg-column justify-content-end">
-                            <div class="header-right-top d-flex justify-content-end">
+                            <div class="header-right-top d-flex justify-content-end mb-0 mb-lg-3">
                                 <ul class="list-inline-icons list-inline d-inline-flex flex-wrap mb-0 align-items-center me-3 me-lg-0">
                                     <li>
                                         <a href="">
