@@ -59,6 +59,7 @@ function get__theme_option($value)
 }
 
 
+require_once('includes/menu.php');
 require_once('includes/post-types.php');
 require_once('includes/learndash.php');
 require_once('includes/shortcodes.php');
