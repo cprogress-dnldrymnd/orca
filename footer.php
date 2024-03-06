@@ -36,7 +36,7 @@
             </div>
             <div class="col-12">
                 <div class="row">
-                    <?php if (get_sidebar('footer_left')) { ?>
+                    <?php if (is_active_sidebar('footer_left')) { ?>
                         <div class="col-lg-4">
                             <div class="footer-left-holder">
                                 <?php dynamic_sidebar('footer_left') ?>
