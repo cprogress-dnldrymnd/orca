@@ -223,6 +223,7 @@ function _learndash_image($atts)
 
     if ($learndash_status_bubble) {
         $html .= '<div class="meta-box">';
+        $html .= do_shortcode('[_learndash_status_bubble]');
         $html .= '</div>';
     }
     if ($image_url) {
