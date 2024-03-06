@@ -1,17 +1,17 @@
-<?php 
+<?php
 /*-----------------------------------------------------------------------------------*/
 /* Register main menu for Wordpress use
 /*-----------------------------------------------------------------------------------*/
-function menu_locations() {
+function menu_locations()
+{
 
-	register_nav_menus(
-		array(
+    register_nav_menus(
+        array(
 
-			'header-menu'	=>	__( 'Header Menu'),
-		)
+            'header-menu'    =>    __('Header Menu'),
+        )
 
-	);
-
+    );
 }
 
-add_action( 'init', 'menu_locations' );
+add_action('init', 'menu_locations');
