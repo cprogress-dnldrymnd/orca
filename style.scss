@@ -12,7 +12,12 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 */
 
 /* Add your custom styles here */
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     line-height: 1.2;
 }
 p:last-child {
@@ -291,9 +296,15 @@ div#sticky-add-to-cart {
     .ld-progress-steps {
         display: block !important;
     }
-    .ld-focus-content {
-        h1 {
-            font-size: 50px;
+    .ld-focus-main {
+        .ld-focus-content {
+            padding-top: 40px;
+            h1 {
+                font-size: 50px;
+            }
+            .ld-breadcrumbs .ld-breadcrumbs-segments span a {
+                color: var(--e-global-color-bc39366);
+            }
         }
     }
 }

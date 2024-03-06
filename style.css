@@ -11,7 +11,12 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 */
 /* Add your custom styles here */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1.2; }
 
 p:last-child {
@@ -215,8 +220,12 @@ div#sticky-add-to-cart {
   border-top: 1px solid #e2e7ed; }
 .learndash-wrapper.learndash-wrapper .ld-focus .ld-progress-steps {
   display: block !important; }
-.learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-content h1 {
-  font-size: 50px; }
+.learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content {
+  padding-top: 40px; }
+  .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content h1 {
+    font-size: 50px; }
+  .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content .ld-breadcrumbs .ld-breadcrumbs-segments span a {
+    color: var(--e-global-color-bc39366); }
 
 body.ld-in-focus-mode.admin-bar {
   padding-top: 0 !important; }
