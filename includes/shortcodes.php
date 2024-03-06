@@ -117,7 +117,6 @@ function _image($atts)
 
     return $html;
 }
-
 add_shortcode('_image', '_image');
 
 function _heading($atts)
@@ -134,3 +133,4 @@ function _heading($atts)
 
     return "<div class='heading-box'><$tag>$heading</$tag></div>";
 }
+add_shortcode('_heading', '_heading');
