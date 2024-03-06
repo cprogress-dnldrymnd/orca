@@ -9,7 +9,7 @@
                 <div class="col-lg-4">
                     <div class="column-holder">
                         <?php
-                        echo do_shortcode('[_image id="' . get_post_thumbnail_id() . '" ]');
+                        echo do_shortcode('[_image id="' . get_post_thumbnail_id() . ' size="medium" ]');
                         echo do_shortcode('[_heading heading="' . get_the_title() . '" ]');
                         ?>
                     </div>
