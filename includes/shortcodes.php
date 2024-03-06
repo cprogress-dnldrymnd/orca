@@ -119,3 +119,18 @@ function _image($atts)
 }
 
 add_shortcode('_image', '_image');
+
+function _heading($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'tag' => 'h2',
+                'heading'
+            ),
+            $atts
+        )
+    );
+
+    return "<div class='heading-box'><$tag>$heading</$tag></div>";
+}
