@@ -11322,9 +11322,14 @@ h5, .h5 {
 
 #site-footer {
   text-decoration: none; }
+  #site-footer a {
+    text-decoration: none; }
   #site-footer ul {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0; }
     #site-footer ul.footer-main-menu {
       display: flex;
       align-items: center; }

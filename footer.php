@@ -11,14 +11,14 @@
  */
 
 ?>
-
+<div class="footer-decoration">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 <footer id="site-footer" class="site-footer background-primary">
-    <div class="footer-decoration">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -66,32 +66,31 @@
                                     </div>
                                 </div>
                             <?php } ?>
+                            <div class="col-12">
+                                <?php
+                                wp_nav_menu(array(
+                                    'theme_location' => 'footer-main-menu',
+                                    'container' => false,
+                                    'menu_class' => '',
+                                    'fallback_cb' => '__return_false',
+                                    'items_wrap' => '<ul id="%1$s" class="menu" >%3$s</ul>',
+                                    'depth' => 2,
+                                ));
+                                ?>
+                            </div>
+                            <?php if (is_active_sidebar('footer_bottom')) { ?>
+                                <div class="col-12">
+                                    <div class="footer-bottom-holder">
+                                        <?php dynamic_sidebar('footer_bottom') ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <?php
-                        wp_nav_menu(array(
-                            'theme_location' => 'footer-main-menu',
-                            'container' => false,
-                            'menu_class' => '',
-                            'fallback_cb' => '__return_false',
-                            'items_wrap' => '<ul id="%1$s" class="menu" >%3$s</ul>',
-                            'depth' => 2,
-                        ));
-                        ?>
-                    </div>
+
                 </div>
             </div>
 
-            <?php if (is_active_sidebar('footer_bottom')) { ?>
-                <div class="col-12">
-                    <div class="footer-bottom-holder">
-                        <?php dynamic_sidebar('footer_bottom') ?>
-                    </div>
-                </div>
-            <?php } ?>
         </div>
     </div>
 </footer>

@@ -7,9 +7,15 @@
 
 #site-footer {
     text-decoration: none;
+    a {
+        text-decoration: none;
+    }
     ul {
         display: flex;
         align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
         &.footer-main-menu {
             display: flex;
             align-items: center;
