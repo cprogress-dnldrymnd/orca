@@ -83,8 +83,8 @@ function learndash_wp_footer()
                 lastScrollTop = st;
             });
 
-            jQuery('.lesson-parent-item').click(function (e) { 
-                jQuery(this).toggleClass('active');
+            jQuery('.ld-lesson-section-heading').click(function (e) { 
+                jQuery(this).parent().toggleClass('active');
                 e.preventDefault();
             });
         </script>

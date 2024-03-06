@@ -159,7 +159,7 @@ p:last-child {
                 margin-bottom: 25px;
             }
             &.active {
-                .ld-item-list-item {
+                > .ld-item-list-item {
                     display: block;
                 }
             }
