@@ -9,7 +9,7 @@
             <div class="single-course-content-holder background-white pt-4">
                 <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
                     <div class="inner background-light-gray">
-                        <div class="row">
+                        <div class="row gy-3 align-items-center">
                             <div class="col-md-8">
                                 <?= do_shortcode('[_learndash_course_progress]') ?>
                             </div>
