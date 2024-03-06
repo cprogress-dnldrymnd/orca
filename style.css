@@ -11566,7 +11566,8 @@ section.archive-grid .column-holder {
       margin-left: auto; }
     .single-course-section .learndash-single-cta .course-cta .image-box-background:before {
       background: transparent linear-gradient(89deg, #0E426100 0%, #0E405F 26%, #0E3F5D 100%) 0% 0% no-repeat padding-box;
-      opacity: 1; }
+      opacity: 1;
+      left: 30%; }
   .single-course-section .single-course-content-holder {
     border-radius: 10px; }
     .single-course-section .single-course-content-holder > div {
