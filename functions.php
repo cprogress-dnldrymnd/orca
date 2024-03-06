@@ -10,7 +10,7 @@ define('vendor_dir', assets_dir . 'vendors/');
 
 function action_wp_enqueue_scripts()
 {
-	wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
+	wp_enqueue_style('style', theme_dir . 'style.css');
 
 }
 add_action('wp_enqueue_scripts', 'action_wp_enqueue_scripts', 20);
