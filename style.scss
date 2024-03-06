@@ -18,7 +18,8 @@ Text Domain: orca
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
-@import "assets/stylesheets/base/base", "assets/stylesheets/base/helpers", "assets/stylesheets/base/typography", "assets/stylesheets/base/fonts";
+@import "assets/stylesheets/base/base", "assets/stylesheets/base/helpers", "assets/stylesheets/base/typography",
+    "assets/stylesheets/base/fonts";
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
@@ -109,7 +110,6 @@ p:last-child {
     align-items: center;
 }
 
-
 div#sticky-add-to-cart {
     position: fixed;
     bottom: 0;
@@ -128,32 +128,30 @@ div#sticky-add-to-cart {
 }
 
 .menu-toggler {
-    .elementor-button {
-        .elementor-button-content-wrapper {
+    span {
+        display: flex;
+        align-items: center;
+        .menu-toggler-icon {
+            width: 34px;
+            height: 34px;
             display: flex;
             align-items: center;
-            .elementor-button-icon {
+            justify-content: center;
+            &:before {
+                content: "";
+                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="none" rx="100" ry="100" stroke="%232A6EBB" stroke-width="5" stroke-dasharray="50%, 13%" stroke-dashoffset="86" stroke-linecap="butt"/></svg>');
                 width: 34px;
                 height: 34px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                &:before {
-                    content: "";
-                    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="none" rx="100" ry="100" stroke="%232A6EBB" stroke-width="5" stroke-dasharray="50%, 13%" stroke-dashoffset="86" stroke-linecap="butt"/></svg>');
-                    width: 34px;
-                    height: 34px;
-                    border-radius: 100px;
-                    transition: 400ms;
-                    position: absolute;
-                }
+                border-radius: 100px;
+                transition: 400ms;
+                position: absolute;
             }
         }
-        &:hover {
-            .elementor-button-icon {
-                &:before {
-                    transform: rotate(45deg);
-                }
+    }
+    &:hover {
+        .menu-toggler-icon {
+            &:before {
+                transform: rotate(45deg);
             }
         }
     }

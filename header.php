@@ -33,21 +33,37 @@
                             </div>
                         </div>
                         <div class="col">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                                <span>
+                                    <span class="menu-toggler-icon"></span>
+                                    <span class="menu-toggler-text">Menu</span>
+                                </span>
                             </button>
-                            <div class="collapse navbar-collapse" id="main-menu">
-                                <?php
-                                wp_nav_menu(array(
-                                    'theme_location' => 'header-menu',
-                                    'container' => false,
-                                    'menu_class' => '',
-                                    'fallback_cb' => '__return_false',
-                                    'items_wrap' => '<ul id="%1$s" class="navbar-nav me-auto mb-2 mb-md-0 %2$s">%3$s</ul>',
-                                    'depth' => 2,
-                                ));
-                                ?>
+
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasHeaderMenu" aria-labelledby="offcanvasHeaderMenuLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasHeaderMenuLabel">Offcanvas</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <div class="dropdown mt-3">
+                                        <div class="collapse navbar-collapse" id="main-menu">
+                                            <?php
+                                            wp_nav_menu(array(
+                                                'theme_location' => 'header-menu',
+                                                'container' => false,
+                                                'menu_class' => '',
+                                                'fallback_cb' => '__return_false',
+                                                'items_wrap' => '<ul id="%1$s" class="navbar-nav me-auto mb-2 mb-md-0 %2$s">%3$s</ul>',
+                                                'depth' => 2,
+                                            ));
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
