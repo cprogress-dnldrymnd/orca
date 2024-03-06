@@ -1,4 +1,6 @@
 <?php
+require_once('learndash-settings-fields.php');
+
 function _user_has_access()
 {
     return sfwd_lms_has_access_fn(get_the_ID(), get_current_user_id());
