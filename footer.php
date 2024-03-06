@@ -43,8 +43,40 @@
                             </div>
                         </div>
                     <?php } ?>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <?php if (is_active_sidebar('footer_column_1')) { ?>
+                                <div class="col-lg-4">
+                                    <div class="footer-left-holder">
+                                        <?php dynamic_sidebar('footer_column_1') ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <?php if (is_active_sidebar('footer_column_2')) { ?>
+                                <div class="col-lg-4">
+                                    <div class="footer-left-holder">
+                                        <?php dynamic_sidebar('footer_column_3') ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <?php if (is_active_sidebar('footer_column_2')) { ?>
+                                <div class="col-lg-4">
+                                    <div class="footer-left-holder">
+                                        <?php dynamic_sidebar('footer_column_3') ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <?php if (is_active_sidebar('footer_bottom')) { ?>
+                <div class="col-12">
+                    <div class="footer-left-holder">
+                        <?php dynamic_sidebar('footer_bottom') ?>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </footer>
