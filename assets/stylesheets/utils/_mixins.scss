@@ -586,6 +586,15 @@
     }
 }
 
+@mixin status-style {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-block;
+}
+
 @mixin button-style {
     padding: 10px 20px;
     line-height: 1;

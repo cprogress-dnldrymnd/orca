@@ -32,14 +32,9 @@
 }
 
 .ld-status.ld-status {
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 1;
-    display: inline-block;
+    @include status-style;
     &.ld-status-progress {
-        background-color: var(--accent-color); //green
+        background-color: var(--green-color); //green
         color: var(--white-color); //white
     }
     &.ld-status-waiting {

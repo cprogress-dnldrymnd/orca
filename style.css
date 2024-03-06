@@ -11131,6 +11131,16 @@ img {
   border: 1px solid var(--black-color);
   color: var(--white-color); }
 
+.taxonomy-terms {
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block; }
+  .taxonomy-terms a {
+    background-color: var(--accent-color); }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
@@ -11296,7 +11306,7 @@ section.archive-grid .column-holder {
   line-height: 1;
   display: inline-block; }
   .ld-status.ld-status.ld-status-progress {
-    background-color: var(--accent-color);
+    background-color: var(--green-color);
     color: var(--white-color); }
   .ld-status.ld-status.ld-status-waiting {
     background-color: #ffd200; }

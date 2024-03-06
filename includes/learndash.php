@@ -221,7 +221,7 @@ function _learndash_image($atts)
     $image_url = wp_get_attachment_image_url($id, $size);
     $html = '<div class="image-box image-box-course">';
     if ($learndash_status_bubble || $taxonomy) {
-        $html .= '<div class="meta-box">';
+        $html .= '<div class="meta-box d-flex align-items-center">';
     }
     if ($learndash_status_bubble) {
 

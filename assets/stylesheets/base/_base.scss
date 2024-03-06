@@ -69,3 +69,13 @@ img {
         @include button-black;
     }
 }
+
+.taxonomy-terms {
+    @include status-style;
+    a {
+        background-color: var(--accent-color);
+        @include not-last-child {
+            margin-right: 10px;
+        }
+    }
+}
