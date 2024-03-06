@@ -159,14 +159,15 @@ function _post_taxonomy_terms($atts)
     extract(
         shortcode_atts(
             array(
-                'taxonomy' => ''
+                'taxonomy' => '',
+                'post_id' => get_the_ID()
             ),
             $atts
         )
     );
 
     if ($taxonomy) {
-        $terms = get_the_terms($post->ID, array($taxonomy));
+        $terms = get_the_terms($post_id, array($taxonomy));
         $html = "<div class='taxonomy-terms d-flex'>";
 
         foreach ($terms as $term) {
