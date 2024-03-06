@@ -86,7 +86,7 @@ function _course_highlight()
             $html .= "<p><strong> $highlight_heading </strong></p>";
         }
         if ($highlight_description) {
-            $html .= "<p> " . wpautop($highlight_description) . " </p>";
+            $html .= wpautop($highlight_description);
         }
         $html .= '</div>';
 
