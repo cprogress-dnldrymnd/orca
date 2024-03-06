@@ -228,7 +228,7 @@ function _learndash_image($atts)
         $html .= do_shortcode('[_learndash_status_bubble]');
     }
 
-    if($taxonomy) {
+    if ($taxonomy) {
         $html .= do_shortcode("[_post_taxonomy_terms taxonomy='$taxonomy']");
     }
     if ($learndash_status_bubble || $taxonomy) {
@@ -268,3 +268,102 @@ function _learndash_course_button()
 }
 
 add_shortcode('_learndash_course_button', '_learndash_course_button');
+
+
+
+
+function _course_cta()
+{
+
+    $cta_heading = get__post_meta('cta_heading');
+    $cta_description = get__post_meta('cta_description');
+    $cta_button_text = get__post_meta('cta_button_text');
+    $cta_button_link = get__post_meta('cta_button_link');
+    $cta_background_image = get__post_meta('cta_background_image');
+    if ($cta_heading || $cta_description) {
+        $html = '<div class="course-cta">';
+        if ($cta_background_image) {
+            $html .= do_shortcode("[_image id='$cta_background_image' size='large' class='not-absolute image-box-bg']");
+        }
+        $html = '<div class="inner">';
+
+        if ($cta_heading) {
+            $html .= "<p><strong> $cta_heading </strong></p>";
+        }
+        if ($cta_description) {
+            $html .= wpautop($cta_description);
+        }
+
+        if($cta_button_text) {
+            $html .= 
+        }
+
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
+    }
+}
+add_shortcode('_course_cta', '_course_cta');
+
+function _course_outcomes()
+{
+    $outcomes_heading = get__post_meta('outcomes_heading');
+    $outcomes = get__post_meta('outcomes');
+
+    if ($outcomes_heading || $outcomes) {
+        if ($outcomes_heading) {
+            $html = '<p><strong> Outcomes: ' . $outcomes_heading . '</strong></p>';
+        }
+        if ($outcomes) {
+            $html = wpautop($outcomes);
+        }
+
+        return $html;
+    }
+}
+add_shortcode('_course_outcomes', '_course_outcomes');
+
+function _course_highlight()
+{
+    $highlight_heading = get__post_meta('highlight_heading');
+    $highlight_description = get__post_meta('highlight_description');
+    $highlight_image = get__post_meta('highlight_image');
+
+    if ($highlight_heading || $highlight_description) {
+        $html = '<div class="course-highlight">';
+        $html .= '<div class="row align-items-center gy-4 gy-lg-0">';
+        $html .= '<div class="col-md-8">';
+        if ($highlight_heading) {
+            $html .= "<p><strong> $highlight_heading </strong></p>";
+        }
+        if ($highlight_description) {
+            $html .= wpautop($highlight_description);
+        }
+        $html .= '</div>';
+
+        if ($highlight_image) {
+            $html .= '<div class="col-md-4 text-end">';
+            $html .= do_shortcode("[_image id='$highlight_image' size='large' class='not-absolute']");
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
+    }
+}
+add_shortcode('_course_highlight', '_course_highlight');
+
+
+function _course_breakdown()
+{
+    $course_breakdown = get__post_meta('course_breakdown');
+
+    if ($course_breakdown) {
+        $html = '<p><strong> Course Breakdown </strong></p>';
+
+        $html .= wpautop($course_breakdown);
+
+        return $html;
+    }
+}
+add_shortcode('_course_breakdown', '_course_breakdown');

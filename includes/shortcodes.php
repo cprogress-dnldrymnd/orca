@@ -40,83 +40,6 @@ function post_id()
 add_shortcode('post_id', 'post_id');
 
 
-function _course_cta()
-{
-    $cta_heading = get__post_meta('cta_heading');
-    $cta_description = get__post_meta('cta_description');
-
-    if ($cta_heading || $cta_description) {
-        $html = '<div class="course-cta">';
-        $html .= '</div>';
-        return $html;
-    }
-}
-add_shortcode('_course_cta', '_course_cta');
-
-function _course_outcomes()
-{
-    $outcomes_heading = get__post_meta('outcomes_heading');
-    $outcomes = get__post_meta('outcomes');
-
-    if ($outcomes_heading || $outcomes) {
-        if ($outcomes_heading) {
-            $html = '<p><strong> Outcomes: ' . $outcomes_heading . '</strong></p>';
-        }
-        if ($outcomes) {
-            $html = wpautop($outcomes);
-        }
-
-        return $html;
-    }
-}
-add_shortcode('_course_outcomes', '_course_outcomes');
-
-function _course_highlight()
-{
-    $highlight_heading = get__post_meta('highlight_heading');
-    $highlight_description = get__post_meta('highlight_description');
-    $highlight_image = get__post_meta('highlight_image');
-
-    if ($highlight_heading || $highlight_description) {
-        $html = '<div class="course-highlight">';
-        $html .= '<div class="row align-items-center gy-4 gy-lg-0">';
-        $html .= '<div class="col-md-8">';
-        if ($highlight_heading) {
-            $html .= "<p><strong> $highlight_heading </strong></p>";
-        }
-        if ($highlight_description) {
-            $html .= wpautop($highlight_description);
-        }
-        $html .= '</div>';
-
-        if ($highlight_image) {
-            $html .= '<div class="col-md-4 text-end">';
-            $html .= do_shortcode("[_image id='$highlight_image' size='large' class='not-absolute']");
-            $html .= '</div>';
-        }
-        $html .= '</div>';
-        $html .= '</div>';
-        return $html;
-    }
-}
-add_shortcode('_course_highlight', '_course_highlight');
-
-
-function _course_breakdown()
-{
-    $course_breakdown = get__post_meta('course_breakdown');
-
-    if ($course_breakdown) {
-        $html = '<p><strong> Course Breakdown </strong></p>';
-
-        $html .= wpautop($course_breakdown);
-
-        return $html;
-    }
-}
-add_shortcode('_course_breakdown', '_course_breakdown');
-
-
 function _image($atts)
 {
     extract(
@@ -177,6 +100,25 @@ function _description($atts)
     return "<div class='description-box'> " . wpautop($description) . " </div>";
 }
 add_shortcode('_description', '_description');
+
+function _button($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'class' => '',
+                'button_text' => '',
+                'button_link' => '',
+                'attribute' => '',
+            ),
+            $atts
+        )
+    );
+
+    return "<div class='button-box'> <a $attribute href='$button_link' class='btn $class'>$button_text</a> </div>";
+}
+add_shortcode('_button', '_button');
+
 
 function _post_taxonomy_terms($atts)
 {
