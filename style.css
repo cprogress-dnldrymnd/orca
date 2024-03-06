@@ -11160,6 +11160,9 @@ img {
 .background-light-gray {
   background-color: var(--light-gray-color); }
 
+.color-primary {
+  color: var(--primary-color); }
+
 body {
   font-family: "Source Sans 3", sans-serif; }
 

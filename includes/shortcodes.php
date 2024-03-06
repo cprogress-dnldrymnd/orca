@@ -127,13 +127,14 @@ function _heading($atts)
         shortcode_atts(
             array(
                 'tag' => 'h2',
-                'heading' => ''
+                'heading' => '',
+                'class' => ''
             ),
             $atts
         )
     );
 
-    return "<div class='heading-box'><$tag>$heading</$tag></div>";
+    return "<div class='heading-box $class'><$tag>$heading</$tag></div>";
 }
 add_shortcode('_heading', '_heading');
 
