@@ -17,8 +17,8 @@ Container::make('post_meta', 'Course Settings')
         array(
             Field::make('text', 'cta_heading', __('CTA Heading')),
             Field::make('rich_text', 'cta_description', __('CTA Description')),
-            Field::make('rich_text', 'cta_button_text', __('CTA Button Text')),
-            Field::make('rich_text', 'cta_button_link', __('CTA Button Text')),
+            Field::make('text', 'cta_button_text', __('CTA Button Text')),
+            Field::make('text', 'cta_button_link', __('CTA Button Link')),
             Field::make('image', 'background_image', __('CTA Background Image')),
 
         )
