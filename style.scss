@@ -146,7 +146,11 @@ p:last-child {
             border: 1px solid #cbd5e0;
             border-radius: 5px;
             padding: 20px;
-          
+            .ld-item-list-item {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
             .ld-lesson-section-heading {
                 margin-top: 0;
             }

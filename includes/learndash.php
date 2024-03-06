@@ -82,6 +82,9 @@ function learndash_wp_footer()
                 }
                 lastScrollTop = st;
             });
+
+
+            
         </script>
 <?php
     }
