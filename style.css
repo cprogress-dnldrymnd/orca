@@ -11188,7 +11188,7 @@ img {
   color: var(--primary-color); }
 
 .color-accent {
-  color: var(--primary-accent); }
+  color: var(--accent-color); }
 
 .color-white {
   color: var(--primary-white); }
@@ -11290,6 +11290,10 @@ h5, .h5 {
       position: absolute; }
 .menu-toggler:hover .menu-toggler-icon:before {
   transform: rotate(45deg); }
+
+.footer-decoration > div {
+  margin-bottom: 4.5px;
+  border: 1px solid var(--primary-color); }
 
 section.archive-grid .column-holder {
   border-radius: 5px;

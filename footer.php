@@ -13,6 +13,12 @@
 ?>
 
 <footer id="site-footer" class="site-footer background-primary">
+    <div class="footer-decoration">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">
