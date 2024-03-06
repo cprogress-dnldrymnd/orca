@@ -210,6 +210,10 @@ div#sticky-add-to-cart {
 .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-header {
   position: sticky;
   border-top: 1px solid #e2e7ed; }
+.learndash-wrapper.learndash-wrapper .ld-focus .ld-progress-steps {
+  display: block !important; }
+.learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-content h1 {
+  font-size: 50px; }
 
 body.ld-in-focus-mode.admin-bar {
   padding-top: 0 !important; }
