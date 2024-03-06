@@ -111,3 +111,5 @@ function _image($atts)
 
     return $html;
 }
+
+add_shortcode('_image', '_image');
