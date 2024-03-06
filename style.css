@@ -11524,8 +11524,13 @@ section.archive-grid .column-holder {
     .image-box-course .meta-box > div:not(:last-child) {
       margin-right: 10px; }
 
-.single-course-section > div:not(:last-child) {
-  margin-bottom: 40px; }
+.single-course-section .single-course-content-holder {
+  border-radius: 5px; }
+  .single-course-section .single-course-content-holder > div {
+    padding-left: 3vw;
+    padding-right: 3vw; }
+    .single-course-section .single-course-content-holder > div:not(:last-child) {
+      margin-bottom: 40px; }
 
 /* Add your custom styles here */
 .elementor-swiper-button {
