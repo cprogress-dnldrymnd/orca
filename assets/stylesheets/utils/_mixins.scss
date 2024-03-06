@@ -8,17 +8,13 @@
 /// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
 @mixin on-event($self: false) {
     @if $self {
-
         &,
         &:hover,
         &:active,
         &:focus {
             @content;
         }
-    }
-
-    @else {
-
+    } @else {
         &:hover,
         &:active,
         &:focus {
@@ -37,17 +33,16 @@
 }
 
 @mixin font-face($fontFamily, $path, $fileName, $fontStyle: normal, $fontWeight: false) {
-
-    @each $name,
-    $weight in $fontWeight {
+    @each $name, $weight in $fontWeight {
         @font-face {
             font-family: $fontFamily;
             src: url("#{$path + $fileName}-#{$name}.eot");
-            src: url("#{$path + $fileName}-#{$name}.eot?#iefix") format("embedded-opentype"),
-            url("#{$path + $fileName}-#{$name}.woff2") format("woff2"),
-            url("#{$path + $fileName}-#{$name}.woff") format("woff"),
-            url("#{$path + $fileName}-#{$name}.ttf") format("truetype"),
-            url("#{$path + $fileName}-#{$name}.svg##{$fileName}-#{$name}") format("svg");
+            src:
+                url("#{$path + $fileName}-#{$name}.eot?#iefix") format("embedded-opentype"),
+                url("#{$path + $fileName}-#{$name}.woff2") format("woff2"),
+                url("#{$path + $fileName}-#{$name}.woff") format("woff"),
+                url("#{$path + $fileName}-#{$name}.ttf") format("truetype"),
+                url("#{$path + $fileName}-#{$name}.svg##{$fileName}-#{$name}") format("svg");
 
             font-weight: $weight;
             font-style: $fontStyle;
@@ -57,115 +52,115 @@
 }
 
 @mixin responsive($breakpoint) {
-    @if $breakpoint =="xxxs" {
+    @if $breakpoint == "xxxs" {
         @media screen and (max-width: 360px) {
             @content;
         }
     }
 
-    @if $breakpoint =="xxs" {
+    @if $breakpoint == "xxs" {
         @media screen and (max-width: 480px) {
             @content;
         }
     }
 
-    @if $breakpoint =="mobile" {
+    @if $breakpoint == "mobile" {
         @media screen and (max-width: 575px) {
             @content;
         }
     }
 
-    @if $breakpoint =="mobile-xs" {
+    @if $breakpoint == "mobile-xs" {
         @media (min-width: 576px) and (max-width: 767px) {
             @content;
         }
     }
 
-    @if $breakpoint =="mobile-sm" {
+    @if $breakpoint == "mobile-sm" {
         @media (min-width: 576px) and (max-width: 991px) {
             @content;
         }
     }
 
-    @if $breakpoint =="mobile-md" {
+    @if $breakpoint == "mobile-md" {
         @media (min-width: 576px) and (max-width: 1199px) {
             @content;
         }
     }
 
-    @if $breakpoint =="mobile-lg" {
+    @if $breakpoint == "mobile-lg" {
         @media (min-width: 576px) {
             @content;
         }
     }
 
-    @if $breakpoint =="xs" {
+    @if $breakpoint == "xs" {
         @media screen and (max-width: 767px) {
             @content;
         }
     }
 
-    @if $breakpoint =="xs-sm" {
+    @if $breakpoint == "xs-sm" {
         @media screen and (max-width: 991px) {
             @content;
         }
     }
 
-    @if $breakpoint =="xs-md" {
+    @if $breakpoint == "xs-md" {
         @media screen and (max-width: 1199px) {
             @content;
         }
     }
 
-    @if $breakpoint =="sm" {
+    @if $breakpoint == "sm" {
         @media (min-width: 768px) and (max-width: 991px) {
             @content;
         }
     }
 
-    @if $breakpoint =="sm-lg" {
+    @if $breakpoint == "sm-lg" {
         @media (min-width: 768px) {
             @content;
         }
     }
 
-    @if $breakpoint =="sm-md" {
+    @if $breakpoint == "sm-md" {
         @media (min-width: 768px) and (max-width: 1199px) {
             @content;
         }
     }
 
-    @if $breakpoint =="md" {
+    @if $breakpoint == "md" {
         @media (min-width: 992px) and (max-width: 1199px) {
             @content;
         }
     }
 
-    @if $breakpoint =="md-lg" {
+    @if $breakpoint == "md-lg" {
         @media screen and (min-width: 992px) {
             @content;
         }
     }
 
-    @if $breakpoint =="lg" {
+    @if $breakpoint == "lg" {
         @media screen and (min-width: 1200px) {
             @content;
         }
     }
 
-    @if $breakpoint =="small-lg" {
+    @if $breakpoint == "small-lg" {
         @media (min-width: 1200px) and (max-width: 1399px) {
             @content;
         }
     }
 
-    @if $breakpoint =="xs-lg" {
+    @if $breakpoint == "xs-lg" {
         @media screen and (max-width: 1399px) {
             @content;
         }
     }
 
-    @if $breakpoint =="xl" {
+    @if $breakpoint == "xl" {
         @media screen and (min-width: 1400px) {
             @content;
         }
@@ -254,7 +249,6 @@
 }
 
 @mixin before-after {
-
     &:before,
     &:after {
         @content;
@@ -311,7 +305,6 @@
 }
 
 @mixin headings {
-
     h1,
     h2,
     h3,
@@ -353,7 +346,6 @@
 }
 
 @mixin inputs {
-
     input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search),
     select,
     textarea {
@@ -511,7 +503,6 @@
     }
 }
 
-
 @mixin scrollbar_style_2 {
     &::-webkit-scrollbar {
         width: 8px;
@@ -569,7 +560,6 @@
     @include transform(translate(-50%, -50%));
 }
 
-
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -596,8 +586,11 @@
     }
 }
 
-@mixin button-tyle() {
-    
+@mixin button-tyle {
+    padding: 10px 20px;
+    line-height: 1;
+    font-weight: bold;
+    border-radius: 8px;
 }
 
 @mixin button-primary {

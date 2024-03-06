@@ -11118,13 +11118,13 @@ img {
         margin-left: 10px;
         margin-right: 10px; }
 
-.btn {
-  padding: 10px 20px; }
-  .btn:not(.btn-link) {
-    font-weight: bold;
-    border-radius: 8px; }
-  .btn .btn-primary {
-    background-color: var(--primary-color); }
+.btn:not(.btn-link) {
+  padding: 10px 20px;
+  line-height: 1;
+  font-weight: bold;
+  border-radius: 8px; }
+.btn .btn-primary {
+  background-color: var(--primary-color); }
 
 @media (min-width: 1500px) {
   .container:not(.large-container) {
@@ -11263,11 +11263,11 @@ section.archive-grid .column-holder {
 .add_to_cart_button,
 .added_to_cart {
   margin-left: 10px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  line-height: 1;
   text-decoration: underline;
+  padding: 10px 20px;
+  line-height: 1;
+  font-weight: bold;
+  border-radius: 8px;
   background-color: var(--primary-color); }
 
 .add_to_cart_button {
