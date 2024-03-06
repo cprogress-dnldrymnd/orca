@@ -329,6 +329,7 @@ function _course_banner()
         return $html;
     }
 }
+
 add_shortcode('_course_banner', '_course_banner');
 
 

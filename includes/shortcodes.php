@@ -119,7 +119,6 @@ function _button($atts)
 }
 add_shortcode('_button', '_button');
 
-
 function _post_taxonomy_terms($atts)
 {
     extract(
