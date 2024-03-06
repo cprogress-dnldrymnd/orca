@@ -1,5 +1,15 @@
 .container {
-    @media (min-width: 1500px) {
-        max-width: 1470px;
+    &:not(.large-container) {
+        @media (min-width: 1500px) {
+            max-width: 1470px;
+        }
+    }
+    &.large-container {
+        @media (min-width: 1200px) {
+            max-width: 1060px;
+        }
+        @media (min-width: 1400px) {
+            max-width: 1060px;
+        }
     }
 }
