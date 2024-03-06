@@ -38,7 +38,7 @@
                 <div class="row">
                     <?php if (is_active_sidebar('footer_left')) { ?>
                         <div class="col-lg-4">
-                            <div class="footer-left-holder">
+                            <div class="footer-left-holder footer-widget">
                                 <?php dynamic_sidebar('footer_left') ?>
                             </div>
                         </div>
@@ -47,21 +47,21 @@
                         <div class="row">
                             <?php if (is_active_sidebar('footer_column_1')) { ?>
                                 <div class="col-lg-4">
-                                    <div class="footer-right-holder">
+                                    <div class="footer-right-holder footer-widget">
                                         <?php dynamic_sidebar('footer_column_1') ?>
                                     </div>
                                 </div>
                             <?php } ?>
                             <?php if (is_active_sidebar('footer_column_2')) { ?>
                                 <div class="col-lg-4">
-                                    <div class="footer-right-holder">
+                                    <div class="footer-right-holder footer-widget">
                                         <?php dynamic_sidebar('footer_column_3') ?>
                                     </div>
                                 </div>
                             <?php } ?>
                             <?php if (is_active_sidebar('footer_column_3')) { ?>
                                 <div class="col-lg-4">
-                                    <div class="footer-right-holder">
+                                    <div class="footer-right-holder footer-widget">
                                         <?php dynamic_sidebar('footer_column_3') ?>
                                     </div>
                                 </div>

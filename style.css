@@ -11321,7 +11321,8 @@ h5, .h5 {
   border-bottom: 1px solid var(--primary-color); }
 
 #site-footer hr {
-  border-color: var(--white-color); }
+  color: var(--white-color);
+  opacity: 1; }
 #site-footer a {
   text-decoration: none; }
 #site-footer ul {

@@ -7,7 +7,8 @@
 
 #site-footer {
     hr {
-        border-color: var(--white-color);
+        color: var(--white-color);
+        opacity: 1;
     }
     a {
         text-decoration: none;
