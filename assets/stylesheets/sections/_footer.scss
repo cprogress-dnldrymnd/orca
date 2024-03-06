@@ -6,7 +6,9 @@
 }
 
 #site-footer {
-    text-decoration: none;
+    hr {
+        border-color: var(--white-color);
+    }
     a {
         text-decoration: none;
     }

@@ -11320,32 +11320,32 @@ h5, .h5 {
   margin-bottom: 4.5px;
   border-bottom: 1px solid var(--primary-color); }
 
-#site-footer {
+#site-footer hr {
+  border-color: var(--white-color); }
+#site-footer a {
   text-decoration: none; }
-  #site-footer a {
-    text-decoration: none; }
-  #site-footer ul {
+#site-footer ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  #site-footer ul.footer-main-menu {
     display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0; }
-    #site-footer ul.footer-main-menu {
+    align-items: center; }
+    #site-footer ul.footer-main-menu li {
       display: flex;
       align-items: center; }
-      #site-footer ul.footer-main-menu li {
-        display: flex;
-        align-items: center; }
-        #site-footer ul.footer-main-menu li:not(:last-child)::after {
-          content: "";
-          display: inline-block;
-          height: 8px;
-          width: 8px;
-          border-top: 1px solid;
-          border-left: 1px solid;
-          transform: rotate(135deg);
-          margin-left: 10px;
-          margin-right: 10px; }
+      #site-footer ul.footer-main-menu li:not(:last-child)::after {
+        content: "";
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        border-top: 1px solid;
+        border-left: 1px solid;
+        transform: rotate(135deg);
+        margin-left: 10px;
+        margin-right: 10px; }
 
 section.archive-grid .column-holder {
   border-radius: 5px;
