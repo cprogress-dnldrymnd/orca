@@ -24,7 +24,7 @@ function breadcrumbs()
     $html .= '</div>';
     $html .= '</div>';
     $html .= '<div class="container large-container">';
-    $html .= do_shortcode("[_heading tag='h1' heading='$title']");
+    $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
     $html .= '</div>';
     $html .= '</section>';
     return $html;

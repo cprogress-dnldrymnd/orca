@@ -56,9 +56,12 @@ img {
             }
         }
     } 
+}
 
-    & + .heading-box  {
-        
+.page-title {
+    h1 {
+        border-left: 4px solid var(--accent-color);
+        padding-left: 20px;
     }
 }
 
