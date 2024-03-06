@@ -62,10 +62,10 @@ img {
     &:not(.btn-link) {
         @include button-style;
     }
-    .btn-primary {
+    &.btn-primary {
         @include button-primary;
     }
-    .btn-black {
+    &.btn-black {
         @include button-black;
     }
 }
