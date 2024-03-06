@@ -1,16 +1,9 @@
 <?php
-/*-----------------------------------------------------------------------------------*/
-/* Define the version so we can easily replace it throughout the theme
-/*-----------------------------------------------------------------------------------*/
-define('orca_version', 1);
-define('theme_dir', get_template_directory_uri() . '/');
-define('assets_dir', theme_dir . 'assets/');
-define('image_dir', assets_dir . 'images/');
-define('vendor_dir', assets_dir . 'vendors/');
-
 function action_wp_enqueue_scripts()
 {
 	wp_enqueue_style('style', theme_dir . 'style.css');
+	wp_enqueue_scripts('bs', vendor_dir . '/bootstrap/dist/js/bootstrap.min.js');
+	wp_enqueue_scripts('swiper', vendor_dir . '/swiper/js/swiper-bundle.min.js');
 
 }
 add_action('wp_enqueue_scripts', 'action_wp_enqueue_scripts', 20);
