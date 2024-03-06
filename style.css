@@ -11559,9 +11559,11 @@ section.archive-grid .column-holder {
       border-radius: 6px; }
   .single-course-section .learndash-single-cta .course-cta {
     border-radius: 9px;
-    overflow: hidden; }
+    overflow: hidden;
+    padding: 5vw; }
     .single-course-section .learndash-single-cta .course-cta .inner {
-      max-width: 400px; }
+      max-width: 400px;
+      margin-left: auto; }
     .single-course-section .learndash-single-cta .course-cta .image-box-background:before {
       background: transparent linear-gradient(89deg, #0E426100 0%, #0E405F 26%, #0E3F5D 100%) 0% 0% no-repeat padding-box;
       opacity: 1; }
