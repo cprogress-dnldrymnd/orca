@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                             <?php } ?>
-                            <?php if (is_active_sidebar('footer_column_2')) { ?>
+                            <?php if (is_active_sidebar('footer_column_3')) { ?>
                                 <div class="col-lg-4">
                                     <div class="footer-left-holder">
                                         <?php dynamic_sidebar('footer_column_3') ?>
