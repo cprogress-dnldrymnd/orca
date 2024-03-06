@@ -99,14 +99,14 @@ function _image($atts)
     extract(
         shortcode_atts(
             array(
-                'key' => '',
-                'size' => '',
+                'id' => '',
+                'size' => 'large',
             ),
             $atts
         )
     );
-    $image_url = wp_get_attachment_image_url($key, $size);
-    $html = '<div class="elementor-widget-image">';
+    $image_url = wp_get_attachment_image_url($id, $size);
+    $html = '<div class="image-box">';
 
     if ($image_url) {
         $html = '<img src="' . $image_url . '" >';
