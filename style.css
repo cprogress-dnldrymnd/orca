@@ -11118,12 +11118,12 @@ img {
         margin-left: 10px;
         margin-right: 10px; }
 
-.btn:not(.btn-link) {
+.btn.btn:not(.btn-link) {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
   border-radius: 8px; }
-.btn .btn-primary {
+.btn.btn .btn-primary {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color); }
 

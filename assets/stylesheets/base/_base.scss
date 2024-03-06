@@ -58,7 +58,7 @@ img {
     }
 }
 
-.btn {
+.btn.btn {
     &:not(.btn-link) {
         @include button-style;
     }
