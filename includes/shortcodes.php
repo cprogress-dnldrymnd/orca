@@ -100,11 +100,14 @@ function _image($atts)
         )
     );
     $image_url = wp_get_attachment_image_url($key, $size);
+    $html = '<div class="elementor-widget-image">';
 
     if ($image_url) {
-        $html = '<div class="elementor-widget-image">';
         $html = '<img src="' . $image_url . '" >';
-        $html .= '</div>';
-        return $html;
+    } else {
+        $html = '<img src="/wp-content/plugins/elementor/assets/images/placeholder.png" >';
     }
+    $html .= '</div>';
+
+    return $html;
 }
