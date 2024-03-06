@@ -11140,6 +11140,8 @@ img {
   display: inline-block; }
   .taxonomy-terms a {
     background-color: var(--accent-color); }
+    .taxonomy-terms a:not(:last-child) {
+      margin-right: 10px; }
 
 @media (min-width: 1500px) {
   .container:not(.large-container) {

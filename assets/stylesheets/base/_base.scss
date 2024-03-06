@@ -71,8 +71,8 @@ img {
 }
 
 .taxonomy-terms {
-    @include status-style;
     a {
+        @include status-style;
         background-color: var(--accent-color);
         @include not-last-child {
             margin-right: 10px;
