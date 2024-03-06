@@ -2,7 +2,7 @@
 
 
 <section class="archive-courses archive-grid">
-    <div class="container">
+    <div class="container large-container">
         <div class="row">
             <?php while (have_posts()) { ?>
                 <?php the_post() ?>
