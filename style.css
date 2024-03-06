@@ -11080,6 +11080,9 @@ button.swiper-pagination-bullet {
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
+.list-inline-icons li:not(:last-child) {
+  margin-right: 1rem; }
+
 @media (min-width: 1500px) {
   .container {
     max-width: 1470px; } }
