@@ -49,7 +49,7 @@
                     <?= do_shortcode('[_course_breakdown]') ?>
                 </div>
 
-                <div class="learndash-single-holder learndash-single-module" id="module">
+                <div class="learndash-single-holder learndash-single-module" id="modules">
                     <?= do_shortcode('[course_content]') ?>
                 </div>
             </div>
