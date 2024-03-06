@@ -11306,6 +11306,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   .single-sfwd-courses .ld-item-list .lesson-parent-item.active > .ld-item-list-item {
     display: block; }
 
+.image-box-course .meta-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  z-index: 1; }
+
 /* Add your custom styles here */
 .elementor-swiper-button {
   width: 34px;

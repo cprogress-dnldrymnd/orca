@@ -134,10 +134,12 @@ function _image_course($atts)
         )
     );
     $image_url = wp_get_attachment_image_url($id, $size);
-    $html = '<div class="image-box">';
+    $html = '<div class="image-box image-box-course">';
 
-    if($learndash_status_bubble) {
+    if ($learndash_status_bubble) {
+        $html .= '<div class="meta-box">';
         $html .= do_shortcode('[_learndash_status_bubble]');
+        $html .= '</div>';
     }
     if ($image_url) {
         $html .= '<img src="' . $image_url . '" >';
