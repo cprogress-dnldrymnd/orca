@@ -204,3 +204,6 @@ function action_learndash_before_section_heading()
 }
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
+
+
+$Learndash_Admin_Menus_Tabs = new Learndash_Admin_Menus_Tabs;
