@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 
-<section class="archive-courses">
+<section class="archive-courses archive-grid">
     <div class="container">
         <div class="row">
             <?php while (have_posts()) { ?>
