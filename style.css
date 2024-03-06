@@ -112,8 +112,10 @@ p:last-child {
   border: 1px solid #cbd5e0;
   border-radius: 5px;
   padding: 20px; }
-  .single-sfwd-courses .ld-item-list .lesson-parent-item .ld-item-list-item:last-child {
-    margin-bottom: 0; }
+  .single-sfwd-courses .ld-item-list .lesson-parent-item .ld-item-list-item {
+    display: none; }
+    .single-sfwd-courses .ld-item-list .lesson-parent-item .ld-item-list-item:last-child {
+      margin-bottom: 0; }
   .single-sfwd-courses .ld-item-list .lesson-parent-item .ld-lesson-section-heading {
     margin-top: 0; }
   .single-sfwd-courses .ld-item-list .lesson-parent-item:not(:last-child) {

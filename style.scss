@@ -147,6 +147,7 @@ p:last-child {
             border-radius: 5px;
             padding: 20px;
             .ld-item-list-item {
+                display: none;
                 &:last-child {
                     margin-bottom: 0;
                 }
