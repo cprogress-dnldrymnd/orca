@@ -1,16 +1,37 @@
 <?php get_header() ?>
-<section class="single-courses pt-3 background-light-gray">
-    <div class="container large-container">
-        <div class="learndash-single-status-top">
-            <div class="row">
-                <div class="col-md-8">
-                    <?= do_shortcode('[_learndash_course_progress]') ?>
-                </div>
-                <div class="col-md-4">
-                    <?= do_shortcode('[_learndash_status]') ?>
+<?php while (have_posts()) { ?>
+    <?php the_post() ?>
+    <section class="single-courses pt-3 background-light-gray">
+        <div class="container large-container">
+            <div class="learndash-single-holder learndash-single-status-top">
+                <div class="row">
+                    <div class="col-md-8">
+                        <?= do_shortcode('[_learndash_course_progress]') ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= do_shortcode('[_learndash_status]') ?>
+                    </div>
                 </div>
             </div>
+
+            <div class="learndash-single-holder learndash-single-navigation">
+
+            </div>
+
+            <div class="learndash-single-holder learndash-single-content" id="about">
+                <?php the_content() ?>
+            </div>
+
+            
+                <?= do_shortcode('[_course_outcomes]') ?>
+            </div>
+
+            <div class="learndash-single-holder learndash-single-course-highlight" id="highlight">
+                <?= do_shortcode('[_course_outcomes]') ?>
+            </div>
+
         </div>
-    </div>
-</section>
+    </section>
+<?php } ?>
+
 <?php get_footer() ?>

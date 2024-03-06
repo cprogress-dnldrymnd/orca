@@ -59,12 +59,14 @@ function _course_outcomes()
     $outcomes = get__post_meta('outcomes');
 
     if ($outcomes_heading || $outcomes) {
+        $html = '<div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">';
         if ($outcomes_heading) {
-            $html = '<p><strong> Outcomes: ' . $outcomes_heading . '</strong></p>';
+            $html .= '<p><strong> Outcomes: ' . $outcomes_heading . '</strong></p>';
         }
         if ($outcomes) {
-            $html = wpautop($outcomes);
+            $html .= wpautop($outcomes);
         }
+        $html .= '</div>';
 
         return $html;
     }
@@ -89,10 +91,10 @@ function _course_breakdown()
     $course_breakdown = get__post_meta('course_breakdown');
 
     if ($course_breakdown) {
-        $html = '<p><strong> Course Breakdown </strong></p>';
-
+        $html = '<div class="learndash-single-holder learndash-single-course-breakdowns" id="course-breakdown">';
+        $html .= '<p><strong> Course Breakdown </strong></p>';
         $html .= wpautop($course_breakdown);
-
+        $html .= '</div>';
         return $html;
     }
 }
