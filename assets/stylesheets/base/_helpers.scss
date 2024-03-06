@@ -36,12 +36,6 @@
 .background-primary {
     background-color: var(--primary-color);
     color: var(--white-color);
-    @include headings {
-        color: inherit;
-    }
-    a {
-        color: inherit;
-    }
 }
 .background-accent {
     background-color: var(--accent-color);
@@ -53,6 +47,9 @@
 
 .color-primary {
     color: var(--primary-color);
+    @include headings {
+        color: inherit;
+    }
 }
 .color-accent {
     color: var(--accent-color);
@@ -62,4 +59,13 @@
 }
 .color-light-gray {
     color: var(--light-gray-color);
+}
+.background-primary,
+.color-primary {
+    @include headings {
+        color: inherit;
+    }
+    a {
+        color: inherit;
+    }
 }
