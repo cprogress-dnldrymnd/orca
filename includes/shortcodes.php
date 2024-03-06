@@ -1,8 +1,10 @@
 <?php
 function breadcrumbs()
 {
-    $html = '<div class="breadcrumbs-holder">';
-    $html .= '<ul>';
+    $html = ' <section class="breadcrumbs-section py-3">';
+    $html .= '<div class="container">';
+    $html .= '<div class="breadcrumbs-holder">';
+    $html .= '<ul class="mb-0">';
     $html .= '<li><a href="' . get_site_url() . '">Home</a></li>';
 
     if (is_post_type_archive()) {
@@ -18,6 +20,8 @@ function breadcrumbs()
 
     $html .= '</ul>';
     $html .= '</div>';
+    $html .= '</div>';
+    $html .= '</section>';
     return $html;
 }
 

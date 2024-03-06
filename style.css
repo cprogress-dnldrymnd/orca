@@ -11094,6 +11094,38 @@ button.swiper-pagination-bullet {
 .list-inline-icons li:not(:last-child) {
   margin-right: 1rem; }
 
+.breadcrumbs-holder {
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--e-global-color-51e6256);
+  padding-bottom: 10px; }
+  .breadcrumbs-holder ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 18px;
+    align-items: center; }
+    .breadcrumbs-holder ul li {
+      display: flex;
+      align-items: center; }
+      .breadcrumbs-holder ul li span {
+        font-weight: bold; }
+      .breadcrumbs-holder ul li a {
+        color: var(--e-global-color-bc39366); }
+      .breadcrumbs-holder ul li:not(:last-child)::after {
+        content: "";
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        border-top: 1px solid;
+        border-left: 1px solid;
+        transform: rotate(135deg);
+        margin-left: 10px;
+        margin-right: 10px; }
+
+p:last-child {
+  margin-bottom: 0 !important; }
+
 @media (min-width: 1500px) {
   .container {
     max-width: 1470px; } }
@@ -11102,7 +11134,8 @@ body {
   font-family: "Source Sans 3", sans-serif; }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-weight: bold; }
+  font-weight: bold;
+  line-height: 1.2; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
@@ -11254,51 +11287,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     display: block; }
 
 /* Add your custom styles here */
-h1, .h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  line-height: 1.2; }
-
-p:last-child {
-  margin-bottom: 0 !important; }
-
-.breadcrumbs-holder {
-  margin-bottom: 40px;
-  border-bottom: 1px solid var(--e-global-color-51e6256);
-  padding-bottom: 10px; }
-  .breadcrumbs-holder ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 18px;
-    align-items: center; }
-    .breadcrumbs-holder ul li {
-      display: flex;
-      align-items: center; }
-      .breadcrumbs-holder ul li span {
-        font-weight: bold; }
-      .breadcrumbs-holder ul li a {
-        color: var(--e-global-color-bc39366); }
-      .breadcrumbs-holder ul li:not(:last-child)::after {
-        content: "";
-        display: inline-block;
-        height: 8px;
-        width: 8px;
-        border-top: 1px solid;
-        border-left: 1px solid;
-        transform: rotate(135deg);
-        margin-left: 10px;
-        margin-right: 10px; }
-
 .elementor-swiper-button {
   width: 34px;
   height: 34px;
