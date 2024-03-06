@@ -55,7 +55,7 @@
                             <?php if (is_active_sidebar('footer_column_2')) { ?>
                                 <div class="col-lg-4">
                                     <div class="footer-right-holder footer-widget">
-                                        <?php dynamic_sidebar('footer_column_3') ?>
+                                        <?php dynamic_sidebar('footer_column_2') ?>
                                     </div>
                                 </div>
                             <?php } ?>
