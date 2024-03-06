@@ -35,8 +35,8 @@
     line-height: 1;
     display: inline-block;
     &.ld-status-progress {
-        background-color: var(--e-global-color-db51a67); //green
-        color: var(--e-global-color-5e743c3); //white
+        background-color: var(--accent-color); //green
+        color: var(--white-color); //white
     }
     &.ld-status-waiting {
         background-color: #ffd200;
@@ -53,7 +53,7 @@
 }
 .add_to_cart_button {
     background-color: var(--e-global-color-primary);
-    color: var(--e-global-color-5e743c3); //white
+    color: var(--white-color); //white
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,12 +69,12 @@
     }
     &:hover {
         background-color: var(--e-global-color-accent);
-        color: var(--e-global-color-5e743c3); //white
+        color: var(--white-color); //white
     }
 }
 .added_to_cart {
     background-color: var(--e-global-color-accent);
-    color: var(--e-global-color-5e743c3); //white
+    color: var(--white-color); //white
     display: inline-block;
 }
 
@@ -108,7 +108,7 @@
 
 .single-sfwd-courses {
     .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
-        background-color: var(--e-global-color-5e743c3); //white
+        background-color: var(--white-color); //white
     }
     .ld-progress-steps {
         color: #7e7e7e;

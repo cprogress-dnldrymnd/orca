@@ -11114,7 +11114,7 @@ img {
       .breadcrumbs-holder ul li span {
         font-weight: bold; }
       .breadcrumbs-holder ul li a {
-        color: var(--e-global-color-bc39366); }
+        color: var(--black-color); }
       .breadcrumbs-holder ul li:not(:last-child)::after {
         content: "";
         display: inline-block;
@@ -11245,8 +11245,8 @@ section.archive-grid .column-holder {
   line-height: 1;
   display: inline-block; }
   .ld-status.ld-status.ld-status-progress {
-    background-color: var(--e-global-color-db51a67);
-    color: var(--e-global-color-5e743c3); }
+    background-color: var(--accent-color);
+    color: var(--white-color); }
   .ld-status.ld-status.ld-status-waiting {
     background-color: #ffd200; }
 
@@ -11261,7 +11261,7 @@ section.archive-grid .column-holder {
 
 .add_to_cart_button {
   background-color: var(--e-global-color-primary);
-  color: var(--e-global-color-5e743c3);
+  color: var(--white-color);
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -11272,11 +11272,11 @@ section.archive-grid .column-holder {
     -webkit-animation: spin 4s infinite linear; }
   .add_to_cart_button:hover {
     background-color: var(--e-global-color-accent);
-    color: var(--e-global-color-5e743c3); }
+    color: var(--white-color); }
 
 .added_to_cart {
   background-color: var(--e-global-color-accent);
-  color: var(--e-global-color-5e743c3);
+  color: var(--white-color);
   display: inline-block; }
 
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .elementor-post-info__terms-list {
@@ -11300,7 +11300,7 @@ section.archive-grid .column-holder {
   padding: 10px 5px; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
-  background-color: var(--e-global-color-5e743c3); }
+  background-color: var(--white-color); }
 .single-sfwd-courses .ld-progress-steps {
   color: #7e7e7e;
   font-size: 16px; }
@@ -11386,15 +11386,15 @@ div#sticky-add-to-cart {
     margin-left: 0 !important;
     margin-bottom: 5px !important; }
     .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-progress-wrap .ld-progress-heading .ld-progress-percentage {
-      color: var(--e-global-color-db51a67) !important; }
+      color: var(--accent-color) !important; }
   .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-progress-wrap .ld-progress-bar-percentage {
-    background-color: var(--e-global-color-db51a67) !important; }
+    background-color: var(--accent-color) !important; }
   .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content {
     padding-top: 40px; }
     .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content h1, .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content .h1 {
       font-size: 50px; }
     .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content .ld-breadcrumbs .ld-breadcrumbs-segments span a {
-      color: var(--e-global-color-bc39366) !important; }
+      color: var(--black-color) !important; }
     .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-main .ld-focus-content .ld-table-list a.ld-table-list-item-preview {
       font-weight: bold;
       color: #97999c; }

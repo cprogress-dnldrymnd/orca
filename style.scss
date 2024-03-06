@@ -100,11 +100,11 @@ div#sticky-add-to-cart {
                 margin-left: 0 !important;
                 margin-bottom: 5px !important;
                 .ld-progress-percentage {
-                    color: var(--e-global-color-db51a67) !important;
+                    color: var(--accent-color) !important;
                 }
             }
             .ld-progress-bar-percentage {
-                background-color: var(--e-global-color-db51a67) !important;
+                background-color: var(--accent-color) !important;
             }
         }
         .ld-focus-content {
@@ -113,7 +113,7 @@ div#sticky-add-to-cart {
                 font-size: 50px;
             }
             .ld-breadcrumbs .ld-breadcrumbs-segments span a {
-                color: var(--e-global-color-bc39366) !important;
+                color: var(--black-color) !important;
             }
 
             .ld-table-list a.ld-table-list-item-preview {
