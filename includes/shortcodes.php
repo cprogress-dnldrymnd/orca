@@ -40,7 +40,6 @@ function _course_cta()
         return do_shortcode('[elementor-template id="632"]');
     }
 }
-
 add_shortcode('_course_cta', '_course_cta');
 
 function _course_outcomes()
@@ -52,12 +51,22 @@ function _course_outcomes()
         if ($outcomes_heading) {
             $html = '<p><strong> Outcomes: ' . $outcomes_heading . '</strong></p>';
         }
-        if($outcomes) {
+        if ($outcomes) {
             $html = wpautop($outcomes);
         }
 
         return $html;
     }
 }
-
 add_shortcode('_course_outcomes', '_course_outcomes');
+
+function _course_highlight()
+{
+    $highlight_heading = get__post_meta('highlight_heading');
+    $highlight_description = get__post_meta('highlight_description');
+
+    if ($highlight_heading || $highlight_description) {
+        return do_shortcode('[elementor-template id="642"]');
+    }
+}
+add_shortcode('_course_highlight', '_course_highlight');
