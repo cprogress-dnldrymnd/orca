@@ -261,161 +261,6 @@
     }
 }
 
-@mixin image-fit {
-    @include height-width;
-    object-fit: cover;
-    object-position: center;
-}
-
-@mixin button {
-
-    >a,
-    >span:not(.wpcf7-spinner),
-    >button,
-    >input[type="submit"] {
-        @content;
-    }
-}
-
-@mixin button-accent {
-    background-color: var(--accent-color);
-    color: var(--white-color);
-
-    @include on-event {
-        background-color: transparent;
-        color: var(--accent-color);
-        border-color: var(--accent-color);
-
-        @include before {
-            animation: pulse 2s infinite;
-        }
-    }
-}
-
-@mixin button-secondary {
-    background-color: var(--secondary-color);
-    color: var(--white-color);
-
-    @include on-event {
-        background-color: var(--primary-color);
-        color: var(--accent-color);
-
-        svg {
-            &.fill-hover {
-                path {
-                    fill: var(--accent-color);
-                }
-            }
-
-            &.stroke-hover {
-                path {
-                    stroke: var(--accent-color);
-                }
-            }
-        }
-    }
-}
-
-@mixin button-style {
-    @include inline-flex;
-    @include align-items(center);
-    @include justify-content(center);
-    @include transition(300ms);
-    border-radius: 50px;
-    text-decoration: none;
-    color: inherit;
-    background-color: transparent;
-    text-align: center;
-    position: relative;
-    padding: 1rem 2rem !important;
-    border: 2px solid transparent;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 0.8px;
-    text-transform: uppercase !important;
-    line-height: 1 !important;
-
-    span {
-        position: relative;
-        z-index: 1;
-
-        &.icon {
-            margin-top: -3px;
-        }
-    }
-
-    @include responsive(md-lg) {
-        white-space: nowrap;
-    }
-
-    @include responsive(xs) {
-        padding: 1rem 1.5rem !important;
-    }
-}
-
-.elementor-button-link, .eael-infobox-button {
-    border-radius: 50px !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.8px !important;
-    padding: 1rem 2rem !important;
-    line-height: 1 !important;
-    font-size: 1rem !important;
-}
-
-@mixin padding-top-bottom($padding) {
-    padding-top: $padding;
-    padding-bottom: $padding;
-}
-
-@mixin padding-left-right($padding) {
-    padding-left: $padding;
-    padding-right: $padding;
-}
-
-@mixin margin-top-bottom($margin) {
-    margin-top: $margin;
-    margin-bottom: $margin;
-}
-
-@mixin margin-left-right($margin) {
-    margin-left: $margin;
-    margin-right: $margin;
-}
-
-@mixin absolute-corner {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-@mixin absolute-top {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-}
-
-@mixin centered {
-    @include display-flex;
-    @include align-items(center);
-    @include justify-content(center);
-}
-
-@mixin align-center {
-    @include display-flex;
-    @include align-items(center);
-}
-
-@mixin justify($justify: center, $flex: true) {
-    @if ($flex) {
-        @include display-flex;
-    }
-
-    @include justify-content($justify);
-}
-
 @mixin first-child {
     &:first-child {
         @content;
@@ -749,4 +594,12 @@
     &::placeholder {
         opacity: 0.75;
     }
+}
+
+@mixin button-tyle() {
+    
+}
+
+@mixin button-primary {
+    background-color: var(--primary-color);
 }

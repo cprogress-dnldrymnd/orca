@@ -22,7 +22,6 @@ img {
     }
 }
 
-
 .breadcrumbs-holder {
     border-bottom: 1px solid var(--blue-color); //blue
     padding-bottom: 10px;
@@ -59,6 +58,9 @@ img {
     }
 }
 
-p:last-child {
-    margin-bottom: 0 !important;
+.btn {
+    &:not(.btn-link) {
+        font-weight: bold;
+        border-radius: 8px;
+    }
 }
