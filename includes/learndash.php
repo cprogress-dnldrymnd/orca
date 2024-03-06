@@ -195,4 +195,4 @@ function action_learndash_lesson_row_after() {
     echo 'xsxss';
 }
 
-add_action('learndash-lesson-row-after', 'action_learndash_lesson_row_after');
+add_action('learndash_group_course_row_after', 'action_learndash_lesson_row_after');
