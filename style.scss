@@ -145,6 +145,9 @@ p:last-child {
             border: 1px solid #cbd5e0;
             border-radius: 5px;
             padding: 20px;
+            .ld-lesson-section-heading {
+                margin-top: 0;
+            }
             &:not(:last-child) {
                 margin-bottom: 25px;
             }
