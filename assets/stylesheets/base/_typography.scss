@@ -11,6 +11,11 @@ body {
 p:last-child {
     margin-bottom: 0 !important;
 }
+a {
+    @include on-event {
+        color: var(--accent-color);
+    }
+}
 
 h1 {
     font-size: 4.25rem;
