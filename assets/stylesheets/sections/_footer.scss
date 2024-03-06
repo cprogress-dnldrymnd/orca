@@ -15,6 +15,11 @@
 }
 
 #site-footer {
+    .row {
+        @include responsive(xs-sm) {
+            --bs-gutter-y: 1rem;
+        }
+    }
     hr {
         color: var(--white-color);
         opacity: 1;

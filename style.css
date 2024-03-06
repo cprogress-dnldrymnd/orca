@@ -11356,6 +11356,9 @@ h5, .h5 {
     .footer-decoration .lines > div:first-child {
       border-width: 2px; }
 
+@media screen and (max-width: 991px) {
+  #site-footer .row {
+    --bs-gutter-y: 1rem; } }
 #site-footer hr {
   color: var(--white-color);
   opacity: 1; }
