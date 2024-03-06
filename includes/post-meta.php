@@ -9,11 +9,11 @@ use Carbon_Fields\Field;
 /* Courses
 /*-----------------------------------------------------------------------------------*/
 
-Container::make('post_meta', 'CTA')
+Container::make('post_meta', 'Course Settings')
     ->where('post_type', '=', 'sfwd-courses')
     ->set_priority('high')
-
-    ->add_tab('CTA',
+    ->add_tab(
+        'CTA',
         array(
             Field::make('text', 'cta_heading', __('CTA Heading')),
             Field::make('rich_text', 'cta_description', __('CTA Description')),
@@ -21,14 +21,16 @@ Container::make('post_meta', 'CTA')
             Field::make('rich_text', 'cta_button_link', __('CTA Button Text')),
 
         )
-    );
-
-Container::make('post_meta', 'Outcomes')
-    ->where('post_type', '=', 'sfwd-courses')
-    ->set_priority('high')
-    ->add_fields(
+    )
+    ->add_tab(
+        'Outcomes',
         array(
             Field::make('rich_text', 'outcomes', __('Outcomes')),
-
+        )
+    )
+    ->add_tab(
+        'Course Breakdown',
+        array(
+            Field::make('rich_text', 'course_breakdown', __('Course Breakdown')),
         )
     );
