@@ -187,7 +187,7 @@ add_action('learndash-focus-header-before', 'action_learndash_focus_header_befor
 
 function action_learndash_before_section_heading()
 {
-    echo 'exsds';
+    echo '</div><div>';
 }
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
