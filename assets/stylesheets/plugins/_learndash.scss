@@ -70,12 +70,12 @@
         }
     }
     &:hover {
-        background-color: var(--e-global-color-accent);
+        background-color: var(--accent-color);
         color: var(--white-color); //white
     }
 }
 .added_to_cart {
-    background-color: var(--e-global-color-accent);
+    background-color: var(--accent-color);
     color: var(--white-color); //white
     display: inline-block;
 }
@@ -84,7 +84,7 @@
     .elementor-post-info__terms-list {
         font-size: 0;
         a {
-            background-color: var(--e-global-color-accent);
+            background-color: var(--accent-color);
             border-radius: 5px;
             padding: 10px 14px;
             font-size: 15px !important;
