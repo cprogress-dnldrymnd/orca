@@ -11118,9 +11118,11 @@ img {
         margin-left: 10px;
         margin-right: 10px; }
 
-.btn:not(.btn-link) {
-  font-weight: bold;
-  border-radius: 8px; }
+.btn {
+  padding: 10px 20px; }
+  .btn:not(.btn-link) {
+    font-weight: bold;
+    border-radius: 8px; }
 
 @media (min-width: 1500px) {
   .container:not(.large-container) {
@@ -11220,9 +11222,6 @@ section.archive-grid .column-holder {
   position: relative; }
   section.archive-grid .column-holder .content-holder {
     padding: 20px; }
-    section.archive-grid .column-holder .content-holder .product_type_course {
-      font-weight: bold;
-      background-color: var(--primary-color); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
@@ -11264,9 +11263,10 @@ section.archive-grid .column-holder {
   margin-left: 10px;
   padding: 10px 15px;
   border-radius: 5px;
-  font-size: 15px;
   font-weight: bold;
-  line-height: 1; }
+  line-height: 1;
+  text-decoration: underline;
+  background-color: var(--primary-color); }
 
 .add_to_cart_button {
   background-color: var(--e-global-color-primary);
@@ -11300,7 +11300,6 @@ section.archive-grid .column-holder {
   display: none; }
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button,
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .added_to_cart {
-  font-size: 15.75px;
   padding: 10px;
   line-height: 1.5;
   margin-left: 0;

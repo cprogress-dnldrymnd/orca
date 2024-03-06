@@ -47,9 +47,11 @@
     margin-left: 10px;
     padding: 10px 15px;
     border-radius: 5px;
-    font-size: 15px;
     font-weight: bold;
     line-height: 1;
+    text-decoration: underline;
+    @include button-primary;
+
 }
 .add_to_cart_button {
     background-color: var(--e-global-color-primary);
@@ -96,7 +98,6 @@
     }
     .add_to_cart_button,
     .added_to_cart {
-        font-size: 15.75px;
         padding: 10px;
         line-height: 1.5;
         margin-left: 0;

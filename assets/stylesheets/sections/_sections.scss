@@ -5,10 +5,7 @@ section.archive-grid {
         position: relative;
         .content-holder {
             padding: 20px;
-            .product_type_course {
-                font-weight: bold;
-                @include button-primary;
-            }
+         
         }
     }
 }
