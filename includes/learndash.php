@@ -83,24 +83,10 @@ function learndash_wp_footer()
                 lastScrollTop = st;
             });
 
-            var acc = document.getElementsByClassName("ld-item-list-section-heading");
-            var i;
-
-            for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
-                    /* Toggle between adding and removing the "active" class,
-                    to highlight the button that controls the panel */
-                    this.classList.toggle("active");
-
-                    /* Toggle between hiding and showing the active panel */
-                    var panel = this.parent.querySelector('.ld-item-list-item');
-                    if (panel.style.display === "block") {
-                        panel.style.display = "none";
-                    } else {
-                        panel.style.display = "block";
-                    }
-                });
-            }
+            jQuery('.lesson-parent-item').click(function (e) { 
+                jQuery(this).toggleClass('active');
+                e.preventDefault();
+            });
         </script>
 <?php
     }

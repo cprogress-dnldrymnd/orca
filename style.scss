@@ -140,7 +140,7 @@ p:last-child {
         color: #7e7e7e;
         font-size: 16px;
     }
-   
+
     .ld-item-list {
         .lesson-parent-item {
             border: 1px solid #cbd5e0;
@@ -157,6 +157,11 @@ p:last-child {
             }
             &:not(:last-child) {
                 margin-bottom: 25px;
+            }
+            &.active {
+                .ld-item-list-item {
+                    display: block;
+                }
             }
         }
     }

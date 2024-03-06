@@ -120,6 +120,8 @@ p:last-child {
     margin-top: 0; }
   .single-sfwd-courses .ld-item-list .lesson-parent-item:not(:last-child) {
     margin-bottom: 25px; }
+  .single-sfwd-courses .ld-item-list .lesson-parent-item.active .ld-item-list-item {
+    display: block; }
 
 .breadcrumbs-holder {
   margin-bottom: 40px;
