@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 
-<section class="archive-courses archive-grid background-light-gray py-3 py-5">
+<section class="archive-courses archive-grid background-light-gray py-2 py-5">
     <div class="container large-container">
         <div class="row">
             <?php while (have_posts()) { ?>
