@@ -176,4 +176,4 @@ function new_default_content($content)
     }
     return $content;
 }
-add_filter('the_content', 'new_default_content');
+add_filter('the_content', 'new_default_content', 9999);
