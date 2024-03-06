@@ -23,20 +23,41 @@ function breadcrumbs()
 
 add_shortcode('breadcrumbs', 'breadcrumbs');
 
-function post_id() {
-	return get_the_ID();
+function post_id()
+{
+    return get_the_ID();
 }
 
 add_shortcode('post_id', 'post_id');
 
 
-function _course_cta() {
+function _course_cta()
+{
     $cta_heading = get__post_meta('cta_heading');
     $cta_description = get__post_meta('cta_description');
 
-    if($cta_heading || $cta_description) {
+    if ($cta_heading || $cta_description) {
         return do_shortcode('[elementor-template id="632"]');
     }
 }
 
 add_shortcode('_course_cta', '_course_cta');
+
+function _course_outcomes()
+{
+    $outcomes_heading = get__post_meta('outcomes_heading');
+    $outcomes = get__post_meta('outcomes');
+
+    if ($outcomes_heading || $outcomes) {
+        if ($outcomes_heading) {
+            $html = '<p><strong> Outcomes: ' . $outcomes_heading . '</strong></p>';
+        }
+        if($outcomes) {
+            $html = wpautop($outcomes);
+        }
+
+        return $html;
+    }
+}
+
+add_shortcode('_course_outcomes', '_course_outcomes');

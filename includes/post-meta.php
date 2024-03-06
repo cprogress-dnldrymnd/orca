@@ -32,18 +32,18 @@ Container::make('post_meta', 'Course Settings')
         )
     )
     ->add_tab(
+        'Outcomes',
+        array(
+            Field::make('text', 'outcomes_heading', __('Outcomes Heading')),
+            Field::make('rich_text', 'outcomes', __('Outcomes Description')),
+        )
+    )
+    ->add_tab(
         'Highlight Section',
         array(
             Field::make('text', 'highlight_heading', __('Highlight Heading')),
             Field::make('rich_text', 'highlight_description', __('Highlight Description')),
             Field::make('image', 'highlight_image', __('Highlight Image')),
-        )
-    )
-    ->add_tab(
-        'Outcomes',
-        array(
-            Field::make('text', 'outcomes_heading', __('Outcomes Heading')),
-            Field::make('rich_text', 'outcomes', __('Outcomes Description')),
         )
     )
     ->add_tab(
