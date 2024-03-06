@@ -311,7 +311,7 @@ function _course_banner()
     $banner_description = get__post_meta('banner_description');
     $banner_background_image = get__post_meta('banner_background_image');
     if ($banner_heading || $banner_description) {
-        $html = '<div class="course-banner position-relative">';
+        $html = '<div class="course-banner position-relative background-primary">';
 
         if ($banner_background_image) {
             $html .= do_shortcode("[_image id='$banner_background_image' size='large' class='not-absolute image-box-background']");
