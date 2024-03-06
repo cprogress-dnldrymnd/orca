@@ -165,3 +165,15 @@ function _learndash_sticky_add_to_cart()
 }
 
 add_shortcode('_learndash_sticky_add_to_cart', '_learndash_sticky_add_to_cart');
+
+
+//modify course the_content
+function new_default_content($content)
+{
+    global $post;
+    if ($post->post_type == 'sfwd-courses') {
+        $content = $content;
+    }
+    return $content;
+}
+add_filter('the_content', 'new_default_content');
