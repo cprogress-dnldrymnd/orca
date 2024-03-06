@@ -125,7 +125,7 @@ function _heading($atts)
         shortcode_atts(
             array(
                 'tag' => 'h2',
-                'heading'
+                'heading' => ''
             ),
             $atts
         )
