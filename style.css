@@ -11262,8 +11262,7 @@ section.archive-grid .column-holder {
 
 .add_to_cart_button,
 .added_to_cart {
-  margin-left: 10px;
-  text-decoration: underline;
+  text-decoration: none;
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;

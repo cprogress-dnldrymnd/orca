@@ -60,8 +60,7 @@ img {
 
 .btn {
     &:not(.btn-link) {
-        @include button-tyle;
-        
+        @include button-style;
     }
     .btn-primary {
         @include button-primary;
