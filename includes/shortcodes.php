@@ -22,3 +22,9 @@ function breadcrumbs()
 }
 
 add_shortcode('breadcrumbs', 'breadcrumbs');
+
+function post_id() {
+	return get_the_ID();
+}
+
+add_shortcode('post_id', 'post_id');

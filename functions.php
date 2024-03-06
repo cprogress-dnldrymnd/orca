@@ -36,11 +36,35 @@ function hello_elementor_child_scripts_styles() {
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20 );
 
 
-function post_id() {
-	return get_the_ID();
+/*-----------------------------------------------------------------------------------*/
+/* Register Carbofields
+/*-----------------------------------------------------------------------------------*/
+add_action('carbon_fields_register_fields', 'tissue_paper_register_custom_fields');
+function tissue_paper_register_custom_fields()
+{
+	require_once('includes/post-meta.php');
+}
+function get__post_meta($value)
+{
+	return get_post_meta(get_the_ID(), '_' . $value, true);
 }
 
-add_shortcode('post_id', 'post_id');
+function get__term_meta($term_id, $value)
+{
+	return get_term_meta($term_id, '_' . $value, true);
+}
+
+function get__post_meta_by_id($id, $value)
+{
+	return get_post_meta($id, '_' . $value, true);
+}
+function get__theme_option($value)
+{
+	return get_option('_' . $value);
+}
+
+
+
 
 require_once('includes/post-types.php');
 require_once('includes/learndash.php');
