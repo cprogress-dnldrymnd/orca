@@ -1,10 +1,12 @@
 body {
     font-family: "Source Sans 3", sans-serif;
+    color: var(--black-color);
 }
 
 @include headings {
     font-weight: bold;
     line-height: 1.2;
+    color: var(--black-color);
 }
 p:last-child {
     margin-bottom: 0 !important;
