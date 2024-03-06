@@ -11060,7 +11060,8 @@ button.swiper-pagination-bullet {
   --black-color: #000000;
   --text-color: #707070;
   --blue-color: #42BDF4;
-  --green-color: #B4D012; }
+  --green-color: #B4D012;
+  --light-color: #B4D012; }
 
 @-moz-keyframes spin {
   from {

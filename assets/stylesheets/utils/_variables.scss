@@ -12,6 +12,7 @@ $white-color: #ffffff;
 $black-color: #000000;
 $blue-color: #42BDF4;
 $green-color: #B4D012;
+$light-gray-color: #F2F2F2;
 :root {
     --primary-color: #{$primary-color};
     --secondary-color: #{$secondary-color};
@@ -21,4 +22,5 @@ $green-color: #B4D012;
     --text-color: #{$text-color};
     --blue-color: #{$blue-color};
     --green-color: #{$green-color};
+    --light-gray-color: #{$green-gray-color};
 }
