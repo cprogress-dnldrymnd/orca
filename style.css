@@ -11084,11 +11084,12 @@ button.swiper-pagination-bullet {
   text-decoration: none;
   display: flex;
   align-items: center;
-  color: var(--black-color); }
+  color: var(--black-color);
+  line-height: 1; }
   .list-inline-icons li a svg {
-    width: 16px;
-    flex: 0 0 16px;
-    height: 16px;
+    width: 20px;
+    flex: 0 0 20px;
+    height: 20px;
     margin-right: 10px; }
 .list-inline-icons li:not(:last-child) {
   margin-right: 1rem; }
