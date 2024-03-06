@@ -11176,10 +11176,10 @@ img {
   background-color: var(--white-color); }
 
 .background-primary {
-  background-color: var(--white-primary); }
+  background-color: var(--primary-color); }
 
 .background-accent {
-  background-color: var(--white-accent); }
+  background-color: var(--accent-color); }
 
 .background-light-gray {
   background-color: var(--light-gray-color); }
