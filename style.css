@@ -11531,7 +11531,9 @@ section.archive-grid .column-holder {
     padding: 10px 20px; }
   .single-course-section .learndash-single-course-highlight .image-box {
     margin-top: -40px;
-    margin-bottom: -40px; }
+    margin-bottom: -40px;
+    border-radius: 6px;
+    overflow: hidden; }
   .single-course-section .single-course-content-holder {
     border-radius: 10px; }
     .single-course-section .single-course-content-holder > div {
