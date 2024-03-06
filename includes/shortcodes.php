@@ -180,3 +180,4 @@ function _post_taxonomy_terms($atts)
         return $html;
     }
 }
+add_shortcode('_post_taxonomy_terms', '_post_taxonomy_terms');
