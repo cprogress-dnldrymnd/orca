@@ -1,7 +1,7 @@
 <?php
 function breadcrumbs()
 {
-    $html = ' <section class="breadcrumbs-section py-3">';
+    $html = ' <section class="breadcrumbs-section mt-4">';
     $html .= '<div class="container">';
     $html .= '<div class="breadcrumbs-holder">';
     $html .= '<ul class="mb-0">';
