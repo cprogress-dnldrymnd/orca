@@ -28,16 +28,16 @@
                         <li><a href="#testimonials">Testimonials</a></li>
                     </ul>
                 </div>
-
-                <div class="learndash-single-holder learndash-single-content " id="about">
+                <div class="learndash-single-holder learndash-single-content position-relative">
+                    <div class="anchor-link" id="about"></div>
                     <?php the_content() ?>
                 </div>
 
                 <div class="learndash-single-holder learndash-single-cta" id="cta">
                     <?= do_shortcode('[_course_cta]') ?>
                 </div>
-
-                <div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">
+                <div class="learndash-single-holder learndash-single-course-outcomes position-relative">
+                    <div class="anchor-link" id="outcomes"></div>
                     <?= do_shortcode('[_course_outcomes]') ?>
                 </div>
 
@@ -48,8 +48,8 @@
                 <div class="learndash-single-holder learndash-single-course-breakdown" id="course-breakdown">
                     <?= do_shortcode('[_course_breakdown]') ?>
                 </div>
-
-                <div class="learndash-single-holder learndash-single-module" id="modules">
+                <div class="learndash-single-holder learndash-single-module position-relative">
+                    <div class="anchor-link" id="modules"></div>
                     <?= do_shortcode('[course_content]') ?>
                 </div>
             </div>

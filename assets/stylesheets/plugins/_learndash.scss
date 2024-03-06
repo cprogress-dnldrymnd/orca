@@ -159,6 +159,11 @@
 
 .single-course-section {
     font-size: 1.25rem;
+    .anchor-link {
+        position: absolute;
+        top: 0;
+        left: -100px
+    }
     .learndash-single-status-top {
         .inner {
             border-radius: 4px;
