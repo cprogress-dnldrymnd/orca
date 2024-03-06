@@ -13,7 +13,17 @@
 ?>
 
 <footer id="site-footer" class="site-footer">
-
+    <div class="container">
+        <div class="row">
+            <?php if (get_sidebar('footer_left')) { ?>
+                <div class="col-lg-4">
+                    <div class="footer-left-holder">
+                        <?php dynamic_sidebar('footer_left') ?>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
 </footer>
 </div><!-- #page -->
 
