@@ -33,10 +33,25 @@
 .background-white {
     background-color: var(--white-color);
 }
+.background-primary {
+    background-color: var(--white-primary);
+}
+.background-accent {
+    background-color: var(--white-accent);
+}
 .background-light-gray {
     background-color: var(--light-gray-color);
 }
 
 .color-primary {
     color: var(--primary-color);
+}
+.color-accent {
+    color: var(--primary-accent);
+}
+.color-white {
+    color: var(--primary-white);
+}
+.color-light-gray {
+    color: var(--light-gray-color);
 }

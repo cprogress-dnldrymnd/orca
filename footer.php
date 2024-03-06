@@ -12,7 +12,7 @@
 
 ?>
 
-<footer id="colophon" class="site-footer">
+<footer id="site-footer" class="site-footer">
 
 </footer>
 </div><!-- #page -->
