@@ -11140,7 +11140,10 @@ img {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
-  border-radius: 8px; }
+  border-radius: 8px;
+  background-color: var(--black-color);
+  border: 1px solid var(--black-color);
+  color: var(--white-color); }
 
 .taxonomy-terms a {
   padding: 10px 15px;
@@ -11184,6 +11187,20 @@ img {
 .background-primary {
   background-color: var(--primary-color);
   color: var(--white-color); }
+  .background-primary h1, .background-primary .h1,
+  .background-primary h2,
+  .background-primary .h2,
+  .background-primary h3,
+  .background-primary .h3,
+  .background-primary h4,
+  .background-primary .h4,
+  .background-primary h5,
+  .background-primary .h5,
+  .background-primary h6,
+  .background-primary .h6 {
+    color: inherit; }
+  .background-primary a {
+    color: inherit; }
 
 .background-accent {
   background-color: var(--accent-color);
@@ -11302,6 +11319,9 @@ h5, .h5 {
 .footer-decoration > div {
   margin-bottom: 4.5px;
   border-bottom: 1px solid var(--primary-color); }
+
+#site-footer {
+  text-decoration: none; }
 
 section.archive-grid .column-holder {
   border-radius: 5px;

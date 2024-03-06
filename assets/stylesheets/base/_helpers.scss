@@ -36,6 +36,12 @@
 .background-primary {
     background-color: var(--primary-color);
     color: var(--white-color);
+    @include headings {
+        color: inherit;
+    }
+    a {
+        color: inherit;
+    }
 }
 .background-accent {
     background-color: var(--accent-color);
