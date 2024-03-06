@@ -91,7 +91,7 @@ function _course_highlight()
 
         if ($highlight_image) {
             $html .= '<div class="col-md-4 text-end">';
-            $html .= do_shortcode("[_image id='$highlight_image' size='large']");
+            $html .= do_shortcode("[_image id='$highlight_image' size='large' class='not-absolute']");
             $html .= '</div>';
         }
         $html .= '</div>';
@@ -124,12 +124,13 @@ function _image($atts)
             array(
                 'id' => '',
                 'size' => 'large',
+                'class' => ''
             ),
             $atts
         )
     );
     $image_url = wp_get_attachment_image_url($id, $size);
-    $html = '<div class="image-box">';
+    $html = "<div class='image-box $class'>";
 
     if ($image_url) {
         $html .= '<img src="' . $image_url . '" >';
