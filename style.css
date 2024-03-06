@@ -11269,11 +11269,11 @@ section.archive-grid .column-holder {
   background-color: var(--primary-color); }
 
 .add_to_cart_button {
-  background-color: var(--e-global-color-primary);
   color: var(--white-color);
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  width: 100%; }
   .add_to_cart_button svg {
     width: 0; }
   .add_to_cart_button.loading svg {

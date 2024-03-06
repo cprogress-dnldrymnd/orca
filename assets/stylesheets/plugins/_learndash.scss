@@ -51,14 +51,14 @@
     line-height: 1;
     text-decoration: underline;
     @include button-primary;
-
 }
 .add_to_cart_button {
-    background-color: var(--e-global-color-primary);
     color: var(--white-color); //white
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+
     svg {
         width: 0;
     }
@@ -143,7 +143,6 @@
         }
     }
 }
-
 
 .image-box-course {
     .meta-box {
