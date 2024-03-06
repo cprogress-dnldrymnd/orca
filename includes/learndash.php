@@ -87,6 +87,12 @@ function learndash_wp_footer()
                 jQuery(this).parent().toggleClass('active');
                 e.preventDefault();
             });
+
+            jQuery('.ld-expand-button').change(function (e) { 
+                jQuery('.lesson-parent-item').toggleClass('active');
+                e.preventDefault();
+                
+            });
         </script>
 <?php
     }
