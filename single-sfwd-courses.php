@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="learndash-single-holder learndash-single-navigation position-sticky">
+                <div class="learndash-single-holder learndash-single-navigation position-sticky background-white">
                     <ul class="d-flex list-inline">
                         <li><a href="#about" class="active">About</a></li>
                         <li><a href="#outcomes">Outcomes</a></li>
