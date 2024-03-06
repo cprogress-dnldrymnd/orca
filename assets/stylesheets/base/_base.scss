@@ -64,4 +64,7 @@ img {
         font-weight: bold;
         border-radius: 8px;
     }
+    .btn-primary {
+        @include button-primary;
+    }
 }
