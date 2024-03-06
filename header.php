@@ -104,4 +104,5 @@
             </nav>
         </header><!-- #masthead -->
 
-        <?= do_shortcode(['breadcrumbs']) ?>x
+
+        <?= do_shortcode('[breadcrumbs]') ?>
