@@ -79,9 +79,9 @@ function _course_highlight()
 
     if ($highlight_heading || $highlight_description) {
         $html = '<div class="course-highlight">';
-        $html .= '<div class="row>"';
+        $html .= '<div class="row align-items-center gy-4>"';
 
-        $html .= '<div class="col-md-8>"';
+        $html .= '<div class="col-md-8">';
         if ($highlight_heading) {
             $html .= "<p><strong> $highlight_heading </strong></p>";
         }
@@ -91,7 +91,7 @@ function _course_highlight()
         $html .= '</div>';
 
         if ($highlight_image) {
-            $html .= '<div class="col-md-4>"';
+            $html .= '<div class="col-md-4 text-end">';
             $html .= do_shortcode("[_image id='$highlight_image' size='large']");
             $html .= '</div>';
 
