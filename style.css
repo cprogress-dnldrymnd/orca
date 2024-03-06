@@ -11095,8 +11095,7 @@ button.swiper-pagination-bullet {
   margin-right: 1rem; }
 
 .breadcrumbs-holder {
-  margin-bottom: 40px;
-  border-bottom: 1px solid var(--e-global-color-51e6256);
+  border-bottom: 1px solid var(--blue-color);
   padding-bottom: 10px; }
   .breadcrumbs-holder ul {
     padding: 0;
@@ -11195,7 +11194,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     flex: 0 0 auto;
     margin-left: 24px; }
     .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
-      color: var(--e-global-color-51e6256, #42bdf4); }
+      color: var(--blue-color, #42bdf4); }
   .learndash-wrapper.learndash-wrapper.learndash-wrapper .ld-progress .ld-progress-steps {
     display: none; }
 
