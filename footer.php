@@ -50,6 +50,7 @@
                                 <?php dynamic_sidebar('footer_left') ?>
                             </div>
                         </div>
+                        <div class="col-12 d-block d-lg-none"> <hr> </div>
                     <?php } ?>
                     <div class="col-lg-8">
                         <div class="row gy-3">
@@ -59,6 +60,7 @@
                                         <?php dynamic_sidebar('footer_column_1') ?>
                                     </div>
                                 </div>
+                                <div class="col-12 d-block d-lg-none"> <hr> </div>
                             <?php } ?>
                             <?php if (is_active_sidebar('footer_column_2')) { ?>
                                 <div class="col-md-4">
@@ -66,6 +68,7 @@
                                         <?php dynamic_sidebar('footer_column_2') ?>
                                     </div>
                                 </div>
+                                <div class="col-12 d-block d-lg-none"> <hr> </div>
                             <?php } ?>
                             <?php if (is_active_sidebar('footer_column_3')) { ?>
                                 <div class="col-md-4">
