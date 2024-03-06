@@ -157,6 +157,25 @@
             padding: 10px 20px;
         }
     }
+    .learndash-single-navigation {
+        border-bottom: 5px solid #97999c;
+        ul {
+            li {
+                a {
+                    display: inline-block;
+                    padding: 10px 2vw;
+                    border-bottom: 5px solid;
+                    color: #97999c;
+                    font-weight: bold;
+                    text-decoration: none;
+                    margin-bottom: -5px;
+                    &.active {
+                        color: var(--blue-color);
+                    }
+                }
+            }
+        }
+    }
     .learndash-single-course-highlight {
         .image-box {
             margin-top: -40px;

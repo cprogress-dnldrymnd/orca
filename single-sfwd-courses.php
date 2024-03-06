@@ -21,7 +21,12 @@
                 </div>
 
                 <div class="learndash-single-holder learndash-single-navigation">
-                    <ul></ul>
+                    <ul class="d-flex list-inline">
+                        <li><a href="#about" class="active">About</a></li>
+                        <li><a href="#outcomes">Outcomes</a></li>
+                        <li><a href="#modules">Modules</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
                 </div>
 
                 <div class="learndash-single-holder learndash-single-content" id="about">

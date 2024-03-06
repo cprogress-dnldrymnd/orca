@@ -11552,6 +11552,18 @@ section.archive-grid .column-holder {
   .single-course-section .learndash-single-status-top .inner {
     border-radius: 4px;
     padding: 10px 20px; }
+  .single-course-section .learndash-single-navigation {
+    border-bottom: 5px solid #97999c; }
+    .single-course-section .learndash-single-navigation ul li a {
+      display: inline-block;
+      padding: 10px 2vw;
+      border-bottom: 5px solid;
+      color: #97999c;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: -5px; }
+      .single-course-section .learndash-single-navigation ul li a.active {
+        color: var(--blue-color); }
   .single-course-section .learndash-single-course-highlight .image-box {
     margin-top: -40px;
     margin-bottom: -40px; }
