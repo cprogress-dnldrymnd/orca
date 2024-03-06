@@ -93,7 +93,7 @@ function learndash_wp_footer()
                     this.classList.toggle("active");
 
                     /* Toggle between hiding and showing the active panel */
-                    var panel = this.nextAll();
+                    var panel = this.nextAll;
                     if (panel.style.display === "block") {
                         panel.style.display = "none";
                     } else {
