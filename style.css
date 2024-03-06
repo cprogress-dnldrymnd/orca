@@ -11299,14 +11299,6 @@ section.archive-grid .column-holder {
     font-weight: bold; }
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button.added {
   display: none; }
-.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button,
-.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .added_to_cart {
-  padding: 10px;
-  line-height: 1.5;
-  margin-left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 10px 5px; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--white-color); }
