@@ -11353,6 +11353,8 @@ h5, .h5 {
   .footer-decoration .lines > div {
     margin-bottom: 4.5px;
     border-bottom: 1px solid var(--primary-color); }
+    .footer-decoration .lines > div:first-child {
+      border-width: 2px; }
 
 #site-footer hr {
   color: var(--white-color);

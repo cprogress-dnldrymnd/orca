@@ -7,6 +7,9 @@
         > div {
             margin-bottom: 4.5px;
             border-bottom: 1px solid var(--primary-color);
+            @include first-child {
+                border-width: 2px;
+            }
         }
     }
 }
