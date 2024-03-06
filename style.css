@@ -11138,7 +11138,8 @@ img {
   font-weight: bold;
   line-height: 1;
   display: inline-block;
-  background-color: var(--accent-color); }
+  background-color: var(--accent-color);
+  text-decoration: none; }
   .taxonomy-terms a:not(:last-child) {
     margin-right: 10px; }
 
@@ -11384,6 +11385,8 @@ section.archive-grid .column-holder {
   right: 20px;
   left: 20px;
   z-index: 1; }
+  .image-box-course .meta-box > div:not(:last-child) {
+    margin-right: 10px; }
 
 /* Add your custom styles here */
 .elementor-swiper-button {

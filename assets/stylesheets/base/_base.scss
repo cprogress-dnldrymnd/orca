@@ -74,6 +74,8 @@ img {
     a {
         @include status-style;
         background-color: var(--accent-color);
+        text-decoration: none;
+        color: var(--white-color);
         @include not-last-child {
             margin-right: 10px;
         }
