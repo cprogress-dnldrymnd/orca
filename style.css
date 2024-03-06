@@ -11547,13 +11547,17 @@ section.archive-grid .column-holder {
     .image-box-course .meta-box > div:not(:last-child) {
       margin-right: 10px; }
 
+.admin-bar .single-course-section .learndash-single-navigation {
+  top: 32px !important; }
+
 .single-course-section {
   font-size: 1.25rem; }
   .single-course-section .learndash-single-status-top .inner {
     border-radius: 4px;
     padding: 10px 20px; }
   .single-course-section .learndash-single-navigation {
-    border-bottom: 5px solid #97999c; }
+    border-bottom: 5px solid #97999c;
+    top: 0; }
     .single-course-section .learndash-single-navigation ul li a {
       display: inline-block;
       padding: 10px 2vw;

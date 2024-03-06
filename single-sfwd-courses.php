@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="learndash-single-holder learndash-single-navigation">
+                <div class="learndash-single-holder learndash-single-navigation position-sticky">
                     <ul class="d-flex list-inline">
                         <li><a href="#about" class="active">About</a></li>
                         <li><a href="#outcomes">Outcomes</a></li>
@@ -29,7 +29,7 @@
                     </ul>
                 </div>
 
-                <div class="learndash-single-holder learndash-single-content" id="about">
+                <div class="learndash-single-holder learndash-single-content " id="about">
                     <?php the_content() ?>
                 </div>
 

@@ -149,6 +149,14 @@
     }
 }
 
+.admin-bar {
+    .single-course-section {
+        .learndash-single-navigation {
+            top: 32px !important;
+        }
+    }
+}
+
 .single-course-section {
     font-size: 1.25rem;
     .learndash-single-status-top {
@@ -159,6 +167,7 @@
     }
     .learndash-single-navigation {
         border-bottom: 5px solid #97999c;
+        top: 0;
         ul {
             li {
                 a {
