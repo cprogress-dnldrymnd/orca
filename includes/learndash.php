@@ -281,9 +281,9 @@ function _course_cta()
     $cta_button_link = get__post_meta('cta_button_link');
     $cta_background_image = get__post_meta('cta_background_image');
     if ($cta_heading || $cta_description) {
-        $html = '<div class="course-cta">';
+        $html = '<div class="course-cta position-relative">';
         if ($cta_background_image) {
-            $html .= do_shortcode("[_image id='$cta_background_image' size='large' class='not-absolute image-box-bg']");
+            $html .= do_shortcode("[_image id='$cta_background_image' size='large' class='not-absolute image-box-background']");
         }
         $html .= '<div class="inner">';
 
