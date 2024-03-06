@@ -24,6 +24,11 @@ define('HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0');
  */
 function hello_elementor_child_scripts_styles()
 {
+
+	wp_enqueue_style(
+		'style',
+		get_stylesheet_directory_uri() . '/style.css',
+	);
 }
 add_action('wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20);
 
