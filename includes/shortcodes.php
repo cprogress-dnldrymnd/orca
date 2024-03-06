@@ -37,7 +37,9 @@ function _course_cta()
     $cta_description = get__post_meta('cta_description');
 
     if ($cta_heading || $cta_description) {
-        return do_shortcode('[elementor-template id="632"]');
+        $html = '<div class="course-cta>"';
+        $html .= '</div>';
+        return $html;
     }
 }
 add_shortcode('_course_cta', '_course_cta');

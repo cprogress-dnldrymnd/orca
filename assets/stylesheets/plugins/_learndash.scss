@@ -1,0 +1,144 @@
+.learndash-wrapper.learndash-wrapper.learndash-wrapper {
+    .ld-item-list .ld-item-list-item {
+        border: 1px solid #cbd5e0;
+    }
+    .ld-progress {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin-top: 0;
+        margin-bottom: 0;
+        .ld-progress-heading {
+            flex: 0 0 auto;
+            margin-left: 24px;
+            .ld-progress-stats {
+                .ld-progress-percentage {
+                    color: var(--e-global-color-51e6256, #42bdf4);
+                }
+            }
+        }
+        .ld-progress-steps {
+            display: none;
+        }
+    }
+}
+
+.course-meta {
+    font-size: 16px;
+}
+
+.ld-status.ld-status {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+    display: inline-block;
+    &.ld-status-progress {
+        background-color: var(--e-global-color-db51a67); //green
+        color: var(--e-global-color-5e743c3); //white
+    }
+    &.ld-status-waiting {
+        background-color: #ffd200;
+    }
+}
+.add_to_cart_button,
+.added_to_cart {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+}
+.add_to_cart_button {
+    background-color: var(--e-global-color-primary);
+    color: var(--e-global-color-5e743c3); //white
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        width: 0;
+    }
+
+    &.loading {
+        svg {
+            width: 30px;
+            -webkit-animation: spin 4s infinite linear;
+        }
+    }
+    &:hover {
+        background-color: var(--e-global-color-accent);
+        color: var(--e-global-color-5e743c3); //white
+    }
+}
+.added_to_cart {
+    background-color: var(--e-global-color-accent);
+    color: var(--e-global-color-5e743c3); //white
+    display: inline-block;
+}
+
+.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses {
+    .elementor-post-info__terms-list {
+        font-size: 0;
+        a {
+            background-color: var(--e-global-color-accent);
+            border-radius: 5px;
+            padding: 10px 14px;
+            font-size: 15px !important;
+            font-weight: bold;
+        }
+    }
+    .add_to_cart_button {
+        &.added {
+            display: none;
+        }
+    }
+    .add_to_cart_button,
+    .added_to_cart {
+        font-size: 15.75px;
+        padding: 10px;
+        line-height: 1.5;
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 5px;
+    }
+}
+
+.single-sfwd-courses {
+    .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
+        background-color: var(--e-global-color-5e743c3); //white
+    }
+    .ld-progress-steps {
+        color: #7e7e7e;
+        font-size: 16px;
+    }
+
+    .ld-item-list {
+        .lesson-parent-item {
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            padding: 20px;
+            .ld-item-list-item {
+                display: none;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            .ld-lesson-section-heading {
+                margin-top: 0;
+                margin-bottom: 0;
+                cursor: pointer;
+            }
+            &:not(:last-child) {
+                margin-bottom: 25px;
+            }
+            &.active {
+                > .ld-item-list-item {
+                    display: block;
+                }
+            }
+        }
+    }
+}
