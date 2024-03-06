@@ -295,7 +295,7 @@ function _course_cta()
         }
 
         if($cta_button_text) {
-            $html .= 
+            $html .= do_shortcode("[_button button_text='$cta_button_text' button_link='$cta_button_link' class='btn-white']");
         }
 
         $html .= '</div>';
