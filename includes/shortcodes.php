@@ -103,7 +103,6 @@ function _course_highlight()
 add_shortcode('_course_highlight', '_course_highlight');
 
 
-
 function _course_breakdown()
 {
     $course_breakdown = get__post_meta('course_breakdown');
