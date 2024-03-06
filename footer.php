@@ -17,7 +17,7 @@
     <div></div>
     <div></div>
 </div>
-<footer id="site-footer" class="site-footer background-primary">
+<footer id="site-footer" class="site-footer background-primary py-3">
 
     <div class="container">
         <div class="row">
