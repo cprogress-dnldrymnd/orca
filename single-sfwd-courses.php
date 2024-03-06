@@ -22,13 +22,19 @@
                 <?php the_content() ?>
             </div>
 
-            
+            <div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">
                 <?= do_shortcode('[_course_outcomes]') ?>
             </div>
 
-            <div class="learndash-single-holder learndash-single-course-highlight" id="highlight">
-                <?= do_shortcode('[_course_outcomes]') ?>
+            <div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">
+                <?= do_shortcode('[_course_highlight]') ?>
             </div>
+
+            <div class="learndash-single-holder learndash-single-module" id="module">
+                <?= do_shortcode('[course_content]') ?>
+            </div>
+
+
 
         </div>
     </section>
