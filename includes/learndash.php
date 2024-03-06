@@ -192,7 +192,7 @@ function action_learndash_before_section_heading()
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
 
-function action_learndash_lesson_row_after($course_id, $group_id, $user_id)
+function action_learndash_lesson_row_after()
 {
     echo 'xsxss' . $group_id;
 }
