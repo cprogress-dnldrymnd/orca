@@ -83,7 +83,7 @@ function learndash_wp_footer()
                 lastScrollTop = st;
             });
 
-            jQUery(document).ready(function() {
+            jQuery(document).ready(function() {
                 var acc = document.getElementsByClassName(".ld-item-list-section-heading");
                 var i;
 
