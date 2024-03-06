@@ -242,7 +242,7 @@ function _learndash_course_button()
 {
     $permalink = get_the_permalink();
 
-    $html = '<div class="row g-3 button-group">';
+    $html = '<div class="row g-3 button-group mt-3">';
     $html .= '<div class="' . (_user_has_access() ? 'col-sm-6' : 'col-6') . '">';
     $html .= "<a class='w-100' href='$permalink' class='btn btn-primary'>View Course</a>";
     $html .= '</div>';
