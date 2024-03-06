@@ -28,3 +28,15 @@ function post_id() {
 }
 
 add_shortcode('post_id', 'post_id');
+
+
+function _course_cta() {
+    $cta_heading = get__post_meta('cta_heading');
+    $cta_description = get__post_meta('cta_description');
+
+    if($cta_heading || $cta_description) {
+        return do_shortcode('');
+    }
+}
+
+add_shortcode('_course_cta', '_course_cta');
