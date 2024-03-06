@@ -11345,9 +11345,14 @@ h5, .h5 {
 .menu-toggler:hover .menu-toggler-icon:before {
   transform: rotate(45deg); }
 
-.footer-decoration > div {
-  margin-bottom: 4.5px;
-  border-bottom: 1px solid var(--primary-color); }
+.footer-decoration .lines {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  .footer-decoration .lines > div {
+    margin-bottom: 4.5px;
+    border-bottom: 1px solid var(--primary-color); }
 
 #site-footer hr {
   color: var(--white-color);

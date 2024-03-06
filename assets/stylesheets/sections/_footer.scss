@@ -1,7 +1,13 @@
 .footer-decoration {
-    > div {
-        margin-bottom: 4.5px;
-        border-bottom: 1px solid var(--primary-color);
+    .lines {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        > div {
+            margin-bottom: 4.5px;
+            border-bottom: 1px solid var(--primary-color);
+        }
     }
 }
 
