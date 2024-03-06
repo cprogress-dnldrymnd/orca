@@ -1,0 +1,7 @@
+.list-inline-icons {
+    li {
+        @include not-last-child {
+            margin-right: 1rem;
+        }
+    }
+}
