@@ -11237,7 +11237,7 @@ img {
   color: var(--accent-color); }
 
 .color-white {
-  color: var(--primary-white); }
+  color: var(--white-color); }
 
 .color-light-gray {
   color: var(--light-gray-color); }
@@ -11560,7 +11560,7 @@ section.archive-grid .column-holder {
   .single-course-section .learndash-single-cta .course-cta {
     border-radius: 9px;
     overflow: hidden;
-    padding: 5vw; }
+    padding: 3vw; }
     .single-course-section .learndash-single-cta .course-cta .inner {
       max-width: 400px;
       margin-left: auto; }

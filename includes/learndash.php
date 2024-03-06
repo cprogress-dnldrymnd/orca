@@ -285,7 +285,7 @@ function _course_cta()
         if ($cta_background_image) {
             $html .= do_shortcode("[_image id='$cta_background_image' size='large' class='not-absolute image-box-background']");
         }
-        $html .= '<div class="inner">';
+        $html .= '<div class="inner color-white position-relative ">';
 
         if ($cta_heading) {
             $html .= "<p><strong> $cta_heading </strong></p>";
