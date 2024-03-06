@@ -94,8 +94,7 @@ function _course_highlight()
             $html .= '<div class="col-md-4 text-end">';
             $html .= do_shortcode("[_image id='$highlight_image' size='large']");
             $html .= '</div>';
-
-
+        }
         $html .= '</div>';
         $html .= '</div>';
         return $html;
