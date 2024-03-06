@@ -5,7 +5,9 @@ section.archive-grid {
         position: relative;
         .content-holder {
             padding: 20px;
-         
+            .description-box {
+                color: var(--gray-color);
+            }
         }
     }
 }

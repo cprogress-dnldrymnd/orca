@@ -24,7 +24,11 @@
 }
 
 .course-meta {
-    font-size: 16px;
+    p {
+        @include not-last-child {
+            margin-bottom: 10px;
+        }
+    }
 }
 
 .ld-status.ld-status {
