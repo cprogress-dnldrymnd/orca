@@ -11554,8 +11554,8 @@ section.archive-grid .column-holder {
   font-size: 1.25rem; }
   .single-course-section .anchor-link {
     position: absolute;
-    top: 0;
-    left: -130px; }
+    left: 0;
+    top: -100px; }
   .single-course-section .learndash-single-status-top .inner {
     border-radius: 4px;
     padding: 10px 20px; }
