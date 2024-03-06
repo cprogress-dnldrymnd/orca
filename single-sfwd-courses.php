@@ -1,7 +1,7 @@
 <?php get_header() ?>
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
-    <section class="single-course-section pt-3 background-light-gray">
+    <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
