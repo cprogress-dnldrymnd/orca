@@ -167,7 +167,7 @@ function _post_taxonomy_terms($atts)
     );
 
     if ($taxonomy) {
-        $terms = get_the_terms($post_id, array($taxonomy));
+        $terms = get_the_terms($post_id, $taxonomy);
         $html = "<div class='taxonomy-terms d-flex'>";
 
         foreach ($terms as $term) {
