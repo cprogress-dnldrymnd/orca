@@ -8,15 +8,6 @@ define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
 define('vendor_dir', assets_dir . 'vendors/');
 
-if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
-}
-
-/**
- * Load child theme scripts & styles.
- *
- * @return void
- */
 function action_wp_enqueue_scripts()
 {
 	wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
