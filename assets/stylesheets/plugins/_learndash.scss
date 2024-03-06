@@ -140,5 +140,10 @@
         right: 20px;
         left: 20px;
         z-index: 1;
+        > div {
+            @include not-last-child {
+                margin-right: 10px;
+            }
+        }
     }
 }
