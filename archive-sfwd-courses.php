@@ -6,7 +6,7 @@
         <div class="row">
             <?php while (have_posts()) { ?>
                 <?php the_post() ?>
-                <div class="col-lg-4">
+                <div class="col-sm-4 col-6">
                     <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
                         <?= do_shortcode('[_learndash_image id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
                         <div class="content-holder d-flex flex-column justify-content-between">

@@ -11323,6 +11323,11 @@ h5, .h5 {
   color: var(--black-color);
   text-decoration: none;
   font-weight: bold; }
+@media screen and (max-width: 991px) {
+  #masthead {
+    -webkit-box-shadow: 0px 3px 3px #00000014;
+    -moz-box-shadow: 0px 3px 3px #00000014;
+    box-shadow: 0px 3px 3px #00000014; } }
 
 .menu-toggler span {
   display: flex;
