@@ -13,6 +13,7 @@ Text Domain: orca
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 :root,
 [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
@@ -11051,20 +11052,15 @@ button.swiper-pagination-bullet {
   to {
     transform: rotate(360deg); } }
 :root {
-  --primary-font: Poppins, sans-serif;
-  --primary-color: #000000;
-  --secondary-color: #1C1C1E;
-  --accent-color: #2DA1FF;
+  --primary-font: Source Sans 3, sans-serif;
+  --primary-color: #2A6EBB;
+  --secondary-color: #54595F;
+  --accent-color: #33A19A;
   --white-color: #ffffff;
   --black-color: #000000;
-  --text-color: #A0A1A8;
-  --light-blue: #0093CC14;
-  --gray-color: #707070;
-  --dark-gray-color: #4B4B4B;
-  --light-color: #CFD0D8;
-  --body-color: #F7F7FA;
-  --light-gray: #F2F2F2;
-  --border-color: #E7E7E7; }
+  --text-color: #707070;
+  --blue-color: #42BDF4;
+  --green-color: #B4D012; }
 
 @-moz-keyframes spin {
   from {
@@ -11087,6 +11083,12 @@ button.swiper-pagination-bullet {
 @media (min-width: 1500px) {
   .container {
     max-width: 1470px; } }
+
+body {
+  font-family: var(--primary-font); }
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-weight: bold; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer

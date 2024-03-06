@@ -39,7 +39,7 @@
                             <div class="collapse navbar-collapse" id="main-menu">
                                 <?php
                                 wp_nav_menu(array(
-                                    'theme_location' => 'header',
+                                    'theme_location' => 'menu-1',
                                     'container' => false,
                                     'menu_class' => '',
                                     'fallback_cb' => '__return_false',
