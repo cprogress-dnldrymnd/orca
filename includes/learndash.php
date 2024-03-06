@@ -83,13 +83,6 @@ function learndash_wp_footer()
                 lastScrollTop = st;
             });
 
-            function myNextAll(e, selector) {
-                while (e = e.nextElementSibling) {
-                    if (e.matches(selector)) {
-                        yield e;
-                    }
-                }
-            }
             var acc = document.getElementsByClassName("ld-item-list-section-heading");
             var i;
 
@@ -100,7 +93,7 @@ function learndash_wp_footer()
                     this.classList.toggle("active");
 
                     /* Toggle between hiding and showing the active panel */
-                    var panel = myNextAll(this, '.ld-item-list-item');
+                    var panel = this.parent.querySelector('.ld-item-list-item');
                     if (panel.style.display === "block") {
                         panel.style.display = "none";
                     } else {
