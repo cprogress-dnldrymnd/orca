@@ -11152,6 +11152,9 @@ p:last-child {
     left: 0;
     top: 0; }
 
+.background-white {
+  background-color: var(--white-color); }
+
 .background-light-gray {
   background-color: var(--light-gray-color); }
 
@@ -11206,7 +11209,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   transform: rotate(45deg); }
 
 section.archive-grid .column-holder .content-holder {
-  padding: 20px; }
+  padding: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

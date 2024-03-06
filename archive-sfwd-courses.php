@@ -7,7 +7,7 @@
             <?php while (have_posts()) { ?>
                 <?php the_post() ?>
                 <div class="col-lg-4">
-                    <div class="column-holder">
+                    <div class="column-holder background-white">
                         <?= do_shortcode('[_learndash_image id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
                         <div class="content-holder">
                             <?= do_shortcode('[_heading heading="' . get_the_title() . '"]'); ?>

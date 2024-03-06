@@ -1,5 +1,8 @@
 section.archive-grid {
     .column-holder {
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
         .content-holder {
             padding: 20px;
         }
