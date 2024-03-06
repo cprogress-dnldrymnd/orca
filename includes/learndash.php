@@ -187,14 +187,9 @@ add_action('learndash-focus-header-before', 'action_learndash_focus_header_befor
 
 function action_learndash_before_section_heading()
 {
-    echo '</div><div>';
+    if (is_single() && get_post_type() == 'sfwd-courses') {
+        echo '</div><div>';
+    }
 }
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
-
-function action_learndash_lesson_row_after()
-{
-    echo 'xsxss' . $group_id;
-}
-
-add_action('learndash-lesson-row-after', 'action_learndash_lesson_row_after');
