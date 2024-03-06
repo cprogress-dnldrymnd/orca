@@ -270,8 +270,6 @@ function _learndash_course_button()
 add_shortcode('_learndash_course_button', '_learndash_course_button');
 
 
-
-
 function _course_cta()
 {
 
@@ -294,7 +292,7 @@ function _course_cta()
             $html .= wpautop($cta_description);
         }
 
-        if($cta_button_text) {
+        if ($cta_button_text) {
             $html .= do_shortcode("[_button button_text='$cta_button_text' button_link='$cta_button_link' class='btn-white']");
         }
 
@@ -304,6 +302,35 @@ function _course_cta()
     }
 }
 add_shortcode('_course_cta', '_course_cta');
+
+
+function _course_banner()
+{
+
+    $banner_heading = get__post_meta('banner_heading');
+    $banner_description = get__post_meta('banner_description');
+    $banner_background_image = get__post_meta('banner_background_image');
+    if ($banner_heading || $banner_description) {
+        $html = '<div class="course-banner position-relative">';
+
+        if ($banner_background_image) {
+            $html .= do_shortcode("[_image id='$banner_background_image' size='large' class='not-absolute image-box-background']");
+        }
+
+        if ($banner_heading) {
+            $html .= "<h2><strong> $banner_heading </strong></h2>";
+        }
+        if ($banner_description) {
+            $html .= wpautop($banner_description);
+        }
+
+
+        $html .= '</div>';
+        return $html;
+    }
+}
+add_shortcode('_course_banner', '_course_banner');
+
 
 function _course_outcomes()
 {
