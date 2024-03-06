@@ -6,7 +6,7 @@
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
             </div>
-            <div class="single-course-content-holder background-white">
+            <div class="single-course-content-holder background-white pt-3">
                 <div class="learndash-single-holder learndash-single-status-top">
                     <div class="row">
                         <div class="col-md-8">
