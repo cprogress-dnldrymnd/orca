@@ -1,0 +1,752 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+    @if $self {
+
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+
+    @else {
+
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+    #{$context} & {
+        @content;
+    }
+}
+
+@mixin font-face($fontFamily, $path, $fileName, $fontStyle: normal, $fontWeight: false) {
+
+    @each $name,
+    $weight in $fontWeight {
+        @font-face {
+            font-family: $fontFamily;
+            src: url("#{$path + $fileName}-#{$name}.eot");
+            src: url("#{$path + $fileName}-#{$name}.eot?#iefix") format("embedded-opentype"),
+            url("#{$path + $fileName}-#{$name}.woff2") format("woff2"),
+            url("#{$path + $fileName}-#{$name}.woff") format("woff"),
+            url("#{$path + $fileName}-#{$name}.ttf") format("truetype"),
+            url("#{$path + $fileName}-#{$name}.svg##{$fileName}-#{$name}") format("svg");
+
+            font-weight: $weight;
+            font-style: $fontStyle;
+            font-display: swap;
+        }
+    }
+}
+
+@mixin responsive($breakpoint) {
+    @if $breakpoint =="xxxs" {
+        @media screen and (max-width: 360px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="xxs" {
+        @media screen and (max-width: 480px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="mobile" {
+        @media screen and (max-width: 575px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="mobile-xs" {
+        @media (min-width: 576px) and (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="mobile-sm" {
+        @media (min-width: 576px) and (max-width: 991px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="mobile-md" {
+        @media (min-width: 576px) and (max-width: 1199px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="mobile-lg" {
+        @media (min-width: 576px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="xs" {
+        @media screen and (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="xs-sm" {
+        @media screen and (max-width: 991px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="xs-md" {
+        @media screen and (max-width: 1199px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="sm" {
+        @media (min-width: 768px) and (max-width: 991px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="sm-lg" {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="sm-md" {
+        @media (min-width: 768px) and (max-width: 1199px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="md" {
+        @media (min-width: 992px) and (max-width: 1199px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="md-lg" {
+        @media screen and (min-width: 992px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="lg" {
+        @media screen and (min-width: 1200px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="small-lg" {
+        @media (min-width: 1200px) and (max-width: 1399px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="xs-lg" {
+        @media screen and (max-width: 1399px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint =="xl" {
+        @media screen and (min-width: 1400px) {
+            @content;
+        }
+    }
+}
+
+@mixin background-image($position: center, $size: cover, $repeat: no-repeat) {
+    background-position: $position;
+    background-size: $size;
+    background-repeat: $repeat;
+}
+
+@mixin display-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin inline-flex {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@mixin align-items($align) {
+    -webkit-box-align: $align;
+    -moz-box-align: $align;
+    -ms-flex-align: $align;
+    -webkit-align-items: $align;
+    align-items: $align;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
+}
+
+@mixin transform_important($transform) {
+    -webkit-transform: $transform !important;
+    -moz-transform: $transform !important;
+    -ms-transform: $transform !important;
+    -o-transform: $transform !important;
+    transform: $transform !important;
+}
+
+@mixin justify-content($justify_content) {
+    -webkit-justify-content: $justify_content;
+    -ms-flex-pack: $justify_content;
+    justify-content: $justify_content;
+}
+
+@mixin transition($transition: 300ms) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin box-shadow($shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.75)) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin filter($filter) {
+    -webkit-filter: $filter;
+    filter: $filter;
+}
+
+@mixin before {
+    &:before {
+        @content;
+    }
+}
+
+@mixin after {
+    &:after {
+        @content;
+    }
+}
+
+@mixin before-after {
+
+    &:before,
+    &:after {
+        @content;
+    }
+}
+
+@mixin image-fit {
+    @include height-width;
+    object-fit: cover;
+    object-position: center;
+}
+
+@mixin button {
+
+    >a,
+    >span:not(.wpcf7-spinner),
+    >button,
+    >input[type="submit"] {
+        @content;
+    }
+}
+
+@mixin button-accent {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+
+    @include on-event {
+        background-color: transparent;
+        color: var(--accent-color);
+        border-color: var(--accent-color);
+
+        @include before {
+            animation: pulse 2s infinite;
+        }
+    }
+}
+
+@mixin button-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+
+    @include on-event {
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+
+        svg {
+            &.fill-hover {
+                path {
+                    fill: var(--accent-color);
+                }
+            }
+
+            &.stroke-hover {
+                path {
+                    stroke: var(--accent-color);
+                }
+            }
+        }
+    }
+}
+
+@mixin button-style {
+    @include inline-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    @include transition(300ms);
+    border-radius: 50px;
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    text-align: center;
+    position: relative;
+    padding: 1rem 2rem !important;
+    border: 2px solid transparent;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase !important;
+    line-height: 1 !important;
+
+    span {
+        position: relative;
+        z-index: 1;
+
+        &.icon {
+            margin-top: -3px;
+        }
+    }
+
+    @include responsive(md-lg) {
+        white-space: nowrap;
+    }
+
+    @include responsive(xs) {
+        padding: 1rem 1.5rem !important;
+    }
+}
+
+.elementor-button-link, .eael-infobox-button {
+    border-radius: 50px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.8px !important;
+    padding: 1rem 2rem !important;
+    line-height: 1 !important;
+    font-size: 1rem !important;
+}
+
+@mixin padding-top-bottom($padding) {
+    padding-top: $padding;
+    padding-bottom: $padding;
+}
+
+@mixin padding-left-right($padding) {
+    padding-left: $padding;
+    padding-right: $padding;
+}
+
+@mixin margin-top-bottom($margin) {
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+@mixin margin-left-right($margin) {
+    margin-left: $margin;
+    margin-right: $margin;
+}
+
+@mixin absolute-corner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@mixin absolute-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+@mixin centered {
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+}
+
+@mixin align-center {
+    @include display-flex;
+    @include align-items(center);
+}
+
+@mixin justify($justify: center, $flex: true) {
+    @if ($flex) {
+        @include display-flex;
+    }
+
+    @include justify-content($justify);
+}
+
+@mixin first-child {
+    &:first-child {
+        @content;
+    }
+}
+
+@mixin last-child {
+    &:last-child {
+        @content;
+    }
+}
+
+@mixin even {
+    &:nth-child(even) {
+        @content;
+    }
+}
+
+@mixin order($order) {
+    -webkit-box-ordinal-group: $order;
+    -moz-box-ordinal-group: $order;
+    -ms-flex-order: $order;
+    -webkit-order: $order;
+    order: $order;
+}
+
+@mixin odd {
+    &:nth-child(odd) {
+        @content;
+    }
+}
+
+@mixin not-last-child {
+    &:not(:last-child) {
+        @content;
+    }
+}
+@mixin not-first-child {
+    &:not(:first-child) {
+        @content;
+    }
+}
+
+@mixin placecholder {
+    &::placeholder {
+        @content;
+    }
+}
+
+@mixin headings {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @content;
+    }
+}
+
+@mixin overlay($color: #000, $opacity: 0.4) {
+    @include before {
+        content: "";
+        background-color: rgba($color, $alpha: $opacity);
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@mixin line {
+    &:before {
+        content: "";
+        height: 1px;
+        background-color: var(--white-color);
+        position: absolute;
+        top: 50%;
+        left: calc(var(--bs-gutter-x) * 0.5);
+        right: calc(var(--bs-gutter-x) * 0.5);
+        @include transform(translateY(-50%));
+    }
+
+    .column-holder {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+@mixin inputs {
+
+    input:not([type="submit"]):not(.qty):not([type="checkbox"]):not([type="radio"]):not(.search),
+    select,
+    textarea {
+        @content;
+    }
+}
+
+@mixin icon_menu_hover {
+    background-color: var(--primary-color);
+
+    span.text {
+        color: var(--white-color);
+    }
+
+    span.icon {
+        svg {
+            &.stroke-hover {
+                path {
+                    stroke: var(--white-color);
+                }
+            }
+
+            &.fill-hover {
+                path {
+                    fill: var(--white-color);
+                }
+            }
+        }
+    }
+}
+
+@mixin icon_menu_hover_mobile {
+    background-color: var(--primary-color);
+
+    span.text {
+        color: var(--accent-color);
+    }
+
+    span.icon {
+        svg {
+            &.stroke-hover {
+                path {
+                    stroke: var(--accent-color);
+                }
+            }
+
+            &.fill-hover {
+                path {
+                    fill: var(--accent-color);
+                }
+            }
+        }
+    }
+}
+
+@mixin list-number-icon-style($size: 50px, $fontsize: 1.5rem, $marginright: 2rem) {
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    font-weight: bold;
+    flex: 0 0 $size;
+    width: $size;
+    height: $size;
+    background-color: var(--accent-color);
+    margin-right: $marginright;
+    border-radius: 50%;
+    color: var(--black-color);
+    font-size: $fontsize;
+}
+
+@keyframes rotate_left {
+    0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg) translateX(100px) rotate(360deg);
+    }
+}
+
+@keyframes rotate_right {
+    0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(45, 161, 255, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(45, 161, 255, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(45, 161, 255, 0);
+    }
+}
+
+@mixin scrollbar_style {
+    &::-webkit-scrollbar {
+        width: 13px;
+        height: 13px;
+    }
+
+    &::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #e1e1e1;
+        border: 0px none #ffffff;
+        border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #ffffff;
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+        background: #000000;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #4c4c4c;
+        border: 0px none #ffffff;
+        border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-track:hover {
+        background: #666666;
+    }
+
+    &::-webkit-scrollbar-track:active {
+        background: #333333;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    &.modal-open {
+        @include responsive(md-lg) {
+            padding-right: 13px !important;
+        }
+    }
+}
+
+
+@mixin scrollbar_style_2 {
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 13px;
+    }
+
+    &::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #e1e1e1;
+        border: 0px none #ffffff;
+        border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #ffffff;
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+        background: #000000;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #4c4c4c;
+        border: 0px none #ffffff;
+        border-radius: 0px;
+    }
+
+    &::-webkit-scrollbar-track:hover {
+        background: #666666;
+    }
+
+    &::-webkit-scrollbar-track:active {
+        background: #333333;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    &.modal-open {
+        @include responsive(md-lg) {
+            padding-right: 13px !important;
+        }
+    }
+}
+
+@mixin transform-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@mixin input-style {
+    border-radius: 5px;
+    border: 2px solid var(--gray-color);
+    outline: none;
+    padding: 13px;
+    line-height: 1;
+    font-size: 1rem;
+    background-color: transparent;
+    width: 100%;
+    color: inherit;
+
+    &::placeholder {
+        opacity: 0.75;
+    }
+}

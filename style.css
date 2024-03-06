@@ -11017,6 +11017,55 @@ button.swiper-pagination-bullet {
 /*-----------------------------------------------------------------------------------*/
 /* Utils
 /*-----------------------------------------------------------------------------------*/
+.elementor-button-link, .eael-infobox-button {
+  border-radius: 50px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.8px !important;
+  padding: 1rem 2rem !important;
+  line-height: 1 !important;
+  font-size: 1rem !important; }
+
+@keyframes rotate_left {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% {
+    transform: rotate(-360deg) translateX(100px) rotate(360deg); } }
+@keyframes rotate_right {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg); } }
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(45, 161, 255, 0.7); }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(45, 161, 255, 0); }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(45, 161, 255, 0); } }
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+:root {
+  --primary-font: Poppins, sans-serif;
+  --primary-color: #000000;
+  --secondary-color: #1C1C1E;
+  --accent-color: #2DA1FF;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --text-color: #A0A1A8;
+  --light-blue: #0093CC14;
+  --gray-color: #707070;
+  --dark-gray-color: #4B4B4B;
+  --light-color: #CFD0D8;
+  --body-color: #F7F7FA;
+  --light-gray: #F2F2F2;
+  --border-color: #E7E7E7; }
+
 @-moz-keyframes spin {
   from {
     -moz-transform: rotate(0deg); }
@@ -11035,6 +11084,10 @@ button.swiper-pagination-bullet {
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
+@media (min-width: 1500px) {
+  .container {
+    max-width: 1470px; } }
+
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
