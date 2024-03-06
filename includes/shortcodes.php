@@ -8,18 +8,21 @@ function breadcrumbs()
     $html .= '<li><a href="' . get_site_url() . '">Home</a></li>';
 
     if (is_post_type_archive()) {
-        $html .= '<li><span>' . get_the_archive_title() . '</span></li>';
+        $title = get_the_archive_title();
+        $html .= '<li><span>' . $title . '</span></li>';
     }
 
     if (is_single()) {
+        $title = get_the_title();
         $post_type_obj = get_post_type_object(get_post_type());
         $post_type = $post_type_obj->labels->name; //Ice Creams.
         $html .= '<li><a href="' . get_post_type_archive_link(get_post_type())  . '">' . $post_type . '</a></li>';
-        $html .= '<li><span>' . get_the_title() . '</span></li>';
+        $html .= '<li><span>' . $title . '</span></li>';
     }
 
     $html .= '</ul>';
     $html .= '</div>';
+    $html .= do_shortcode("[_heading tag='h1' heading='$title']");
     $html .= '</div>';
     $html .= '</section>';
     return $html;
