@@ -13,13 +13,21 @@ Container::make('post_meta', 'Course Settings')
     ->where('post_type', '=', 'sfwd-courses')
     ->set_priority('high')
     ->add_tab(
+        'Banner',
+        array(
+            Field::make('text', 'banner_heading', __('Banner Heading')),
+            Field::make('rich_text', 'banner_description', __('Banner Description')),
+            Field::make('image', 'banner_background_image', __('Banner Background Image')),
+        )
+    )
+    ->add_tab(
         'CTA',
         array(
             Field::make('text', 'cta_heading', __('CTA Heading')),
             Field::make('rich_text', 'cta_description', __('CTA Description')),
             Field::make('text', 'cta_button_text', __('CTA Button Text')),
             Field::make('text', 'cta_button_link', __('CTA Button Link')),
-            Field::make('image', 'background_image', __('CTA Background Image')),
+            Field::make('image', 'cta_background_image', __('CTA Background Image')),
 
         )
     )
