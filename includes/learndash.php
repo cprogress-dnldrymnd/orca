@@ -172,7 +172,7 @@ function new_default_content($content)
 {
     global $post;
     if ($post->post_type == 'sfwd-courses') {
-        $content = $content;
+        $content = $post->post_content;
     }
     return $content;
 }
