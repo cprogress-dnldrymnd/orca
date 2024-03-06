@@ -243,9 +243,15 @@ function _learndash_course_button()
     $permalink = get_the_permalink();
 
     $html = '<div class="row button-group">';
-    $html .= '<div class="col-sm-6">';
+    $html .= '<div class="' . _user_has_access() ? 'col-sm-6' : 'col-6' . '">';
     $html .= "<a href='$permalink' class='btn btn-primary'>View Course</a>";
     $html .= '</div>';
+
+    if (_user_has_access()) {
+        $html .= '<div class="col-sm-6">';
+        $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
+        $html .= '</div>';
+    }
     $html .= '</div>';
     return $html;
 }
