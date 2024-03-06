@@ -4,7 +4,7 @@
 <section class="archive-courses">
     <div class="container">
         <div class="row">
-            <?php while (have_post()) { ?>
+            <?php while (have_posts()) { ?>
                 <?php the_post() ?>
                 <div class="col-lg-4">
                     <div class="column-holder">
