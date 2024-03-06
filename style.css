@@ -11347,6 +11347,8 @@ h5, .h5 {
         transform: rotate(135deg);
         margin-left: 10px;
         margin-right: 10px; }
+#site-footer .footer-widget > div:not(:last-child) {
+  margin-bottom: 1rem; }
 
 section.archive-grid .column-holder {
   border-radius: 5px;
