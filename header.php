@@ -25,7 +25,7 @@
 
         <header id="masthead" class="site-header">
             <nav class="navbar navbar-expand-md navbar-light bg-light">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <div class="col-auto">
                             <div class="navbar-brand">
