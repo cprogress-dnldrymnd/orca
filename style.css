@@ -11158,6 +11158,9 @@ img {
   .taxonomy-terms a:not(:last-child) {
     margin-right: 10px; }
 
+.hr {
+  border-bottom: 1px solid var(--white-color); }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
