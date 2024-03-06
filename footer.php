@@ -12,7 +12,7 @@
 
 ?>
 
-<footer id="site-footer" class="site-footer">
+<footer id="site-footer" class="site-footer background-primary">
     <div class="container">
         <div class="row">
             <?php if (get_sidebar('footer_left')) { ?>
