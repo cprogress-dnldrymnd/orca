@@ -3,6 +3,7 @@ section.archive-grid {
         border-radius: 5px;
         overflow: hidden;
         position: relative;
+        @include box-shadow(0px 3px 3px #00000014);
         .content-holder {
             padding: 20px;
             flex: 1 0 0%;
