@@ -103,4 +103,4 @@
         </header><!-- #masthead -->
 
 
-      
+        <?= do_shortcode('[breadcrumbs]') ?>
