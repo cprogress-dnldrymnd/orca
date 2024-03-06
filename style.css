@@ -1,41 +1,30 @@
 /*
-Error: Undefined mixin 'button-style'.
-        on line 63 of assets/stylesheets/base/_base.scss, in `button-style'
-        from line 63 of assets/stylesheets/base/_base.scss
-        from line 21 of style.scss
+Error: Undefined mixin 'button-tyle'.
+        on line 48 of assets/stylesheets/plugins/_learndash.scss, in `button-tyle'
+        from line 48 of assets/stylesheets/plugins/_learndash.scss
+        from line 30 of style.scss
 
-58:         }
-59:     }
-60: }
-61: 
-62: .course-add-to-cart {
-63:     display: flex;
-64:     align-items: center;
-65: }
-66: 
-67: div#sticky-add-to-cart {
-68:     position: fixed;
+43:     }
+44:     &:before {
+45:         position: absolute;
+46:         top: 0;
+47:         left: 0;
+48:         content: "";
+49:         background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='white' stroke-width='5' stroke-dasharray='50%25%2c 13%25' stroke-dashoffset='86' stroke-linecap='butt'/%3e%3c/svg%3e");
+50:         width: 34px;
+51:         height: 34px;
+52:         border-radius: 100px;
+53:         transition: 400ms;
 
 Backtrace:
-assets/stylesheets/base/_base.scss:63:in `button-style'
-assets/stylesheets/base/_base.scss:63
-style.scss:21
+assets/stylesheets/plugins/_learndash.scss:48:in `button-tyle'
+assets/stylesheets/plugins/_learndash.scss:48
+style.scss:30
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:348:in `block in visit_mixin'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:98:in `block in with_mixin'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:98:in `with_mixin'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
@@ -99,4 +88,4 @@ C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-listen-4.0.0/lib/sass-listen/interna
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'button-style'.\A         on line 63 of assets/stylesheets/base/_base.scss, in `button-style'\A         from line 63 of assets/stylesheets/base/_base.scss\A         from line 21 of style.scss\A \A 58:         }\A 59:     }\A 60: }\A 61: \A 62: .course-add-to-cart {\A 63:     display: flex;\A 64:     align-items: center;\A 65: }\A 66: \A 67: div#sticky-add-to-cart {\A 68:     position: fixed;"; }
+  content: "Error: Undefined mixin 'button-tyle'.\A         on line 48 of assets/stylesheets/plugins/_learndash.scss, in `button-tyle'\A         from line 48 of assets/stylesheets/plugins/_learndash.scss\A         from line 30 of style.scss\A \A 43:     }\A 44:     &:before {\A 45:         position: absolute;\A 46:         top: 0;\A 47:         left: 0;\A 48:         content: \"\";\A 49:         background-image: url(\"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='white' stroke-width='5' stroke-dasharray='50%25%2c 13%25' stroke-dashoffset='86' stroke-linecap='butt'/%3e%3c/svg%3e\");\A 50:         width: 34px;\A 51:         height: 34px;\A 52:         border-radius: 100px;\A 53:         transition: 400ms;"; }

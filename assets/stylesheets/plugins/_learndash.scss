@@ -45,7 +45,7 @@
 .add_to_cart_button,
 .added_to_cart {
     text-decoration: none;
-    @include button-tyle;
+    @include button-style;
     @include button-primary;
 }
 .add_to_cart_button {
