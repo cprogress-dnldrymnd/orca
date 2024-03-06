@@ -11228,7 +11228,8 @@ section.archive-grid .column-holder {
   overflow: hidden;
   position: relative; }
   section.archive-grid .column-holder .content-holder {
-    padding: 20px; }
+    padding: 20px;
+    flex: 1 0 0%; }
     section.archive-grid .column-holder .content-holder .description-box {
       color: var(--gray-color); }
 
