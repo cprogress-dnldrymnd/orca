@@ -78,8 +78,9 @@ function _course_breakdown()
     $course_breakdown = get__post_meta('course_breakdown');
 
     if ($course_breakdown) {
+        $html = '<p><strong> Course Breakdown </strong></p>';
 
-        $html = wpautop($course_breakdown);
+        $html .= wpautop($course_breakdown);
 
         return $html;
     }
