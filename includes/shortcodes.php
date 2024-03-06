@@ -120,37 +120,6 @@ function _image($atts)
 add_shortcode('_image', '_image');
 
 
-function _image_course($atts)
-{
-    extract(
-        shortcode_atts(
-            array(
-                'id' => '',
-                'size' => 'large',
-                'learndash_status_bubble' => 'false',
-                'taxonomy' => 'false',
-            ),
-            $atts
-        )
-    );
-    $image_url = wp_get_attachment_image_url($id, $size);
-    $html = '<div class="image-box image-box-course">';
-
-    if ($learndash_status_bubble) {
-        $html .= '<div class="meta-box">';
-        $html .= do_shortcode('[_learndash_status_bubble]');
-        $html .= '</div>';
-    }
-    if ($image_url) {
-        $html .= '<img src="' . $image_url . '" >';
-    } else {
-        $html .= '<img src="/wp-content/plugins/elementor/assets/images/placeholder.png" >';
-    }
-    $html .= '</div>';
-
-    return $html;
-}
-add_shortcode('_image_course', '_image_course');
 
 function _heading($atts)
 {
@@ -167,3 +136,19 @@ function _heading($atts)
     return "<div class='heading-box'><$tag>$heading</$tag></div>";
 }
 add_shortcode('_heading', '_heading');
+
+
+function _description($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'description' => ''
+            ),
+            $atts
+        )
+    );
+
+    return "<div class='description-box'> " . wpautop($description) . " </div>";
+}
+add_shortcode('_description', '_description');

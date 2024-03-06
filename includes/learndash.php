@@ -83,15 +83,15 @@ function learndash_wp_footer()
                 lastScrollTop = st;
             });
 
-            jQuery('.ld-item-list-section-heading').click(function (e) { 
+            jQuery('.ld-item-list-section-heading').click(function(e) {
                 jQuery(this).parent().toggleClass('active');
                 e.preventDefault();
             });
 
-            jQuery('.ld-section-heading .ld-expand-button').click(function (e) { 
+            jQuery('.ld-section-heading .ld-expand-button').click(function(e) {
                 jQuery('.lesson-parent-item').toggleClass('active');
                 e.preventDefault();
-                
+
             });
         </script>
 <?php
@@ -204,3 +204,50 @@ function action_learndash_before_section_heading()
 }
 
 add_action('learndash-before-section-heading', 'action_learndash_before_section_heading');
+
+function _learndash_image($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+                'size' => 'large',
+                'learndash_status_bubble' => 'false',
+                'taxonomy' => 'false',
+            ),
+            $atts
+        )
+    );
+    $image_url = wp_get_attachment_image_url($id, $size);
+    $html = '<div class="image-box image-box-course">';
+
+    if ($learndash_status_bubble) {
+        $html .= '<div class="meta-box">';
+        $html .= do_shortcode('[_learndash_status_bubble]');
+        $html .= '</div>';
+    }
+    if ($image_url) {
+        $html .= '<img src="' . $image_url . '" >';
+    } else {
+        $html .= '<img src="/wp-content/plugins/elementor/assets/images/placeholder.png" >';
+    }
+    $html .= '</div>';
+
+    return $html;
+}
+add_shortcode('_learndash_image', '_learndash_image');
+
+
+function _learndash_course_button()
+{
+    $permalink = get_the_permalink();
+
+    $html = '<div class="row button-group">';
+    $html .= '<div class="col-sm-6">';
+    $html .= "<a href='$permalink' class='btn btn-primary'>View Course</a>";
+    $html .= '</div>';
+    $html .= '</div>';
+    return $html;
+}
+
+add_shortcode('_learndash_course_button', '_learndash_course_button');

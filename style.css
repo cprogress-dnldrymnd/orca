@@ -11148,7 +11148,9 @@ p:last-child {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover; }
+    object-fit: cover;
+    left: 0;
+    top: 0; }
 
 body {
   font-family: "Source Sans 3", sans-serif; }
@@ -11199,6 +11201,9 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
       position: absolute; }
 .menu-toggler:hover .menu-toggler-icon:before {
   transform: rotate(45deg); }
+
+section.archive-grid .column-holder {
+  padding: 20px; }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
