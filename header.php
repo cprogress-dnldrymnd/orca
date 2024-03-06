@@ -103,3 +103,6 @@
                 </div>
             </nav>
         </header><!-- #masthead -->
+
+
+        <?= do_shortcode(['breadcrumbs']) ?>
