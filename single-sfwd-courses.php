@@ -28,11 +28,15 @@
                     <?php the_content() ?>
                 </div>
 
+                <div class="learndash-single-holder learndash-single-cta" id="cta">
+                    <?= do_shortcode('[_course_cta]') ?>
+                </div>
+
                 <div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">
                     <?= do_shortcode('[_course_outcomes]') ?>
                 </div>
 
-                <div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">
+                <div class="learndash-single-holder learndash-single-course-highlight background-accent" id="highlight">
                     <?= do_shortcode('[_course_highlight]') ?>
                 </div>
 

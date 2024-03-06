@@ -46,7 +46,7 @@ function _course_cta()
     $cta_description = get__post_meta('cta_description');
 
     if ($cta_heading || $cta_description) {
-        $html = '<div class="course-cta>"';
+        $html = '<div class="course-cta">';
         $html .= '</div>';
         return $html;
     }
@@ -75,9 +75,30 @@ function _course_highlight()
 {
     $highlight_heading = get__post_meta('highlight_heading');
     $highlight_description = get__post_meta('highlight_description');
+    $highlight_image = get__post_meta('highlight_image');
 
     if ($highlight_heading || $highlight_description) {
-        return do_shortcode('[elementor-template id="642"]');
+        $html = '<div class="course-highlight">';
+        $html .= '<div class="row>"';
+
+        $html .= '<div class="col-md-8>"';
+        if ($highlight_heading) {
+            $html .= "<p><strong> $highlight_heading </strong></p>";
+        }
+        if ($highlight_description) {
+            $html .= "<p> " . wpautop($highlight_description) . " </p>";
+        }
+        $html .= '</div>';
+
+        if ($highlight_image) {
+            $html .= '<div class="col-md-4>"';
+            $html .= do_shortcode("[_image id='$highlight_image' size='large']");
+            $html .= '</div>';
+
+
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
     }
 }
 add_shortcode('_course_highlight', '_course_highlight');
