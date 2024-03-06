@@ -29,9 +29,9 @@
                                 <?= get_custom_logo() ?>
                             </div>
                         </div>
-                        <div class="col d-flex flex-column">
+                        <div class="col d-flex flex-lg-column justify-content-end">
                             <div class="header-right-top d-flex justify-content-end">
-                                <ul class="list-inline-icons list-inline d-inline-flex flex-wrap">
+                                <ul class="list-inline-icons list-inline d-inline-flex flex-wrap mb-0 align-items-center me-3 me-lg-0">
                                     <li>
                                         <a href="">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3" viewBox="0 0 16 16">
@@ -58,7 +58,7 @@
                                 </ul>
                             </div>
                             <div class="header-right-bottom d-flex justify-content-end">
-                                <input type="text" class="form-control search w-auto me-2" id="search" placeholder="Search">
+                                <input type="text" class="form-control search w-auto me-2 d-none d-lg-block" id="search" placeholder="Search">
                                 <button class="menu-toggler btn btn-link p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                                     <span>
                                         <span class="menu-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
