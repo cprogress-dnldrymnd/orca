@@ -26,7 +26,7 @@
 <footer id="site-footer" class="site-footer background-primary py-3">
 
     <div class="container">
-        <div class="row">
+        <div class="row gy-3">
             <div class="col-12">
                 <?php
                 wp_nav_menu(array(
@@ -41,7 +41,7 @@
                 <hr>
             </div>
             <div class="col-12">
-                <div class="row">
+                <div class="row gy-3">
                     <?php if (is_active_sidebar('footer_left')) { ?>
                         <div class="col-lg-4">
                             <div class="footer-left-holder footer-widget">
@@ -50,7 +50,7 @@
                         </div>
                     <?php } ?>
                     <div class="col-lg-8">
-                        <div class="row">
+                        <div class="row gy-3">
                             <?php if (is_active_sidebar('footer_column_1')) { ?>
                                 <div class="col-md-4">
                                     <div class="footer-right-holder footer-widget">
