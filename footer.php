@@ -47,21 +47,21 @@
                         <div class="row">
                             <?php if (is_active_sidebar('footer_column_1')) { ?>
                                 <div class="col-lg-4">
-                                    <div class="footer-left-holder">
+                                    <div class="footer-right-holder">
                                         <?php dynamic_sidebar('footer_column_1') ?>
                                     </div>
                                 </div>
                             <?php } ?>
                             <?php if (is_active_sidebar('footer_column_2')) { ?>
                                 <div class="col-lg-4">
-                                    <div class="footer-left-holder">
+                                    <div class="footer-right-holder">
                                         <?php dynamic_sidebar('footer_column_3') ?>
                                     </div>
                                 </div>
                             <?php } ?>
                             <?php if (is_active_sidebar('footer_column_3')) { ?>
                                 <div class="col-lg-4">
-                                    <div class="footer-left-holder">
+                                    <div class="footer-right-holder">
                                         <?php dynamic_sidebar('footer_column_3') ?>
                                     </div>
                                 </div>
@@ -70,9 +70,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'footer-main-menu',
+                    'container' => false,
+                    'menu_class' => '',
+                    'fallback_cb' => '__return_false',
+                    'items_wrap' => '<ul id="%1$s" class="menu" >%3$s</ul>',
+                    'depth' => 2,
+                ));
+                ?>
+            </div>
             <?php if (is_active_sidebar('footer_bottom')) { ?>
                 <div class="col-12">
-                    <div class="footer-left-holder">
+                    <div class="footer-bottom-holder">
                         <?php dynamic_sidebar('footer_bottom') ?>
                     </div>
                 </div>
