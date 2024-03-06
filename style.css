@@ -11177,7 +11177,8 @@ img {
   color: var(--primary-color); }
 
 body {
-  font-family: "Source Sans 3", sans-serif; }
+  font-family: "Source Sans 3", sans-serif;
+  color: var(--black-color); }
 
 h1, .h1,
 h2,
@@ -11191,7 +11192,8 @@ h5,
 h6,
 .h6 {
   font-weight: bold;
-  line-height: 1.2; }
+  line-height: 1.2;
+  color: var(--black-color); }
 
 p:last-child {
   margin-bottom: 0 !important; }
