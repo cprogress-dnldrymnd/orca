@@ -11556,7 +11556,8 @@ section.archive-grid .column-holder {
     border-radius: 4px;
     padding: 10px 20px; }
   .single-course-section .learndash-single-navigation {
-    top: 0; }
+    top: 0;
+    z-index: 99; }
     .single-course-section .learndash-single-navigation ul {
       border-bottom: 5px solid #97999c; }
       .single-course-section .learndash-single-navigation ul li a {
