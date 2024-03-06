@@ -210,4 +210,7 @@ div#sticky-add-to-cart {
 .learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-header {
   position: sticky; }
 
+body.ld-in-focus-mode.admin-bar {
+  padding-top: 0 !important; }
+
 /*# sourceMappingURL=style.css.map */

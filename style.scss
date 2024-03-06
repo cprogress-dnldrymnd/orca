@@ -280,6 +280,14 @@ div#sticky-add-to-cart {
         }
     }
 }
-.learndash-wrapper.learndash-wrapper .ld-focus .ld-focus-header {
-    position: sticky;
+.learndash-wrapper.learndash-wrapper .ld-focus {
+    .ld-focus-header {
+        position: sticky;
+    }
+    .ld-focus-sidebar {
+
+    }
+}
+body.ld-in-focus-mode.admin-bar {
+    padding-top: 0 !important;
 }
