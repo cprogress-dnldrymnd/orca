@@ -11152,6 +11152,9 @@ p:last-child {
     left: 0;
     top: 0; }
 
+.background-light-gray {
+  background-color: var(--light-gray-color); }
+
 body {
   font-family: "Source Sans 3", sans-serif; }
 
