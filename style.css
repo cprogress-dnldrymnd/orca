@@ -190,7 +190,7 @@ div#sticky-add-to-cart {
 #menu-toggler .elementor-button .elementor-button-content-wrapper {
   display: flex;
   align-items: center; }
-  #menu-toggler .elementor-button .elementor-button-content-wrapper:before {
+  #menu-toggler .elementor-button .elementor-button-content-wrapper .elementor-button-icon:before {
     content: "";
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="none" rx="100" ry="100" stroke="%232A6EBB" stroke-width="5" stroke-dasharray="50%, 13%" stroke-dashoffset="86" stroke-linecap="butt"/></svg>');
     width: 34px;
@@ -198,7 +198,7 @@ div#sticky-add-to-cart {
     border-radius: 100px;
     transition: 400ms;
     margin-right: 1rem; }
-#menu-toggler .elementor-button:hover:before {
+#menu-toggler .elementor-button:hover .elementor-button-icon:before {
   transform: rotate(45deg); }
 
 /*# sourceMappingURL=style.css.map */
