@@ -105,4 +105,8 @@
         </header><!-- #masthead -->
 
 
-        <?= do_shortcode('[breadcrumbs]') ?>
+        <section class="breadcrumbs-section">
+            <div class="container">
+                <?= do_shortcode('[breadcrumbs]') ?>
+            </div>
+        </section>
