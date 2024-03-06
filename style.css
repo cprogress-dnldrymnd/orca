@@ -11131,17 +11131,16 @@ img {
   border: 1px solid var(--black-color);
   color: var(--white-color); }
 
-.taxonomy-terms {
+.taxonomy-terms a {
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 15px;
   font-weight: bold;
   line-height: 1;
-  display: inline-block; }
-  .taxonomy-terms a {
-    background-color: var(--accent-color); }
-    .taxonomy-terms a:not(:last-child) {
-      margin-right: 10px; }
+  display: inline-block;
+  background-color: var(--accent-color); }
+  .taxonomy-terms a:not(:last-child) {
+    margin-right: 10px; }
 
 @media (min-width: 1500px) {
   .container:not(.large-container) {
