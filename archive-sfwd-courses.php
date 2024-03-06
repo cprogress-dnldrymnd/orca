@@ -1,5 +1,9 @@
 <?php get_header() ?>
 
+<?php
+wp_reset_query();
+?>
+
 <section class="archive-courses">
     <div class="container">
         <div class="row">
