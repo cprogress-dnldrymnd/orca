@@ -15,7 +15,7 @@
             </div>
 
             <div class="learndash-single-holder learndash-single-navigation">
-
+                <ul></ul>
             </div>
 
             <div class="learndash-single-holder learndash-single-content" id="about">
@@ -28,6 +28,10 @@
 
             <div class="learndash-single-holder learndash-single-course-outcomes" id="outcomes">
                 <?= do_shortcode('[_course_highlight]') ?>
+            </div>
+
+            <div class="learndash-single-holder learndash-single-course-breakdown" id="course-breakdown">
+                <?= do_shortcode('[_course_breakdown]') ?>
             </div>
 
             <div class="learndash-single-holder learndash-single-module" id="module">
