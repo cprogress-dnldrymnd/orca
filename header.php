@@ -24,9 +24,9 @@
     <div id="page" class="site">
 
         <header id="masthead" class="site-header">
-            <nav class="navbar">
+            <nav class="header-navbar py-2">
                 <div class="container">
-                    <div class="row w-100">
+                    <div class="row w-100 align-items-center">
                         <div class="col-auto">
                             <div class="navbar-brand">
                                 <?= get_custom_logo() ?>
