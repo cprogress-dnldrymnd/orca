@@ -11229,9 +11229,22 @@ img {
 .background-primary h5,
 .background-primary .h5,
 .background-primary h6,
-.background-primary .h6 {
+.background-primary .h6,
+.color-primary h1,
+.color-primary .h1,
+.color-primary h2,
+.color-primary .h2,
+.color-primary h3,
+.color-primary .h3,
+.color-primary h4,
+.color-primary .h4,
+.color-primary h5,
+.color-primary .h5,
+.color-primary h6,
+.color-primary .h6 {
   color: inherit; }
-.background-primary a {
+.background-primary a,
+.color-primary a {
   color: inherit; }
 
 body {
@@ -11344,6 +11357,8 @@ h5, .h5 {
   list-style: none;
   padding: 0;
   margin: 0; }
+  #site-footer ul:not(.footer-main-menu) li:not(:last-child) {
+    margin-right: 1rem; }
   #site-footer ul.footer-main-menu {
     display: flex;
     align-items: center; }
