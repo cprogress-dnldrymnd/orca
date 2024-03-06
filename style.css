@@ -11136,6 +11136,12 @@ img {
   border: 1px solid var(--black-color);
   color: var(--white-color); }
 
+.wp-element-button.wp-element-button {
+  padding: 10px 20px;
+  line-height: 1;
+  font-weight: bold;
+  border-radius: 8px; }
+
 .taxonomy-terms a {
   padding: 10px 15px;
   border-radius: 5px;
@@ -11176,10 +11182,12 @@ img {
   background-color: var(--white-color); }
 
 .background-primary {
-  background-color: var(--primary-color); }
+  background-color: var(--primary-color);
+  color: var(--white-color); }
 
 .background-accent {
-  background-color: var(--accent-color); }
+  background-color: var(--accent-color);
+  color: var(--white-color); }
 
 .background-light-gray {
   background-color: var(--light-gray-color); }
