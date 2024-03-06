@@ -65,4 +65,7 @@ img {
     .btn-primary {
         @include button-primary;
     }
+    .btn-black {
+        @include button-black;
+    }
 }

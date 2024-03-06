@@ -597,3 +597,9 @@
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color);
 }
+
+@mixin button-black {
+    background-color: var(--black-color);
+    border: 1px solid var(--black-color);
+    color: var(--white-color);
+}
