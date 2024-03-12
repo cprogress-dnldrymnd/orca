@@ -11616,6 +11616,12 @@ section.archive-grid .column-holder {
     position: absolute;
     left: 0;
     top: -80px; }
+  .single-course-section .learndash-single-status-top .course-add-to-cart > *:not(:last-child) {
+    margin-right: 1rem; }
+  .single-course-section .learndash-single-status-top .course-add-to-cart .add_to_cart_button {
+    font-size: 15px;
+    width: auto;
+    padding: 10px 15px; }
   .single-course-section .learndash-single-status-top .inner {
     border-radius: 4px;
     padding: 10px 20px; }

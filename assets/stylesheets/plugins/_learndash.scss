@@ -165,6 +165,19 @@
         top: -80px;
     }
     .learndash-single-status-top {
+        .course-add-to-cart {
+            & > * {
+                @include not-last-child {
+                    margin-right: 1rem;
+                }
+            }
+            .add_to_cart_button  {
+                font-size: 15px;
+                width: auto;
+                padding: 10px 15px;
+                border: none;
+            }
+        }
         .inner {
             border-radius: 4px;
             padding: 10px 20px;
