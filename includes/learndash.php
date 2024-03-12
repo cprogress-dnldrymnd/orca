@@ -21,12 +21,27 @@ function _learndash_course_progress()
 add_shortcode('_learndash_course_progress', '_learndash_course_progress');
 
 
-function _learndash_course_meta()
+function _learndash_course_meta($atts)
 {
-    $html =  '<div class="course-meta">';
+    extract(
+        shortcode_atts(
+            array(
+                'wrapper' => false,
+            ),
+            $atts
+        )
+    );
+    $html = '';
+    if ($wrapper) {
+        $html .=  '<div class="' . $wrapper . '">';
+    }
+    $html .=  '<div class="course-meta">';
     $html .= '<p><strong>Duration:</strong> 2 weeks</p>';
     $html .= '<p><strong>Certification:</strong> ORCA Certified</p>';
     $html .= '</div>';
+    if ($wrapper) {
+        $html .= '</div>';
+    }
 
     return $html;
 }
