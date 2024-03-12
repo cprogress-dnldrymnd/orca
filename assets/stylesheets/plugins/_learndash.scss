@@ -237,3 +237,75 @@
         }
     }
 }
+
+
+.course-add-to-cart {
+    display: flex;
+    align-items: center;
+}
+
+div#sticky-add-to-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transition: 500ms;
+    transform: translateY(100%);
+    .add_to_cart_button {
+        width: auto;
+        display: inline-flex;
+    }
+    &.show-sticky {
+        transform: translateY(0);
+    }
+}
+
+.learndash-wrapper.learndash-wrapper .ld-focus {
+    /*.add_to_cart_button {
+        position: sticky;
+        border-top: 1px solid #e2e7ed;
+    }
+   
+    .ld-focus-sidebar {
+        padding-top: 0 !important;
+    }
+    */
+    .ld-progress-steps {
+        display: block !important;
+    }
+    .ld-focus-main {
+        .ld-progress-wrap {
+            .ld-progress-heading {
+                margin-left: 0 !important;
+                margin-bottom: 5px !important;
+                .ld-progress-percentage {
+                    color: var(--accent-color) !important;
+                }
+            }
+            .ld-progress-bar-percentage {
+                background-color: var(--accent-color) !important;
+            }
+        }
+        .ld-focus-content {
+            padding-top: 40px;
+            h1 {
+                font-size: 50px;
+            }
+            .ld-breadcrumbs .ld-breadcrumbs-segments span a {
+                color: var(--black-color) !important;
+            }
+
+            .ld-table-list a.ld-table-list-item-preview {
+                font-weight: bold;
+                color: #97999c;
+            }
+        }
+    }
+}
+body.ld-in-focus-mode.admin-bar {
+    // padding-top: 0 !important;
+    div[data-elementor-type="header"] {
+        margin-left: 350px;
+    }
+}

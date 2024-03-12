@@ -11163,6 +11163,29 @@ img {
   .taxonomy-terms a:not(:last-child) {
     margin-right: 10px; }
 
+.swiper-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .swiper-button svg {
+    height: 18px !important;
+    width: 18px !important; }
+  .swiper-button:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='white' stroke-width='5' stroke-dasharray='50%25%2c 13%25' stroke-dashoffset='86' stroke-linecap='butt'/%3e%3c/svg%3e");
+    width: 34px;
+    height: 34px;
+    border-radius: 100px;
+    transition: 400ms; }
+  .swiper-button:hover:before {
+    transform: rotate(45deg); }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
@@ -11620,30 +11643,6 @@ section.archive-grid .column-holder {
       .single-course-section .single-course-content-holder > div:not(:last-child) {
         margin-bottom: 40px; }
 
-/* Add your custom styles here */
-.swiper-button {
-  width: 34px;
-  height: 34px;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  .swiper-button svg {
-    height: 18px !important;
-    width: 18px !important; }
-  .swiper-button:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='white' stroke-width='5' stroke-dasharray='50%25%2c 13%25' stroke-dashoffset='86' stroke-linecap='butt'/%3e%3c/svg%3e");
-    width: 34px;
-    height: 34px;
-    border-radius: 100px;
-    transition: 400ms; }
-  .swiper-button:hover:before {
-    transform: rotate(45deg); }
-
 .course-add-to-cart {
   display: flex;
   align-items: center; }
@@ -11693,5 +11692,7 @@ div#sticky-add-to-cart {
 
 body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   margin-left: 350px; }
+
+/* Add your custom styles here */
 
 /*# sourceMappingURL=style.css.map */
