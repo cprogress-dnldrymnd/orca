@@ -46,6 +46,7 @@ function get__theme_option($value)
 }
 
 
+require_once('includes/bootstrap-navwalker.php');
 require_once('includes/menus.php');
 require_once('includes/theme-widgets.php');
 require_once('includes/post-types.php');
