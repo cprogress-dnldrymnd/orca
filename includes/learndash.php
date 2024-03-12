@@ -20,6 +20,7 @@ function _learndash_course_progress($atts)
             $atts
         )
     );
+    $html = '';
     if (_user_has_access()) {
         if ($wrapper) {
             $html .=  '<div class="' . $wrapper . '">';
