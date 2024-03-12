@@ -485,3 +485,22 @@ function _course_group()
 }
 
 add_shortcode('_course_group', '_course_group');
+function _course_group_archive()
+{
+    $learndash_get_users_group_ids = learndash_get_users_group_ids(get_current_user_id());
+    if ($learndash_get_users_group_ids) {
+        $html = '<div class="col-auto">';
+        $html .= '<div class="course-group">';
+        foreach ($learndash_get_users_group_ids as $group) {
+            $image_id = get_post_thumbnail_id($group);
+            $html .= do_shortcode('[_image id="' . $image_id . '" class="not-absolute" size="medium"]');
+        }
+
+        $html .= '</div>';
+        $html .= '</div>';
+
+        return $html;
+    }
+}
+
+add_shortcode('_course_group_archive', '_course_group_archive');

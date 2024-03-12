@@ -31,8 +31,8 @@ function breadcrumbs()
         $html .= do_shortcode('[_course_group]');
     }
 
-    if(is_post_type_archive('sfwd-courses')) {
-        $html .= do_shortcode('[_course_group]');
+    if (is_post_type_archive('sfwd-courses')) {
+        $html .= do_shortcode('[_course_group_archive]');
     }
     $html .= '</div>';
     $html .= '</div>';
