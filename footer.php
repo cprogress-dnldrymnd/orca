@@ -27,7 +27,7 @@
 
     <div class="container">
         <div class="row gy-3">
-            <div class="col-12">
+            <div class="col-12 color-white">
                 <?= do_shortcode('[breadcrumbs]') ?>
             </div>
             <div class="col-12">
