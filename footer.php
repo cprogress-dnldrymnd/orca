@@ -81,7 +81,7 @@
                             <div class="col-12">
                                 <?php
                                 wp_nav_menu(array(
-                                    'theme_location' => 'footer-main-menu',
+                                    'theme_location' => 'footer-menu',
                                     'container' => false,
                                     'menu_class' => '',
                                     'fallback_cb' => '__return_false',
