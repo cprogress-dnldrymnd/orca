@@ -11,6 +11,7 @@ define('vendor_dir', assets_dir . 'vendors/');
 function action_wp_enqueue_scripts()
 {
 	wp_enqueue_style('style', theme_dir . 'style.css');
+	wp_enqueue_script('jquery');
 	wp_enqueue_script('bs', vendor_dir . 'bootstrap/dist/js/bootstrap.min.js');
 	wp_enqueue_script('swiper', vendor_dir . 'swiper/js/swiper-bundle.min.js');
 	wp_enqueue_script('main', assets_dir . 'javascripts/main.js');
