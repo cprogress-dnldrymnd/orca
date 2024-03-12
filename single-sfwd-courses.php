@@ -40,18 +40,20 @@
                 </div>
 
                 <div class="learndash-single-holder learndash-single-course-highlight background-accent" id="highlight">
+                    <div class="anchor-link" id="highlight"></div>
                     <?= do_shortcode('[_course_highlight]') ?>
                 </div>
 
-                <div class="learndash-single-holder learndash-single-course-breakdown" id="course-breakdown">
+                <div class="learndash-single-holder learndash-single-course-breakdown">
+                    <div class="anchor-link" id="course-breakdown"></div>
                     <?= do_shortcode('[_course_breakdown]') ?>
                 </div>
                 <div class="learndash-single-holder learndash-single-module position-relative">
                     <div class="anchor-link" id="modules"></div>
                     <?= do_shortcode('[course_content]') ?>
                 </div>
-                <div class="learndash-single-holder learndash-single-testimonial position-relative background-dark" id="testimonials">
-                    <div class="anchor-link" id="modules"></div>
+                <div class="learndash-single-holder learndash-single-testimonial position-relative background-dark">
+                    <div class="anchor-link" id="testimonials"></div>
                     <?= do_shortcode('[_course_testimonial]') ?>
                 </div>
             </div>
