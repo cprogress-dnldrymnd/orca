@@ -24,7 +24,7 @@ function breadcrumbs()
     $html .= '</div>';
     $html .= '</div>';
     $html .= '<div class="container large-container my-5">';
-    $html .= '<div class="row">';
+    $html .= '<div class="row align-items-center">';
     $html .= '<div class="col">';
     $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
     $html .= '</div>';

@@ -448,7 +448,7 @@ function _course_group()
         $html .= '<div class="course-group">';
         foreach ($learndash_get_users_group_ids as $group) {
             $image_id = get_post_thumbnail_id($group);
-            $html .= do_shortcode('[_image id="' . $image_id . '" class="not-absolute"]');
+            $html .= do_shortcode('[_image id="' . $image_id . '" class="not-absolute" size="medium"]');
         }
 
         $html .= '</div>';

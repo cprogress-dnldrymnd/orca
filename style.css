@@ -11703,6 +11703,9 @@ div#sticky-add-to-cart {
 body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   margin-left: 350px; }
 
+.course-group img {
+  max-width: 150px; }
+
 /* Add your custom styles here */
 
 /*# sourceMappingURL=style.css.map */
