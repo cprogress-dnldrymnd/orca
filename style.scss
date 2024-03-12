@@ -18,19 +18,20 @@ Text Domain: orca
 /*-----------------------------------------------------------------------------------*/
 /* Base
 /*-----------------------------------------------------------------------------------*/
-@import  "assets/stylesheets/base/fonts", "assets/stylesheets/base/base", "assets/stylesheets/base/helpers", "assets/stylesheets/base/typography",
-    "assets/stylesheets/base/fonts";
+@import "assets/stylesheets/base/fonts", "assets/stylesheets/base/base", "assets/stylesheets/base/helpers",
+    "assets/stylesheets/base/typography", "assets/stylesheets/base/fonts";
 /*-----------------------------------------------------------------------------------*/
 /* Header & Footer
 /*-----------------------------------------------------------------------------------*/
-@import "assets/stylesheets/sections/header", "assets/stylesheets/sections/footer", "assets/stylesheets/sections/sections";
+@import "assets/stylesheets/sections/header", "assets/stylesheets/sections/footer",
+    "assets/stylesheets/sections/sections";
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
 /*-----------------------------------------------------------------------------------*/
 @import "assets/stylesheets/plugins/learndash";
 /* Add your custom styles here */
 
-.elementor-swiper-button {
+.swiper-button {
     width: 34px;
     height: 34px;
     border-radius: 100px;

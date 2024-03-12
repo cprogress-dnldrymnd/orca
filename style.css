@@ -11621,17 +11621,17 @@ section.archive-grid .column-holder {
         margin-bottom: 40px; }
 
 /* Add your custom styles here */
-.elementor-swiper-button {
+.swiper-button {
   width: 34px;
   height: 34px;
   border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center; }
-  .elementor-swiper-button svg {
+  .swiper-button svg {
     height: 18px !important;
     width: 18px !important; }
-  .elementor-swiper-button:before {
+  .swiper-button:before {
     position: absolute;
     top: 0;
     left: 0;
@@ -11641,7 +11641,7 @@ section.archive-grid .column-holder {
     height: 34px;
     border-radius: 100px;
     transition: 400ms; }
-  .elementor-swiper-button:hover:before {
+  .swiper-button:hover:before {
     transform: rotate(45deg); }
 
 .course-add-to-cart {
