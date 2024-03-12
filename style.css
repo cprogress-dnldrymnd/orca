@@ -11675,10 +11675,6 @@ section.archive-grid .column-holder {
       .single-course-section .single-course-content-holder > div:not(:last-child) {
         margin-bottom: 40px; }
 
-.course-add-to-cart {
-  display: flex;
-  align-items: center; }
-
 div#sticky-add-to-cart {
   position: fixed;
   bottom: 0;
