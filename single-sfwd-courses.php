@@ -52,7 +52,7 @@
                     <div class="anchor-link" id="modules"></div>
                     <?= do_shortcode('[course_content]') ?>
                 </div>
-                <div class="learndash-single-holder learndash-single-module position-relative background-dark">
+                <div class="learndash-single-holder learndash-single-module position-relative background-dark py-4 px-5">
                     <div class="anchor-link" id="modules"></div>
                     <?= do_shortcode('[_course_testimonial]') ?>
                 </div>
