@@ -449,7 +449,7 @@ function _course_group()
         $html .= var_dump($learndash_get_course_groups);
         foreach ($learndash_get_course_groups as $group) {
             $image_id = get_post_thumbnail_id($group);
-            $html .= do_shortcode('[_image id="' . $image_id . '"]');
+            $html .= do_shortcode('[_image id="' . $image_id . '" class="not-absolute"]');
         }
 
         $html .= '</div>';
