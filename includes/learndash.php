@@ -442,19 +442,22 @@ add_shortcode('_course_testimonial', '_course_testimonial');
 
 function _course_group()
 {
-    $learndash_get_users_group_ids = learndash_get_users_group_ids(get_current_user_id());
-    if ($learndash_get_users_group_ids) {
-        $html = '<div class="col-auto">';
-        $html .= '<div class="course-group">';
-        foreach ($learndash_get_users_group_ids as $group) {
-            $image_id = get_post_thumbnail_id($group);
-            $html .= do_shortcode('[_image id="' . $image_id . '" class="not-absolute" size="medium"]');
+    if (_user_has_access()) {
+
+        $learndash_get_users_group_ids = learndash_get_users_group_ids(get_current_user_id());
+        if ($learndash_get_users_group_ids) {
+            $html = '<div class="col-auto">';
+            $html .= '<div class="course-group">';
+            foreach ($learndash_get_users_group_ids as $group) {
+                $image_id = get_post_thumbnail_id($group);
+                $html .= do_shortcode('[_image id="' . $image_id . '" class="not-absolute" size="medium"]');
+            }
+
+            $html .= '</div>';
+            $html .= '</div>';
+
+            return $html;
         }
-
-        $html .= '</div>';
-        $html .= '</div>';
-
-        return $html;
     }
 }
 
