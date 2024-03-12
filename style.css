@@ -11472,6 +11472,11 @@ h5, .h5 {
         margin-right: 10px; }
 #site-footer .footer-widget > div:not(:last-child) {
   margin-bottom: 1rem; }
+#site-footer .breadcrumbs-holder {
+  padding-bottom: 0;
+  border-bottom: 0; }
+  #site-footer .breadcrumbs-holder .container {
+    padding: 0; }
 
 section.archive-grid .column-holder {
   border-radius: 5px;

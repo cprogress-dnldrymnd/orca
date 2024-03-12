@@ -68,4 +68,14 @@
             }
         }
     }
+    .breadcrumbs-holder {
+        padding-bottom: 0;
+        border-bottom: 0;
+        .container {
+            padding: 0;
+            a {
+                color: var(--white-color);
+            }
+        }
+    }
 }
