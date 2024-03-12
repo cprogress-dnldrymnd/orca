@@ -9,7 +9,6 @@ function menu_locations()
         array(
 
             'header-menu'    =>    __('Header Menu'),
-            'footer-main-menu'    =>    __('Footer Main Menu'),
             'footer-menu'    =>    __('Footer Menu'),
         )
 
