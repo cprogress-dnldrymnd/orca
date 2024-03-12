@@ -439,3 +439,22 @@ function _course_testimonial()
     return $html;
 }
 add_shortcode('_course_testimonial', '_course_testimonial');
+
+function _course_group()
+{
+    $learndash_get_course_groups = learndash_get_course_groups(get_the_ID());
+    if ($learndash_get_course_groups) {
+        $html = '<div class="course-group">';
+
+        foreach ($learndash_get_course_groups as $group) {
+            $image_id = get_post_thumbnail_id($group);
+            $html .= do_shortcode('[_image id="' . $image_id . '"]');
+        }
+
+        $html .= '</div>';
+
+        return $html;
+    }
+}
+
+add_shortcode('_course_group', '_course_group');
