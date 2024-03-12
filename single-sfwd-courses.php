@@ -11,7 +11,7 @@
                     <div class="inner background-light-gray">
                         <div class="row gy-3 align-items-center">
                             <?= do_shortcode('[_learndash_course_progress wrapper="col-md-8"]') ?>
-                            <div class="col-md-4 text-end">
+                            <div class="text-end <?= _user_has_access() ? 'col-md-4' : 'col-12' ?>">
                                 <?= do_shortcode('[_learndash_status]') ?>
                             </div>
                         </div>
