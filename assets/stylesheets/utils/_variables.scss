@@ -6,6 +6,7 @@ $image-url: "./assets/images/" !default;
 $font-url: "./assets/fonts/" !default;
 $primary-color: #2A6EBB;
 $secondary-color: #54595F;
+$dark-color: #0E3F5D;
 $accent-color: #33A19A;
 $gray-color: #707070;
 $white-color: #ffffff;
@@ -16,6 +17,7 @@ $light-gray-color: #F2F2F2;
 :root {
     --primary-color: #{$primary-color};
     --secondary-color: #{$secondary-color};
+    --dark-color: #{$dark-color};
     --accent-color: #{$accent-color};
     --white-color: #{$white-color};
     --black-color: #{$black-color};

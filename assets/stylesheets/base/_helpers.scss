@@ -58,6 +58,9 @@
 .background-light-gray {
     background-color: var(--light-gray-color);
 }
+.background-dark {
+    background-color: var(--dark-color);
+}
 
 .color-primary {
     color: var(--primary-color);
@@ -75,7 +78,8 @@
     color: var(--light-gray-color);
 }
 .background-primary,
-.color-primary {
+.color-primary,
+.background-dark {
     @include headings {
         color: inherit;
     }
