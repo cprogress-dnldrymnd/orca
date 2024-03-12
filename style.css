@@ -11639,10 +11639,15 @@ section.archive-grid .column-holder {
     padding: 7vw 3vw;
     border-radius: 6px;
     overflow: hidden; }
-  .single-course-section .swiper-testimonial-holder .quote svg {
-    opacity: 0.46;
-    width: 50px;
-    height: 50px; }
+  .single-course-section .learndash-single-testimonial .swiper-testimonial-holder {
+    --swiper-navigation-sides-offset:
+    .quote {
+        svg {
+            opacity: 0.46;
+            width: 50px;
+            height: 50px;
+        }
+    } ; }
   .single-course-section .single-course-content-holder {
     border-radius: 10px 10px 0 0; }
     .single-course-section .single-course-content-holder > div {

@@ -162,7 +162,7 @@
     .anchor-link {
         position: absolute;
         left: 0;
-        top: -80px
+        top: -80px;
     }
     .learndash-single-status-top {
         .inner {
@@ -226,12 +226,15 @@
             overflow: hidden;
         }
     }
-    .swiper-testimonial-holder {
-        .quote {
-            svg {
-                opacity: 0.46;
-                width: 50px;
-                height: 50px;
+    .learndash-single-testimonial {
+        .swiper-testimonial-holder {
+            --swiper-navigation-sides-offset: 2rem;
+            .quote {
+                svg {
+                    opacity: 0.46;
+                    width: 50px;
+                    height: 50px;
+                }
             }
         }
     }
@@ -246,7 +249,6 @@
         }
     }
 }
-
 
 .course-add-to-cart {
     display: flex;
