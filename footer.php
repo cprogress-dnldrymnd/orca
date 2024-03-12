@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row gy-3">
             <div class="col-12 color-white">
-                <?= do_shortcode('[breadcrumbs]') ?>
+                <?= do_shortcode('[breadcrumbs hide_title="true"]') ?>
             </div>
             <div class="col-12">
                 <hr>

@@ -1,6 +1,14 @@
 <?php
-function breadcrumbs()
+function breadcrumbs($atts)
 {
+    extract(
+        shortcode_atts(
+            array(
+                'hide_title' => false,
+            ),
+            $atts
+        )
+    );
     $html = ' <section class="breadcrumbs-section mt-4">';
     $html .= '<div class="container">';
     $html .= '<div class="breadcrumbs-holder">';
@@ -21,21 +29,23 @@ function breadcrumbs()
     $html .= '</ul>';
     $html .= '</div>';
     $html .= '</div>';
-    $html .= '<div class="container large-container my-5">';
-    $html .= '<div class="row align-items-center">';
-    $html .= '<div class="col">';
-    $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
-    $html .= '</div>';
+    if ($hide_title == false) {
+        $html .= '<div class="container large-container my-5">';
+        $html .= '<div class="row align-items-center">';
+        $html .= '<div class="col">';
+        $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
+        $html .= '</div>';
 
-    if (is_single() && get_post_type() == 'sfwd-courses') {
-        $html .= do_shortcode('[_course_group]');
-    }
+        if (is_single() && get_post_type() == 'sfwd-courses') {
+            $html .= do_shortcode('[_course_group]');
+        }
 
-    if (is_post_type_archive('sfwd-courses')) {
-        $html .= do_shortcode('[_course_group_archive]');
+        if (is_post_type_archive('sfwd-courses')) {
+            $html .= do_shortcode('[_course_group_archive]');
+        }
+        $html .= '</div>';
+        $html .= '</div>';
     }
-    $html .= '</div>';
-    $html .= '</div>';
     $html .= '</section>';
     return $html;
 }
