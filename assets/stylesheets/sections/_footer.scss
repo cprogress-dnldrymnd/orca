@@ -73,8 +73,11 @@
         border-bottom: 0;
         .container {
             padding: 0;
-            ul li a {
-                color: var(--white-color);
+            ul li {
+                margin-right: 0 !important;
+                a {
+                    color: var(--white-color);
+                }
             }
         }
     }
