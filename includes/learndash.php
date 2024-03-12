@@ -415,7 +415,7 @@ function _course_testimonial()
 
     foreach ($testimonials as $testimonial) {
         $html .= '<div class="swiper-slide">';
-        $html .= '<div class="row">';
+        $html .= '<div class="row g-5 align-items-center">';
         $html .= '<div class="col-lg-6">';
         $html .= do_shortcode('[_image id="' . get_post_thumbnail_id($testimonial->ID) . '"]');
         $html .= '</div>';
