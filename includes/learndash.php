@@ -1,7 +1,13 @@
 <?php
 function _user_has_access()
 {
-    return sfwd_lms_has_access_fn(get_the_ID(), get_current_user_id());
+    $user_courses = learndash_user_get_enrolled_courses(get_current_user_id());
+
+    if (in_array(get_the_ID(),  $user_courses)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function _learndash_course_progress()
@@ -253,8 +259,8 @@ function _learndash_course_button()
 {
     $permalink = get_the_permalink();
 
-    $html = '<div class="row g-3 button-group mt-3">'. _user_has_access();
-    $html .= var_dump(learndash_user_get_enrolled_courses(get_current_user_id()));
+    $html = '<div class="row g-3 button-group mt-3">' . _user_has_access();
+
     $html .= '<div class="' . (_user_has_access() ? 'col-lg-6' : 'col-12') . '">';
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
     $html .= '</div>';
