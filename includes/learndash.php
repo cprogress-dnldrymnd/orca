@@ -442,7 +442,7 @@ add_shortcode('_course_testimonial', '_course_testimonial');
 
 function _course_group()
 {
-    $learndash_get_users_group_ids = learndash_get_users_group_ids(get_the_ID());
+    $learndash_get_users_group_ids = learndash_get_users_group_ids(get_current_user_id());
     if ($learndash_get_users_group_ids) {
         $html = '<div class="col-auto">';
         $html .= '<div class="course-group">';
