@@ -26,7 +26,14 @@ function breadcrumbs()
     $html .= '<div class="col">';
     $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
     $html .= '</div>';
-    $html .= do_shortcode('[_course_group]');
+
+    if (is_single() && get_post_type() == 'sfwd-courses') {
+        $html .= do_shortcode('[_course_group]');
+    }
+
+    if(is_post_type_archive('sfwd-courses')) {
+        $html .= do_shortcode('[_course_group]');
+    }
     $html .= '</div>';
     $html .= '</div>';
     $html .= '</section>';
