@@ -28,16 +28,7 @@
     <div class="container">
         <div class="row gy-3">
             <div class="col-12">
-                <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'footer-main-menu',
-                    'container' => false,
-                    'menu_class' => '',
-                    'fallback_cb' => '__return_false',
-                    'items_wrap' => '<ul id="%1$s" class="menu footer-main-menu" >%3$s</ul>',
-                    'depth' => 2,
-                ));
-                ?>
+                <?= do_shortcode('[breadcrumbs]') ?>
             </div>
             <div class="col-12">
                 <hr>
