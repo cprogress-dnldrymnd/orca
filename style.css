@@ -11047,6 +11047,7 @@ button.swiper-pagination-bullet {
 :root {
   --primary-color: #2A6EBB;
   --secondary-color: #54595F;
+  --dark-color: #0E3F5D;
   --accent-color: #33A19A;
   --white-color: #ffffff;
   --black-color: #000000;
@@ -11218,6 +11219,9 @@ img {
 .background-light-gray {
   background-color: var(--light-gray-color); }
 
+.background-dark {
+  background-color: var(--dark-color); }
+
 .color-primary {
   color: var(--primary-color); }
   .color-primary h1, .color-primary .h1,
@@ -11264,10 +11268,23 @@ img {
 .color-primary h5,
 .color-primary .h5,
 .color-primary h6,
-.color-primary .h6 {
+.color-primary .h6,
+.background-dark h1,
+.background-dark .h1,
+.background-dark h2,
+.background-dark .h2,
+.background-dark h3,
+.background-dark .h3,
+.background-dark h4,
+.background-dark .h4,
+.background-dark h5,
+.background-dark .h5,
+.background-dark h6,
+.background-dark .h6 {
   color: inherit; }
 .background-primary a,
-.color-primary a {
+.color-primary a,
+.background-dark a {
   color: inherit; }
 
 body {
