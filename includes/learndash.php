@@ -10,18 +10,7 @@ function _user_has_access()
     }
 }
 
-function _learndash_course_progress()
-{
-    if (_user_has_access()) {
-
-        return do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
-    }
-}
-
-add_shortcode('_learndash_course_progress', '_learndash_course_progress');
-
-
-function _learndash_course_meta($atts)
+function _learndash_course_progress($atts)
 {
     extract(
         shortcode_atts(
@@ -31,17 +20,29 @@ function _learndash_course_meta($atts)
             $atts
         )
     );
-    $html = '';
-    if ($wrapper && _user_has_access()) {
-        $html .=  '<div class="' . $wrapper . '">';
+    if (_user_has_access()) {
+        if ($wrapper) {
+            $html .=  '<div class="' . $wrapper . '">';
+        }
+        $html .=  do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
+        if ($wrapper && _user_has_access()) {
+            $html .= '</div>';
+        }
+
+        return $html;
     }
-    $html .=  '<div class="course-meta">';
+}
+
+add_shortcode('_learndash_course_progress', '_learndash_course_progress');
+
+
+function _learndash_course_meta()
+{
+
+    $html =  '<div class="course-meta">';
     $html .= '<p><strong>Duration:</strong> 2 weeks</p>';
     $html .= '<p><strong>Certification:</strong> ORCA Certified</p>';
     $html .= '</div>';
-    if ($wrapper && _user_has_access()) {
-        $html .= '</div>';
-    }
 
     return $html;
 }
