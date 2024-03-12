@@ -444,8 +444,9 @@ function _course_group()
 {
     $learndash_get_course_groups = learndash_get_course_groups(get_the_ID());
     if ($learndash_get_course_groups) {
+        
         $html = '<div class="course-group">';
-
+        $html .= var_dump($learndash_get_course_groups);
         foreach ($learndash_get_course_groups as $group) {
             $image_id = get_post_thumbnail_id($group);
             $html .= do_shortcode('[_image id="' . $image_id . '"]');
