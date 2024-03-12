@@ -409,7 +409,7 @@ function _course_testimonial()
 
     $testimonials = get_posts($args);
 
-    $html = '<div class="swiper-testimonial-holder">';
+    $html = '<div class="swiper-testimonial-holder px-4">';
     $html .= '<div class="swiper swiper-testimonial">';
     $html .= '<div class="swiper-wrapper">';
 
