@@ -593,6 +593,10 @@
     font-weight: bold;
     line-height: 1;
     display: inline-block;
+    @include on-event() {
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+    }
 }
 
 @mixin button-style {
@@ -605,6 +609,10 @@
 @mixin button-primary {
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color);
+    @include on-event() {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+    }
 }
 
 @mixin button-black {
@@ -612,7 +620,6 @@
     border: 1px solid var(--black-color);
     color: var(--white-color);
 }
-
 
 @mixin button-white {
     background-color: var(--white-color);

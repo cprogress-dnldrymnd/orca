@@ -11132,6 +11132,9 @@ img {
 .btn.btn.btn-primary {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color); }
+  .btn.btn.btn-primary:hover, .btn.btn.btn-primary:active, .btn.btn.btn-primary:focus {
+    background-color: var(--primary-color);
+    border-color: var(--accent-color); }
 .btn.btn.btn-black {
   background-color: var(--black-color);
   border: 1px solid var(--black-color);
@@ -11160,6 +11163,9 @@ img {
   background-color: var(--accent-color);
   text-decoration: none;
   color: var(--white-color); }
+  .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
+    background-color: var(--primary-color);
+    color: var(--accent-color); }
   .taxonomy-terms a:not(:last-child) {
     margin-right: 10px; }
 
@@ -11509,6 +11515,9 @@ section.archive-grid .column-holder {
   font-weight: bold;
   line-height: 1;
   display: inline-block; }
+  .ld-status.ld-status:hover, .ld-status.ld-status:active, .ld-status.ld-status:focus {
+    background-color: var(--primary-color);
+    color: var(--accent-color); }
   .ld-status.ld-status.ld-status-progress {
     background-color: var(--green-color);
     color: var(--white-color); }
@@ -11524,6 +11533,12 @@ section.archive-grid .column-holder {
   border-radius: 8px;
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color); }
+  .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus,
+  .added_to_cart:hover,
+  .added_to_cart:active,
+  .added_to_cart:focus {
+    background-color: var(--primary-color);
+    border-color: var(--accent-color); }
 
 .add_to_cart_button {
   color: var(--white-color);
