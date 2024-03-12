@@ -32,14 +32,14 @@ function _learndash_course_meta($atts)
         )
     );
     $html = '';
-    if ($wrapper) {
+    if ($wrapper && _user_has_access()) {
         $html .=  '<div class="' . $wrapper . '">';
     }
     $html .=  '<div class="course-meta">';
     $html .= '<p><strong>Duration:</strong> 2 weeks</p>';
     $html .= '<p><strong>Certification:</strong> ORCA Certified</p>';
     $html .= '</div>';
-    if ($wrapper) {
+    if ($wrapper && _user_has_access()) {
         $html .= '</div>';
     }
 
