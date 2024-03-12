@@ -11477,6 +11477,8 @@ h5, .h5 {
   border-bottom: 0; }
   #site-footer .breadcrumbs-holder .container {
     padding: 0; }
+    #site-footer .breadcrumbs-holder .container a {
+      color: var(--white-color); }
 
 section.archive-grid .column-holder {
   border-radius: 5px;
