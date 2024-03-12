@@ -11170,7 +11170,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center; }
-  .swiper-button svg {
+  .swiper-button:after {
     height: 18px !important;
     width: 18px !important; }
   .swiper-button:before {

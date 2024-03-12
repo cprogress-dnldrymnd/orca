@@ -103,9 +103,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    svg {
-        height: 18px !important;
-        width: 18px !important;
+    &:after {
+        font-size: 18px;
     }
     &:before {
         position: absolute;
