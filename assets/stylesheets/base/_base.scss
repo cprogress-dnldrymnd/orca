@@ -104,7 +104,9 @@ img {
     align-items: center;
     justify-content: center;
     &:after {
-        font-size: 18px;
+        font-size: 14px;
+        color: var(--white-color);
+        font-weight: bold;
     }
     &:before {
         position: absolute;

@@ -11171,8 +11171,9 @@ img {
   align-items: center;
   justify-content: center; }
   .swiper-button:after {
-    height: 18px !important;
-    width: 18px !important; }
+    font-size: 14px;
+    color: var(--white-color);
+    font-weight: bold; }
   .swiper-button:before {
     position: absolute;
     top: 0;
