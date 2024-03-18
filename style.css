@@ -11131,7 +11131,8 @@ img {
   border-radius: 8px; }
 .btn.btn.btn-primary {
   background-color: var(--primary-color);
-  border: 1px solid var(--primary-color); }
+  border: 1px solid var(--primary-color);
+  color: var(--white-color); }
   .btn.btn.btn-primary:hover, .btn.btn.btn-primary:active, .btn.btn.btn-primary:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color); }
@@ -11541,7 +11542,8 @@ section.archive-grid .column-holder {
   font-weight: bold;
   border-radius: 8px;
   background-color: var(--primary-color);
-  border: 1px solid var(--primary-color); }
+  border: 1px solid var(--primary-color);
+  color: var(--white-color); }
   .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus,
   .added_to_cart:hover,
   .added_to_cart:active,
@@ -11750,7 +11752,8 @@ textarea {
   font-weight: bold;
   border-radius: 8px;
   background-color: var(--primary-color);
-  border: 1px solid var(--primary-color); }
+  border: 1px solid var(--primary-color);
+  color: var(--white-color); }
   .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color); }
