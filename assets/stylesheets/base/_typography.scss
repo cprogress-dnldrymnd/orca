@@ -12,6 +12,7 @@ p:last-child {
     margin-bottom: 0 !important;
 }
 a {
+    color: var(--primary-color);;
     @include on-event {
         color: var(--accent-color);
     }

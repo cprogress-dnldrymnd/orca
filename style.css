@@ -11341,8 +11341,10 @@ h6,
 p:last-child {
   margin-bottom: 0 !important; }
 
-a:hover, a:active, a:focus {
-  color: var(--accent-color); }
+a {
+  color: var(--primary-color); }
+  a:hover, a:active, a:focus {
+    color: var(--accent-color); }
 
 h1, .h1 {
   font-size: 4.25rem; }
