@@ -1,10 +1,16 @@
-input[type="text"], input[type="number"],input[type="email"], input[type="tel"], select, textarea {
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #cfc8d8;
 }
 
-.woocommerce-Button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
     @include button-style;
     @include button-primary;
 }

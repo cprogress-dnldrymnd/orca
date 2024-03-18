@@ -11733,19 +11733,25 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 .course-group img {
   max-width: 150px; }
 
-input[type="text"], input[type="number"], input[type="email"], input[type="tel"], select, textarea {
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #cfc8d8; }
 
-.woocommerce-Button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
   border-radius: 8px;
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color); }
-  .woocommerce-Button:hover, .woocommerce-Button:active, .woocommerce-Button:focus {
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color); }
 
