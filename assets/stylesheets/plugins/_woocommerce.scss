@@ -10,7 +10,7 @@ textarea {
     border: 1px solid #cfc8d8;
 }
 
-.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button {
+.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
     @include button-style;
     @include button-primary;
 }
