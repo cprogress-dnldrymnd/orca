@@ -609,6 +609,7 @@
 @mixin button-primary {
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color);
+    color: var(--white-color);
     @include on-event() {
         background-color: var(--accent-color);
         border-color: var(--accent-color);
