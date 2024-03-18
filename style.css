@@ -11733,6 +11733,9 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 .course-group img {
   max-width: 150px; }
 
-/* Add your custom styles here */
+input[type="text"], input[type="number"], input[type="email"], input[type="tel"], select, textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #cfc8d8; }
 
 /*# sourceMappingURL=style.css.map */
