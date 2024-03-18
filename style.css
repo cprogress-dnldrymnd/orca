@@ -11738,4 +11738,15 @@ input[type="text"], input[type="number"], input[type="email"], input[type="tel"]
   border-radius: 5px;
   border: 1px solid #cfc8d8; }
 
+.woocommerce-Button {
+  padding: 10px 20px;
+  line-height: 1;
+  font-weight: bold;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color); }
+  .woocommerce-Button:hover, .woocommerce-Button:active, .woocommerce-Button:focus {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color); }
+
 /*# sourceMappingURL=style.css.map */
