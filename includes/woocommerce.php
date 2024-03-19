@@ -143,5 +143,6 @@ function product_save($post_id)
 function action_admin_init()
 {
     var_dump(get_option('product_price_update'));
+    echo 'xxxx';
 }
 add_action('admin_init ', 'action_admin_init');
