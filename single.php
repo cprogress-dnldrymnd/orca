@@ -3,8 +3,9 @@
     <div class="container large-container">
         <?php the_content() ?>
         <?php
-      
-        var_dump();
+
+        $price = learndash_get_course_price(846)['price'];
+        echo $price;
         ?>
     </div>
 </section>
