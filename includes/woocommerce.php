@@ -110,7 +110,7 @@ function create_course_product($post)
 
     $product->set_slug($post->post_name);
 
-    $product->set_sku($post->ID);
+    $product->set_sku($price);
 
     if ($price) {
         $product->set_regular_price($price); // in current shop currency
