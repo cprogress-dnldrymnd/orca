@@ -142,6 +142,7 @@ function product_save($post_id)
 
 function action_admin_init()
 {
+    echo 'xxxxxxx';
     $product_price_update = get_option('product_price_update');
     if ($product_price_update) {
         foreach ($product_price_update as $product_id) {
