@@ -47,7 +47,35 @@ function ajax($offset, $event_type = 'html') {
         $loadmore.find('span').text('Loading');
     }
 
-  console.log('xxxx');
+    jQuery.ajax({
+
+        type: "POST",
+
+        url: "/wp-admin/admin-ajax.php",
+
+        data: {
+
+            action: 'archive_ajax',
+
+
+        },
+
+        success: function (response) {
+            if ($event_type == 'append') {
+                $result_holder_row = $result_holder.find('.row');
+                jQuery(response).appendTo($result_holder_row);
+            } else {
+                $result_holder.html(response);
+            }
+            $loadmore.removeClass('d-none loading');
+
+            $loadmore.find('span').text('Load more');
+
+            $archive_section.removeClass('loading-post');
+
+        }
+
+    });
 
 }
 

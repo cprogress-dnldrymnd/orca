@@ -7,7 +7,7 @@ function archive_ajax()
     $taxonomy = $_POST['taxonomy'];
     $post_type = $_POST['post_type'];
     $offset = $_POST['offset'];
-    $sortby = $_POST['sortby'];
+    //$sortby = $_POST['sortby'];
     $posts_per_page = 6;
 
     $args = array(
@@ -19,6 +19,7 @@ function archive_ajax()
         $args['offset'] = $offset;
     }
 
+    /*
     if ($sortby) {
         if ($sortby == 'oldest') {
             $args['order'] = 'ASC';
@@ -26,7 +27,7 @@ function archive_ajax()
             $args['orderby'] = 'title';
             $args['order'] = 'ASC';
         }
-    }
+    }*/
 
     if ($taxonomy_terms) {
         if ($taxonomy != 'category') {
