@@ -6,6 +6,9 @@ echo $wp_query->post_count;
 ?>
 <section class="archive-courses archive-grid background-light-gray py-5">
     <div class="container large-container">
+        <div class="heading-box">
+            <h2>Search results for <?= $_GET['s'] ?></h2>
+        </div>
         <?php if (have_posts()) { ?>
             <div class="row">
                 <?php while (have_posts()) { ?>
