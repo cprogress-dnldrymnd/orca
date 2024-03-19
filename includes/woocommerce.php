@@ -90,3 +90,21 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
+
+
+function create_course_product()
+{
+    $product = new WC_Product_Course(false);
+
+    $product->set_name('Wizard Hat'); // product title
+
+    $product->set_slug('medium-size-wizard-hat-in-new-york');
+
+    $product->set_regular_price(500.00); // in current shop currency
+
+    $product->save();
+
+    $product->get_id();
+
+    update_post_meta($product->get_id(), '_related_course', array(181));
+}
