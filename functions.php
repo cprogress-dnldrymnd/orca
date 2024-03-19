@@ -48,7 +48,14 @@ function get__theme_option($value)
 	return get_option('_' . $value);
 }
 
+function course_ajax()
+{
+	if (is_post_type_archive('sfwd-courses')) {
+		require_once('includes/ajax.php');
+	}
+}
 
+add_action('init', 'course_ajax');
 require_once('includes/bootstrap-navwalker.php');
 require_once('includes/menus.php');
 require_once('includes/theme-widgets.php');

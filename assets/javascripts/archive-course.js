@@ -10,10 +10,6 @@ function ajax_form() {
         ajax(0);
     });
 
-    jQuery("#location").change(function (e) {
-        e.preventDefault();
-        careers_ajax(0);
-    });
 }
 
 function load_more_button_listener($) {
@@ -21,12 +17,6 @@ function load_more_button_listener($) {
         event.preventDefault();
         var offset = jQuery('.post-item').length;
         ajax(offset, 'append');
-    });
-
-    jQuery(document).on("click", '#load-more-careers', function (event) {
-        event.preventDefault();
-        var offset = jQuery('.post-item').length;
-        careers_ajax(offset, 'append');
     });
 }
 
@@ -99,7 +89,7 @@ function ajax($offset, $event_type = 'html') {
 
 }
 
-
+/*
 function careers_ajax($offset, $event_type = 'html') {
     var $loadmore = jQuery('#load-more-careers');
 
@@ -153,4 +143,4 @@ function careers_ajax($offset, $event_type = 'html') {
 
     });
 
-}
+}*/
