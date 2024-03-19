@@ -3,10 +3,16 @@
 
 <section class="archive-courses archive-grid background-light-gray py-2 py-5">
     <div class="container large-container">
+        <div class="row filter">
+            <div class="col-lg-6">
+                <div class="showing">
+                    Showing  <?php echo $GLOBALS['wp_query']->found_posts ?> of  <?php echo $GLOBALS['wp_query']->found_posts ?> Courses
+                </div>
+            </div>
+        </div>
         <div class="row">
             <?php while (have_posts()) { ?>
                 <?php the_post() ?>
-                <?php echo $GLOBALS['wp_query']->found_posts ?>
                 <div class="col-md-4 col-6">
                     <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
                         <?= do_shortcode('[_learndash_image id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
