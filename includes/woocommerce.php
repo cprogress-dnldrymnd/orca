@@ -16,9 +16,9 @@ add_filter('woocommerce_cart_redirect_after_error', 'filter_woocommerce_cart_red
 function searchfilter($query)
 {
    
-    if ($query->is_search && !is_admin()) {
-        $query->set('post_type', array('post', 'sfwd-courses'));
-    }
+    //if ($query->is_search && !is_admin()) {
+     //   $query->set('post_type', array('post', 'sfwd-courses'));
+    //}
 
     return $query;
 }
