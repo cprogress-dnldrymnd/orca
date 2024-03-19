@@ -3,7 +3,7 @@
     <div class="container large-container">
         <?php the_content() ?>
         <?php
-        $product = new WC_Product(834);
+        $product = new WC_Product(835);
         $product->set_price(20);
         $product->save();
         var_dump(learndash_get_course_price(834)['price']);
