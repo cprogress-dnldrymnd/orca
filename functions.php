@@ -11,13 +11,12 @@ define('vendor_dir', assets_dir . 'vendors/');
 function action_wp_enqueue_scripts()
 {
 	wp_enqueue_style('style', theme_dir . 'style.css');
-	wp_enqueue_script('jquery');
 	wp_enqueue_script('bootstrap', vendor_dir . 'bootstrap/dist/js/bootstrap.min.js');
 	wp_register_script('swiper', vendor_dir . 'swiper/js/swiper-bundle.min.js');
 	if (is_post_type_archive('sfwd-courses')) {
-		wp_enqueue_script('archive-course', assets_dir . 'javascripts/archive-course.js');
+		wp_enqueue_script('archive-course', assets_dir . 'javascripts/archive-course.js', array('jquery'));
 	} else if (is_single() && get_post_type() == 'sfwd-courses') {
-		wp_enqueue_script('single-course', assets_dir . 'javascripts/single-course.js', array('swiper'));
+		wp_enqueue_script('single-course', assets_dir . 'javascripts/single-course.js', array('jquery', 'swiper'));
 	}
 }
 add_action('wp_enqueue_scripts', 'action_wp_enqueue_scripts', 20);
