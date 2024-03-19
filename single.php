@@ -11,7 +11,9 @@ $product->set_regular_price(500.00); // in current shop currency
 
 $product->save();
 
-echo $product->get_id();
+$product->get_id();
+
+update_post_meta($product->get_id(), '_related_course', array(181));
 ?>
 <pre>
     <?php

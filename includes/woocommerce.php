@@ -90,9 +90,3 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
-
-add_action('woocommerce_admin_process_product_object', 'action_save_product_meta');
-function action_save_product_meta($product)
-{
-    $product->update_meta_data('_related_course', array(181));
-}
