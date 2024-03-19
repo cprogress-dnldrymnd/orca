@@ -117,7 +117,6 @@ function create_course_product($post)
 }
 
 
-add_action('before_delete_post', 'wpse_110037_new_posts');
 add_action('save_post', 'wpse_110037_new_posts');
 
 function wpse_110037_new_posts($post_id)
