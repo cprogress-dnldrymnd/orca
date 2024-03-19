@@ -93,7 +93,7 @@ function bbloomer_save_name_fields($customer_id)
 function so_post_40744782($new_status, $old_status, $post)
 {
     if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
-        create_course_product($post);
+        create_course_product($post->ID);
     }
 }
 add_action('transition_post_status', 'so_post_40744782', 10, 3);
@@ -102,17 +102,19 @@ add_action('transition_post_status', 'so_post_40744782', 10, 3);
 function create_course_product($post)
 {
 
+    $price = get_post_meta($post, '_sfwd-courses', true)['sfwd-courses_course_price'];
+
     $product = new WC_Product_Course(false);
 
-    $product->set_name('Wizard Hat'); // product title
-    
-    $product->set_slug('medium-size-wizard-hat-in-new-york');
-    
-    $product->set_regular_price(500.00); // in current shop currency
-    
+    $product->set_name($post);
+
+    $product->set_slug($post);
+
+    $product->set_regular_price($post); // in current shop currency
+
+    $product->set_sku($post);
+
     $product->save();
-    
-    $product->get_id();
-    
-    update_post_meta($product->get_id(), '_related_course', array(181));
+
+    update_post_meta($product->get_id(), '_related_course', array($post));
 }
