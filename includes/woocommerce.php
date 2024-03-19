@@ -90,31 +90,34 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
-function so_post_40744782($new_status, $old_status, $post)
+function action_course_created($post_id, $post, $update)
 {
-    if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
-        create_course_product($post->ID);
+
+    if ($post->post_type == 'sfwd-courses') {
+        if (wp_is_post_revision($post_id))
+            return;
+        create_course_product($post);
     }
 }
-add_action('transition_post_status', 'so_post_40744782', 10, 3);
+add_action('wp_insert_post', 'action_course_created', 10, 3);
 
 
 function create_course_product($post)
 {
 
-    $price = get_post_meta($post, '_sfwd-courses', true)['sfwd-courses_course_price'];
+    $price = get_post_meta($post->ID, '_sfwd-courses', true)['sfwd-courses_course_price'];
 
     $product = new WC_Product_Course(false);
 
-    $product->set_name($post);
+    $product->set_name($post->post_title);
 
-    $product->set_slug($post);
+    $product->set_slug($post->post_name);
 
-    $product->set_regular_price($post); // in current shop currency
+    $product->set_regular_price($price); // in current shop currency
 
-    $product->set_sku($post);
+    $product->set_sku($post->ID);
 
     $product->save();
 
-    update_post_meta($product->get_id(), '_related_course', array($post));
+    update_post_meta($product->get_id(), '_related_course', array($post->ID));
 }
