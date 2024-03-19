@@ -114,10 +114,6 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
-
-    wp_update_post(array(
-        'ID'           => $product->get_id(),
-    ));
 }
 
 
