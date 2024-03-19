@@ -92,7 +92,6 @@ function bbloomer_save_name_fields($customer_id)
 }
 function so_post_40744782($new_status, $old_status, $post)
 {
-    $post_type = get_post_type($post->ID);
     if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
         create_course_product($post);
     }
