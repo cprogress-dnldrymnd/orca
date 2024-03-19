@@ -11217,6 +11217,10 @@ section.loading-post select {
 #load-more {
   display: inline-flex;
   align-items: center; }
+  #load-more svg {
+    display: none; }
+  #load-more.loading {
+    display: inline-block; }
 
 @media (min-width: 1500px) {
   .container:not(.large-container) {
