@@ -13,6 +13,18 @@ function filter_woocommerce_cart_redirect_after_error($redirect, $product_id)
 }
 add_filter('woocommerce_cart_redirect_after_error', 'filter_woocommerce_cart_redirect_after_error', 10, 2);
 
+function searchfilter($query)
+{
+   
+    if ($query->is_search && !is_admin()) {
+        $query->set('post_type', array('post', 'sfwd-courses'));
+    }
+
+    return $query;
+}
+
+add_filter('pre_get_posts', 'searchfilter', 9999999);
+
 
 /**
  * @snippet       Add First & Last Name to My Account Register Form - WooCommerce
