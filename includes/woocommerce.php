@@ -102,7 +102,7 @@ add_action('transition_post_status', 'so_post_40744782', 10, 3);
 function create_course_product($post)
 {
 
-    $price = get_post_meta($post->ID, '_sfwd-courses', true)['sfwd-courses_course_price'];
+    $price = learndash_get_course_price($post->ID)['price'];
 
     $product = new WC_Product_Course(false);
 
@@ -110,7 +110,7 @@ function create_course_product($post)
 
     $product->set_slug($post->post_name);
 
-    $product->set_sku($post->ID);
+    
 
     if ($price) {
         $product->set_regular_price($price); // in current shop currency
