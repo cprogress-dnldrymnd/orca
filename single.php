@@ -6,10 +6,11 @@
 
         $price = learndash_get_course_price(855)['price'];
         echo $price;
-    
+
 
         ?>
         <pre>
+            <?php var_dump(get_option('product_price_update')) ?>
         </pre>
     </div>
 </section>
