@@ -4,7 +4,7 @@
         <?php the_content() ?>
         <?php
        
-        update_post_meta(835, '_regular_price', $price);
+        update_post_meta(835, '_regular_price', 500);
 
         var_dump(learndash_get_course_price(834)['price']);
         ?>
