@@ -11197,7 +11197,7 @@ img {
 
 section.loading-post input,
 section.loading-post .load-more a,
-section.loading-post .nice-select-js {
+section.loading-post select {
   pointer-events: none; }
 
 .loading-results svg {

@@ -18,7 +18,6 @@ $terms = get_terms(array(
                     <div class="filter-select me-3">
                         <input type="hidden" name="post-type" value="<?= get_post_type() ?>">
                         <input type="hidden" name="taxonomy" value="ld_course_category">
-                        <input type="hidden" name="<?= get_post_type() ?>">
                         <select name="taxonomy-terms" id="taxonomy-terms" class="archive-form-filter">
                             <option value="">All Courses</option>
                             <?php foreach ($terms as $term) { ?>
