@@ -125,7 +125,7 @@ function create_course_product($post)
     update_option('product_price_update', $product_price_update);
 }
 
-
+/*
 add_action('save_post', 'product_save');
 
 function product_save($post_id)
@@ -138,13 +138,23 @@ function product_save($post_id)
         $product->save();
     }
 }
-
+*/
 
 function action_admin_init()
 {
     if (!is_admin())
         return;
-    var_dump(get_option('product_price_update'));
-    echo 'xxxx';
+
+    $product_price_update = get_option('product_price_update');
+
+    if ($product_price_update) {
+        foreach ($product_price_update as $product_id) {
+            $course_id = get_post_meta($product_id, '_related_course', true);
+            $price = learndash_get_course_price($course_id[0])['price'];
+            $product = new WC_Product_Course($product_id);
+            $product->set_regular_price($price);
+            $product->save();
+        }
+    }
 }
 add_action('init ', 'action_admin_init');
