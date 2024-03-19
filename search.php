@@ -1,5 +1,9 @@
 <?php get_header() ?>
+<?php
 
+global $wp_query;
+var_dump($wp_query);
+?>
 <section class="archive-courses archive-grid background-light-gray py-5">
     <div class="container large-container">
         <?php if (have_posts()) { ?>
