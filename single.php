@@ -12,7 +12,6 @@
 
         ?>
         <pre>
-            <?php var_dump() ?>
         </pre>
     </div>
 </section>
