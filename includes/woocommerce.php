@@ -117,9 +117,9 @@ function create_course_product($post)
 }
 
 
-add_action('save_post', 'product_save');
+add_action('save_post', 'action_save_post');
 
-function product_save($post_id)
+function action_save_post($post_id)
 {
     if (get_post_type($post_id) == 'product') {
         $course_id = get_post_meta($post_id, '_related_course', true);
