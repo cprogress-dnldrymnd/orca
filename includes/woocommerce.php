@@ -114,5 +114,5 @@ function create_course_product($post)
     $post_id = wp_insert_post($my_post);
 
     update_post_meta($post_id, '_related_course', array($post->ID));
-    update_post_meta($post_id, '_sku', array($post->ID));
+    update_post_meta($post_id, '_sku', $post->ID);
 }
