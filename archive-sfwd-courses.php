@@ -3,14 +3,14 @@
 
 <section class="archive-courses archive-grid background-light-gray py-2 py-5">
     <div class="container large-container">
-        <div class="row filter">
+        <div class="row g-4 filter mb-4">
             <div class="col-lg-6">
                 <div class="showing">
                     Showing  <?php echo $GLOBALS['wp_query']->found_posts ?> of  <?php echo $GLOBALS['wp_query']->found_posts ?> Courses
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row g-4">
             <?php while (have_posts()) { ?>
                 <?php the_post() ?>
                 <div class="col-md-4 col-6">
