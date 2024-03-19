@@ -122,7 +122,7 @@ function create_course_product($post)
 
     $product_price_update[] = $product->get_id();
 
-    add_option('product_price_update', $product_price_update);
+    update_option('product_price_update', $product_price_update);
 }
 
 
