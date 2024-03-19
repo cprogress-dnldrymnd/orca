@@ -96,28 +96,28 @@ function action_course_created($post_id, $post, $update)
     if ($post->post_type == 'sfwd-courses') {
         if (wp_is_post_revision($post_id))
             return;
-        create_course_product($post);
+        create_course_product($post_id);
     }
 }
 add_action('wp_insert_post', 'action_course_created', 10, 3);
 
 
-function create_course_product($post)
+function create_course_product($post_id)
 {
 
-    $course_meta = get_post_meta($post->ID, '_sfwd-courses', true);
-    $price = 500;
+    $price = get_post_meta($post_id, '_sfwd-courses', true)['sfwd-courses_course_price'];
+
     $product = new WC_Product_Course(false);
 
-    $product->set_name($post->post_title);
+    $product->set_name($post_id);
 
-    $product->set_slug($post->post_name);
+    $product->set_slug($post_id);
 
     $product->set_regular_price($price); // in current shop currency
 
-    $product->set_sku($post->ID);
+    $product->set_sku($post_id);
 
     $product->save();
 
-    update_post_meta($product->get_id(), '_related_course', array($post->ID));
+    update_post_meta($product->get_id(), '_related_course', array($post_id));
 }
