@@ -26,7 +26,7 @@ $terms = get_terms(array(
                         </select>
                     </div>
                     <div class="filter-button">
-                        <button>Apply Filter</button>
+                        <button id="apply-filter">Apply Filter</button>
                     </div>
                 </div>
             </div>
