@@ -1,9 +1,4 @@
 <?php get_header() ?>
-<?php
-
-global $wp_query;
-echo $wp_query->post_count;
-?>
 <section class="archive-courses archive-grid background-light-gray py-5">
     <div class="container large-container">
         <div class="heading-box">
