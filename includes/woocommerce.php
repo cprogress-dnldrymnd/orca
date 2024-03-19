@@ -105,8 +105,8 @@ add_action('wp_insert_post', 'action_course_created', 10, 3);
 function create_course_product($post)
 {
 
-    $price = get_post_meta($post->ID, '_sfwd-courses', true)['sfwd-courses_course_price'];
-
+    $course_meta = get_post_meta($post->ID, '_sfwd-courses', true);
+    $price = $course_meta['sfwd-courses_course_price'];
     $product = new WC_Product_Course(false);
 
     $product->set_name($post->post_title);
