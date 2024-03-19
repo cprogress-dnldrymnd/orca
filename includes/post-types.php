@@ -155,7 +155,8 @@ function movies_to_films($args, $post_type)
     $post_types = array(
         'groups',
         'sfwd-lessons',
-        'sfwd-topic'
+        'sfwd-topic',
+        'product'
     );
     if (in_array($post_type, $post_types)) {
         $args['exclude_from_search'] = true;
