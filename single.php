@@ -1,15 +1,13 @@
 <?php get_header() ?>
 <?php
 // that's CRUD object
-$product = new WC_Product_Simple();
+$product = new WC_Product_Simple($product);
 
 $product->set_name('Wizard Hat'); // product title
 
 $product->set_slug('medium-size-wizard-hat-in-new-york');
 
 $product->set_regular_price(500.00); // in current shop currency
-
-$product->set_type('course'); // in current shop currency
 
 $product->save();
 ?>
