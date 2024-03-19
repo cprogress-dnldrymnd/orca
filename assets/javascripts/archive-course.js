@@ -57,6 +57,16 @@ function ajax($offset, $event_type = 'html') {
 
             action: 'archive_ajax',
 
+            taxonomy_terms: $taxonomy_terms,
+
+            post_type: $post_type,
+
+            taxonomy: $taxonomy,
+
+            // sortby: $sortby,
+
+            offset: $offset
+
 
         },
 
