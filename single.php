@@ -18,7 +18,6 @@
             }
             update_option('product_price_update', array());
         }
-
         ?>
         <pre>
             <?php var_dump(get_option('product_price_update')) ?>
