@@ -142,7 +142,6 @@ function product_save($post_id)
 
 function action_admin_init()
 {
-    echo 'xxxxxxx';
     $product_price_update = get_option('product_price_update');
     if ($product_price_update) {
         foreach ($product_price_update as $product_id) {
@@ -154,4 +153,4 @@ function action_admin_init()
         }
     }
 }
-add_action('admin_head ', 'action_admin_init', 9999);
+add_action('init ', 'action_admin_init', 9999);
