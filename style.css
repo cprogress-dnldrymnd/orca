@@ -11052,6 +11052,7 @@ button.swiper-pagination-bullet {
   --white-color: #ffffff;
   --black-color: #000000;
   --gray-color: #707070;
+  --gray-color-2: #8D8D8D;
   --blue-color: #42BDF4;
   --green-color: #B4D012;
   --light-gray-color: #F2F2F2; }
@@ -11736,6 +11737,9 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 
 .course-group img {
   max-width: 150px; }
+
+.filter .showing {
+  color: var(--gray-color-2); }
 
 input[type="text"],
 input[type="number"],
