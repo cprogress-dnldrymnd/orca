@@ -17,7 +17,7 @@ var_dump($product);
     <div class="container large-container">
         <?php the_content() ?>
         <pre>
-         <?php var_dump(get_post_meta(get_the_ID())) ?>
+         <?php //var_dump(get_post_meta(get_the_ID())) ?>
         </pre>
     </div>
 </section>
