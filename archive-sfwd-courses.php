@@ -1,12 +1,30 @@
 <?php get_header() ?>
-
-
+<?php
+$terms = get_terms(array(
+    'taxonomy'   => 'ld_course_category',
+    'hide_empty' => false,
+));
+?>
 <section class="archive-courses archive-grid background-light-gray py-2 py-5">
     <div class="container large-container">
-        <div class="row g-4 filter mb-4">
+        <div class="row g-4 filter mb-4 align-items-center">
             <div class="col-lg-6">
                 <div class="showing">
-                    Showing  <?php echo $GLOBALS['wp_query']->found_posts ?> of  <?php echo $GLOBALS['wp_query']->found_posts ?> Courses
+                    Showing <?php echo $GLOBALS['wp_query']->found_posts ?> of <?php echo $GLOBALS['wp_query']->found_posts ?> Courses
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="filter-box d-flex">
+                    <div class="filter-select">
+                        <select name="ld_course_category" id="ld_course_category">
+                            <?php foreach ($terms as $term) { ?>
+                                <option value="<?= $term->term_id ?>"><?= $term->name ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="filter-button">
+                        <button>Apply Filter</button>
+                    </div>
                 </div>
             </div>
         </div>
