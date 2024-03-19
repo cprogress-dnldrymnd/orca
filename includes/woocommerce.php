@@ -13,24 +13,6 @@ function filter_woocommerce_cart_redirect_after_error($redirect, $product_id)
 }
 add_filter('woocommerce_cart_redirect_after_error', 'filter_woocommerce_cart_redirect_after_error', 10, 2);
 
-function searchfilter($query)
-{
-    $meta_query = array(
-        array(
-            'key' => '_sku',
-            'value' => 'XSDS323',
-            'compare' => 'LIKE',
-        ),
-    );
-    if ($query->is_search && !is_admin()) {
-        $query->set('meta_query', $meta_query);
-    }
-
-    return $query;
-}
-
-add_filter('pre_get_posts', 'searchfilter', 9999999);
-
 
 /**
  * @snippet       Add First & Last Name to My Account Register Form - WooCommerce
