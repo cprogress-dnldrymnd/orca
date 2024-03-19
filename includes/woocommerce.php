@@ -101,9 +101,6 @@ add_action('transition_post_status', 'course_created', 10, 3);
 
 function create_course_product($post)
 {
-
-    $price = learndash_get_course_price($post->ID)['price'];
-
     $product = new WC_Product_Course(false);
 
     $product->set_name($post->post_title); // product title
@@ -111,10 +108,6 @@ function create_course_product($post)
     $product->set_slug($post->post_name);
 
     $product->set_sku($post->ID);
-
-    if ($price) {
-        $product->set_regular_price($price); // in current shop currency
-    }
 
     $product->save();
 
@@ -124,9 +117,14 @@ function create_course_product($post)
 }
 
 
-add_action( 'before_delete_post', 'wpse_110037_new_posts' );
-add_action( 'save_post', 'wpse_110037_new_posts' );
+add_action('before_delete_post', 'wpse_110037_new_posts');
+add_action('save_post', 'wpse_110037_new_posts');
 
-function wpse_110037_new_posts($post_id){
-    $WC_Product = wc_get_product( $post_id);
+function wpse_110037_new_posts($post_id)
+{
+    $course_id = get_post_meta($post_id, '_related_course', true);
+    $price = learndash_get_course_price($course_id[0])['price'];
+    $product = new WC_Product_Course($post_id);
+    $product->set_regular_price($price);
+    $product->save();
 }

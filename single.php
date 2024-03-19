@@ -6,9 +6,7 @@
 
         $price = learndash_get_course_price(855)['price'];
         echo $price;
-        $product = new WC_Product_Course(855);
-        $product->set_regular_price(20);
-        $product->save();
+    
 
         ?>
         <pre>
