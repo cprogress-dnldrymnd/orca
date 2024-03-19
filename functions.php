@@ -48,19 +48,12 @@ function get__theme_option($value)
 	return get_option('_' . $value);
 }
 
-function course_ajax()
-{
-	if (is_post_type_archive('sfwd-courses')) {
-		require_once('includes/ajax.php');
-	}
-	require_once('includes/bootstrap-navwalker.php');
-	require_once('includes/menus.php');
-	require_once('includes/theme-widgets.php');
-	require_once('includes/post-types.php');
-	require_once('includes/learndash.php');
-	require_once('includes/shortcodes.php');
-	require_once('includes/hooks.php');
-	require_once('includes/woocommerce.php');
-}
-
-add_action('init', 'course_ajax');
+require_once('includes/ajax.php');
+require_once('includes/bootstrap-navwalker.php');
+require_once('includes/menus.php');
+require_once('includes/theme-widgets.php');
+require_once('includes/post-types.php');
+require_once('includes/learndash.php');
+require_once('includes/shortcodes.php');
+require_once('includes/hooks.php');
+require_once('includes/woocommerce.php');
