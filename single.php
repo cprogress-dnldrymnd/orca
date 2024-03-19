@@ -3,7 +3,7 @@
     <div class="container large-container">
         <?php the_content() ?>
         <pre>
-         <?php var_dump(get_post_meta(181)) 
+         <?php var_dump(get_post_meta(181)['_sfwd-courses']) 
             ?>
         </pre>
     </div>
