@@ -17,6 +17,7 @@ $terms = get_terms(array(
                 <div class="filter-box d-inline-flex">
                     <div class="filter-select me-3">
                         <select name="ld_course_category" id="ld_course_category">
+                            <option value="">All Courses</option>
                             <?php foreach ($terms as $term) { ?>
                                 <option value="<?= $term->term_id ?>"><?= $term->name ?></option>
                             <?php } ?>
