@@ -101,23 +101,17 @@ add_action('transition_post_status', 'so_post_40744782', 10, 3);
 
 function create_course_product($post)
 {
-    // Create post object
-    $my_post = array(
-        'post_title'    => wp_strip_all_tags($post->post_title),
-        'post_status'   => 'publish',
-        'post_author'   => get_current_user_id(),
-        'post_type' => 'product'
-    );
+    $product = new WC_Product_Course(false);
 
-    // Insert the post into the database
-    $post_id = wp_insert_post($my_post);
+    $product->set_name($post->post_title); // product title
 
-    // $price = learndash_get_course_price($post_id)['price'];
+    $product->set_slug($post->post_name);
 
-    update_post_meta($post_id, '_related_course', array($post->ID));
-    update_post_meta($post_id, '_sku', $post->ID);
+    $product->set_regular_price(500.00); // in current shop currency
 
+    $product->save();
 
-    wp_remove_object_terms($post_id, 'simple', 'product_type');
-    wp_set_object_terms($post_id, 'course', 'product_type', true);
+    $product->get_id();
+
+    update_post_meta($product->get_id(), '_related_course', array($post->ID));
 }
