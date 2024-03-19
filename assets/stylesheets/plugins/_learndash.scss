@@ -134,7 +134,8 @@
 }
 
 .image-box-course {
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0 !important;
+    border-bottom: 1px solid var(--light-gray-color);
     .meta-box {
         position: absolute;
         top: 20px;
