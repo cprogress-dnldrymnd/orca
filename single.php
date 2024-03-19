@@ -11,6 +11,7 @@ $product->set_regular_price(500.00); // in current shop currency
 
 $product->save();
 
+echo $product->get_id();
 ?>
 <pre>
     <?php
