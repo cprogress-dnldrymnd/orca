@@ -101,13 +101,16 @@ add_action('transition_post_status', 'so_post_40744782', 10, 3);
 
 function create_course_product($post)
 {
+
+    $price = get_post_meta($post->ID, '_sfwd-courses', true)['sfwd-courses_course_price'];
+
     $product = new WC_Product_Course(false);
 
     $product->set_name($post->post_title);
 
     $product->set_slug($post->post_name);
 
-    $product->set_regular_price(); // in current shop currency
+    $product->set_regular_price($price); // in current shop currency
 
     $product->set_sku($post->ID);
 
