@@ -13,8 +13,8 @@ $terms = get_terms(array(
                     Showing <?php echo $GLOBALS['wp_query']->found_posts ?> of <?php echo $GLOBALS['wp_query']->found_posts ?> Courses
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="filter-box d-flex">
+            <div class="col-lg-6 text-end">
+                <div class="filter-box d-inline-flex">
                     <div class="filter-select">
                         <select name="ld_course_category" id="ld_course_category">
                             <?php foreach ($terms as $term) { ?>

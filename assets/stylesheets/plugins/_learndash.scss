@@ -340,4 +340,12 @@ body.ld-in-focus-mode.admin-bar {
     .showing {
         color: var(--gray-color-2);
     }
+    .filter-box {
+        select, button {
+            border: none;
+            height: 38px;
+            padding: 5px 20px;
+            border-radius: 0;
+        }
+    }
 }
