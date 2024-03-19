@@ -145,3 +145,17 @@ $Testimonials->exclude_from_search = true;
 $Testimonials->publicly_queryable = false;
 $Testimonials->show_in_admin_bar = false;
 $Testimonials->has_archive = false;
+
+
+
+
+add_filter('register_post_type_args', 'movies_to_films', 10, 2);
+function movies_to_films($args, $post_type)
+{
+
+    if ($post_type == 'sfwd-lessons' || $post_type == 'sfwd-topic') {
+        $args['exclude_from_search'] = true;
+    }
+
+    return $args;
+}
