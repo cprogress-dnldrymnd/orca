@@ -56,6 +56,9 @@
                     <div class="anchor-link" id="testimonials"></div>
                     <?= do_shortcode('[_course_testimonial]') ?>
                 </div>
+                <pre>
+                    <?php var_dump(get_post_meta(get_the_ID())) ?>
+                </pre>
             </div>
         </div>
     </section>

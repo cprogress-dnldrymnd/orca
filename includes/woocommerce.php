@@ -99,19 +99,19 @@ function so_post_40744782($new_status, $old_status, $post)
 add_action('transition_post_status', 'so_post_40744782', 10, 3);
 
 
-function create_course_product($post_id)
+function create_course_product($post)
 {
     $product = new WC_Product_Course(false);
 
-    $product->set_name('Wizard Hat'); // product title
+    $product->set_name($post->post_title);
 
-    $product->set_slug('medium-size-wizard-hat-in-new-york');
+    $product->set_slug($post->post_name);
 
-    $product->set_regular_price(500.00); // in current shop currency
+    $product->set_regular_price(); // in current shop currency
 
-    $product->set_sku($post_id);
+    $product->set_sku($post->ID);
 
     $product->save();
 
-    update_post_meta($product->get_id(), '_related_course', array($post_id));
+    update_post_meta($product->get_id(), '_related_course', array($post->ID));
 }
