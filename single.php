@@ -1,7 +1,7 @@
 <?php get_header() ?>
 <?php
 // that's CRUD object
-$product = new WC_Product_Simple();
+$product = new WC_Product_Course();
 
 $product->set_name('Wizard Hat'); // product title
 
