@@ -3,9 +3,9 @@
     <div class="container large-container">
         <?php the_content() ?>
         <?php
-       
-        update_post_meta(835, '_regular_price', 500);
-
+        $product = new WC_Product(835);
+        $product->set_price(20);
+        $product->save();
         var_dump(learndash_get_course_price(834)['price']);
         ?>
     </div>
