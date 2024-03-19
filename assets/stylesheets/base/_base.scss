@@ -92,7 +92,7 @@ img {
         @include status-style;
         background-color: var(--accent-color);
         text-decoration: none;
-        color: var(--white-color);
+        color: var(--white-color) !important;
         @include not-last-child {
             margin-right: 10px;
         }

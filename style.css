@@ -11171,7 +11171,7 @@ img {
   display: inline-block;
   background-color: var(--accent-color);
   text-decoration: none;
-  color: var(--white-color); }
+  color: var(--white-color) !important; }
   .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
