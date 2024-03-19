@@ -4,7 +4,7 @@ add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
     $DisplayData = new DisplayData();
-    $category = $_POST['category'];
+    $taxonomy_terms = $_POST['taxonomy_terms'];
     $taxonomy = $_POST['taxonomy'];
     $post_type = $_POST['post_type'];
     $offset = $_POST['offset'];
@@ -29,17 +29,17 @@ function archive_ajax()
         }
     }
 
-    if ($category) {
+    if ($taxonomy_terms) {
         if ($taxonomy != 'category') {
             $args['tax_query'] = array(
                 array(
                     'taxonomy' => $taxonomy,
                     'field'    => 'term_id',
-                    'terms'    => $category,
+                    'terms'    => $taxonomy_terms,
                 ),
             );
         } else {
-            $args['cat'] = $category;
+            $args['cat'] = $taxonomy_terms;
         }
     }
 
