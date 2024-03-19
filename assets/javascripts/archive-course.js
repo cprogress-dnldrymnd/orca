@@ -63,10 +63,7 @@ function ajax($offset, $event_type = 'html') {
 
             taxonomy: $taxonomy,
 
-            // sortby: $sortby,
-
             offset: $offset
-
 
         },
 
