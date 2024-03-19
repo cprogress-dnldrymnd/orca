@@ -64,7 +64,9 @@
                                 </ul>
                             </div>
                             <div class="header-right-bottom d-flex justify-content-end">
-                                <input type="text" class="form-control search w-auto me-2 d-none d-lg-block" id="search" placeholder="Search">
+                                <form action="/" method="GET">
+                                    <input type="text" name="s" class="form-control search w-auto me-2 d-none d-lg-block" id="search" placeholder="Search">
+                                </form>
                                 <button class="menu-toggler btn btn-link p-0 d-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHeaderMenu" aria-controls="offcanvasHeaderMenu">
                                     <span>
                                         <span class="menu-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-water" viewBox="0 0 16 16">
