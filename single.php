@@ -3,7 +3,7 @@
     <div class="container large-container">
         <?php the_content() ?>
         <?php
-        var_dump();
+        var_dump(learndash_get_course_price(181)['price']);
         ?>
     </div>
 </section>
