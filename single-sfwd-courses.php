@@ -28,7 +28,7 @@
                 </div>
                 <div class="learndash-single-holder learndash-single-content position-relative">
                     <div class="anchor-link" id="about"></div>
-                    <?php the_content() ?>
+                    <?= do_shortcode(get_the_content()) ?>
                 </div>
 
                 <div class="learndash-single-holder learndash-single-cta" id="cta">
