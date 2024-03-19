@@ -47,42 +47,7 @@ function archive_ajax()
     $count = $the_query->found_posts;
     echo hide_load_more($count, $offset, $posts_per_page);
 ?>
-    <?php if (!$offset) { ?>
-        <div class="row g-4">
-        <?php } ?>
-        <?php
-        if ($the_query->have_posts()) {
-            while ($the_query->have_posts()) {
-                $the_query->the_post();
-        ?>
-                <div class="col-md-4 col-6 post-item">
-                    <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
-                        <?= do_shortcode('[_learndash_image id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
-                        <div class="content-holder d-flex flex-column justify-content-between">
-                            <div>
-                                <?= do_shortcode('[_heading class="color-primary" tag="h3" heading="' . get_the_title() . '"]'); ?>
-                                <?= do_shortcode('[_description description="If you want to get onboard and become one of our volunteer Marine Mammal Surveyors..."]'); ?>
-                                <hr>
-                                <?= do_shortcode('[_learndash_course_meta]'); ?>
-                            </div>
-                            <div>
-                                <?= do_shortcode('[_learndash_course_button]'); ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php }
-        } else {
-            ?>
-            <h2>No Results Found</h2>
-        <?php
-        }
-        wp_reset_postdata();
-        ?>
-        <?php if (!$offset) { ?>
-        </div>
-    <?php } ?>
-
+    xxxxxxxxxxxxxx
 
 <?php
 
