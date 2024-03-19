@@ -152,8 +152,12 @@ $Testimonials->has_archive = false;
 add_filter('register_post_type_args', 'movies_to_films', 10, 2);
 function movies_to_films($args, $post_type)
 {
-
-    if ($post_type == 'sfwd-lessons' || $post_type == 'sfwd-topic') {
+    $post_types = array(
+        'groups',
+        'sfwd-lessons',
+        'sfwd-topic'
+    );
+    if (in_array($post_type, $post_types)) {
         $args['exclude_from_search'] = true;
     }
 
