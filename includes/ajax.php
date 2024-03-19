@@ -49,7 +49,7 @@ function archive_ajax()
     echo hide_load_more($count, $offset, $posts_per_page);
 ?>
     <?php if (!$offset) { ?>
-        <div class="row g-4">
+        <div class="row row-archive g-4">
         <?php } ?>
         <?php
         if ($the_query->have_posts()) {

@@ -72,7 +72,7 @@ function ajax($offset, $event_type = 'html') {
 
         success: function (response) {
             if ($event_type == 'append') {
-                $result_holder_row = $result_holder.find('.row');
+                $result_holder_row = $result_holder.find('.row-archive');
                 jQuery(response).appendTo($result_holder_row);
             } else {
                 $result_holder.html(response);

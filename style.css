@@ -11218,8 +11218,11 @@ section.loading-post select {
   display: inline-flex;
   align-items: center; }
   #load-more svg {
-    display: none; }
-  #load-more.loading {
+    display: none;
+    width: 30px;
+    height: 30px;
+    margin-left: 1rem; }
+  #load-more.loading svg {
     display: inline-block; }
 
 @media (min-width: 1500px) {

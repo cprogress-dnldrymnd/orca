@@ -142,7 +142,6 @@ section.loading-post select {
     animation-timing-function: linear;
 }
 
-
 #load-more {
     display: inline-flex;
     align-items: center;
@@ -153,6 +152,8 @@ section.loading-post select {
         margin-left: 1rem;
     }
     &.loading {
-        display: inline-block;
+        svg {
+            display: inline-block;
+        }
     }
 }
