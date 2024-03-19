@@ -90,16 +90,14 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
-function action_course_created($post_id, $post, $update)
+function so_post_40744782($new_status, $old_status, $post)
 {
-
-    if ($post->post_type == 'sfwd-courses') {
-        if (wp_is_post_revision($post_id))
-            return;
+    $post_type = get_post_type($post->ID);
+    if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
         create_course_product($post);
     }
 }
-add_action('wp_insert_post', 'action_course_created', 10, 3);
+add_action('transition_post_status', 'so_post_40744782', 10, 3);
 
 
 function create_course_product($post)
