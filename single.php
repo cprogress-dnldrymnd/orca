@@ -15,9 +15,8 @@
                 $product = new WC_Product_Course($product_id);
                 $product->set_regular_price($price);
                 $product->save();
-
-                update_option('product_price_update', $product_price_update);
             }
+            update_option('product_price_update', $product_price_update);
         }
 
         ?>
