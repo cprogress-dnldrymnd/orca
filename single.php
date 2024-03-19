@@ -18,7 +18,6 @@
             }
             update_option('product_price_update', array());
         }
-        update_option('product_price_update', array());
 
         ?>
         <pre>
