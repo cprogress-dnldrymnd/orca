@@ -27,6 +27,7 @@ echo $wp_query->post_count;
                         </div>
                     </div>
                 <?php } ?>
+                <?php wp_reset_postdata() ?>
             </div>
         <?php } else { ?>
             <div class="heading-box">
@@ -35,6 +36,7 @@ echo $wp_query->post_count;
                 </h2>
             </div>
         <?php } ?>
+        
     </div>
 </section>
 
