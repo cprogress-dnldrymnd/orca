@@ -65,7 +65,7 @@
                             </div>
                             <div class="header-right-bottom d-flex justify-content-end">
                                 <form action="/" method="GET">
-                                    <input type="text" name="s" class="form-control search w-auto me-2 d-none d-lg-block" id="search" value="<?= isset($_GET['s']) $_GET['s'] ? : ''?>" placeholder="Search">
+                                    <input type="text" name="s" class="form-control search w-auto me-2 d-none d-lg-block" id="search" value="<?= isset($_GET['s'])  ? $_GET['s'] : '' ?>" placeholder="Search">
                                 </form>
                                 <button class="menu-toggler btn btn-link p-0 d-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHeaderMenu" aria-controls="offcanvasHeaderMenu">
                                     <span>
