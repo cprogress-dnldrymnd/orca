@@ -11740,7 +11740,11 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 
 .filter .showing {
   color: var(--gray-color-2); }
-.filter .filter-box select, .filter .filter-box button {
+.filter .filter-box button {
+  background-color: var(--primary-color);
+  color: var(--white-color); }
+.filter .filter-box select,
+.filter .filter-box button {
   border: none;
   height: 38px;
   padding: 5px 20px;

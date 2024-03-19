@@ -171,7 +171,7 @@
                     margin-right: 1rem;
                 }
             }
-            .add_to_cart_button  {
+            .add_to_cart_button {
                 font-size: 15px;
                 width: auto;
                 padding: 10px 15px;
@@ -263,7 +263,6 @@
     }
 }
 
-
 div#sticky-add-to-cart {
     position: fixed;
     bottom: 0;
@@ -341,7 +340,12 @@ body.ld-in-focus-mode.admin-bar {
         color: var(--gray-color-2);
     }
     .filter-box {
-        select, button {
+        button {
+            background-color: var(--primary-color);
+            color: var(--white-color    );
+        }
+        select,
+        button {
             border: none;
             height: 38px;
             padding: 5px 20px;
