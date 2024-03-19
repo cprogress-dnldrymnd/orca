@@ -119,13 +119,9 @@ function create_course_product($post)
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
 
-    if (option_exists('product_price_update')) {
-        $product_price_update = get_option('product_price_update');
-        $product_price_update[] = $product->get_id();
-        update_option('product_price_update', $product_price_update);
-    } else {
-        add_option('product_price_update', array($product->get_id()));
-    }
+    $product_price_update = get_option('product_price_update');
+    $product_price_update[] = $product->get_id();
+    add_option('product_price_update', $product_price_update);
 }
 
 function option_exists($option_name, $site_wide = false)
