@@ -36,7 +36,7 @@ $terms = get_terms(array(
 
             </div>
         </div>
-        <div class="load-more text-center">
+        <div class="load-more text-center mt-5">
             <a href="#" id="load-more" class="d-none btn btn-accent">
                 <span>Load more</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
