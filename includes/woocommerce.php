@@ -143,7 +143,6 @@ function product_save($post_id)
 function action_admin_init()
 {
     $product_price_update = get_option('product_price_update');
-    echo 'xxx';
     if ($product_price_update) {
         foreach ($product_price_update as $product_id) {
             $course_id = get_post_meta($product_id, '_related_course', true);
@@ -154,4 +153,4 @@ function action_admin_init()
         }
     }
 }
-add_action('init ', 'action_admin_init');
+add_action('admin_head ', 'action_admin_init');
