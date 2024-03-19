@@ -83,6 +83,10 @@ function ajax($offset, $event_type = 'html') {
 
             $archive_section.removeClass('loading-post');
 
+            $height = $archive_section.outerHeight();
+
+            $archive_section.css('height', $height + 'px');
+
         }
 
     });
