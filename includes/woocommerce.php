@@ -118,14 +118,24 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
-
     $product_price_update = get_option('product_price_update');
+
     $product_price_update[] = $product->get_id();
-    add_option('product_price_update', $product_price_update);
+
+    update_option('product_price_update', $product_price_update);
 }
 
-function option_exists($option_name, $site_wide = false)
+/*
+add_action('save_post', 'product_save');
+
+function product_save($post_id)
 {
-    global $wpdb;
-    return $wpdb->query($wpdb->prepare("SELECT * FROM " . ($site_wide ? $wpdb->base_prefix : $wpdb->prefix) . "options WHERE option_name ='%s' LIMIT 1", $option_name));
+    if (get_post_type($post_id) == 'product') {
+        $course_id = get_post_meta($post_id, '_related_course', true);
+        $price = learndash_get_course_price($course_id[0])['price'];
+        $product = new WC_Product_Course($post_id);
+        $product->set_regular_price($price);
+        $product->save();
+    }
 }
+*/
