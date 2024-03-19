@@ -5,7 +5,7 @@ $terms = get_terms(array(
     'hide_empty' => false,
 ));
 ?>
-<section class="archive-courses archive-grid archive-section background-light-gray py-2 py-5">
+<section class="archive-courses archive-grid archive-section background-light-gray py-5">
     <div class="container large-container">
         <div class="row g-4 filter mb-4 align-items-center">
             <div class="col-lg-6">

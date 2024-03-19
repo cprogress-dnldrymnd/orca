@@ -1,6 +1,6 @@
 <?php get_header() ?>
 
-<section class="archive-courses archive-grid background-light-gray py-2 py-5">
+<section class="archive-courses archive-grid background-light-gray py-5">
     <div class="container large-container">
         <?php if (have_posts()) { ?>
             <div class="row">
