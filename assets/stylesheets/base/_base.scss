@@ -79,6 +79,9 @@ img {
     &.btn-white {
         @include button-white;
     }
+    &.btn-accent {
+        @include button-accent;
+    }
 }
 .wp-element-button.wp-element-button {
     @include button-style;

@@ -615,6 +615,15 @@
         border-color: var(--accent-color);
     }
 }
+@mixin button-accent {
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--white-color);
+    @include on-event() {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+}
 
 @mixin button-black {
     background-color: var(--black-color);
