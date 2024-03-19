@@ -16,7 +16,7 @@
                 $product->set_regular_price($price);
                 $product->save();
             }
-            update_option('product_price_update', '');
+            update_option('product_price_update', array());
         }
 
         ?>
