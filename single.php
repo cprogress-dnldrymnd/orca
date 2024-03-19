@@ -19,6 +19,12 @@ $product->set_image_id(90);
 $product->set_category_ids(array(19));
 // you can also use $product->set_tag_ids() for tags, brands etc
 
+$product->supports = array(
+    'ajax_add_to_cart',
+);
+$product->set_virtual( true );
+$product->set_sold_individually( true );
+
 $product->save();
 ?>
 <section class="archive-courses archive-grid background-light-gray py-5">
