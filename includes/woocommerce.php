@@ -117,11 +117,7 @@ function create_course_product($post)
     update_post_meta($post_id, '_related_course', array($post->ID));
     update_post_meta($post_id, '_sku', $post->ID);
 
-    if ($price) {
-        $product = new WC_Product($post_id);
-        $product->set_price(20);
-        $product->save();
-    }
+
 
 
     wp_remove_object_terms($post_id, 'simple', 'product_type');
