@@ -121,7 +121,7 @@ function create_course_product($post)
     $product_price_update = get_option('product_price_update');
 
     $product_price_update[] = $product->get_id();
-    
+
     add_option('product_price_update', $product_price_update);
 }
 
@@ -138,3 +138,10 @@ function product_save($post_id)
         $product->save();
     }
 }
+
+
+function action_admin_init()
+{
+    var_dump(get_option('product_price_update'));
+}
+add_action('admin_init ', 'action_admin_init');
