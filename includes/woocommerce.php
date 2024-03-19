@@ -142,7 +142,9 @@ function product_save($post_id)
 
 function action_admin_init()
 {
+    if (!is_admin())
+        return;
     var_dump(get_option('product_price_update'));
     echo 'xxxx';
 }
-add_action('admin_init ', 'action_admin_init');
+add_action('init ', 'action_admin_init');
