@@ -4,8 +4,8 @@ jQuery(document).ready(function ($) {
     load_more_button_listener();
 });
 
-function ajax_form() {
-    jQuery(".archive-form-filter").change(function (e) {
+function ajax_form() {i
+    jQuery("#apply-filter").click(function (e) {
         e.preventDefault();
         ajax(0);
     });
