@@ -1,19 +1,7 @@
 <?php get_header() ?>
 <?php
 // that's CRUD object
-$product = new WC_Product_Course($product);
 
-$product->set_name('Wizard Hat'); // product title
-
-$product->set_slug('medium-size-wizard-hat-in-new-york');
-
-$product->set_regular_price(500.00); // in current shop currency
-
-$product->save();
-
-$product->get_id();
-
-update_post_meta($product->get_id(), '_related_course', array(181));
 ?>
 <pre>
     <?php
