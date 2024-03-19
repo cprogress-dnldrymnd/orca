@@ -57,7 +57,7 @@
                     <?= do_shortcode('[_course_testimonial]') ?>
                 </div>
                 <pre>
-                    <?php var_dump(get_post_meta(get_the_ID())) ?>
+                    <?php var_dump(get_post_meta(get_the_ID(), '_sfwd-courses', true)) ?>
                 </pre>
             </div>
         </div>
