@@ -106,7 +106,7 @@ function create_course_product($post)
 {
 
     $course_meta = get_post_meta($post->ID, '_sfwd-courses', true);
-    $price = $course_meta['sfwd-courses_course_price'];
+    $price = 500;
     $product = new WC_Product_Course(false);
 
     $product->set_name($post->post_title);
