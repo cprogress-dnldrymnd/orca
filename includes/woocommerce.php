@@ -112,9 +112,14 @@ function create_course_product($post)
     // Insert the post into the database
     $post_id = wp_insert_post($my_post);
 
+    $price = learndash_get_course_price($post_id)['price'];
+
     update_post_meta($post_id, '_related_course', array($post->ID));
     update_post_meta($post_id, '_sku', $post->ID);
 
+    if ($price) {
+        update_post_meta($post_id, '_regular_price', $price);
+    }
     wp_remove_object_terms($post_id, 'simple', 'product_type');
     wp_set_object_terms($post_id, 'course', 'product_type', true);
 }
