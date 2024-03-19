@@ -94,5 +94,5 @@ function bbloomer_save_name_fields($customer_id)
 add_action('woocommerce_admin_process_product_object', 'action_save_product_meta');
 function action_save_product_meta($product)
 {
-    $product->update_meta_data('_related_products', array(181));
+    $product->update_meta_data('_related_course', array(181));
 }
