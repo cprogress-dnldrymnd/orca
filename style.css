@@ -11207,6 +11207,10 @@ section.loading-post select {
   animation-iteration-count: infinite;
   animation-timing-function: linear; }
 
+#load-more {
+  display: inline-flex;
+  align-items: center; }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
