@@ -10,7 +10,7 @@ echo $wp_query->post_count;
             <h2>Search results for <?= $_GET['s'] ?></h2>
         </div>
         <?php if (have_posts()) { ?>
-            <div class="row">
+            <div class="row g-4">
                 <?php while (have_posts()) { ?>
                     <?php the_post() ?>
                     <div class="col-md-4 col-6">
