@@ -105,7 +105,7 @@ add_action('wp_insert_post', 'action_course_created', 10, 3);
 function create_course_product($post_id)
 {
 
-    $price = get_post_meta($post_id, '_sfwd-courses', true)['sfwd-courses_course_price'];
+    //$price = get_post_meta($post_id, '_sfwd-courses', true)['sfwd-courses_course_price'];
 
     $product = new WC_Product_Course(false);
 
@@ -113,7 +113,7 @@ function create_course_product($post_id)
 
     $product->set_slug($post_id);
 
-    $product->set_regular_price($price); // in current shop currency
+   // $product->set_regular_price($price); // in current shop currency
 
     $product->set_sku($post_id);
 
