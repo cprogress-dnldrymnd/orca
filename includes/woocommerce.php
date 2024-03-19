@@ -110,7 +110,7 @@ function create_course_product($post)
     $product->set_sku($post->ID);
 
     $price = learndash_get_course_price($post->ID)['price'];
-    
+
     $product->set_regular_price($price);
 
     $product->save();
@@ -118,6 +118,11 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
+    $product_price_update = get_option('product_price_update');
+
+    $product_price_update[] = $product->get_id();
+    
+    add_option('product_price_update', $product_price_update);
 }
 
 
