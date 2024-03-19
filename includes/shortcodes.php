@@ -22,7 +22,9 @@ function breadcrumbs($atts)
         $title = get_the_title();
         $post_type_obj = get_post_type_object(get_post_type());
         $post_type = $post_type_obj->labels->name; //Ice Creams.
-        $html .= '<li><a href="' . get_post_type_archive_link(get_post_type())  . '">' . $post_type . '</a></li>';
+        if (!is_page()) {
+            $html .= '<li><a href="' . get_post_type_archive_link(get_post_type())  . '">' . $post_type . '</a></li>';
+        }
         $html .= '<li><span>' . $title . '</span></li>';
     }
 
@@ -78,8 +80,7 @@ function _image($atts)
     if ($image_url) {
         $html .= '<img src="' . $image_url . '" >';
     } else {
-        $html .= '<img src="'.image_dir.'/placeholder.jpg" >';
-        
+        $html .= '<img src="' . image_dir . '/placeholder.jpg" >';
     }
     $html .= '</div>';
 
