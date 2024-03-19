@@ -9,22 +9,6 @@ $product->set_slug('medium-size-wizard-hat-in-new-york');
 
 $product->set_regular_price(500.00); // in current shop currency
 
-$product->set_short_description('<p>Here it is... A WIZARD HAT!</p><p>Only here and now.</p>');
-// you can also add a full product description
-// $product->set_description( 'long description here...' );
-
-$product->set_image_id(90);
-
-// let's suppose that our 'Accessories' category has ID = 19 
-$product->set_category_ids(array(19));
-// you can also use $product->set_tag_ids() for tags, brands etc
-
-$product->supports = array(
-    'ajax_add_to_cart',
-);
-$product->set_virtual( true );
-$product->set_sold_individually( true );
-
 $product->save();
 ?>
 <section class="archive-courses archive-grid background-light-gray py-5">
