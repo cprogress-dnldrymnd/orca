@@ -11776,6 +11776,8 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 .filter .filter-box button {
   background-color: var(--primary-color);
   color: var(--white-color); }
+  .filter .filter-box button:hover, .filter .filter-box button:active, .filter .filter-box button:focus {
+    background-color: var(--accent-color); }
 .filter .filter-box select,
 .filter .filter-box button {
   border: none;

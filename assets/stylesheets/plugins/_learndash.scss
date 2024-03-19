@@ -343,6 +343,9 @@ body.ld-in-focus-mode.admin-bar {
         button {
             background-color: var(--primary-color);
             color: var(--white-color    );
+            @include on-event {
+                background-color: var(--accent-color);
+            }
         }
         select,
         button {
