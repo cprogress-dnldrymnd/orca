@@ -90,9 +90,16 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
+function so_post_40744782($new_status, $old_status, $post)
+{
+    if ($new_status == 'publish' && $old_status != 'publish') {
+        create_course_product($post->ID);
+    }
+}
+add_action('transition_post_status', 'so_post_40744782', 10, 3);
 
 
-function create_course_product()
+function create_course_product($post_id)
 {
     $product = new WC_Product_Course(false);
 
@@ -102,9 +109,9 @@ function create_course_product()
 
     $product->set_regular_price(500.00); // in current shop currency
 
+    $product->set_sku($post_id);
+
     $product->save();
 
-    $product->get_id();
-
-    update_post_meta($product->get_id(), '_related_course', array(181));
+    update_post_meta($product->get_id(), '_related_course', array($post_id));
 }
