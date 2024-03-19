@@ -109,10 +109,6 @@ function create_course_product($post)
 
     $product->set_sku($post->ID);
 
-    $price = learndash_get_course_price($post->ID)['price'];
-
-    $product->set_regular_price($price);
-
     $product->save();
 
     $product->get_id();
