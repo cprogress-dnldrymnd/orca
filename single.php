@@ -10,7 +10,7 @@
 
         ?>
         <pre>
-            <?php var_dump(get_post_meta(846)) ?>
+            <?php var_dump(get_post_meta(846, '_sfwd-courses', true)) ?>
         </pre>
     </div>
 </section>
