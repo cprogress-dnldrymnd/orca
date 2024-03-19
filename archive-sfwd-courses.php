@@ -32,7 +32,7 @@ $terms = get_terms(array(
             </div>
         </div>
         <div id="results">
-            <div class="result-holder">
+            <div class="results-holder">
 
             </div>
         </div>
