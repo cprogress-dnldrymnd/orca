@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
     load_more_button_listener();
 });
 
-function ajax_form() {i
+function ajax_form() {
     jQuery("#apply-filter").click(function (e) {
         e.preventDefault();
         ajax(0);
