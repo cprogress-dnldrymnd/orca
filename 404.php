@@ -1,5 +1,7 @@
 <?php get_header() ?>
 
-<h1>Not Found!</h1>
+<div class="not-found text-center p-5">
+    <h1>Not Found!</h1>
+</div>
 
 <?php get_footer() ?>
