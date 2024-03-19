@@ -114,6 +114,12 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
+
+    $course_id = get_post_meta($product->get_id(), '_related_course', true);
+    $price = learndash_get_course_price($course_id[0])['price'];
+    $product = new WC_Product_Course($post_id);
+    $product->set_regular_price($price);
+    $product->save();
 }
 
 
@@ -122,10 +128,5 @@ add_action('save_post', 'action_save_post');
 function action_save_post($post_id)
 {
     if (get_post_type($post_id) == 'product') {
-        $course_id = get_post_meta($post_id, '_related_course', true);
-        $price = learndash_get_course_price($course_id[0])['price'];
-        $product = new WC_Product_Course($post_id);
-        $product->set_regular_price($price);
-        $product->save();
     }
 }
