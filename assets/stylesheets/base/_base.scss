@@ -136,12 +136,13 @@ section.loading-post select {
 }
 .loading-results svg {
     width: 50px;
+}
+.spin {
     animation-name: spin;
     animation-duration: 3000ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
-
 #load-more {
     display: inline-flex;
     align-items: center;
@@ -150,6 +151,7 @@ section.loading-post select {
         width: 30px;
         height: 30px;
         margin-left: 1rem;
+        
     }
     &.loading {
         svg {

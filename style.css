@@ -11208,7 +11208,9 @@ section.loading-post select {
   pointer-events: none; }
 
 .loading-results svg {
-  width: 50px;
+  width: 50px; }
+
+.spin {
   animation-name: spin;
   animation-duration: 3000ms;
   animation-iteration-count: infinite;
