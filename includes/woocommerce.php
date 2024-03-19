@@ -117,13 +117,15 @@ function create_course_product($post)
 }
 
 
-add_action('save_post', 'wpse_110037_new_posts');
+add_action('save_post', 'product_save');
 
-function wpse_110037_new_posts($post_id)
+function product_save($post_id)
 {
-    $course_id = get_post_meta($post_id, '_related_course', true);
-    $price = learndash_get_course_price($course_id[0])['price'];
-    $product = new WC_Product_Course($post_id);
-    $product->set_regular_price($price);
-    $product->save();
+    if (get_post_type($post_id) == 'product') {
+        $course_id = get_post_meta($post_id, '_related_course', true);
+        $price = learndash_get_course_price($course_id[0])['price'];
+        $product = new WC_Product_Course($post_id);
+        $product->set_regular_price($price);
+        $product->save();
+    }
 }
