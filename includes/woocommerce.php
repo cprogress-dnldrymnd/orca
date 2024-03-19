@@ -118,5 +118,10 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
-  
+    
+    $product_price_update = get_option('product_price_update');
+
+    $product_price_update[] = $product->get_id();
+
+    update_option('product_price_update', $product_price_update);
 }
