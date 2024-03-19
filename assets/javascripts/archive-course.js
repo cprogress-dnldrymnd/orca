@@ -85,7 +85,7 @@ function ajax($offset, $event_type = 'html') {
 
             $height = $archive_section.outerHeight();
 
-            $archive_section.css('height', $height + 'px');
+            $archive_section.css('min-height', $height + 'px');
 
         }
 
