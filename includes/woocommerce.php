@@ -117,7 +117,7 @@ function create_course_product($post)
 
     $course_id = get_post_meta($product->get_id(), '_related_course', true);
     $price = learndash_get_course_price($course_id[0])['price'];
-    $product = new WC_Product_Course($post_id);
+    $product = new WC_Product_Course($product->get_id());
     $product->set_regular_price($price);
     $product->save();
 }
