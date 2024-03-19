@@ -101,13 +101,20 @@ add_action('transition_post_status', 'so_post_40744782', 10, 3);
 
 function create_course_product($post)
 {
+
+    $price = learndash_get_course_price($post->ID)['price'];
+
     $product = new WC_Product_Course(false);
 
     $product->set_name($post->post_title); // product title
 
     $product->set_slug($post->post_name);
 
-    $product->set_regular_price(500.00); // in current shop currency
+    $product->set_sku($post->ID);
+
+    if ($price) {
+        $product->set_regular_price($price); // in current shop currency
+    }
 
     $product->save();
 
