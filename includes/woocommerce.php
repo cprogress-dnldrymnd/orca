@@ -90,13 +90,13 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
-function so_post_40744782($new_status, $old_status, $post)
+function course_created($new_status, $old_status, $post)
 {
     if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
         create_course_product($post);
     }
 }
-add_action('transition_post_status', 'so_post_40744782', 10, 3);
+add_action('transition_post_status', 'course_created', 10, 3);
 
 
 function create_course_product($post)
@@ -121,4 +121,12 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
+}
+
+
+add_action( 'before_delete_post', 'wpse_110037_new_posts' );
+add_action( 'save_post', 'wpse_110037_new_posts' );
+
+function wpse_110037_new_posts($post_id){
+    $WC_Product = wc_get_product( $post_id);
 }

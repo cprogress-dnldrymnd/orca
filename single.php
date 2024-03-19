@@ -4,9 +4,11 @@
         <?php the_content() ?>
         <?php
 
-        $price = learndash_get_course_price(846)['price'];
+        $price = learndash_get_course_price(855)['price'];
         echo $price;
-        846
+        $product = new WC_Product_Course(855);
+        $product->set_price(20);
+        $product->save();
 
         ?>
         <pre>
