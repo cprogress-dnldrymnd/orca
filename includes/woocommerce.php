@@ -114,6 +114,9 @@ function create_course_product($post)
     $product->get_id();
 
     update_post_meta($product->get_id(), '_related_course', array($post->ID));
+    
+    update_post_meta($post->ID, '_related_course', $product->get_id());
+
     $product_price_update = get_option('product_price_update');
 
     $product_price_update[] = $product->get_id();
@@ -121,20 +124,6 @@ function create_course_product($post)
     update_option('product_price_update', $product_price_update);
 }
 
-/*
-add_action('save_post', 'product_save');
-
-function product_save($post_id)
-{
-    if (get_post_type($post_id) == 'product') {
-        $course_id = get_post_meta($post_id, '_related_course', true);
-        $price = learndash_get_course_price($course_id[0])['price'];
-        $product = new WC_Product_Course($post_id);
-        $product->set_regular_price($price);
-        $product->save();
-    }
-}
-*/
 
 function update_product_prices()
 {
@@ -153,3 +142,17 @@ function update_product_prices()
         }
     }
 }
+
+function check_values($post_ID, $post_after, $post_before)
+{
+    echo '<b>Post ID:</b><br />';
+    var_dump($post_ID);
+
+    echo '<b>Post Object AFTER update:</b><br />';
+    var_dump($post_after);
+
+    echo '<b>Post Object BEFORE update:</b><br />';
+    var_dump($post_before);
+}
+
+add_action('post_updated', 'check_values', 10, 3);
