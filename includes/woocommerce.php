@@ -153,3 +153,29 @@ function update_product_prices()
         }
     }
 }
+
+function action_post_updated($post_ID, $post_after, $post_before)
+{
+
+    if (get_post_type($post_ID) == 'sfwd-courses') {
+        $args = array(
+            'post_type'  => 'product',
+            'meta_query' => array(
+                array(
+                    'key'   => '_sku',
+                    'value' => $post_ID,
+                )
+            )
+        );
+        $post_ids = array();
+        $postslist = get_posts($args);
+
+        foreach ($postslist as $post) {
+            $post_ids[] = $post->ID;
+        }
+
+        update_option('product_price_update', $post_ids);
+    }
+}
+
+add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the last argument to allow all three arguments of the function
