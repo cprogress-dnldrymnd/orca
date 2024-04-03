@@ -233,3 +233,27 @@ function bbloomer_premium_support_content()
 
 add_action('woocommerce_account_courses_endpoint', 'bbloomer_premium_support_content');
 // Note: add_action must follow 'woocommerce_account_{your-endpoint-slug}_endpoint' format
+
+/**
+ * @snippet       Reorder tabs @ My Account
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 6
+ * @community     https://businessbloomer.com/club/
+ */
+ 
+ add_filter( 'woocommerce_account_menu_items', 'bbloomer_add_link_my_account' );
+ 
+ function bbloomer_add_link_my_account( $items ) {
+    $newitems = array(
+       'dashboard'       => __( 'Dashboard', 'woocommerce' ),
+       'edit-address'    => _n( 'Addresses', 'Address', (int) wc_shipping_enabled(), 'woocommerce' ),
+       'edit-account'    => __( 'Account details', 'woocommerce' ),
+       'courses'          => __( 'Courses', 'woocommerce' ),
+       'orders'          => __( 'Orders', 'woocommerce' ),
+       'downloads'       => __( 'Downloads', 'woocommerce' ),   
+       'payment-methods' => __( 'Payment methods', 'woocommerce' ),
+       'customer-logout' => __( 'Logout', 'woocommerce' ),
+    ); 
+    return $newitems;
+ }
