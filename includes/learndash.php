@@ -462,7 +462,7 @@ function _course_testimonial()
         $html .= '<div class="swiper-button-next swiper-button"></div> <div class="swiper-button-prev swiper-button"></div></div>';
         $html .= '</div>';
         $html .= '</div>';
-        
+
         return $html;
     } else {
         return '<br><br><br>';
