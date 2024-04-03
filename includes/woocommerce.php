@@ -216,7 +216,7 @@ add_filter('query_vars', 'bbloomer_premium_support_query_vars', 0);
 
 function bbloomer_add_premium_support_link_my_account($items)
 {
-    $items['courses'] = 'Premium Support';
+    $items['courses'] = 'Courses';
     return $items;
 }
 
