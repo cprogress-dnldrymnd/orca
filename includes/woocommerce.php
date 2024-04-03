@@ -179,3 +179,57 @@ function action_post_updated($post_ID, $post_after, $post_before)
 }
 
 add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the last argument to allow all three arguments of the function
+
+
+/**
+ * @snippet       WooCommerce Add New Tab @ My Account
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 5.0
+ * @community     https://businessbloomer.com/club/
+ */
+
+// ------------------
+// 1. Register new endpoint (URL) for My Account page
+// Note: Re-save Permalinks or it will give 404 error
+
+function bbloomer_add_premium_support_endpoint()
+{
+    add_rewrite_endpoint('courses', EP_ROOT | EP_PAGES);
+}
+
+add_action('init', 'bbloomer_add_premium_support_endpoint');
+
+// ------------------
+// 2. Add new query var
+
+function bbloomer_premium_support_query_vars($vars)
+{
+    $vars[] = 'courses';
+    return $vars;
+}
+
+add_filter('query_vars', 'bbloomer_premium_support_query_vars', 0);
+
+// ------------------
+// 3. Insert the new endpoint into the My Account menu
+
+function bbloomer_add_premium_support_link_my_account($items)
+{
+    $items['courses'] = 'Premium Support';
+    return $items;
+}
+
+add_filter('woocommerce_account_menu_items', 'bbloomer_add_premium_support_link_my_account');
+
+// ------------------
+// 4. Add content to the new tab
+
+function bbloomer_premium_support_content()
+{
+    echo '<h3>Courses</h3></p>';
+    echo do_shortcode('[ld_profile]');
+}
+
+add_action('woocommerce_account_courses_endpoint', 'bbloomer_premium_support_content');
+// Note: add_action must follow 'woocommerce_account_{your-endpoint-slug}_endpoint' format
