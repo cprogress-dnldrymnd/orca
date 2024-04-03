@@ -1,5 +1,5 @@
 <?php
-global $product;
+$product = wc_get_product(get_the_ID());
 
 $sku = $product->get_sku();
 
