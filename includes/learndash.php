@@ -433,8 +433,8 @@ function _course_testimonial()
     $testimonials = get_posts($args);
 
     if ($testimonials) {
-
-        $html = '<div class="swiper-testimonial-holder px-4 py-5">';
+        $html = '<div class="background-dark">';
+        $html .= '<div class="swiper-testimonial-holder px-4 py-5">';
         $html .= '<div class="swiper swiper-testimonial">';
         $html .= '<div class="swiper-wrapper">';
 
@@ -461,6 +461,8 @@ function _course_testimonial()
         $html .= '</div>';
         $html .= '<div class="swiper-button-next swiper-button"></div> <div class="swiper-button-prev swiper-button"></div></div>';
         $html .= '</div>';
+        $html .= '</div>';
+        
         return $html;
     } else {
         return '<br><br><br>';
