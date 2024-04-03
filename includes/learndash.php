@@ -263,7 +263,7 @@ function _learndash_image($atts)
     if ($image_url) {
         $html .= '<img src="' . $image_url . '" >';
     } else {
-        $html .= '<img src="'.image_dir.'/placeholder.jpg" >';
+        $html .= '<img src="' . image_dir . '/placeholder.jpg" >';
     }
     $html .= '</div>';
 
@@ -432,34 +432,37 @@ function _course_testimonial()
 
     $testimonials = get_posts($args);
 
-    $html = '<div class="swiper-testimonial-holder px-4 py-5">';
-    $html .= '<div class="swiper swiper-testimonial">';
-    $html .= '<div class="swiper-wrapper">';
+    if ($testimonials) {
 
-    foreach ($testimonials as $testimonial) {
-        $html .= '<div class="swiper-slide">';
-        $html .= '<div class="row g-5 align-items-center">';
-        $html .= '<div class="col-lg-6">';
-        $html .= do_shortcode('[_image id="' . get_post_thumbnail_id($testimonial->ID) . '"]');
+        $html = '<div class="swiper-testimonial-holder px-4 py-5">';
+        $html .= '<div class="swiper swiper-testimonial">';
+        $html .= '<div class="swiper-wrapper">';
+
+        foreach ($testimonials as $testimonial) {
+            $html .= '<div class="swiper-slide">';
+            $html .= '<div class="row g-5 align-items-center">';
+            $html .= '<div class="col-lg-6">';
+            $html .= do_shortcode('[_image id="' . get_post_thumbnail_id($testimonial->ID) . '"]');
+            $html .= '</div>';
+            $html .= '<div class="col-lg-6">';
+            $html .= '<div class="title"><strong>A word from our alumni…</strong></div>';
+            $html .= '<div class="quote"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16"> <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/> </svg></div>';
+            $html .= '<div class="content ps-4 font-sm">';
+            $html .= do_shortcode('[_description description="' . get_the_content(NULL, false, $testimonial->ID) . '"]');
+            $html .= '<div class="author color-accent fw-semibold mt-3">' . get_the_title($testimonial->ID) . '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
+        }
+
+
         $html .= '</div>';
-        $html .= '<div class="col-lg-6">';
-        $html .= '<div class="title"><strong>A word from our alumni…</strong></div>';
-        $html .= '<div class="quote"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16"> <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/> </svg></div>';
-        $html .= '<div class="content ps-4 font-sm">';
-        $html .= do_shortcode('[_description description="' . get_the_content(NULL, false, $testimonial->ID) . '"]');
-        $html .= '<div class="author color-accent fw-semibold mt-3">' . get_the_title($testimonial->ID) . '</div>';
         $html .= '</div>';
+        $html .= '<div class="swiper-button-next swiper-button"></div> <div class="swiper-button-prev swiper-button"></div></div>';
         $html .= '</div>';
-        $html .= '</div>';
-        $html .= '</div>';
+        return $html;
     }
-
-
-    $html .= '</div>';
-    $html .= '</div>';
-    $html .= '<div class="swiper-button-next swiper-button"></div> <div class="swiper-button-prev swiper-button"></div></div>';
-    $html .= '</div>';
-    return $html;
 }
 add_shortcode('_course_testimonial', '_course_testimonial');
 
