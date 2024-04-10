@@ -525,6 +525,8 @@ function lessons_images()
                     padding: 27%;
                     background-size: cover;
                     background-position: center;
+                    display: block;
+                    background-image: url($image);
                 }
             </style>
 <?php
