@@ -117,7 +117,7 @@ function learndash_wp_footer()
 
             });
         </script>
-<?php
+        <?php
     }
 }
 
@@ -511,3 +511,23 @@ function _course_group_archive()
 }
 
 add_shortcode('_course_group_archive', '_course_group_archive');
+
+
+function lessons_images()
+{
+    if (get_post_type() == 'sfwd-lessons') {
+        $image = get_the_post_thumbnail_url();
+        if ($image) {
+        ?>
+            <style>
+                .learndash_post_<?= get_the_ID() ?>::before {
+                    content: '';
+                    padding: 27%;
+                    background-size: cover;
+                    background-position: center;
+                }
+            </style>
+<?php
+        }
+    }
+}
