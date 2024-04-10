@@ -528,6 +528,7 @@ function lessons_images()
                     display: block;
                     background-image: url(<?= $image ?>);
                     border-radius: 10px;
+                    margin-bottom: 1rem;
                 }
             </style>
 <?php
