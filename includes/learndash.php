@@ -526,7 +526,8 @@ function lessons_images()
                     background-size: cover;
                     background-position: center;
                     display: block;
-                    background-image: url($image);
+                    background-image: url(<?= $image ?>);
+                    border-radius: 10px;
                 }
             </style>
 <?php
