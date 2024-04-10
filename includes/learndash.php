@@ -516,7 +516,7 @@ add_shortcode('_course_group_archive', '_course_group_archive');
 function lessons_images()
 {
     if (get_post_type() == 'sfwd-lessons') {
-        $image = get_the_post_thumbnail_url();
+        $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
         if ($image) {
         ?>
             <style>
