@@ -520,7 +520,7 @@ function lessons_images()
         if ($image) {
         ?>
             <style>
-                .learndash_post_<?= get_the_ID() ?>::before {
+                #learndash_post_<?= get_the_ID() ?>::before {
                     content: '';
                     padding: 27%;
                     background-size: cover;
