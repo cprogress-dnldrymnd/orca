@@ -529,6 +529,7 @@ function lessons_images()
                     background-image: url(<?= $image ?>);
                     border-radius: 10px;
                     margin-bottom: 1rem;
+                    background-color: var(--accent-color);
                 }
             </style>
 <?php
