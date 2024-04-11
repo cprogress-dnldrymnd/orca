@@ -36,17 +36,6 @@ function breadcrumbs($atts)
         $html .= '<div class="row align-items-center">';
         $html .= '<div class="col">';
         $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
-
-        if(get_post_type() == 'sfwd-courses') {
-            $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
-            $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
-            $html .= '<div class="learndash-course-access">';
-            $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
-            $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
-            $html .= '</div>';
-        }
-
-
         $html .= '</div>';
 
         if (is_single() && get_post_type() == 'sfwd-courses') {
@@ -113,6 +102,19 @@ function _heading($atts)
             $atts
         )
     );
+
+    $html = "<div class='heading-box $class'><$tag>$heading</$tag>";
+
+    if (get_post_type() == 'sfwd-courses') {
+        $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
+        $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
+        $html .= '<div class="learndash-course-access">';
+        $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
+        $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
+        $html .= '</div>';
+    }
+    $html = "</div>";
+
 
     return "<div class='heading-box $class'><$tag>$heading</$tag></div>";
 }
