@@ -106,13 +106,16 @@ function _heading($atts)
     $html = "<div class='heading-box $class'><$tag>$heading</$tag>";
 
     if (get_post_type() == 'sfwd-courses') {
-        $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
-        $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
-        $html .= '<div class="learndash-course-access">';
-        $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
-        $html .= '&nbsp;|&nbsp;';
-        $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
-        $html .= '</div>';
+        $course_expired = ld_course_access_expired(get_the_ID(),  get_current_user_id());
+        if (!$course_expired) {
+            $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
+            $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
+            $html .= '<div class="learndash-course-access">';
+            $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
+            $html .= '&nbsp;|&nbsp;';
+            $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
+            $html .= '</div>';
+        }
     }
     $html .= "</div>";
 
