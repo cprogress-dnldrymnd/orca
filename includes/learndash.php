@@ -39,10 +39,13 @@ add_shortcode('_learndash_course_progress', '_learndash_course_progress');
 
 function _learndash_course_meta()
 {
-
+    $certification = get__post_meta('certification');
     $html =  '<div class="course-meta">';
     $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
-    $html .= '<p><strong>Certification:</strong> ORCA Certified</p>';
+    if ($certification) {
+        $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
+    }
+
     $html .= '</div>';
 
     return $html;
