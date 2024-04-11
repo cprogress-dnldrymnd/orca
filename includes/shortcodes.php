@@ -110,6 +110,7 @@ function _heading($atts)
         $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
         $html .= '<div class="learndash-course-access">';
         $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
+        $html .= '&nbsp;|&nbsp;'
         $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
         $html .= '</div>';
     }
