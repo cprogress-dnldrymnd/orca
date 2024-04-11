@@ -55,6 +55,6 @@ Container::make('post_meta', 'Course Settings')
     ->add_tab(
         'Certification',
         array(
-            Field::make('rich_text', 'certification', __('Certification')),
+            Field::make('text', 'certification', __('Certification')),
         )
     );
