@@ -40,14 +40,12 @@ add_shortcode('_learndash_course_progress', '_learndash_course_progress');
 function _learndash_course_meta()
 {
     $certification = get__post_meta('certification');
-    $html =  '<div class="course-meta">';
-    $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
     if ($certification) {
+        $html =  '<div class="course-meta">';
+        $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
+        $html .= '</div>';
     }
-
-    $html .= '</div>';
-
     return $html;
 }
 add_shortcode('_learndash_course_meta', '_learndash_course_meta');
