@@ -11120,7 +11120,7 @@ img {
         margin-left: 10px;
         margin-right: 10px; }
 
-.page-title .heading-box {
+.page-title {
   border-left: 4px solid var(--accent-color);
   padding-left: 20px;
   margin-bottom: 0; }

@@ -116,7 +116,7 @@ function _heading($atts)
     $html = "</div>";
 
 
-    return "<div class='heading-box $class'><$tag>$heading</$tag></div>";
+    return $html;
 }
 add_shortcode('_heading', '_heading');
 
