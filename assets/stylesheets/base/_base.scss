@@ -58,11 +58,9 @@ img {
     }
 }
 .page-title {
-    .heading-box {
-        border-left: 4px solid var(--accent-color);
-        padding-left: 20px;
-        margin-bottom: 0;
-    }
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+    margin-bottom: 0;
 }
 
 .btn.btn {
@@ -151,7 +149,6 @@ section.loading-post select {
         width: 30px;
         height: 30px;
         margin-left: 1rem;
-        
     }
     &.loading {
         svg {
