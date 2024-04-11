@@ -1,21 +1,24 @@
 <?php get_header() ?>
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
-    <div class="container">
-        <?php
-        $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
-        $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
-        ?>
-        <p>
-            <?php echo 'Enrolled Date: ' . date('F j, Y g:i A', $enrolled); ?>
-        </p>
-        <p>
-            <?php echo 'Expires: ' . date('F j, Y g:i A', $expires); ?>
-        </p>
-    </div>
+
 
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
+            <div class="learndash-course-access">
+                <div class="container">
+                    <?php
+                    $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
+                    $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
+                    ?>
+                    <p>
+                        <?php echo 'Enrolled Date: ' . date('F j, Y g:i A', $enrolled); ?>
+                    </p>
+                    <p>
+                        <?php echo 'Expires: ' . date('F j, Y g:i A', $expires); ?>
+                    </p>
+                </div>
+            </div>
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
             </div>
