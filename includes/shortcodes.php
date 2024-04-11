@@ -113,7 +113,7 @@ function _heading($atts)
         $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
         $html .= '</div>';
     }
-    $html = "</div>";
+    $html .= "</div>";
 
 
     return $html;
