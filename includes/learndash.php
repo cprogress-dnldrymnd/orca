@@ -40,16 +40,36 @@ add_shortcode('_learndash_course_progress', '_learndash_course_progress');
 function _learndash_course_meta()
 {
     $certification = get__post_meta('certification');
+    $product_id = get_product_by_sku(get_the_ID());
+    $product = wc_get_product($product_id);
+    $price = $product->get_price_html();
+    $html =  '<div class="course-meta mb-3">';
+
     if ($certification) {
-        $html =  '<div class="course-meta mb-3">';
         $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
-        $html .= '</div>';
     }
+
+    if ($price) {
+        $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+    }
+    $html .= '</div>';
+
     return $html;
 }
 add_shortcode('_learndash_course_meta', '_learndash_course_meta');
 
+function get_product_by_sku($sku)
+{
+
+    global $wpdb;
+
+    $product_id = $wpdb->get_var($wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value='%s' LIMIT 1", $sku));
+
+    if ($product_id) return new WC_Product($product_id);
+
+    return null;
+}
 function _learndash_status_bubble()
 {
     $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
@@ -292,6 +312,8 @@ function _learndash_course_button()
 }
 
 add_shortcode('_learndash_course_button', '_learndash_course_button');
+
+
 
 
 function _course_cta()
