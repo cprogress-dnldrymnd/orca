@@ -50,7 +50,7 @@ function _learndash_course_meta()
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
     }
 
-    if ($price) {
+    if ($price && !_user_has_access()) {
         $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
     }
     $html .= '</div>';
