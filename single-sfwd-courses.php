@@ -2,7 +2,7 @@
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
 test
-    <?php echo ld_course_access_expired(get_the_ID(),  get_current_user_id()) ?>
+    <?php echo ld_course_access_from(get_the_ID(),  get_current_user_id()) ?>
 
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
