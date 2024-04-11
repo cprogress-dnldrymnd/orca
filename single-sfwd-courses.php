@@ -7,10 +7,10 @@
         $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
         ?>
         <p>
-            <?php echo 'Enrolled Date: ' . date('F j, Y H:i:s', $enrolled); ?>
+            <?php echo 'Enrolled Date: ' . date('F j, Y g:i A', $enrolled); ?>
         </p>
         <p>
-            <?php echo 'Expires: ' . date('F j, Y H:i:s', $expires); ?>
+            <?php echo 'Expires: ' . date('F j, Y g:i A', $expires); ?>
         </p>
     </div>
 
