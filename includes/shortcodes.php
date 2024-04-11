@@ -37,7 +37,7 @@ function breadcrumbs($atts)
         $html .= '<div class="col">';
         $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
 
-        if(get_post_taxonomies() == 'sfwd-courses') {
+        if(get_post_type() == 'sfwd-courses') {
             $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
             $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
             $html .= '<div class="learndash-course-access">';
