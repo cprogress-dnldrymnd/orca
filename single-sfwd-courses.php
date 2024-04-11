@@ -1,8 +1,12 @@
 <?php get_header() ?>
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
-test
-    <?php echo ld_course_access_from(get_the_ID(),  get_current_user_id()) ?>
+    <div class="container">
+        <?php
+        $timestamp = ld_course_access_from(get_the_ID(),  get_current_user_id());
+        echo date('Y-m-d H:i:s', $timestamp);
+        ?>
+    </div>
 
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
