@@ -3,9 +3,15 @@
     <?php the_post() ?>
     <div class="container">
         <?php
-        $timestamp = ld_course_access_from(get_the_ID(),  get_current_user_id());
-        echo date('Y-m-d H:i:s', $timestamp);
+        $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
+        $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
         ?>
+        <p>
+            <?php echo 'Enrolled Date: ' . date('Y-m-d H:i:s', $enrolled); ?>
+        </p>
+        <p>
+            <?php echo 'Expires: ' . date('Y-m-d H:i:s', $expires); ?>
+        </p>
     </div>
 
     <section class="single-course-section pt-4 background-light-gray">
