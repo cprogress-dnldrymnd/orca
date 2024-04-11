@@ -41,7 +41,7 @@ function _learndash_course_meta()
 {
     $certification = get__post_meta('certification');
     if ($certification) {
-        $html =  '<div class="course-meta">';
+        $html =  '<div class="course-meta mb-3">';
         $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
         $html .= '</div>';
