@@ -92,7 +92,7 @@ function bbloomer_save_name_fields($customer_id)
 }
 function course_created($new_status, $old_status, $post)
 {
-    if ($new_status == 'publish' && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
+    if (($new_status == 'publish' || $new_status == 'private') && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
         create_course_product($post);
     }
 }
@@ -269,11 +269,12 @@ function bbloomer_add_link_my_account($items)
  */
 add_filter('woocommerce_placeholder_img_src', 'custom_woocommerce_placeholder_img_src');
 
-function custom_woocommerce_placeholder_img_src( $src ) {
-	$upload_dir = wp_upload_dir();
-	$uploads = untrailingslashit( $upload_dir['baseurl'] );
-	// replace with path to your image
-	$src = image_dir . 'placeholder.jpg';
-	 
-	return $src;
+function custom_woocommerce_placeholder_img_src($src)
+{
+    $upload_dir = wp_upload_dir();
+    $uploads = untrailingslashit($upload_dir['baseurl']);
+    // replace with path to your image
+    $src = image_dir . 'placeholder.jpg';
+
+    return $src;
 }
