@@ -169,7 +169,7 @@ function action_post_updated($post_ID, $post_after, $post_before)
 
         foreach ($postslist as $post) {
             $post_ids[] = $post->ID;
-            set_post_thumbnail($post->ID, 1457);
+            set_post_thumbnail($post->ID, get_post_thumbnail_id($post_ID));
         }
 
         update_option('product_price_update', $post_ids);
