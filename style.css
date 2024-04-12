@@ -11602,7 +11602,7 @@ section.archive-grid {
   .add_to_cart_button.loading svg {
     width: 30px;
     -webkit-animation: spin 4s infinite linear; }
-  .add_to_cart_button:hover {
+  .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus {
     background-color: var(--accent-color);
     color: var(--white-color); }
 

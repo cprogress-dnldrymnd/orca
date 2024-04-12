@@ -63,7 +63,7 @@
             -webkit-animation: spin 4s infinite linear;
         }
     }
-    &:hover {
+    @include on-event {
         background-color: var(--accent-color);
         color: var(--white-color); //white
     }
