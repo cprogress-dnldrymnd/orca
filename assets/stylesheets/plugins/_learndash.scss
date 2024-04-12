@@ -47,12 +47,16 @@
     @include button-style;
     @include button-primary;
 }
+.added_to_cart {
+    width: 100%;
+    text-align: center;
+}
 .add_to_cart_button {
     color: var(--white-color); //white
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+
     svg {
         width: 0;
     }
@@ -343,7 +347,7 @@ body.ld-in-focus-mode.admin-bar {
     .filter-box {
         button {
             background-color: var(--primary-color);
-            color: var(--white-color    );
+            color: var(--white-color);
             @include on-event {
                 background-color: var(--accent-color);
             }

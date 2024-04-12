@@ -11136,7 +11136,8 @@ img {
   color: var(--white-color); }
   .btn.btn.btn-primary:hover, .btn.btn.btn-primary:active, .btn.btn.btn-primary:focus {
     background-color: var(--accent-color);
-    border-color: var(--accent-color); }
+    border-color: var(--accent-color);
+    border: 1px solid var(--accent-color); }
 .btn.btn.btn-black {
   background-color: var(--black-color);
   border: 1px solid var(--black-color);
@@ -11589,14 +11590,18 @@ section.archive-grid {
   .added_to_cart:active,
   .added_to_cart:focus {
     background-color: var(--accent-color);
-    border-color: var(--accent-color); }
+    border-color: var(--accent-color);
+    border: 1px solid var(--accent-color); }
+
+.added_to_cart {
+  width: 100%;
+  text-align: center; }
 
 .add_to_cart_button {
   color: var(--white-color);
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%; }
+  justify-content: center; }
   .add_to_cart_button svg {
     width: 0; }
   .add_to_cart_button.loading svg {
@@ -11811,6 +11816,7 @@ textarea {
   color: var(--white-color); }
   .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus {
     background-color: var(--accent-color);
-    border-color: var(--accent-color); }
+    border-color: var(--accent-color);
+    border: 1px solid var(--accent-color); }
 
 /*# sourceMappingURL=style.css.map */
