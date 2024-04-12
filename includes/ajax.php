@@ -18,17 +18,7 @@ function archive_ajax()
     if ($offset) {
         $args['offset'] = $offset;
     }
-
-    /*
-    if ($sortby) {
-        if ($sortby == 'oldest') {
-            $args['order'] = 'ASC';
-        } else if ($sortby == 'title') {
-            $args['orderby'] = 'title';
-            $args['order'] = 'ASC';
-        }
-    }*/
-
+ 
     if ($taxonomy_terms) {
         if ($taxonomy != 'category') {
             $args['tax_query'] = array(
