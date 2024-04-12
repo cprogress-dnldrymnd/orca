@@ -201,11 +201,14 @@ function archive_grid($atts)
         shortcode_atts(
             array(
                 'offset' => false,
-                'the_query' => false
+                'args' => false
             ),
             $atts
         )
     );
+
+	$the_query = new WP_Query($args);
+
 ?>
     <?php if (!$offset) { ?>
         <div class="row row-archive g-4">
