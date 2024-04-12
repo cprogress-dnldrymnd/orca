@@ -11521,18 +11521,20 @@ h5, .h5 {
 #site-footer .breadcrumbs-holder ul li a {
   color: var(--white-color); }
 
-section.archive-grid .column-holder {
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-  -webkit-box-shadow: 0px 3px 3px #00000014;
-  -moz-box-shadow: 0px 3px 3px #00000014;
-  box-shadow: 0px 3px 3px #00000014; }
-  section.archive-grid .column-holder .content-holder {
-    padding: 20px;
-    flex: 1 0 0%; }
-    section.archive-grid .column-holder .content-holder .description-box {
-      color: var(--gray-color); }
+section.archive-grid {
+  min-height: 719.427px; }
+  section.archive-grid .column-holder {
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    -webkit-box-shadow: 0px 3px 3px #00000014;
+    -moz-box-shadow: 0px 3px 3px #00000014;
+    box-shadow: 0px 3px 3px #00000014; }
+    section.archive-grid .column-holder .content-holder {
+      padding: 20px;
+      flex: 1 0 0%; }
+      section.archive-grid .column-holder .content-holder .description-box {
+        color: var(--gray-color); }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins
