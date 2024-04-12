@@ -138,19 +138,17 @@ function product_save($post_id)
 
 function update_product_prices()
 {
-    if (current_user_can('administrator')) {
-        $product_price_update = get_option('product_price_update');
-        if ($product_price_update) {
-            foreach ($product_price_update as $product_id) {
-                unset($product_price_update[$product_id]);
-                $course_id = get_post_meta($product_id, '_related_course', true);
-                $price = learndash_get_course_price($course_id[0])['price'];
-                $product = new WC_Product_Course($product_id);
-                $product->set_regular_price($price);
-                $product->save();
-            }
-            update_option('product_price_update', array());
+    $product_price_update = get_option('product_price_update');
+    if ($product_price_update) {
+        foreach ($product_price_update as $product_id) {
+            unset($product_price_update[$product_id]);
+            $course_id = get_post_meta($product_id, '_related_course', true);
+            $price = learndash_get_course_price($course_id[0])['price'];
+            $product = new WC_Product_Course($product_id);
+            $product->set_regular_price($price);
+            $product->save();
         }
+        update_option('product_price_update', array());
     }
 }
 
