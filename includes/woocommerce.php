@@ -241,19 +241,30 @@ add_action('woocommerce_account_courses_endpoint', 'bbloomer_premium_support_con
  * @compatible    WooCommerce 6
  * @community     https://businessbloomer.com/club/
  */
- 
- add_filter( 'woocommerce_account_menu_items', 'bbloomer_add_link_my_account' );
- 
- function bbloomer_add_link_my_account( $items ) {
+
+add_filter('woocommerce_account_menu_items', 'bbloomer_add_link_my_account');
+
+function bbloomer_add_link_my_account($items)
+{
     $newitems = array(
-       'dashboard'       => __( 'Dashboard', 'woocommerce' ),
-       'edit-address'    => _n( 'Addresses', 'Address', (int) wc_shipping_enabled(), 'woocommerce' ),
-       'edit-account'    => __( 'Account details', 'woocommerce' ),
-       'courses'          => __( 'Courses', 'woocommerce' ),
-       'orders'          => __( 'Orders', 'woocommerce' ),
-       'downloads'       => __( 'Downloads', 'woocommerce' ),   
-       'payment-methods' => __( 'Payment methods', 'woocommerce' ),
-       'customer-logout' => __( 'Logout', 'woocommerce' ),
-    ); 
+        'dashboard'       => __('Dashboard', 'woocommerce'),
+        'edit-address'    => _n('Addresses', 'Address', (int) wc_shipping_enabled(), 'woocommerce'),
+        'edit-account'    => __('Account details', 'woocommerce'),
+        'courses'          => __('Courses', 'woocommerce'),
+        'orders'          => __('Orders', 'woocommerce'),
+        'downloads'       => __('Downloads', 'woocommerce'),
+        'payment-methods' => __('Payment methods', 'woocommerce'),
+        'customer-logout' => __('Logout', 'woocommerce'),
+    );
     return $newitems;
- }
+}
+
+
+
+function custom_new_product_image($_product_img, $cart_item, $cart_item_key)
+{
+    $a      =   '<img src="https://learn.orca.org.uk/wp-content/themes/orca/assets/images//placeholder.jpg" />';
+    return $a;
+}
+
+add_filter('woocommerce_cart_item_thumbnail', 'custom_new_product_image', 10, 3);
