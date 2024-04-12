@@ -21,7 +21,7 @@ function breadcrumbs($atts)
     } else if (is_tax()) {
         $title = get_queried_object()->name;
 
-        if (is_tag('ld_course_category')) {
+        if (is_tax('ld_course_category')) {
             $html .= '<li><a href="' . get_post_type_archive_link('sfwd-courses')  . '">Courses</a></li>';
         }
 
