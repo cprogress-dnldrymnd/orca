@@ -273,7 +273,7 @@ function custom_woocommerce_placeholder_img_src( $src ) {
 	$upload_dir = wp_upload_dir();
 	$uploads = untrailingslashit( $upload_dir['baseurl'] );
 	// replace with path to your image
-	$src = image_dir . '/placeholder.jpg';
+	$src = image_dir . 'placeholder.jpg';
 	 
 	return $src;
 }

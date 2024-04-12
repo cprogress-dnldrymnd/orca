@@ -86,7 +86,7 @@ function _image($atts)
     if ($image_url) {
         $html .= '<img src="' . $image_url . '" >';
     } else {
-        $html .= '<img src="' . image_dir . '/placeholder.jpg" >';
+        $html .= '<img src="' . image_dir . 'placeholder.jpg" >';
     }
     $html .= '</div>';
 
