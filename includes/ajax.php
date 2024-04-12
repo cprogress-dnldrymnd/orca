@@ -37,7 +37,7 @@ function archive_ajax()
 
 	$count = $the_query->found_posts;
 
-	if ($posts_per_page >= 6) {
+	if ($count >= $posts_per_page) {
 		$final_count = 6;
 	} else {
 		$final_count = $count;
