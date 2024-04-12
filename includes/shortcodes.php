@@ -192,3 +192,58 @@ function _post_taxonomy_terms($atts)
     }
 }
 add_shortcode('_post_taxonomy_terms', '_post_taxonomy_terms');
+
+
+function archive_grid($atts)
+{
+    ob_start();
+    extract(
+        shortcode_atts(
+            array(
+                'offset' => false,
+                'the_query' => false
+            ),
+            $atts
+        )
+    );
+?>
+    <?php if (!$offset) { ?>
+        <div class="row row-archive g-4">
+        <?php } ?>
+        <?php
+        if ($the_query->have_posts()) {
+            while ($the_query->have_posts()) {
+                $the_query->the_post();
+        ?>
+                <div class="col-md-4 col-6 post-item">
+                    <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
+                        <?= do_shortcode('[_learndash_image id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
+                        <div class="content-holder d-flex flex-column justify-content-between">
+                            <div>
+                                <?= do_shortcode('[_heading class="color-primary" tag="h3" heading="' . get_the_title() . '"]'); ?>
+                                <?= do_shortcode('[_description description="' . get_the_excerpt() . '"]'); ?>
+                                <hr>
+                                <?= do_shortcode('[_learndash_course_meta]'); ?>
+                            </div>
+                            <div>
+                                <?= do_shortcode('[_learndash_course_button]'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+        } else {
+            ?>
+            <h2>No Results Found</h2>
+        <?php
+        }
+        wp_reset_postdata();
+        ?>
+        <?php if (!$offset) { ?>
+        </div>
+    <?php } ?>
+<?php
+    return ob_get_clean();
+}
+
+add_shortcode('archive_grid', 'archive_grid');
