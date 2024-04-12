@@ -11,7 +11,7 @@ $current_cat = get_queried_object()->name;
         <div class="row g-4 filter mb-4 align-items-center">
             <div class="col-lg-6">
                 <div class="showing">
-                    Showing <?php echo $GLOBALS['wp_query']->found_posts ?> of <?php echo $GLOBALS['wp_query']->found_posts ?> Courses
+                    Showing <div class="post-number"><?php echo $GLOBALS['wp_query']->found_posts ?></div> of <div class="found-post"></div> Courses
                 </div>
             </div>
             <div class="col-lg-6 text-end">
