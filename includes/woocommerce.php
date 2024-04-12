@@ -154,7 +154,6 @@ function update_product_prices()
 
 function action_post_updated($post_ID, $post_after, $post_before)
 {
-
     if (get_post_type($post_ID) == 'sfwd-courses') {
         $args = array(
             'post_type'  => 'product',
@@ -170,6 +169,7 @@ function action_post_updated($post_ID, $post_after, $post_before)
 
         foreach ($postslist as $post) {
             $post_ids[] = $post->ID;
+            set_post_thumbnail($post->ID, 1457);
         }
 
         update_option('product_price_update', $post_ids);
