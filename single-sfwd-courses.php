@@ -5,6 +5,9 @@
 
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
+            <div class="woo-notices">
+                <?= wc_cart_notices() ?>
+            </div>
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
             </div>
