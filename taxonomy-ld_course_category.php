@@ -4,6 +4,7 @@ $terms = get_terms(array(
     'taxonomy'   => 'ld_course_category',
     'hide_empty' => false,
 ));
+$current_cat = get_queried_object()->name;
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
     <div class="container large-container">
@@ -21,7 +22,15 @@ $terms = get_terms(array(
                         <select name="taxonomy-terms" id="taxonomy-terms" class="archive-form-filter">
                             <option value="">All Courses</option>
                             <?php foreach ($terms as $term) { ?>
-                                <option value="<?= $term->term_id ?>"><?= $term->name ?></option>
+                                <?php
+                                if ($current_cat == $term->name) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                                ?>
+
+                                <option value="<?= $term->term_id ?>" <?= $selected ?>><?= $term->name ?></option>
                             <?php } ?>
                         </select>
                     </div>
