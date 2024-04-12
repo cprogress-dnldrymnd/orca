@@ -258,13 +258,3 @@ function bbloomer_add_link_my_account($items)
     );
     return $newitems;
 }
-
-
-
-function custom_new_product_image($_product_img, $cart_item, $cart_item_key)
-{
-    $a      =   '<img src="https://learn.orca.org.uk/wp-content/themes/orca/assets/images//placeholder.jpg" />';
-    return $a;
-}
-
-add_filter('woocommerce_cart_item_thumbnail', 'custom_new_product_image', 10, 3);
