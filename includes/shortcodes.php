@@ -20,6 +20,11 @@ function breadcrumbs($atts)
         $html .= '<li><span>' . $title . '</span></li>';
     } else if (is_tax()) {
         $title = get_queried_object()->name;
+
+        if (is_tag('ld_course_category')) {
+            $html .= '<li><a href="' . get_post_type_archive_link('sfwd-courses')  . '">Courses</a></li>';
+        }
+
         $html .= '<li><span>' . $title . '</span></li>';
     } else if (is_single() || is_page()) {
         $title = get_the_title();
