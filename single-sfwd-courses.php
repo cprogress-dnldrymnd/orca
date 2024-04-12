@@ -1,4 +1,14 @@
 <?php get_header() ?>
+
+<?php
+$args = array(
+    'numberposts' => -1,
+    'post_type'   => 'testimonials'
+);
+
+$testimonials = get_posts($args);
+?>
+
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
 
@@ -28,7 +38,9 @@
                         <li><a href="#about" class="active">About</a></li>
                         <li><a href="#outcomes">Outcomes</a></li>
                         <li><a href="#modules">Modules</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
+                        <?php if ($testimonials) { ?>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="learndash-single-holder learndash-single-content position-relative">
