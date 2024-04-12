@@ -41,8 +41,6 @@ function _learndash_course_meta()
 {
     $certification = get__post_meta('certification');
     $product_id = get_product_by_sku(get_the_ID());
-    $product = wc_get_product($product_id);
-    $price = $product->get_price_html();
     $html =  '<div class="course-meta mb-3">';
 
     if ($certification) {
@@ -50,8 +48,12 @@ function _learndash_course_meta()
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
     }
 
-    if ($price && !_user_has_access()) {
-        $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+    if (!_user_has_access() && $product_id) {
+        $product = wc_get_product($product_id);
+        $price = $product->get_price_html();
+        if ($price) {
+            $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+        }
     }
     $html .= '</div>';
 
