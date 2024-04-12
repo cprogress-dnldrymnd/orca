@@ -82,7 +82,7 @@ function archive_ajax()
 	<script>
 		jQuery(document).ready(function() {
 			jQuery('.post-number').text(<?= $final_count ?>);
-			jQuery('.found-post').text(<?= $final_count ?>);
+			jQuery('.found-post').text(<?= $count ?>);
 		});
 	</script>
 <?php
