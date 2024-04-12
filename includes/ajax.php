@@ -36,6 +36,12 @@ function archive_ajax()
 	$the_query = new WP_Query($args);
 
 	$count = $the_query->found_posts;
+
+	if ($posts_per_page >= 6) {
+		$final_count = 6;
+	} else {
+		$final_count = $count;
+	}
 	echo hide_load_more($count, $offset, $posts_per_page);
 ?>
 	<?php if (!$offset) { ?>
@@ -75,8 +81,8 @@ function archive_ajax()
 	<?php } ?>
 	<script>
 		jQuery(document).ready(function() {
-			jQuery('.post-number').text(<?= $count ?>);
-			jQuery('.found-post').text(<?= $count ?>);
+			jQuery('.post-number').text(<?= $final_count ?>);
+			jQuery('.found-post').text(<?= $final_count ?>);
 		});
 	</script>
 <?php
