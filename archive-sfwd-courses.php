@@ -33,7 +33,9 @@ $terms = get_terms(array(
         </div>
         <div id="results">
             <div class="results-holder">
-
+                <div class="row row-archive g-4">
+                    <?= do_shortcode('[archive_grid]') ?>
+                </div>
             </div>
         </div>
         <div class="load-more text-center mt-5">
