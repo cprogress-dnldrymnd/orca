@@ -155,6 +155,7 @@ function update_product_prices()
 function action_post_updated($post_ID, $post_after, $post_before)
 {
     if (get_post_type($post_ID) == 'sfwd-courses') {
+        $image = get_post_thumbnail_id($post_ID);
         $args = array(
             'post_type'  => 'product',
             'meta_query' => array(
@@ -169,7 +170,12 @@ function action_post_updated($post_ID, $post_after, $post_before)
 
         foreach ($postslist as $post) {
             $post_ids[] = $post->ID;
-            set_post_thumbnail($post->ID, get_post_thumbnail_id($post_ID));
+
+            if ($image) {
+                set_post_thumbnail($post->ID, $image);
+            } else {
+                delete_post_thumbnail($post->ID, $image);
+            }
         }
 
         update_option('product_price_update', $post_ids);
