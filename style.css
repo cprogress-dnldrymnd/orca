@@ -11373,6 +11373,10 @@ h6,
   line-height: 1.2;
   color: var(--black-color); }
 
+@media screen and (max-width: 575px) {
+  p {
+    line-height: 1.1; } }
+
 p:last-child {
   margin-bottom: 0 !important; }
 
@@ -11404,6 +11408,9 @@ h2, .h2 {
 
 h3, .h3 {
   font-size: 1.5rem; }
+  @media screen and (max-width: 575px) {
+    h3, .h3 {
+      font-size: 1.25rem; } }
 
 h4, .h4 {
   font-size: 1.25rem; }
@@ -11536,6 +11543,13 @@ section.archive-grid {
       flex: 1 0 0%; }
       section.archive-grid .column-holder .content-holder .description-box {
         color: var(--gray-color); }
+      @media screen and (max-width: 575px) {
+        section.archive-grid .column-holder .content-holder {
+          padding: 10px; } }
+  @media screen and (max-width: 575px) {
+    section.archive-grid .row {
+      --bs-gutter-x: 10px
+      --bs-gutter-y: 10px; } }
 
 /*-----------------------------------------------------------------------------------*/
 /* Plugins

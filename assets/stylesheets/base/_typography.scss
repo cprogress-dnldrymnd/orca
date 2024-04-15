@@ -8,11 +8,16 @@ body {
     line-height: 1.2;
     color: var(--black-color);
 }
+p {
+    @include responsive(mobile) {
+        line-height: 1.1;
+    }
+}
 p:last-child {
     margin-bottom: 0 !important;
 }
 a {
-    color: var(--primary-color);;
+    color: var(--primary-color);
     @include on-event {
         color: var(--accent-color);
     }
@@ -41,6 +46,9 @@ h2 {
 }
 h3 {
     font-size: 1.5rem;
+    @include responsive(mobile) {
+        font-size: 1.25rem;
+    }
 }
 h4 {
     font-size: 1.25rem;
