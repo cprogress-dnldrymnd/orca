@@ -11548,7 +11548,7 @@ section.archive-grid {
           padding: 10px; } }
   @media screen and (max-width: 575px) {
     section.archive-grid .row {
-      --bs-gutter-x: 10px
+      --bs-gutter-x: 10px;
       --bs-gutter-y: 10px; } }
 
 /*-----------------------------------------------------------------------------------*/

@@ -13,13 +13,15 @@ section.archive-grid {
             }
             @include responsive(mobile) {
                 padding: 10px;
+                p {
+                    font-size: 15px;
+                }
             }
         }
     }
     @include responsive(mobile) {
-
         .row {
-            --bs-gutter-x: 10px
+            --bs-gutter-x: 10px;
             --bs-gutter-y: 10px;
         }
     }
