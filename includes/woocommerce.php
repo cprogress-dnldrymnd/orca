@@ -288,6 +288,6 @@ function action_after_delete_post($post_id, $post)
         return;
     }
     $product_id = get_product_by_sku($post_id);
-    wp_delete_post();
+    wp_delete_post($product_id);
     // Write your code here
 }
