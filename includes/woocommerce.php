@@ -92,7 +92,7 @@ function bbloomer_save_name_fields($customer_id)
 }
 function course_created($new_status, $old_status, $post)
 {
-    if (($new_status == 'publish' || $new_status == 'private') && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
+    if (($new_status == 'publish') && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
         create_course_product($post);
     }
 }
