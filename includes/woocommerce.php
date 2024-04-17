@@ -283,11 +283,19 @@ function custom_woocommerce_placeholder_img_src($src)
 add_action('after_delete_post', 'action_after_delete_post', 10, 2);
 function action_after_delete_post($post_id, $post)
 {
-    // For a specific post type books
-    if ('sfwd-courses' !== $post->post_type) {
-        return;
+    if ('sfwd-courses' == $post->post_type) {
+        $product_id = get_product_by_sku($post_id);
+        wp_delete_post($product_id);
     }
-    $product_id = get_product_by_sku($post_id);
-    wp_delete_post($product_id);
-    // Write your code here
+}
+
+
+add_action('wp_trash_post', 'action_wp_trash_post', 10);
+function action_wp_trash_post($post_id)
+{
+
+    if ('sfwd-courses' == get_post_type($post_id)) {
+        $product_id = get_product_by_sku($post_id);
+        wp_trash_post($product_id);
+    }
 }
