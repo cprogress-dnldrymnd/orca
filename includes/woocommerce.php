@@ -278,3 +278,16 @@ function custom_woocommerce_placeholder_img_src($src)
 
     return $src;
 }
+
+
+add_action('after_delete_post', 'action_after_delete_post', 10, 2);
+function action_after_delete_post($post_id, $post)
+{
+    // For a specific post type books
+    if ('sfwd-courses' !== $post->post_type) {
+        return;
+    }
+    $product_id = get_product_by_sku($post_id);
+    wp_delete_post();
+    // Write your code here
+}

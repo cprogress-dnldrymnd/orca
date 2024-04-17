@@ -68,7 +68,7 @@ function get_product_by_sku($sku)
 
     $product_id = $wpdb->get_var($wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value='%s' LIMIT 1", $sku));
 
-    if ($product_id) return new WC_Product($product_id);
+    if ($product_id) return $product_id;
 
     return null;
 }
