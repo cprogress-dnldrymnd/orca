@@ -10,6 +10,8 @@ function _user_has_access()
     }
 }
 
+
+
 function _learndash_course_progress($atts)
 {
     extract(
