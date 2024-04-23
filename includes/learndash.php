@@ -1,9 +1,9 @@
 <?php
 function _user_has_access()
 {
-    $user_courses = learndash_user_get_enrolled_courses(get_current_user_id());
+    $has_access = ld_course_check_user_access(get_the_ID(), get_current_user_id());
 
-    if (in_array(get_the_ID(),  $user_courses)) {
+    if ($has_access) {
         return true;
     } else {
         return false;
