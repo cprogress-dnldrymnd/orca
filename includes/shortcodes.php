@@ -125,18 +125,18 @@ function _heading($atts)
             $html .= '&nbsp;|&nbsp;';
             $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
             $html .= '</div>';
+        }
 
-            if ($learndash_get_course_prerequisite_enabled) {
-                $html .= '<div class="learndash-course-prerequisites">';
-                $html .= '<strong>Course Prerequisites</strong>';
+        if ($prerequisites && $prerequisite_enabled) {
+            $html .= '<div class="learndash-course-prerequisites">';
+            $html .= '<strong>Course Prerequisites</strong>';
 
-                foreach ($prerequisites as $key => $prerequisite) {
-                    $html .= get_the_title($key);
-                    $html .= '&nbsp;|&nbsp;';
-                }
-
-                $html .= '</div>';
+            foreach ($prerequisites as $key => $prerequisite) {
+                $html .= get_the_title($key);
+                $html .= '&nbsp;|&nbsp;';
             }
+
+            $html .= '</div>';
         }
     }
     $html .= "</div>";
