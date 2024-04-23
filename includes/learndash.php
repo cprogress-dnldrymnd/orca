@@ -329,10 +329,12 @@ function _learndash_course_button()
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
     $html .= '</div>';
 
-    if (_user_has_access() == false && _can_be_purchased()) {
-        $html .= '<div class="col-lg-6">';
-        $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
-        $html .= '</div>';
+    if (_user_has_access() == false) {
+        if (_can_be_purchased()) {
+            $html .= '<div class="col-lg-6">';
+            $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
+            $html .= '</div>';
+        }
     }
     $html .= '</div>';
     return $html;
