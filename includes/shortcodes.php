@@ -132,7 +132,7 @@ function _heading($atts)
             $html .= '<strong>Course Prerequisites: </strong>';
 
             foreach ($prerequisites as $key => $prerequisite) {
-                $html .= get_the_title($key);
+                $html .= get_the_title($prerequisite);
                 $html .= '&nbsp;|&nbsp;';
             }
 
