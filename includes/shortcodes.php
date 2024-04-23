@@ -129,7 +129,7 @@ function _heading($atts)
 
         if ($prerequisites && $prerequisite_enabled) {
             $html .= '<div class="learndash-course-prerequisites">';
-            $html .= '<strong>Course Prerequisites</strong>';
+            $html .= '<strong>Course Prerequisites: </strong>';
 
             foreach ($prerequisites as $key => $prerequisite) {
                 $html .= get_the_title($key);
