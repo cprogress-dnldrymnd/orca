@@ -66,13 +66,7 @@ function archive_ajax()
 							</div>
 							<div>
 								<?= do_shortcode('[_learndash_course_button]'); ?>
-								<?php
-									echo '<pre>';
-									$compare = learndash_get_course_prerequisite_compare(get_the_ID());
-									$prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
-									var_dump($prerequisites);
-									echo '</pre>';
-								?>
+							
 							</div>
 						</div>
 					</div>
