@@ -66,7 +66,7 @@ function archive_ajax()
 							</div>
 							<div>
 								<?= do_shortcode('[_learndash_course_button]'); ?>
-								<?= ld_course_check_user_access() ?>
+								<?= ld_course_check_user_access(get_the_ID(), get_current_user_id()) ?>
 							</div>
 						</div>
 					</div>
