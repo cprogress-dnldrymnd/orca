@@ -126,7 +126,7 @@ function _heading($atts)
             $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
             $html .= '</div>';
 
-            if ($prerequisite_enabled && $prerequisites) {
+            if ($prerequisite_enabled ) {
                 $html .= '<div class="learndash-course-prerequisites">';
                 $html .= '<strong>Course Prerequisites</strong>';
 
