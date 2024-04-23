@@ -67,14 +67,12 @@ function archive_ajax()
 							<div>
 								<?= do_shortcode('[_learndash_course_button]'); ?>
 								<?php
-								if (current_user_can('administrator')) {
 									echo '<pre>';
 									$compare = learndash_get_course_prerequisite_compare(get_the_ID());
 									$prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
     $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
 									var_dump($prerequisite_enabled);
 									echo '</pre>';
-								}
 								?>
 							</div>
 						</div>
