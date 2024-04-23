@@ -22,6 +22,7 @@
                                     <?= do_shortcode('[_learndash_course_button]'); ?>
                                     <?php 
                                         if(current_user_can('administrator')) { 
+                                            echo '1';
                                             echo learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
                                         }
                                     ?>
