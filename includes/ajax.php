@@ -75,15 +75,15 @@ function archive_ajax()
 									if ($prerequisites) {
 										if ($compare == 'ALL') {
 											if (in_array(false, $prerequisites)) {
-												return 'f1';
+												echo 'f1';
 											} else {
-												return 't1';
+												echo 't1';
 											}
 										} else {
 											if (in_array(true, $prerequisites)) {
-												return 't2';
+												echo 't2';
 											} else {
-												return 'f2';
+												echo 'f2';
 											}
 										}
 									} else {
