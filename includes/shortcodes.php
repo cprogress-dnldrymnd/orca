@@ -115,7 +115,7 @@ function _heading($atts)
         $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
         $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
         $compare = learndash_get_course_prerequisite_compare(get_the_ID());
-        $prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
+        $prerequisites = learndash_get_course_prerequisite(get_the_ID());
         $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
 
         if ($enrolled && is_single()) {
