@@ -69,8 +69,11 @@ function archive_ajax()
 								<?php 
                                         if(current_user_can('administrator')) { 
 											echo '<pre>';
-                                             var_dump(learndash_get_course_prerequisites(get_the_ID(), get_current_user_id()));
-											 echo learndash_get_course_prerequisite_compare(get_the_ID());
+											$compare = learndash_get_course_prerequisite_compare(get_the_ID());
+											$prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
+											if ($prerequisites) {
+												echo 'true';
+											}
 											 echo '</pre>';
                                         }
                                     ?>
