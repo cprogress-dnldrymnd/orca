@@ -129,12 +129,13 @@ function _heading($atts)
 
         if ($prerequisite_enabled) {
             $html .= '<div class="learndash-course-prerequisites">';
-            $html .= '<strong>Course Prerequisites: </strong>';
+            $html .= '<strong>This course requires ' . $compare . ' of the following course to be completed in order to purchased. </strong>';
 
+            $html .= '<ul>';
             foreach ($prerequisites as $key => $prerequisite) {
-                $html .= get_the_title($prerequisite);
-                $html .= '&nbsp;|&nbsp;';
+                $html .= '<li><a href="'.get_the_permalink($prerequisite).'">' . get_the_title($prerequisite) . '</a></li>';
             }
+            $html .= '</ul>';
 
             $html .= '</div>';
         }
