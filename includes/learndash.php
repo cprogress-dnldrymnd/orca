@@ -111,7 +111,7 @@ function _learndash_status()
 {
     if (_user_has_access()) {
         return _learndash_status_bubble();
-    } else {
+    } else if (_can_be_purchased()) {
         return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product]</div>');
     }
 }
