@@ -11229,6 +11229,9 @@ section.loading-post select {
   #load-more.loading svg {
     display: inline-block; }
 
+.ppcp-place-order-description {
+  display: none !important; }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
