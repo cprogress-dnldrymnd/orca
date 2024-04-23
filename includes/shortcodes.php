@@ -114,13 +114,29 @@ function _heading($atts)
     if (get_post_type() == 'sfwd-courses') {
         $enrolled = ld_course_access_from(get_the_ID(),  get_current_user_id());
         $expires = ld_course_access_expires_on(get_the_ID(),  get_current_user_id());
+        $compare = learndash_get_course_prerequisite_compare(get_the_ID());
+        $prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
+        $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
 
         if ($enrolled && is_single()) {
+
             $html .= '<div class="learndash-course-access">';
             $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
             $html .= '&nbsp;|&nbsp;';
             $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
             $html .= '</div>';
+
+            if ($prerequisite_enabled && $prerequisites) {
+                $html .= '<div class="learndash-course-prerequisites">';
+                $html .= '<strong>Course Prerequisites</strong>';
+
+                foreach ($prerequisites as $key => $prerequisite) {
+                    $html .= get_the_title($key);
+                    $html .= '&nbsp;|&nbsp;';
+                }
+
+                $html .= '</div>';
+            }
         }
     }
     $html .= "</div>";
