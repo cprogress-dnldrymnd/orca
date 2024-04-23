@@ -71,8 +71,11 @@ function archive_ajax()
 											echo '<pre>';
 											$compare = learndash_get_course_prerequisite_compare(get_the_ID());
 											$prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
+											echo $compare;
 											if ($prerequisites) {
-												echo 'true';
+												if($compare == 'ANY') {
+													
+												}
 											}
 											 echo '</pre>';
                                         }
