@@ -14,7 +14,8 @@ function _can_be_purchased()
 {
     $compare = learndash_get_course_prerequisite_compare(get_the_ID());
     $prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
-    if ($prerequisites) {
+    $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
+    if ($prerequisite_enabled) {
         if ($compare == 'ALL') {
             if (in_array(false, $prerequisites)) {
                 return false;
