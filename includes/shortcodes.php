@@ -127,7 +127,7 @@ function _heading($atts)
             $html .= '</div>';
         }
 
-        if ($prerequisites && $prerequisite_enabled) {
+        if ($prerequisites) {
             $html .= '<div class="learndash-course-prerequisites">';
             $html .= '<strong>Course Prerequisites: </strong>';
 
