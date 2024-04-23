@@ -66,32 +66,6 @@ function archive_ajax()
 							</div>
 							<div>
 								<?= do_shortcode('[_learndash_course_button]'); ?>
-								<?php
-								if (current_user_can('administrator')) {
-									echo '<pre>';
-									$compare = learndash_get_course_prerequisite_compare(get_the_ID());
-									$prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
-									echo $compare;
-									if ($prerequisites) {
-										if ($compare == 'ALL') {
-											if (in_array(false, $prerequisites)) {
-												echo 'f1';
-											} else {
-												echo 't1';
-											}
-										} else {
-											if (in_array(true, $prerequisites)) {
-												echo 't2';
-											} else {
-												echo 'f2';
-											}
-										}
-									} else {
-										echo 't3';
-									}
-									echo '</pre>';
-								}
-								?>
 							</div>
 						</div>
 					</div>
