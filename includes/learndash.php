@@ -235,21 +235,6 @@ function _learndash_linked_product($atts)
 
 
 
-    if ($hide_add_to_cart == 'false') {
-        if ($products) {
-
-            $product = wc_get_product($products[0]->ID);
-
-            if ($show_price == 'true') {
-                $html .= $product->get_price_html();
-            }
-
-            $html .= _add_to_cart_button($products[0]->ID);
-            return $html;
-        }
-    } else {
-        return $html;
-    }
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
