@@ -348,7 +348,7 @@ function _learndash_course_button()
     $html .= '</div>';
 
     if (_user_has_access() == false && _can_be_purchased()) {
-        $html .= '<div class="col-lg-6">';
+        $html .= '<div class="col-lg-6 11">';
         $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
         $html .= '</div>';
     }
