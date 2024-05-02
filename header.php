@@ -23,8 +23,6 @@
     </title>
     <?php wp_head(); ?>
 </head>
-<?php update_product_prices() ?>
-
 <body <?php body_class(); ?>>
     <div id="page" class="site">
         <header id="masthead" class="site-header">
@@ -55,7 +53,7 @@
                                                 <?php if (is_user_logged_in()) { ?>
                                                     Account
                                                 <?php } else { ?>
-                                                    Login
+                                                    Join
                                                 <?php } ?>
                                             </span>
                                         </a>
