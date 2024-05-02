@@ -227,7 +227,6 @@ function _learndash_linked_product($atts)
 
 
     $html = '';
-    $html .= $hide_add_to_cart . '1';
 
     if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
