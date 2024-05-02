@@ -203,7 +203,7 @@ function _learndash_has_linked_product($course_id)
     );
     $products = get_posts($args);
 
-    if (count($products) == 1) {
+    if (count($products) > 0) {
         return $products;
     } else {
         return false;
@@ -241,10 +241,9 @@ function _learndash_linked_product($atts)
             }
             $html .= _add_to_cart_button($products[0]->ID);
         }
-    } 
+    }
 
     return $html;
-
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
