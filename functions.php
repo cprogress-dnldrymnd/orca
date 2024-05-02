@@ -8,11 +8,14 @@ define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
 define('vendor_dir', assets_dir . 'vendors/');
 
-add_action( 'after_setup_theme', 'setup_woocommerce_support' );
+add_action('after_setup_theme', 'setup_woocommerce_support');
 
- function setup_woocommerce_support()
+function setup_woocommerce_support()
 {
-  add_theme_support('woocommerce');
+	add_theme_support('woocommerce');
+	add_theme_support('wc-product-gallery-zoom');
+	add_theme_support('wc-product-gallery-lightbox');
+	add_theme_support('wc-product-gallery-slider');
 }
 
 function action_wp_enqueue_scripts()
