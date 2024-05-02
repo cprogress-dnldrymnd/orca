@@ -136,7 +136,7 @@ function product_save($post_id)
         $product->save();
     }
 }
-*/
+
 
 function update_product_prices()
 {
@@ -185,7 +185,7 @@ function action_post_updated($post_ID, $post_after, $post_before)
 }
 
 add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the last argument to allow all three arguments of the function
-
+*/
 
 /**
  * @snippet       WooCommerce Add New Tab @ My Account
