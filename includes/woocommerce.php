@@ -303,3 +303,5 @@ function action_wp_trash_post($post_id)
     }
 }
 */
+
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb' );
