@@ -66,6 +66,7 @@ function archive_ajax()
 							</div>
 							<div>
 								<?= do_shortcode('[_learndash_course_button]'); ?>
+						
 							</div>
 						</div>
 					</div>

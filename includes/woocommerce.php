@@ -90,8 +90,6 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
-
-/*
 function course_created($new_status, $old_status, $post)
 {
     if (($new_status == 'publish') && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
@@ -122,7 +120,7 @@ function create_course_product($post)
 
     update_option('product_price_update', $product_price_update);
 }
-*/
+
 /*
 add_action('save_post', 'product_save');
 
@@ -136,7 +134,7 @@ function product_save($post_id)
         $product->save();
     }
 }
-
+*/
 
 function update_product_prices()
 {
@@ -185,7 +183,7 @@ function action_post_updated($post_ID, $post_after, $post_before)
 }
 
 add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the last argument to allow all three arguments of the function
-*/
+
 
 /**
  * @snippet       WooCommerce Add New Tab @ My Account
@@ -281,7 +279,6 @@ function custom_woocommerce_placeholder_img_src($src)
     return $src;
 }
 
-/*
 
 add_action('after_delete_post', 'action_after_delete_post', 10, 2);
 function action_after_delete_post($post_id, $post)
@@ -302,6 +299,3 @@ function action_wp_trash_post($post_id)
         wp_trash_post($product_id);
     }
 }
-*/
-
-remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 99);

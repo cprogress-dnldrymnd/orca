@@ -112,7 +112,12 @@ function _learndash_status()
     if (_user_has_access()) {
         return _learndash_status_bubble();
     } else {
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_course_status]</div>');
+        if(_can_be_purchased()) {
+            $hide_add_to_cart = 'false';
+        } else {
+            $hide_add_to_cart = 'true';
+        }
+        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product hide_add_to_cart="'.$hide_add_to_cart.'"]</div>');
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
@@ -183,7 +188,7 @@ function _add_to_cart_button($product_id)
     return $html;
 }
 
-function _learndash_has_linked_product($course_id)
+function _learndash_has_linked_product()
 {
 
     $args = array(
@@ -191,23 +196,18 @@ function _learndash_has_linked_product($course_id)
         'meta_query' => array(
             array(
                 'key'   => '_related_course',
-                'value' => serialize(intval($course_id)),
+                'value' => serialize(intval(get_the_ID())),
                 'compare' => 'LIKE'
             )
         )
     );
     $products = get_posts($args);
 
-    if (count($products) > 0) {
+    if (count($products) == 1) {
         return $products;
     } else {
         return false;
     }
-}
-
-function _learndash_course_status() {
-    $html = '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
-    return $html;
 }
 
 function _learndash_linked_product($atts)
@@ -223,8 +223,7 @@ function _learndash_linked_product($atts)
         )
     );
 
-    $products = _learndash_has_linked_product(get_the_ID());
-
+    $products = _learndash_has_linked_product();
 
     $html = '';
 
@@ -232,18 +231,21 @@ function _learndash_linked_product($atts)
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     }
 
-
     if ($hide_add_to_cart == 'false') {
-        if (count($products)) {
+        if ($products) {
+
             $product = wc_get_product($products[0]->ID);
+
             if ($show_price == 'true') {
                 $html .= $product->get_price_html();
             }
-            $html .= _add_to_cart_button($products[0]->ID);
-        }
-    }
 
-    return $html;
+            $html .= _add_to_cart_button($products[0]->ID);
+            return $html;
+        }
+    } else {
+        return $html;
+    }
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
@@ -337,16 +339,15 @@ function _learndash_course_button()
     $permalink = get_the_permalink();
     $html = '<div class="row g-3 button-group">';
 
-    $html .= '<div class="col-lg-12">';
+    $html .= '<div class="' . (_user_has_access() == false && _can_be_purchased() ? 'col-lg-6' : 'col-12') . '">';
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
     $html .= '</div>';
-    
-    /*
+
     if (_user_has_access() == false && _can_be_purchased()) {
         $html .= '<div class="col-lg-6">';
         $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
         $html .= '</div>';
-    }*/
+    }
     $html .= '</div>';
     return $html;
 }
