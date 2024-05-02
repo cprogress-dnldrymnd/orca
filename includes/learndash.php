@@ -233,8 +233,7 @@ function _learndash_linked_product($atts)
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     }
 
-
-
+    return $html;
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
