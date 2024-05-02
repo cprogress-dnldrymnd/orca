@@ -188,7 +188,7 @@ function _add_to_cart_button($product_id)
     return $html;
 }
 
-function _learndash_has_linked_product()
+function _learndash_has_linked_product($course_id)
 {
 
     $args = array(
@@ -196,7 +196,7 @@ function _learndash_has_linked_product()
         'meta_query' => array(
             array(
                 'key'   => '_related_course',
-                'value' => serialize(intval(get_the_ID())),
+                'value' => serialize(intval($course_id)),
                 'compare' => 'LIKE'
             )
         )
@@ -223,7 +223,7 @@ function _learndash_linked_product($atts)
         )
     );
 
-    $products = _learndash_has_linked_product();
+    $products = _learndash_has_linked_product(get_the_ID());
 
 
     $html = '';
@@ -233,7 +233,20 @@ function _learndash_linked_product($atts)
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     }
 
-    return $html;
+
+
+    if ($hide_add_to_cart == 'false') {
+        if ($products) {
+            $product = wc_get_product($products[0]->ID);
+            if ($show_price == 'true') {
+                $html .= $product->get_price_html();
+            }
+            $html .= _add_to_cart_button($products[0]->ID);
+            return $html;
+        }
+    } else {
+        return $html;
+    }
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
