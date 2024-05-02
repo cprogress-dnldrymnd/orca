@@ -225,7 +225,7 @@ function _learndash_linked_product($atts)
 
     $products = _learndash_has_linked_product();
 
-    if (current_user_can('admnistrator')) {
+    if (current_user_can('administrator')) {
         $html .= $hide_add_to_cart . 'sdsds';
     }
 
