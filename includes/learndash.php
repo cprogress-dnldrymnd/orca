@@ -203,7 +203,7 @@ function _learndash_has_linked_product()
     );
     $products = get_posts($args);
 
-    if (count($products) == 1) {
+    if (count($products) > 0) {
         return $products;
     } else {
         return false;
