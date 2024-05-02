@@ -245,11 +245,11 @@ function _learndash_linked_product($atts)
                 $html .= $product->get_price_html();
             }
             $html .= _add_to_cart_button($products[0]->ID);
-            return $html;
         }
-    } else {
-        return $html;
-    }
+    } 
+
+    return $html;
+
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
