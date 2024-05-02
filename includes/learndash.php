@@ -232,7 +232,11 @@ function _learndash_linked_product($atts)
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     }
 
-
+    if ($products) {
+        $html .= 1;
+    } else {
+        $html .= 0;
+    }
 
     if ($hide_add_to_cart == 'false') {
         if ($products) {
