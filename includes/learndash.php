@@ -332,14 +332,11 @@ add_shortcode('_learndash_image', '_learndash_image');
 
 function _learndash_course_button()
 {
-
-
     $permalink = get_the_permalink();
     $html = '<div class="row g-3 button-group">';
     $html .= '<div class="col-12">';
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
     $html .= '</div>';
-    
     /*
     if (_user_has_access() == false && _can_be_purchased()) {
         $html .= '<div class="col-lg-6">';
