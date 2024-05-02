@@ -225,9 +225,9 @@ function _learndash_linked_product($atts)
 
     $products = _learndash_has_linked_product();
 
+    $html .= $hide_add_to_cart . '1';
 
     $html = '';
-    $html .= $hide_add_to_cart . '1';
 
     if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
@@ -348,7 +348,7 @@ function _learndash_course_button()
     $html .= '</div>';
 
     if (_user_has_access() == false && _can_be_purchased()) {
-        $html .= '<div class="col-lg-6 xxx">';
+        $html .= '<div class="col-lg-6">';
         $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
         $html .= '</div>';
     }
