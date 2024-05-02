@@ -112,12 +112,12 @@ function _learndash_status()
     if (_user_has_access()) {
         return _learndash_status_bubble();
     } else {
-        if (_can_be_purchased()) {
+        if(_can_be_purchased()) {
             $hide_add_to_cart = 'false';
         } else {
             $hide_add_to_cart = 'true';
         }
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product hide_add_to_cart="' . $hide_add_to_cart . '"]</div>');
+        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product hide_add_to_cart="'.$hide_add_to_cart.'"]</div>');
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
@@ -225,16 +225,17 @@ function _learndash_linked_product($atts)
 
     $products = _learndash_has_linked_product();
 
+    if (current_user_can('admnistrator')) {
+        $html .= $hide_add_to_cart . 'sdsds';
+    }
+
     $html = '';
 
     if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     }
 
-    if (current_user_can('admnistrator')) {
-        $html .= $hide_add_to_cart . 'sdsds';
-    }
-
+    
 
     if ($hide_add_to_cart == 'false') {
         if ($products) {
