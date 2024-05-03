@@ -321,6 +321,8 @@ function product_related_courses()
                     <div class="col-9">
                         <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
                         <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                        <?= do_shortcode('[_learndash_course_button]'); ?>
+                        
                     </div>
                 </div>
             </div>
