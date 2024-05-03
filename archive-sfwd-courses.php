@@ -13,9 +13,9 @@ $args = array(
     'order' => 'ASC'
 );
 
-$the_query = new WP_Query($args);
+$course_query = new WP_Query($args);
 
-$count = $the_query->found_posts;
+$count = $course_query->found_posts;
 echo hide_load_more($count, 0, 12);
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
@@ -48,9 +48,9 @@ echo hide_load_more($count, 0, 12);
             <div class="results-holder">
                 <div class="row row-archive g-4">
                     <?php
-                    if ($the_query->have_posts()) {
-                        while ($the_query->have_posts()) {
-                            $the_query->the_post();
+                    if ($course_query->have_posts()) {
+                        while ($course_query->have_posts()) {
+                            $course_query->the_post();
                     ?>
                             <div class="col-md-4 col-6 post-item">
                                 <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
