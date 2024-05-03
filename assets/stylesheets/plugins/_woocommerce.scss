@@ -11,7 +11,8 @@ textarea {
 }
 
 .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
-.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button,
+.single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
     @include button-style;
     @include button-primary;
 }
