@@ -115,10 +115,19 @@ function _learndash_status_bubble($atts)
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 
-function _learndash_status()
+function _learndash_status($atts)
 {
-    if (_user_has_access(get_the_ID())) {
-        return _learndash_status_bubble(get_the_ID());
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+
+    if (_user_has_access($id)) {
+        return _learndash_status_bubble($id);
     } else {
         return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product]</div>');
     }

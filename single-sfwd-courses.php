@@ -27,7 +27,7 @@ $testimonials = get_posts($args);
                         <div class="row gy-3 align-items-center">
                             <?= do_shortcode('[_learndash_course_progress wrapper="col-md-8"]') ?>
                             <div class="text-end <?= _user_has_access(get_the_ID()) ? 'col-md-4' : 'col-12' ?>">
-                                <?= do_shortcode('[_learndash_status]') ?>
+                                <?= do_shortcode('[_learndash_status id="'.get_the_ID().'"]') ?>
                             </div>
                         </div>
                     </div>
