@@ -11,7 +11,7 @@ textarea {
 }
 
 .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
-.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button, .woocommerce-message .button.button.button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button, .woocommerce-notices-wrapper .button.button.button {
     @include button-style;
     @include button-primary;
 }
