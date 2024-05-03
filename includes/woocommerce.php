@@ -314,7 +314,7 @@ function product_related_courses()
         <?php foreach ($_related_course as $course) { ?>
             <div class="row">
                 <div class="col-3">
-                    <?= do_shortcode('[_image]') ?>
+                    <?= do_shortcode('[_image id="'.$course.'" size="medium"]') ?>
                 </div>
                 <div class="col-9">
 
