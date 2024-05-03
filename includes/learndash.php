@@ -334,15 +334,16 @@ function _learndash_course_button()
 {
     $permalink = get_the_permalink();
     $html = '<div class="row g-3 button-group">';
-    $html .= '<div class="col-12">';
+
+    $html .= '<div class="' . (_user_has_access() == false && _can_be_purchased() ? 'col-lg-6' : 'col-12') . '">';
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
     $html .= '</div>';
-    /*
+
     if (_user_has_access() == false && _can_be_purchased()) {
         $html .= '<div class="col-lg-6">';
         $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
         $html .= '</div>';
-    }*/
+    }
     $html .= '</div>';
     return $html;
 }
