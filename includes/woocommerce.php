@@ -308,7 +308,21 @@ function action_wp_trash_post($post_id)
 function product_related_courses()
 {
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
-?>
 
+?>
+    <div class="related-courses">
+        <?php foreach ($_related_course as $course) { ?>
+            <div class="row">
+                <div class="col-3">
+                    <?= do_shortcode('[_image]') ?>
+                </div>
+                <div class="col-9">
+
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 <?php
 }
+
+add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');

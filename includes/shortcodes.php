@@ -73,7 +73,7 @@ function _image($atts)
     extract(
         shortcode_atts(
             array(
-                'id' => '',
+                'id' => get_post_thumbnail_id(),
                 'size' => 'large',
                 'class' => ''
             ),
