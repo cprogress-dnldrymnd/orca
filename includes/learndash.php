@@ -294,6 +294,7 @@ function _learndash_image($atts)
         shortcode_atts(
             array(
                 'id' => '',
+                'course_id' => NULL,
                 'size' => 'large',
                 'learndash_status_bubble' => 'false',
                 'taxonomy' => '',
@@ -308,7 +309,7 @@ function _learndash_image($atts)
     }
     if ($learndash_status_bubble) {
 
-        $html .= do_shortcode('[_learndash_status_bubble]');
+        $html .= do_shortcode('[_learndash_status_bubble id="' . $course_id . '"]');
     }
 
     if ($taxonomy) {

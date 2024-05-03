@@ -11870,6 +11870,8 @@ textarea {
     margin-left: -1rem;
     margin-right: -1rem;
     border-radius: 10px 10px 0 0; }
+  .related-courses .course-item .image-box {
+    border-radius: 5px !important; }
   .related-courses .course-item .button-group {
     display: inline-flex !important; }
   .related-courses .course-item:not(:last-child) {

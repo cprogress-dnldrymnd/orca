@@ -35,6 +35,9 @@ textarea {
         border-radius: 10px 10px 0 0;
     }
     .course-item {
+        .image-box {
+            border-radius: 5px !important;
+        }
         .button-group {
             display: inline-flex !important;
         }
