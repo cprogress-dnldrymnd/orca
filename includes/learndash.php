@@ -308,7 +308,7 @@ function _learndash_image($atts)
         $html .= '<div class="meta-box d-flex align-items-center justify-content-end flex-wrap">';
     }
     if ($learndash_status_bubble) {
-
+        $html . ='course_id';
         $html .= do_shortcode('[_learndash_status_bubble id="' . $course_id . '"]');
     }
 
