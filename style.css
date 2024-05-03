@@ -11871,7 +11871,6 @@ textarea {
   padding: 1rem 2rem;
   max-width: 300px;
   width: 100%;
-  border: none;
   font-size: 20px; }
   .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
     background-color: var(--accent-color);
