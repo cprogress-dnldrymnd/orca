@@ -11858,7 +11858,7 @@ textarea {
   .related-courses .course-item:not(:last-child) {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border: 1px solid var(--light-gray-color); }
+    border-bottom: 1px solid var(--light-gray-color); }
 
 .summary .product_meta {
   margin-top: 1rem; }
