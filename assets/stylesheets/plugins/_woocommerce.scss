@@ -47,11 +47,8 @@ textarea {
             padding: 1rem 2rem;
             max-width: 300px;
             width: 100%;
-            border: none;
             font-size: 20px;
-            @include on-event {
-
-            }
+          
         }
     }
 }
