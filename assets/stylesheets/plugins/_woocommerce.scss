@@ -14,3 +14,8 @@ textarea {
     @include button-style;
     @include button-primary;
 }
+
+
+.woocommerce-breadcrumb {
+    display: none !important;
+}
