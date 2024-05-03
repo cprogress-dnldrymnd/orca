@@ -294,7 +294,7 @@ function _learndash_image($atts)
         shortcode_atts(
             array(
                 'id' => '',
-                'course_id' => NULL,
+                'course_id' => get_the_ID(),
                 'size' => 'large',
                 'learndash_status_bubble' => 'false',
                 'taxonomy' => '',
