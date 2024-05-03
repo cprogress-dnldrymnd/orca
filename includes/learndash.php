@@ -352,7 +352,7 @@ function _learndash_course_button()
 add_shortcode('_learndash_course_button', '_learndash_course_button');
 
 
-function _learndash_linked_product()
+function _learndash_linked_product($atts)
 {
     extract(
         shortcode_atts(
