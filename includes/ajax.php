@@ -8,7 +8,7 @@ function archive_ajax()
 	$post_type = $_POST['post_type'];
 	$offset = $_POST['offset'];
 	//$sortby = $_POST['sortby'];
-	$posts_per_page = 6;
+	$posts_per_page = 12;
 
 	$args = array(
 		'post_type' => $post_type,
