@@ -310,7 +310,7 @@ function product_related_courses()
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
 
 ?>
-    <div class="related-courses">
+    <div class="related-courses mb-4">
         <pre>
             <?php var_dump($_related_course) ?>
         </pre>
