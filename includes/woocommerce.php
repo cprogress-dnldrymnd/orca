@@ -336,12 +336,12 @@ function product_related_courses()
         <h3> Course Included</h3>
         <?php foreach ($_related_course as $course) { ?>
             <div class="course-item">
-                <div class="row align-items-center">
-                    <div class="col-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-sm-3">
                         <?= do_shortcode('[_image id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
                         <?= do_shortcode('[_learndash_status_bubble]') ?>
                     </div>
-                    <div class="col-9">
+                    <div class="col-sm-9">
                         <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
                         <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
                         <div class="mt-3">
