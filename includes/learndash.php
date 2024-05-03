@@ -293,8 +293,8 @@ function _learndash_image($atts)
     extract(
         shortcode_atts(
             array(
-                'id' => '',
-                'course_id' => get_the_ID(),
+                'image_id' => '',
+                'id' => get_the_ID(),
                 'size' => 'large',
                 'learndash_status_bubble' => 'false',
                 'taxonomy' => '',
@@ -302,13 +302,13 @@ function _learndash_image($atts)
             $atts
         )
     );
-    $image_url = wp_get_attachment_image_url($id, $size);
+    $image_url = wp_get_attachment_image_url($image_id, $size);
     $html = '<div class="image-box image-box-course">';
     if ($learndash_status_bubble == 'true' || $taxonomy) {
         $html .= '<div class="meta-box d-flex align-items-center justify-content-end flex-wrap">';
     }
     if ($learndash_status_bubble) {
-        $html .= do_shortcode('[_learndash_status_bubble id="' . $course_id . '"]');
+        $html .= do_shortcode('[_learndash_status_bubble id="' . $id . '"]');
     }
 
     if ($taxonomy) {
