@@ -166,19 +166,19 @@ function movies_to_films($args, $post_type)
 }
 
 
-add_filter( 'pre_get_posts', 'custom_change_portfolio_posts_per_page' );
+add_filter('pre_get_posts', 'custom_change_portfolio_posts_per_page');
 /**
  * Change Posts Per Page for Portfolio Archive.
  * 
  * @param object $query data
  *
  */
-function custom_change_portfolio_posts_per_page( $query ) {
+function custom_change_portfolio_posts_per_page($query)
+{
 
-    if ( $query->is_post_type_archive( 'sfwd-courses' ) && ! is_admin() && $query->is_main_query() ) {
-          $query->set( 'posts_per_page', 1 );
+    if ($query->is_post_type_archive('sfwd-courses') && !is_admin() && $query->is_main_query()) {
+        $query->set('posts_per_page', 1);
     }
 
     return $query;
-
 }
