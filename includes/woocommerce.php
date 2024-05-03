@@ -308,7 +308,7 @@ function action_wp_trash_post($post_id)
 function product_related_courses()
 {
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
-
+    $_related_course = array_reverse($_related_course);
 ?>
     <div class="related-courses my-4">
         <h3> Course Included</h3>
