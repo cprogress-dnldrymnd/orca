@@ -11862,6 +11862,14 @@ textarea {
   padding: 1rem;
   border: 1px solid var(--light-gray-color);
   border-radius: 10px; }
+  .related-courses h3, .related-courses .h3 {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    padding: 1rem;
+    margin-top: -1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 10px 10px 0 0; }
   .related-courses .course-item .button-group {
     display: inline-flex !important; }
   .related-courses .course-item:not(:last-child) {

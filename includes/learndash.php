@@ -205,11 +205,7 @@ function _learndash_has_linked_product($course_id)
     }
 }
 
-function _learndash_course_status()
-{
-    $html = '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
-    return $html;
-}
+
 /*
 function _learndash_linked_product($atts)
 {

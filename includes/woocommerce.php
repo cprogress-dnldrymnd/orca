@@ -339,6 +339,7 @@ function product_related_courses()
                 <div class="row align-items-center">
                     <div class="col-3">
                         <?= do_shortcode('[_image id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                        <?= do_shortcode('[_learndash_status_bubble]') ?>
                     </div>
                     <div class="col-9">
                         <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
