@@ -314,7 +314,7 @@ function _learndash_course_button($atts)
             $atts
         )
     );
-    
+
     $permalink = get_the_permalink();
     $html = '<div class="row g-3 button-group">';
 
@@ -330,6 +330,19 @@ function _learndash_course_button($atts)
     $html .= '</div>';
     return $html;
 }
+function _learndash_course_buttonx($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+    return 'xxxx' . $id;
+}
+add_shortcode('_learndash_course_buttonx', '_learndash_course_buttonx');
 
 add_shortcode('_learndash_course_button', '_learndash_course_button');
 

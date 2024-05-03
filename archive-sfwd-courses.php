@@ -69,6 +69,7 @@ echo hide_load_more($count, 0, $posts_per_page);
                                         </div>
                                         <div>
                                             <?= do_shortcode('[_learndash_course_button id="' . get_the_ID() . '"]'); ?>
+                                            <?= do_shortcode('[_learndash_course_buttonx id="' . get_the_ID() . '"]'); ?>
                                         </div>
                                     </div>
                                 </div>
