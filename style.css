@@ -11835,7 +11835,7 @@ textarea {
   border: 1px solid #cfc8d8; }
 
 .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
-.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button, .woocommerce-message .button {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
@@ -11844,9 +11844,9 @@ textarea {
   border: 1px solid var(--primary-color);
   color: var(--white-color); }
   .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus,
-  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto:hover,
-  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto:active,
-  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto:focus {
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus, .woocommerce-message .button:hover, .woocommerce-message .button:active, .woocommerce-message .button:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     border: 1px solid var(--accent-color); }
@@ -11876,7 +11876,6 @@ textarea {
   border: 1px solid var(--primary-color);
   color: var(--white-color);
   padding: 1rem 2rem;
-  max-width: 300px;
   width: 100%;
   font-size: 20px; }
   .single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, .single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, .single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
