@@ -1,7 +1,13 @@
 <?php
-function _user_has_access()
+function _user_has_access($id = NULL)
 {
-    $has_access = ld_course_check_user_access(get_the_ID(), get_current_user_id());
+
+    if ($id == NULL) {
+        $id = get_the_ID();
+    } else {
+        $id = $id;
+    }
+    $has_access = ld_course_check_user_access($id, get_current_user_id());
 
     if ($has_access) {
         return true;
