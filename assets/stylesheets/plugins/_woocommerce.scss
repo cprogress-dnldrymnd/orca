@@ -19,3 +19,11 @@ textarea {
 .woocommerce-breadcrumb {
     display: none !important;
 }
+
+.related-courses {
+    .row {
+        @include not-last-child {
+            margin-bottom: 1rem;
+        }
+    }
+}
