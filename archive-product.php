@@ -47,6 +47,13 @@ echo hide_load_more($count, 0, $posts_per_page);
                     Showing <span class="post-number"><?php echo $final_count ?></span> of <span class="found-post"><?php echo $count ?> </span> Products
                 </div>
             </div>
+            <div class="heading-box">
+                <h3>
+                    <?php if (isset($_GET['id'])) { ?>
+                        <?= get_the_title($_GET['id']) ?> can be purchased by the following products.
+                    <?php } ?>
+                </h3>
+            </div>
             <div class="col-lg-6 text-end">
                 <div class="filter-box d-inline-flex">
                     <div class="filter-select me-3">
