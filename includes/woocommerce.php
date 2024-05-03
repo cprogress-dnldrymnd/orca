@@ -315,7 +315,7 @@ function product_related_courses()
             <?php var_dump($_related_course) ?>
         </pre>
         <?php foreach ($_related_course as $course) { ?>
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-3">
                     <?= do_shortcode('[_image id="' . $course . '" size="medium"]') ?>
                 </div>
