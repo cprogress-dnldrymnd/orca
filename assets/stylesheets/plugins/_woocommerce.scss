@@ -10,20 +10,25 @@ textarea {
     border: 1px solid #cfc8d8;
 }
 
-.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
+.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
     @include button-style;
     @include button-primary;
 }
-
 
 .woocommerce-breadcrumb {
     display: none !important;
 }
 
 .related-courses {
+    padding: 1rem;
+    border: 1px solid var(--light-gray-color);
+    border-radius: 10px;
     .course-item {
         @include not-last-child {
             margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border: 1px solid var(--light-gray-color);
         }
     }
 }

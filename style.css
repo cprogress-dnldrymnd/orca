@@ -11843,7 +11843,11 @@ textarea {
 .woocommerce-breadcrumb {
   display: none !important; }
 
-.related-courses .course-item:not(:last-child) {
-  margin-bottom: 1rem; }
+.related-courses {
+  padding: 1rem;
+  border: 1px solid var(--light-gray-color);
+  border-radius: 10px; }
+  .related-courses .course-item:not(:last-child) {
+    margin-bottom: 1rem; }
 
 /*# sourceMappingURL=style.css.map */
