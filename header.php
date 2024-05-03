@@ -53,7 +53,7 @@
                                                 <?php if (is_user_logged_in()) { ?>
                                                     Account
                                                 <?php } else { ?>
-                                                    Joinx
+                                                    Join
                                                 <?php } ?>
                                             </span>
                                         </a>
