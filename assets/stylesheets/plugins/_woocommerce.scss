@@ -11,8 +11,7 @@ textarea {
 }
 
 .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
-.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button,
-.single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto {
     @include button-style;
     @include button-primary;
 }
@@ -27,9 +26,7 @@ textarea {
     border-radius: 10px;
     .course-item {
         .button-group {
-            .row {
-                display: inline-flex !important;
-            }
+            display: inline-flex !important;
         }
         @include not-last-child {
             margin-bottom: 1rem;
@@ -44,8 +41,17 @@ textarea {
         margin-top: 1rem;
     }
     .cart {
-        padding: 1rem;
-        border: 1px solid var(--light-gray-color);
-        border-radius: 10px;
+        .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+            @include button-style;
+            @include button-primary;
+            padding: 1rem 2rem;
+            max-width: 300px;
+            width: 100%;
+            border: none;
+            font-size: 20px;
+            @include on-event {
+
+            }
+        }
     }
 }

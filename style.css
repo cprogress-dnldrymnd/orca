@@ -11828,8 +11828,7 @@ textarea {
   border: 1px solid #cfc8d8; }
 
 .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
-.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button,
-.single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
@@ -11838,12 +11837,9 @@ textarea {
   border: 1px solid var(--primary-color);
   color: var(--white-color); }
   .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus,
-  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover,
-  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active,
-  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus,
-  .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover,
-  .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active,
-  .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto:hover,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto:active,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Butto:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     border: 1px solid var(--accent-color); }
@@ -11855,7 +11851,7 @@ textarea {
   padding: 1rem;
   border: 1px solid var(--light-gray-color);
   border-radius: 10px; }
-  .related-courses .course-item .button-group .row {
+  .related-courses .course-item .button-group {
     display: inline-flex !important; }
   .related-courses .course-item:not(:last-child) {
     margin-bottom: 1rem;
@@ -11864,9 +11860,22 @@ textarea {
 
 .summary .product_meta {
   margin-top: 1rem; }
-.summary .cart {
-  padding: 1rem;
-  border: 1px solid var(--light-gray-color);
-  border-radius: 10px; }
+.summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+  padding: 10px 20px;
+  line-height: 1;
+  font-weight: bold;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  max-width: 300px;
+  width: 100%;
+  border: none;
+  font-size: 20px; }
+  .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    border: 1px solid var(--accent-color); }
 
 /*# sourceMappingURL=style.css.map */
