@@ -303,3 +303,12 @@ function action_wp_trash_post($post_id)
     }
 }
 */
+
+
+function product_related_courses()
+{
+    $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
+?>
+
+<?php
+}
