@@ -11865,24 +11865,26 @@ textarea {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--light-gray-color); }
 
-.single-product .product .summary .product_meta {
-  margin-top: 1rem; }
-.single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
-  padding: 10px 20px;
-  line-height: 1;
-  font-weight: bold;
-  border-radius: 8px;
-  background-color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  color: var(--white-color);
-  padding: 1rem 2rem;
-  width: 100%;
-  font-size: 20px; }
-  .single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, .single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, .single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    border: 1px solid var(--accent-color); }
-.single-product .product .woocommerce-product-gallery__image {
-  border-radius: 5px; }
+single-product.single-product {
+  margin-top: 2rem; }
+  single-product.single-product .product .summary .product_meta {
+    margin-top: 1rem; }
+  single-product.single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+    padding: 10px 20px;
+    line-height: 1;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--white-color);
+    padding: 1rem 2rem;
+    width: 100%;
+    font-size: 20px; }
+    single-product.single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, single-product.single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, single-product.single-product .product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      border: 1px solid var(--accent-color); }
+  single-product.single-product .product .woocommerce-product-gallery__image {
+    border-radius: 5px; }
 
 /*# sourceMappingURL=style.css.map */
