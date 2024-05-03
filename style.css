@@ -11864,5 +11864,9 @@ textarea {
 
 .summary .product_meta {
   margin-top: 1rem; }
+.summary .cart {
+  padding: 1rem;
+  border: 1px solid var(--light-gray-color);
+  border-radius: 10px; }
 
 /*# sourceMappingURL=style.css.map */

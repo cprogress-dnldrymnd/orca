@@ -303,7 +303,15 @@ function action_wp_trash_post($post_id)
     }
 }
 */
+/**
+ * @snippet       Override & Force Sold Individually @ WooCommerce Products
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 5
+ * @community     https://businessbloomer.com/club/
+ */
 
+ add_filter( 'woocommerce_is_sold_individually', '__return_true' );
 
 function product_related_courses()
 {

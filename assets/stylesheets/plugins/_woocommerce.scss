@@ -43,4 +43,9 @@ textarea {
     .product_meta {
         margin-top: 1rem;
     }
+    .cart {
+        padding: 1rem;
+        border: 1px solid var(--light-gray-color);
+        border-radius: 10px;
+    }
 }
