@@ -11602,7 +11602,7 @@ section.archive-grid {
   .ld-status.ld-status.ld-status-waiting {
     background-color: #ffd200; }
 
-.add_to_cart_button,
+.add_to_cart_button.add_to_cart_button.add_to_cart_button,
 .added_to_cart {
   text-decoration: none;
   padding: 10px 20px;
@@ -11612,7 +11612,7 @@ section.archive-grid {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   color: var(--white-color); }
-  .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus,
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button:hover, .add_to_cart_button.add_to_cart_button.add_to_cart_button:active, .add_to_cart_button.add_to_cart_button.add_to_cart_button:focus,
   .added_to_cart:hover,
   .added_to_cart:active,
   .added_to_cart:focus {
