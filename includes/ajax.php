@@ -44,6 +44,7 @@ function archive_ajax()
 	} else {
 		$final_count = $count;
 	}
+	
 	echo hide_load_more($count, $offset, $posts_per_page);
 ?>
 	<?php if (!$offset) { ?>
