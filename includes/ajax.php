@@ -65,7 +65,7 @@ function archive_ajax()
 								<?= do_shortcode('[_learndash_course_meta]'); ?>
 							</div>
 							<div>
-								<?=do_shortcode('[_learndash_course_button]'); ?>
+								<?= do_shortcode('[_learndash_course_button]'); ?>
 							</div>
 						</div>
 					</div>
@@ -87,14 +87,31 @@ function archive_ajax()
 			jQuery('.found-post').text(<?= $count ?>);
 		});
 	</script>
-<?php
+	<?php
 
 	die();
 }
 
+
 function hide_load_more($count, $offset, $posts_per_page)
 {
+	ob_start();
 	if ($count == ($offset + $posts_per_page) || $count < ($offset + $posts_per_page) || $count < $posts_per_page + 1) {
-		return '<style>.load-more {display: none} </style>';
+	?>
+		<script>
+			jQuery(document).ready(function() {
+				jQuery('.load-more').addClass('d-none');
+			});
+		</script>
+	<?php
+	} else {
+	?>
+		<script>
+			jQuery(document).ready(function() {
+				jQuery('.load-more').removeClass('d-none');
+			});
+		</script>
+<?php
 	}
+	return ob_get_clean();
 }

@@ -14,7 +14,6 @@ $args = array(
 );
 
 $the_query = new WP_Query($args);
-
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
     <div class="container large-container">
@@ -76,7 +75,7 @@ $the_query = new WP_Query($args);
                 </div>
             </div>
         </div>
-        <div class="load-more text-center mt-5">
+        <div class="load-more text-center mt-5 d-none">
             <a href="#" id="load-more" class="d-none btn btn-accent">
                 <span>Load more</span>
                 <svg class="spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -86,5 +85,4 @@ $the_query = new WP_Query($args);
         </div>
     </div>
 </section>
-
 <?php get_footer() ?>
