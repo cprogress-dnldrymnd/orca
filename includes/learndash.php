@@ -100,8 +100,13 @@ function get_product_by_sku($sku)
 
     return null;
 }
-function _learndash_status_bubble()
+function _learndash_status_bubble($id = NULL)
 {
+    if ($id == NULL) {
+        $id = get_the_ID();
+    } else {
+        $id = $id;
+    }
     $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
     return learndash_status_bubble($course_status, NULL, false);
 }
