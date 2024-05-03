@@ -330,33 +330,6 @@ function _learndash_course_button($atts)
     $html .= '</div>';
     return $html;
 }
-function _learndash_course_buttonx($atts)
-{
-    extract(
-        shortcode_atts(
-            array(
-                'id' => '',
-            ),
-            $atts
-        )
-    );
-    return do_shortcode('[_learndash_course_buttonxx id="' . $id . '"]');
-}
-add_shortcode('_learndash_course_buttonx', '_learndash_course_buttonx');
-
-function _learndash_course_buttonxx($atts)
-{
-    extract(
-        shortcode_atts(
-            array(
-                'id' => '',
-            ),
-            $atts
-        )
-    );
-    return 'xxxx' . $id;
-}
-add_shortcode('_learndash_course_buttonxx', '_learndash_course_buttonxx');
 
 add_shortcode('_learndash_course_button', '_learndash_course_button');
 
