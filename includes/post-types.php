@@ -164,13 +164,3 @@ function movies_to_films($args, $post_type)
 
     return $args;
 }
-
-
-function action_pre_get_posts( $query ){
-    if( ! is_admin()
-        && $query->is_post_type_archive( 'sfwd-courses' )
-        && $query->is_main_query() ){
-            $query->set( 'posts_per_page', 5 );
-    }
-}
-add_action( 'pre_get_posts', 'action_pre_get_posts' );
