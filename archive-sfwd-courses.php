@@ -23,7 +23,7 @@ echo hide_load_more($count, 0, 12);
         <div class="row g-4 filter mb-4 align-items-center">
             <div class="col-lg-6">
                 <div class="showing">
-                    Showing <span class="post-number"><?php echo $GLOBALS['wp_query']->found_posts ?></span> of <span class="found-post"><?php echo $GLOBALS['wp_query']->found_posts ?> </span> Courses
+                    Showing <span class="post-number"><?php echo $count ?></span> of <span class="found-post"><?php echo $count ?> </span> Courses
                 </div>
             </div>
             <div class="col-lg-6 text-end">
