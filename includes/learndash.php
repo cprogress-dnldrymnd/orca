@@ -358,7 +358,6 @@ function _learndash_linked_product($atts)
 
     if ($hide_add_to_cart == 'false') {
         if ($products) {
-            $product = wc_get_product($products[0]->ID);
             if ($show_price == 'true') {
                 $html .= $product->get_price_html();
             }
