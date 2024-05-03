@@ -69,7 +69,7 @@ echo hide_load_more($count, 0, $posts_per_page);
         <div id="results">
             <?php if (isset($_GET['id'])) { ?>
 
-                <div class="heading-box">
+                <div class="heading-box mb-4">
                     <h3>
                         <?= get_the_title($_GET['id']) ?> can be purchased by the following products.
                     </h3>
