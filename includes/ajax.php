@@ -60,7 +60,7 @@ function archive_ajax()
 								<?= do_shortcode('[_learndash_course_meta]'); ?>
 							</div>
 							<div>
-								<?= do_shortcode('[_learndash_course_button]'); ?>
+								<?= do_shortcode('[_learndash_course_button id="' . get_the_ID() . '"]'); ?>
 							</div>
 						</div>
 					</div>
