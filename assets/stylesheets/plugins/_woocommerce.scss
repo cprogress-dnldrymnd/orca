@@ -37,6 +37,15 @@ textarea {
     .course-item {
         .image-box {
             border-radius: 5px !important;
+            .meta-box {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                .ld-status {
+                    font-size: 12px;
+                    padding: 7px;
+                }
+            }
         }
         .button-group {
             display: inline-flex !important;

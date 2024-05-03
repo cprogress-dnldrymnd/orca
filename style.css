@@ -11872,6 +11872,12 @@ textarea {
     border-radius: 10px 10px 0 0; }
   .related-courses .course-item .image-box {
     border-radius: 5px !important; }
+    .related-courses .course-item .image-box .meta-box {
+      top: 10px;
+      right: 10px;
+      left: 10px; }
+      .related-courses .course-item .image-box .meta-box .ld-status {
+        font-size: 12px; }
   .related-courses .course-item .button-group {
     display: inline-flex !important; }
   .related-courses .course-item:not(:last-child) {
