@@ -8,7 +8,7 @@ $terms = get_terms(array(
 
 $args = array(
     'post_type' => 'sfwd-courses',
-    'posts_per_page' => 1,
+    'posts_per_page' => 2,
     'orderby' => 'menu_order',
     'order' => 'ASC'
 );
