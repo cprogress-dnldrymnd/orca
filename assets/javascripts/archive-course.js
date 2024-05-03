@@ -1,6 +1,5 @@
 jQuery(document).ready(function ($) {
-    ajax(0);
-    ajax_form();
+1    ajax_form();
     load_more_button_listener();
 });
 
