@@ -59,7 +59,7 @@ echo hide_load_more($count, 0, $posts_per_page);
                     ?>
                             <div class="col-md-4 col-6 post-item">
                                 <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
-                                    <?= do_shortcode('[_learndash_image course_id="' . get_the_ID() . '" id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
+                                <?= do_shortcode('[_learndash_image id="' . get_the_ID() . '" image_id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
                                     <div class="content-holder d-flex flex-column justify-content-between">
                                         <div>
                                             <?= do_shortcode('[_heading class="color-primary" tag="h3" heading="' . get_the_title() . '"]'); ?>
