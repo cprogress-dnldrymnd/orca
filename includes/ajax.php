@@ -98,6 +98,7 @@ function hide_load_more($count, $offset, $posts_per_page)
 	ob_start();
 	if ($count == ($offset + $posts_per_page) || $count < ($offset + $posts_per_page) || $count < $posts_per_page + 1) {
 	?>
+	hide
 		<script>
 			jQuery(document).ready(function() {
 				jQuery('.load-more').addClass('d-none');
@@ -106,6 +107,7 @@ function hide_load_more($count, $offset, $posts_per_page)
 	<?php
 	} else {
 	?>
+	show
 		<script>
 			jQuery(document).ready(function() {
 				jQuery('.load-more').removeClass('d-none');
