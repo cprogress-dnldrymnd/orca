@@ -100,13 +100,9 @@ function get_product_by_sku($sku)
 
     return null;
 }
-function _learndash_status_bubble($id = NULL)
+function _learndash_status_bubble($id)
 {
-    if ($id == NULL) {
-        $id = get_the_ID();
-    } else {
-        $id = $id;
-    }
+    
     $course_status = learndash_course_status($id, get_current_user_id());
     return learndash_status_bubble($course_status, NULL, false);
 }
@@ -115,7 +111,7 @@ add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 function _learndash_status()
 {
     if (_user_has_access(get_the_ID())) {
-        return _learndash_status_bubble();
+        return _learndash_status_bubble(get_the_ID());
     } else {
         return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product]</div>');
     }
