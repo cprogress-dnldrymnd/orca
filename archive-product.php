@@ -65,7 +65,7 @@ echo hide_load_more($count, 0, $posts_per_page);
                                             <?= do_shortcode('[_heading class="color-primary" tag="h3" heading="' . get_the_title() . '"]'); ?>
                                             <?= do_shortcode('[_description description="' . get_the_excerpt() . '"]'); ?>
                                             <hr>
-                                            <?= do_shortcode('[_learndash_course_meta]'); ?>
+                                            <?= do_shortcode('[_product_meta id="' . get_the_ID() . '"]'); ?>
                                         </div>
                                         <div>
                                             <?= do_shortcode('[_button class="button add_to_cart_button" button_text="Add to Cart" button_link="' . get_permalink(get_the_ID()) . '"]'); ?>

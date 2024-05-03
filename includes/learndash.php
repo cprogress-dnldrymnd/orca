@@ -89,6 +89,31 @@ function _learndash_course_meta()
 }
 add_shortcode('_learndash_course_meta', '_learndash_course_meta');
 
+function _product_meta($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+
+    $html =  '<div class="course-meta mb-3">';
+
+    $product = wc_get_product($id);
+    $price = $product->get_price_html();
+    
+    if ($price) {
+        $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+    }
+    $html .= '</div>';
+
+    return $html;
+}
+add_shortcode('_product_meta', '_product_meta');
+
 function get_product_by_sku($sku)
 {
 
