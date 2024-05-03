@@ -314,10 +314,10 @@ function product_related_courses()
         <?php foreach ($_related_course as $course) { ?>
             <div class="row">
                 <div class="col-3">
-                    <?= do_shortcode('[_image id="'.$course.'" size="medium"]') ?>
+                    <?= do_shortcode('[_image id="' . $course . '" size="medium"]') ?>
                 </div>
                 <div class="col-9">
-
+                    <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
                 </div>
             </div>
         <?php } ?>
