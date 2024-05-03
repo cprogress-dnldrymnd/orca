@@ -324,7 +324,7 @@ function _learndash_course_button($atts)
 
     if (_user_has_access($id) == false && _can_be_purchased($id)) {
         $html .= '<div class="col-lg-6">';
-        $html .= do_shortcode('[_learndash_linked_product hide_bubble="true" id="' . $id . '"]');
+        $html .= do_shortcode('[_learndash_linked_product id="' . get_the_ID() . '" hide_bubble="true"]');
         $html .= '</div>';
     }
     $html .= '</div>';
