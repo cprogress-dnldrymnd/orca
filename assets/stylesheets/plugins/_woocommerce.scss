@@ -26,6 +26,11 @@ textarea {
     border: 1px solid var(--light-gray-color);
     border-radius: 10px;
     .course-item {
+        .button-group {
+            .row {
+                display: inline-flex !important;
+            }
+        }
         @include not-last-child {
             margin-bottom: 1rem;
             padding-bottom: 1rem;
