@@ -311,6 +311,9 @@ function product_related_courses()
 
 ?>
     <div class="related-courses">
+        <pre>
+            <?php var_dump($_related_course) ?>
+        </pre>
         <?php foreach ($_related_course as $course) { ?>
             <div class="row">
                 <div class="col-3">
