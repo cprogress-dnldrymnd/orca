@@ -112,7 +112,7 @@ function _learndash_status()
     if (_user_has_access()) {
         return _learndash_status_bubble();
     } else {
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_course_status]</div>');
+        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product]</div>');
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
@@ -205,11 +205,12 @@ function _learndash_has_linked_product($course_id)
     }
 }
 
-function _learndash_course_status() {
+function _learndash_course_status()
+{
     $html = '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
     return $html;
 }
-
+/*
 function _learndash_linked_product($atts)
 {
     extract(
@@ -247,7 +248,7 @@ function _learndash_linked_product($atts)
 }
 
 add_shortcode('_learndash_linked_product', '_learndash_linked_product');
-
+*/
 
 function _learndash_sticky_add_to_cart()
 {
@@ -351,6 +352,40 @@ function _learndash_course_button()
 add_shortcode('_learndash_course_button', '_learndash_course_button');
 
 
+function _learndash_linked_product()
+{
+    extract(
+        shortcode_atts(
+            array(
+                'hide_bubble' => 'false',
+                'show_price' => 'false',
+                'hide_add_to_cart' => 'false'
+            ),
+            $atts
+        )
+    );
+
+    $products = _learndash_has_linked_product(get_the_ID());
+
+    $html = '';
+
+    if ($hide_bubble == 'false') {
+        $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
+    }
+
+
+    if ($hide_add_to_cart == 'false') {
+        if ($products) {
+            $product = wc_get_product($products[0]->ID);
+            if ($show_price == 'true') {
+                $html .= $product->get_price_html();
+            }
+            $html .= '<a href="' . get_permalink(wc_get_page_id('shop')) . '">  Add to cart </a>';
+        }
+    }
+
+    return $html;
+}
 
 
 function _course_cta()
