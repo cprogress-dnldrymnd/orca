@@ -11,7 +11,8 @@ textarea {
 }
 
 .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
-.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button, .woocommerce-notices-wrapper .button.button.button {
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button,
+.woocommerce-notices-wrapper .button.button.button {
     @include button-style;
     @include button-primary;
 }
@@ -38,25 +39,23 @@ textarea {
 
 single-product.single-product {
     margin-top: 2rem;
-    .product {
-        .summary {
-            .product_meta {
-                margin-top: 1rem;
-            }
-
-            .cart {
-                .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
-                    @include button-style;
-                    @include button-primary;
-                    padding: 1rem 2rem;
-                    width: 100%;
-                    font-size: 20px;
-                }
-            }
+    .summary {
+        .product_meta {
+            margin-top: 1rem;
         }
 
-        .woocommerce-product-gallery__image {
-            border-radius: 5px;
+        .cart {
+            .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+                @include button-style;
+                @include button-primary;
+                padding: 1rem 2rem;
+                width: 100%;
+                font-size: 20px;
+            }
         }
+    }
+
+    .woocommerce-product-gallery__image {
+        border-radius: 5px;
     }
 }
