@@ -11827,7 +11827,8 @@ textarea {
   border-radius: 5px;
   border: 1px solid #cfc8d8; }
 
-.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
+.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
@@ -11835,7 +11836,10 @@ textarea {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   color: var(--white-color); }
-  .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus {
+  .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     border: 1px solid var(--accent-color); }
@@ -11848,6 +11852,8 @@ textarea {
   border: 1px solid var(--light-gray-color);
   border-radius: 10px; }
   .related-courses .course-item:not(:last-child) {
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid var(--light-gray-color); }
 
 /*# sourceMappingURL=style.css.map */
