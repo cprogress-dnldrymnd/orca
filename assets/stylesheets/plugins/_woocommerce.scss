@@ -21,7 +21,7 @@ textarea {
 }
 
 .related-courses {
-    .row {
+    .course-item {
         @include not-last-child {
             margin-bottom: 1rem;
         }
