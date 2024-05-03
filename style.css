@@ -11879,8 +11879,9 @@ textarea {
       .related-courses .course-item .image-box .meta-box .ld-status {
         font-size: 12px;
         padding: 7px; }
-  .related-courses .course-item .button-group {
-    display: inline-flex !important; }
+  @media (min-width: 992px) {
+    .related-courses .course-item .button-group .col-12 {
+      width: 50%; } }
   .related-courses .course-item:not(:last-child) {
     margin-bottom: 1rem;
     padding-bottom: 1rem;

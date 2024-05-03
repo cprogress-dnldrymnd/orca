@@ -48,7 +48,11 @@ textarea {
             }
         }
         .button-group {
-            display: inline-flex !important;
+            .col-12 {
+                @media (min-width: 992px) {
+                    width: 50%;
+                }
+            }
         }
         @include not-last-child {
             margin-bottom: 1rem;
