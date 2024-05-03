@@ -35,7 +35,7 @@ echo hide_load_more($count, 0, $posts_per_page);
                 <div class="filter-box d-inline-flex">
                     <div class="filter-select me-3">
                         <input type="hidden" name="post-type" value="<?= get_post_type() ?>">
-                        <input type="hidden" name="taxonomy" value="ld_course_category">
+                        <input type="hidden" name="taxonomy" value="product_cat">
                         <select name="taxonomy-terms" id="taxonomy-terms" class="archive-form-filter">
                             <option value="">All Products</option>
                             <?php foreach ($terms as $term) { ?>
