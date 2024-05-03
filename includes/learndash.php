@@ -100,9 +100,16 @@ function get_product_by_sku($sku)
 
     return null;
 }
-function _learndash_status_bubble($id)
+function _learndash_status_bubble($atts)
 {
-    
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
     $course_status = learndash_course_status($id, get_current_user_id());
     return learndash_status_bubble($course_status, NULL, false);
 }
