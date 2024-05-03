@@ -387,6 +387,7 @@ function _learndash_linked_product()
     return $html;
 }
 
+add_shortcode('_learndash_linked_product', '_learndash_linked_product');
 
 function _course_cta()
 {
