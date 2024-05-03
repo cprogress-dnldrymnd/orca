@@ -104,7 +104,7 @@ function _product_meta($atts)
 
     $product = wc_get_product($id);
     $price = $product->get_price_html();
-    
+
     if ($price) {
         $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
     }
@@ -238,6 +238,7 @@ function _learndash_has_linked_product($course_id)
             )
         )
     );
+    
     $products = get_posts($args);
 
     if (count($products) > 0) {

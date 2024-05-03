@@ -14,6 +14,22 @@ $args = array(
     'order' => 'ASC'
 );
 
+
+if (isset($_GET['id'])) {
+    if (get_post_type($_GET['id']) == 'sfwd-courses') {
+        $args['meta_query'] = array(
+            array(
+                'key'   => '_related_course',
+                'value' => serialize(intval($_GET['id'])),
+                'compare' => 'LIKE'
+            )
+        );
+    }
+}
+
+
+
+
 $course_query = new WP_Query($args);
 $count = $course_query->found_posts;
 if ($count >= $posts_per_page) {
