@@ -5,7 +5,7 @@ $terms = get_terms(array(
     'hide_empty' => false,
 ));
 
-$posts_per_page = 1;
+$posts_per_page = 12;
 
 $args = array(
     'post_type' => 'sfwd-courses',
