@@ -311,8 +311,22 @@ function action_wp_trash_post($post_id)
  * @community     https://businessbloomer.com/club/
  */
 
- add_filter( 'woocommerce_is_sold_individually', '__return_true' );
+add_filter('woocommerce_is_sold_individually', '__return_true');
 
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+
+/**
+ * WooCommerce Loop Product Thumbs
+ **/
+if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
+    function woocommerce_template_loop_product_thumbnail()
+    {
+        echo "<div class='image-box'>";
+        echo woocommerce_get_product_thumbnail();
+        echo "</div>";
+    }
+}
 function product_related_courses()
 {
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
