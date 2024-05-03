@@ -129,7 +129,7 @@ function _learndash_status($atts)
     if (_user_has_access($id)) {
         return _learndash_status_bubble($id);
     } else {
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product]</div>');
+        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product id="' . $id . '"]</div>');
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
@@ -222,46 +222,6 @@ function _learndash_has_linked_product($course_id)
     }
 }
 
-
-/*
-function _learndash_linked_product($atts)
-{
-    extract(
-        shortcode_atts(
-            array(
-                'hide_bubble' => 'false',
-                'show_price' => 'false',
-                'hide_add_to_cart' => 'false'
-            ),
-            $atts
-        )
-    );
-
-    $products = _learndash_has_linked_product(get_the_ID());
-
-
-    $html = '';
-
-    if ($hide_bubble == 'false') {
-        $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
-    }
-
-
-    if ($hide_add_to_cart == 'false') {
-        if (count($products)) {
-            $product = wc_get_product($products[0]->ID);
-            if ($show_price == 'true') {
-                $html .= $product->get_price_html();
-            }
-            $html .= _add_to_cart_button($products[0]->ID);
-        }
-    }
-
-    return $html;
-}
-
-add_shortcode('_learndash_linked_product', '_learndash_linked_product');
-*/
 
 function _learndash_sticky_add_to_cart()
 {
@@ -370,6 +330,7 @@ function _learndash_linked_product($atts)
     extract(
         shortcode_atts(
             array(
+                'id' => '',
                 'hide_bubble' => 'false',
                 'show_price' => 'false',
                 'hide_add_to_cart' => 'false'
@@ -393,7 +354,7 @@ function _learndash_linked_product($atts)
             if ($show_price == 'true') {
                 $html .= $product->get_price_html();
             }
-            $html .= '<a class="button add_to_cart_button"href="' . get_permalink(wc_get_page_id('shop')) . '?id="'.get_the_ID().'"">  Add to cart </a>';
+            $html .= '<a class="button add_to_cart_button"href="' . get_permalink(wc_get_page_id('shop')) . '?id="' . get_the_ID() . '"">  Add to cart </a>';
         }
     }
 
