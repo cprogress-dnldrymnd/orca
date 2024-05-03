@@ -1,12 +1,6 @@
 <?php
-function _user_has_access($id = NULL)
+function _user_has_access($id)
 {
-
-    if ($id == NULL) {
-        $id = get_the_ID();
-    } else {
-        $id = $id;
-    }
     $has_access = ld_course_check_user_access($id, get_current_user_id());
 
     if ($has_access) {
@@ -16,11 +10,11 @@ function _user_has_access($id = NULL)
     }
 }
 
-function _can_be_purchased()
+function _can_be_purchased($id)
 {
-    $compare = learndash_get_course_prerequisite_compare(get_the_ID());
-    $prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
-    $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
+    $compare = learndash_get_course_prerequisite_compare($id);
+    $prerequisites = learndash_get_course_prerequisites($id, get_current_user_id());
+    $prerequisite_enabled =  learndash_get_course_prerequisite_enabled($id);
     if ($prerequisite_enabled) {
         if (is_user_logged_in()) {
             if ($compare == 'ALL') {
@@ -55,12 +49,12 @@ function _learndash_course_progress($atts)
         )
     );
     $html = '';
-    if (_user_has_access()) {
+    if (_user_has_access(get_the_ID())) {
         if ($wrapper) {
             $html .=  '<div class="' . $wrapper . '">';
         }
         $html .=  do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
-        if ($wrapper && _user_has_access()) {
+        if ($wrapper && _user_has_access(get_the_ID())) {
             $html .= '</div>';
         }
 
@@ -82,7 +76,7 @@ function _learndash_course_meta()
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
     }
 
-    if (!_user_has_access() && $product_id) {
+    if (!_user_has_access(get_the_ID()) && $product_id) {
         $product = wc_get_product($product_id);
         $price = $product->get_price_html();
         if ($price) {
@@ -120,7 +114,7 @@ add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 
 function _learndash_status()
 {
-    if (_user_has_access()) {
+    if (_user_has_access(get_the_ID())) {
         return _learndash_status_bubble();
     } else {
         return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product]</div>');
@@ -130,7 +124,7 @@ add_shortcode('_learndash_status', '_learndash_status');
 
 function learndash_wp_head()
 {
-    if (!_user_has_access()) {
+    if (!_user_has_access(get_the_ID())) {
 ?>
         <style>
             #course-info-left {
@@ -259,7 +253,7 @@ add_shortcode('_learndash_linked_product', '_learndash_linked_product');
 
 function _learndash_sticky_add_to_cart()
 {
-    if (!_user_has_access()) {
+    if (!_user_has_access(get_the_ID())) {
         return do_shortcode('[elementor-template id="550"]');
     }
 }
@@ -344,11 +338,11 @@ function _learndash_course_button()
     $permalink = get_the_permalink();
     $html = '<div class="row g-3 button-group">';
 
-    $html .= '<div class="' . (_user_has_access() == false && _can_be_purchased() ? 'col-lg-6' : 'col-12') . '">';
+    $html .= '<div class="' . (_user_has_access(get_the_ID()) == false && _can_be_purchased(get_the_ID()) ? 'col-lg-6' : 'col-12') . '">';
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
     $html .= '</div>';
 
-    if (_user_has_access() == false && _can_be_purchased()) {
+    if (_user_has_access(get_the_ID()) == false && _can_be_purchased(get_the_ID())) {
         $html .= '<div class="col-lg-6">';
         $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
         $html .= '</div>';
@@ -576,7 +570,7 @@ add_shortcode('_course_testimonial', '_course_testimonial');
 
 function _course_group()
 {
-    if (_user_has_access()) {
+    if (_user_has_access(get_the_ID())) {
 
         $learndash_get_users_group_ids = learndash_get_users_group_ids(get_current_user_id());
         if ($learndash_get_users_group_ids) {
