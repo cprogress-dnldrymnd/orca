@@ -5,7 +5,7 @@ $terms = get_terms(array(
     'hide_empty' => false,
 ));
 
-$posts_per_page = 2;
+$posts_per_page = 1;
 
 $args = array(
     'post_type' => 'sfwd-courses',
@@ -17,7 +17,7 @@ $args = array(
 $course_query = new WP_Query($args);
 $count = $course_query->found_posts;
 if ($count >= $posts_per_page) {
-    $final_count = 12;
+    $final_count = $posts_per_page;
 } else {
     $final_count = $count;
 }
