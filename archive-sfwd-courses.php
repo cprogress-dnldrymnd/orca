@@ -70,6 +70,7 @@ echo $count;
                                 </div>
                             </div>
                         <?php }
+                        wp_reset_postdata();
                     } else {
                         ?>
                         <h2>No Results Found</h2>
