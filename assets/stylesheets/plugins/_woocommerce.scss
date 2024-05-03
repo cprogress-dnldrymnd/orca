@@ -36,18 +36,27 @@ textarea {
     }
 }
 
-.summary {
-    .product_meta {
-        margin-top: 1rem;
-    }
-    .cart {
-        .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
-            @include button-style;
-            @include button-primary;
-            padding: 1rem 2rem;
-            max-width: 300px;
-            width: 100%;
-            font-size: 20px;
+.single-product {
+    .product {
+        .summary {
+            .product_meta {
+                margin-top: 1rem;
+            }
+
+            .cart {
+                .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+                    @include button-style;
+                    @include button-primary;
+                    padding: 1rem 2rem;
+                    max-width: 300px;
+                    width: 100%;
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .woocommerce-product-gallery__image {
+            border-radius: 5px;
         }
     }
 }

@@ -11143,7 +11143,8 @@ img {
   border: 1px solid var(--black-color);
   color: var(--white-color); }
   .btn.btn.btn-black:hover, .btn.btn.btn-black:active, .btn.btn.btn-black:focus {
-    background-color: var(--white-color); }
+    background-color: var(--white-color);
+    color: var(--black-color); }
 .btn.btn.btn-white {
   background-color: var(--white-color);
   border: 1px solid var(--white-color);
@@ -11165,7 +11166,8 @@ img {
   border: 1px solid var(--black-color);
   color: var(--white-color); }
   .wp-element-button.wp-element-button:hover, .wp-element-button.wp-element-button:active, .wp-element-button.wp-element-button:focus {
-    background-color: var(--white-color); }
+    background-color: var(--white-color);
+    color: var(--black-color); }
 
 .taxonomy-terms a {
   padding: 10px 15px;
@@ -11257,7 +11259,8 @@ section.loading-post select {
     height: 100%;
     object-fit: cover;
     left: 0;
-    top: 0; }
+    top: 0;
+    border: none; }
 .image-box.image-box-background {
   position: absolute;
   left: 0;
@@ -11861,24 +11864,5 @@ textarea {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--light-gray-color); }
-
-.summary .product_meta {
-  margin-top: 1rem; }
-.summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
-  padding: 10px 20px;
-  line-height: 1;
-  font-weight: bold;
-  border-radius: 8px;
-  background-color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  color: var(--white-color);
-  padding: 1rem 2rem;
-  max-width: 300px;
-  width: 100%;
-  font-size: 20px; }
-  .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    border: 1px solid var(--accent-color); }
 
 /*# sourceMappingURL=style.css.map */
