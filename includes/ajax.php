@@ -39,12 +39,6 @@ function archive_ajax()
 
 	$count = $the_query->found_posts;
 
-	if ($count >= $posts_per_page) {
-		$final_count = $posts_per_page;
-	} else {
-		$final_count = $count;
-	}
-	
 	echo hide_load_more($count, $offset, $posts_per_page);
 ?>
 	<?php if (!$offset) { ?>
@@ -84,7 +78,8 @@ function archive_ajax()
 	<?php } ?>
 	<script>
 		jQuery(document).ready(function() {
-			jQuery('.post-number').text(<?= $final_count ?>);
+			$final_count = jQuery('.post-item').length;
+			jQuery('.post-number').text($final_count);
 			jQuery('.found-post').text(<?= $count ?>);
 		});
 	</script>
