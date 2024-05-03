@@ -13,9 +13,9 @@ $args = array(
     'order' => 'ASC'
 );
 
-
 $the_query = new WP_Query($args);
 $count = $the_query->found_posts;
+
 echo hide_load_more($count, 0, 12);
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
