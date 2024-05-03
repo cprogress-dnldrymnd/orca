@@ -11624,18 +11624,18 @@ section.archive-grid {
   width: 100%;
   text-align: center; }
 
-.add_to_cart_button {
+.add_to_cart_button.add_to_cart_button.add_to_cart_button {
   color: var(--white-color);
   display: flex;
   align-items: center;
   justify-content: center; }
-  .add_to_cart_button svg {
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button svg {
     width: 0; }
-  .add_to_cart_button.loading svg {
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button.loading svg {
     width: 20px;
     margin-left: 5px;
     -webkit-animation: spin 4s infinite linear; }
-  .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus {
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button:hover, .add_to_cart_button.add_to_cart_button.add_to_cart_button:active, .add_to_cart_button.add_to_cart_button.add_to_cart_button:focus {
     background-color: var(--accent-color);
     color: var(--white-color); }
 
