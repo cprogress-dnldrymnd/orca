@@ -310,8 +310,8 @@ function product_related_courses()
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
 
 ?>
-    <div class="related-courses mb-4">
-
+    <div class="related-courses my-4">
+        <h3> Course Included</h3>
         <?php foreach ($_related_course as $course) { ?>
             <div class="course-item">
                 <div class="row align-items-center">
