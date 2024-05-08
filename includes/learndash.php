@@ -112,12 +112,12 @@ function _learndash_status()
     if (_user_has_access()) {
         return _learndash_status_bubble();
     } else {
-        if(_can_be_purchased()) {
+        if (_can_be_purchased()) {
             $hide_add_to_cart = 'false';
         } else {
             $hide_add_to_cart = 'true';
         }
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product hide_add_to_cart="'.$hide_add_to_cart.'"]</div>');
+        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product hide_add_to_cart="' . $hide_add_to_cart . '"]</div>');
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
@@ -234,13 +234,19 @@ function _learndash_linked_product($atts)
     if ($hide_add_to_cart == 'false') {
         if ($products) {
 
-            $product = wc_get_product($products[0]->ID);
+            if (count($products) > 1) {
+                $id = $products[1];
+            } else {
+                $id = $products[0];
+            }
+
+            $product = wc_get_product($id);
 
             if ($show_price == 'true') {
                 $html .= $product->get_price_html();
             }
 
-            $html .= _add_to_cart_button($products[0]->ID);
+            $html .= _add_to_cart_button($id);
             return $html;
         }
     } else {
