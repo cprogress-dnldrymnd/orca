@@ -234,13 +234,19 @@ function _learndash_linked_product($atts)
     if ($hide_add_to_cart == 'false') {
         if ($products) {
 
-            $product = wc_get_product($products[1]->ID);
+            if(count($products)>1) {
+                $id = $products[1];
+            } else {
+                $id = $products[0];
+            }
+
+            $product = wc_get_product($id);
 
             if ($show_price == 'true') {
                 $html .= $product->get_price_html();
             }
 
-            $html .= _add_to_cart_button($products[1]->ID);
+            $html .= _add_to_cart_button($id);
             return $html;
         }
     } else {
