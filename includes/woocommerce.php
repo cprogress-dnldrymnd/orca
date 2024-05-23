@@ -352,7 +352,7 @@ function product_related_courses()
             </div>
         <?php } ?>
     </div>
-    <div class="important-note mt-3 mb-3">
+    <div class="important-note mt-4 mb-4">
         <p>
             <strong>Important Note </strong>
         </p>
