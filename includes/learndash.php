@@ -341,7 +341,7 @@ function _learndash_course_button($atts)
         )
     );
 
-    $permalink = get_the_permalink();
+    $permalink = get_the_permalink($id);
     $html = '<div class="row g-3 button-group">';
 
     $html .= '<div class="col-lg-6">';
