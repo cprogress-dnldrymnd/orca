@@ -352,7 +352,7 @@ function _learndash_course_button($atts)
     if (_user_has_access($id) == false && _can_be_purchased($id)) {
         $html .= do_shortcode('[_learndash_linked_product id="' . $id . '" hide_bubble="true"]');
     } else {
-        $html .= do_shortcode('[_button class="button disabled" button_text="Already Enrolled" button_link="#"]');
+        $html .= do_shortcode('[_button class="button add_to_cart_button disabled" button_text="Already Enrolled" button_link="#"]');
     }
     $html .= '</div>';
     $html .= '</div>';
