@@ -11638,6 +11638,10 @@ section.archive-grid {
   .add_to_cart_button.add_to_cart_button.add_to_cart_button:hover, .add_to_cart_button.add_to_cart_button.add_to_cart_button:active, .add_to_cart_button.add_to_cart_button.add_to_cart_button:focus {
     background-color: var(--accent-color);
     color: var(--white-color); }
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button.disabled {
+    background-color: lightgray;
+    border-color: lightgray;
+    opacity: 1; }
 
 .added_to_cart {
   background-color: var(--accent-color);

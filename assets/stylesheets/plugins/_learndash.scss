@@ -72,6 +72,11 @@
         background-color: var(--accent-color);
         color: var(--white-color); //white
     }
+    &.disabled {
+        background-color: lightgray;
+        border-color: lightgray;
+        opacity: 1;
+    }
 }
 .added_to_cart {
     background-color: var(--accent-color);
