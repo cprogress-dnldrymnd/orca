@@ -11601,6 +11601,8 @@ section.archive-grid {
     color: var(--white-color); }
   .ld-status.ld-status.ld-status-waiting {
     background-color: #ffd200; }
+  .ld-status.ld-status.ld-status-complete {
+    background-color: var(--green-color); }
 
 .add_to_cart_button.add_to_cart_button.add_to_cart_button,
 .added_to_cart {
