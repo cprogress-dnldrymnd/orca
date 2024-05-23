@@ -332,7 +332,7 @@ function product_related_courses()
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
     $_related_course = array_reverse($_related_course);
 ?>
-  
+
     <div class="related-courses my-4">
         <h3> Course Included</h3>
         <?php foreach ($_related_course as $course) { ?>
@@ -354,7 +354,10 @@ function product_related_courses()
     </div>
     <div class="important-note mt-3 mb-3">
         <p>
-            <strong>Important Note: </strong> Please refrain from purchasing bundles which includes courses you are already enrolled too.
+            <strong>Important Note </strong>
+        </p>
+        <p>
+            Please refrain from purchasing bundles which includes courses you are already enrolled too.
         </p>
     </div>
 <?php
