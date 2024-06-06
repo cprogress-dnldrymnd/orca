@@ -381,7 +381,6 @@ body.ld-in-focus-mode.admin-bar {
         border-radius: 10px;
         border: 2px solid var(--accent-color);
         color: var(--accent-color);
-        display: inline-block;
         background-color: #33a19a17;
         p {
             font-weight: bold;
@@ -395,6 +394,7 @@ body.ld-in-focus-mode.admin-bar {
             border-radius: 50px;
             text-decoration: none;
             border: 2px solid var(--accent-color);
+            display: inline-block;
             @include on-event {
                 background-color: #33a19a17;
                 border-color: var(--accent-color);

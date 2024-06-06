@@ -11851,7 +11851,6 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   border-radius: 10px;
   border: 2px solid var(--accent-color);
   color: var(--accent-color);
-  display: inline-block;
   background-color: #33a19a17; }
   .certificate-box .certificate-holder p {
     font-weight: bold;
