@@ -23,6 +23,13 @@ if ($count >= $posts_per_page) {
 }
 
 echo hide_load_more($count, 0, $posts_per_page);
+
+
+$product_p = wc_get_product(2329);
+$price_p = $product_p->get_regular_price();
+if ($price_p) {
+    $html .= '<p"><strong>Price:</strong> ' . $price_p . '</p>';
+}
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
     <div class="container large-container">
