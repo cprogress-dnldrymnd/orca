@@ -48,6 +48,18 @@ function archive_ajax()
 	var_dump($args);
 	echo '</pre>';
 
+	$argsx = array(
+		'post_type' => 'produc',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'product_cat',
+				'field' => 'slug',
+				'terms' => 'bundles',
+			),
+		),
+	);
+	$query = new WP_Query($argsx);
+
 	$the_query = new WP_Query($args);
 
 	$count = $the_query->found_posts;
