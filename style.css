@@ -11866,7 +11866,8 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
     border: 2px solid var(--accent-color); }
     .certificate-box .certificate-holder a:hover, .certificate-box .certificate-holder a:active, .certificate-box .certificate-holder a:focus {
       background-color: #33a19a17;
-      border-color: var(--accent-color); }
+      border-color: var(--accent-color);
+      color: var(--accent-color); }
     .certificate-box .certificate-holder a svg {
       width: 20px;
       height: 20px;
