@@ -3,6 +3,9 @@ add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in 
 add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
+
+
+
 	$taxonomy_terms = $_POST['taxonomy_terms'];
 	$taxonomy = $_POST['taxonomy'];
 	$post_type = $_POST['post_type'];
@@ -10,13 +13,21 @@ function archive_ajax()
 	$include_product = $_POST['include_product'];
 	//$sortby = $_POST['sortby'];
 	$posts_per_page = 12;
-	$post_type_arr[] = $post_type;
 
 	$args = array();
 	if ($include_product == 'yes') {
-		$post_type_arr[] = 'product';
+		$courses_id = get_posts(array(
+			'fields'          => 'ids', // Only get post IDs
+			'posts_per_page'  => -1,
+			'post_type'  => 'sfwd-courses'
+		));
+
+		var_dump($courses_id);
+
+		//$args['post__in'] = $courses_id;
+	} else {
+		$args['post_type'] = $post_type;
 	}
-	$args['post_type'] = $post_type_arr;
 	$args['posts_per_page'] = $posts_per_page;
 	$args['orderby'] = 'menu_order';
 	$args['order'] = 'ASC';
@@ -38,7 +49,7 @@ function archive_ajax()
 	}
 
 
-	
+
 	$the_query = new WP_Query($args);
 
 	$count = $the_query->found_posts;
