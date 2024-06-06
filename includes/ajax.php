@@ -16,6 +16,8 @@ function archive_ajax()
 
 	$args = array();
 	if ($include_product == 'yes') {
+		$post_type_arr[] = $post_type;
+		$post_type_arr[] = 'product';
 		$courses_id = get_posts(array(
 			'fields'          => 'ids', // Only get post IDs
 			'posts_per_page'  => -1,
@@ -23,6 +25,7 @@ function archive_ajax()
 		));
 
 		$args['post__in'] = $courses_id;
+		$args['post_type'] = $post_type_arr;
 	} else {
 		$args['post_type'] = $post_type;
 	}
