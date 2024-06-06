@@ -132,7 +132,7 @@ function _heading($atts)
             $html .= '<div class="learndash-course-prerequisites">';
 
             if (count($prerequisites) > 1) {
-                $html .= '<p>This course requires ' . strtolower($compare) . ' to be completed in order to purchase. </p>';
+                $html .= '<p>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </p>';
 
                 $html .= '<ul>';
                 foreach ($prerequisites as $key => $prerequisite) {
@@ -141,7 +141,7 @@ function _heading($atts)
                 $html .= '</ul>';
                 $html .= '</div>';
             } else {
-                $html .= '<p>This course requires <strong><a href="' . get_the_permalink($prerequisite[0]) . '">' . get_the_title($prerequisite[0]) . '</a></strong>  of the following course to be completed in order to purchase. </p>';
+                $html .= '<p>This course requires <strong><a href="' . get_the_permalink($prerequisite[0]) . '">' . get_the_title($prerequisite[0]) . '</a></strong> to be completed in order to purchase. </p>';
             }
         }
 
