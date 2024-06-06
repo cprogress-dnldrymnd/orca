@@ -145,7 +145,7 @@ function _heading($atts)
             }
         }
 
-        if ($bundles) {
+        if ($bundles && is_single()) {
             $html .= '<div class="learndash-course-prerequisites">';
             if (count($bundles) > 1) {
                 $html .= '<p> This course is included the following bundles.</p>';
