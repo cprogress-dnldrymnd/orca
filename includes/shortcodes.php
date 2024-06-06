@@ -37,24 +37,22 @@ function breadcrumbs($atts)
     $html .= '</ul>';
     $html .= '</div>';
     $html .= '</div>';
-    if ($hide_title != 'true') {
-        if (!is_product()) {
-            $html .= '<div class="container large-container my-5">';
-            $html .= '<div class="row align-items-center">';
-            $html .= '<div class="col">';
-            $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
-            $html .= '</div>';
+    if ($hide_title == 'true' && !is_product()) {
+        $html .= '<div class="container large-container my-5">';
+        $html .= '<div class="row align-items-center">';
+        $html .= '<div class="col">';
+        $html .= do_shortcode("[_heading class='page-title' tag='h1' heading='$title']");
+        $html .= '</div>';
 
-            if (is_single() && get_post_type() == 'sfwd-courses') {
-                $html .= do_shortcode('[_course_group]');
-            }
-
-            if (is_post_type_archive('sfwd-courses')) {
-                $html .= do_shortcode('[_course_group_archive]');
-            }
-            $html .= '</div>';
-            $html .= '</div>';
+        if (is_single() && get_post_type() == 'sfwd-courses') {
+            $html .= do_shortcode('[_course_group]');
         }
+
+        if (is_post_type_archive('sfwd-courses')) {
+            $html .= do_shortcode('[_course_group_archive]');
+        }
+        $html .= '</div>';
+        $html .= '</div>';
     }
     $html .= '</section>';
     return $html;
