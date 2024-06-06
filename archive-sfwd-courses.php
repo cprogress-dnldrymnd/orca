@@ -21,6 +21,13 @@ if ($count >= $posts_per_page) {
 } else {
     $final_count = $count;
 }
+
+$product = wc_get_product(2329);
+$price = $product->get_price_html();
+if ($price) {
+    echo '<p"><strong>Price:</strong> ' . $price . '</p>';
+}
+
 echo hide_load_more($count, 0, $posts_per_page);
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
@@ -52,7 +59,7 @@ echo hide_load_more($count, 0, $posts_per_page);
         </div>
         <div id="results">
             <div class="results-holder">
-             
+
             </div>
         </div>
         <div class="load-more text-center mt-5 d-none">
@@ -67,7 +74,7 @@ echo hide_load_more($count, 0, $posts_per_page);
 </section>
 <?php get_footer() ?>
 <script>
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function() {
         ajax();
     });
 </script>
