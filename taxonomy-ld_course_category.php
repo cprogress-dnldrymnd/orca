@@ -13,7 +13,7 @@ $args = array(
     'posts_per_page' => $posts_per_page,
     'orderby' => 'menu_order',
     'order' => 'ASC',
-    'tax_query' = array(
+    'tax_query' => array(
         array(
             'taxonomy' => 'ld_course_category',
             'field'    => 'term_id',
