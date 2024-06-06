@@ -246,6 +246,7 @@ function _learndash_has_linked_product($course_id)
 {
 
     $args = array(
+        'fields' => 'ids',
         'post_type'  => 'product',
         'meta_query' => array(
             array(
