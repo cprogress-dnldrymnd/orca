@@ -395,22 +395,15 @@ function _learndash_course_button($atts)
             $atts
         )
     );
-    $post_type = get_post_type($id);
-    if ($post_type == 'sfwd-courses') {
-        $button_text = 'View Course';
-        $class = 'col-lg-6';
-    } else {
-        $button_text = 'View Bundle';
-        $class = 'col-lg-12';
-    }
+
     $permalink = get_the_permalink($id);
     $html = '<div class="row g-3 button-group">';
 
-    $html .= '<div class="' . $class . '">';
-    $html .= "<a  href='$permalink' class='btn btn-black w-100'>$button_text</a>";
-    $html .= '</div>';
 
     if ($post_type == 'sfwd-courses') {
+        $html .= '<div class="col-lg-12">';
+        $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
+        $html .= '</div>';
         if (_user_has_access($id) == false && _can_be_purchased($id)) {
             $html .= '<div class="col-lg-6">';
             $html .= do_shortcode('[_learndash_linked_product id="' . $id . '" hide_bubble="true"]');
@@ -420,6 +413,10 @@ function _learndash_course_button($atts)
             $html .= do_shortcode('[_button class="button add_to_cart_button disabled" button_text="Already Enrolled" button_link="#"]');
             $html .= '</div>';
         }
+    } else {
+        $html .= '<div class="col-12">';
+        $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Bundle</a>";
+        $html .= '</div>';
     }
 
     $html .= '</div>';
