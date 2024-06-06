@@ -300,6 +300,7 @@ function _learndash_image($atts)
             $atts
         )
     );
+    $post_type = get_post_type($id);
     $image_url = wp_get_attachment_image_url($image_id, $size);
     $html = '<div class="image-box image-box-course">';
     if ($learndash_status_bubble == 'true' || $taxonomy) {
@@ -307,6 +308,10 @@ function _learndash_image($atts)
     }
     if ($learndash_status_bubble) {
         $html .= do_shortcode('[_learndash_status_bubble id="' . $id . '"]');
+    }
+
+    if ($post_type == 'product') {
+        $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Bundle</div>';
     }
 
     if ($taxonomy) {
