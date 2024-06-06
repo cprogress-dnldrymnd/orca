@@ -15,22 +15,23 @@ function archive_ajax()
 	$args = array();
 	if ($include_product == 'yes') {
 		$post_type_arr[] = 'product';
-		$args['tax_query'][] = array(
-			'taxonomy' => 'product_cat',
-			'field' => 'slug',
-			'terms' => array('bundles'),
-		);
 	}
 	$args['post_type'] = $post_type_arr;
 	$args['posts_per_page'] = $posts_per_page;
 	$args['menu_order'] = 'menu_order';
 	$args['order'] = 'ASC';
 
-
 	if ($offset) {
 		$args['offset'] = $offset;
 	}
-
+	
+	if ($include_product == 'yes') {
+		$args['tax_query'][] = array(
+			'taxonomy' => 'product_cat',
+			'field' => 'slug',
+			'terms' => array('bundles'),
+		);
+	}
 	if ($taxonomy_terms) {
 		if ($taxonomy != 'category') {
 			$args['tax_query'][] = array(
