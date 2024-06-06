@@ -99,7 +99,7 @@ echo hide_load_more($count, 0, $posts_per_page);
                                                     <?= do_shortcode('[_button class="button add_to_cart_button" button_text="View Product" button_link="' . get_permalink(get_the_ID()) . '"]'); ?>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <?= do_shortcode('[_button class="button add_to_cart_button" button_text="Add to Cart" button_link="' . get_permalink(get_the_ID()) . '"]'); ?>
+                                                    <?php _add_to_cart_button(get_the_ID()) ?>
                                                 </div>
                                             </div>
 
