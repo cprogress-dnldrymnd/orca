@@ -93,9 +93,9 @@ function _learndash_course_meta($atts)
         }
     } else {
         $product_p = wc_get_product($id);
-        $price_p = $product_p->get_regular_price();
+        //$price_p = $product_p->get_regular_price();
         if ($price_p) {
-            $html .= '<p"><strong>Price:</strong> ' . $price_p . '</p>';
+            $html .= '<p"><strong>Price:</strong> ' . $id . '</p>';
         }
     }
     $html .= '</div>';
