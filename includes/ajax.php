@@ -45,6 +45,7 @@ function archive_ajax()
 	}
 
 	echo '<pre>';
+	var_dump($args);
 	echo '</pre>';
 
 	$the_query = new WP_Query($args);
