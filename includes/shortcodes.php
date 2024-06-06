@@ -37,7 +37,7 @@ function breadcrumbs($atts)
     $html .= '</ul>';
     $html .= '</div>';
     $html .= '</div>';
-    if ($hide_title != 'true' || !is_product()) {
+    if ($hide_title != 'true') {
         $html .= '<div class="container large-container my-5">';
         $html .= '<div class="row align-items-center">';
         $html .= '<div class="col">';
