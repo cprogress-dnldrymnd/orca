@@ -84,8 +84,13 @@ function _learndash_course_meta($atts)
         $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
     }
-    if($post_type == 'product') {
+    if ($post_type == 'product') {
         echo 'product';
+        $product_p = wc_get_product($id);
+        $price_p = $product_p->get_regular_price();
+        if ($price_p) {
+            $html .= '<p"><strong>Price:</strong> ' . $id . '</p>';
+        }
     } else {
         if (!_user_has_access($id) && $product_id && $post_type != 'product') {
             $product = wc_get_product($product_id);
@@ -95,7 +100,7 @@ function _learndash_course_meta($atts)
             }
         }
     }
-  
+
     $html .= '</div>';
 
     return $html;
