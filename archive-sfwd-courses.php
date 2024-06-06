@@ -22,12 +22,6 @@ if ($count >= $posts_per_page) {
     $final_count = $count;
 }
 
-$product = wc_get_product(2329);
-$price = $product->get_price_html();
-if ($price) {
-    echo '<p"><strong>Price:</strong> ' . $price . '</p>';
-}
-
 echo hide_load_more($count, 0, $posts_per_page);
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
