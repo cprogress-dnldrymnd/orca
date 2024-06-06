@@ -150,10 +150,10 @@ function _heading($atts)
             if (count($bundles) > 1) {
                 $html .= '<p> This course is included the following bundles.</p>';
                 $html .= '<ul>';
-
                 foreach ($bundles as $bundle) {
                     $html .= '<li><strong><a href="' . get_the_permalink($bundle) . '">' . get_the_title($bundle) . '</a></strong></li>';
                 }
+                $html .= '<p>This course is included in <strong><a href="' . get_the_permalink($prerequisite[0]) . '">' . get_the_title($prerequisite[0]) . '</a></strong> bundle. </p>';
                 $html .= '</ul>';
             } else {
             }
