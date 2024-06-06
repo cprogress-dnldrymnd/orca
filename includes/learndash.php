@@ -424,6 +424,7 @@ function _learndash_linked_product($atts)
             if ($show_price == 'true') {
                 $html .= $product->get_price_html();
             }
+            $html .= _add_to_cart_button($id);
             $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
         }
     }
