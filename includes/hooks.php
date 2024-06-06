@@ -54,3 +54,13 @@ add_action('init', function () {
         remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
     }
 });
+
+function hwl_home_pagesize($query)
+{
+    if (!is_admin() && $query->is_main_query() && get_post_type() == 'sfwd-courses') {
+        $query->set('post_type', array('sfwd-courses', 'product'));
+        $query->set('posts_per_page', 50);
+        return;
+    }
+}
+add_action('pre_get_posts', 'hwl_home_pagesize', 1);
