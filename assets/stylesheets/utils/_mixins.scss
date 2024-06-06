@@ -593,6 +593,11 @@
     font-weight: bold;
     line-height: 1;
     display: inline-block;
+    @include responsive(mobile) {
+        font-size: 13px;
+        font-size: 13px;
+        padding: 5px;
+    }
     @include on-event() {
         background-color: var(--primary-color);
         color: var(--accent-color);

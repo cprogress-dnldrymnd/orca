@@ -11179,6 +11179,11 @@ img {
   background-color: var(--accent-color);
   text-decoration: none;
   color: var(--white-color) !important; }
+  @media screen and (max-width: 575px) {
+    .taxonomy-terms a {
+      font-size: 13px;
+      font-size: 13px;
+      padding: 5px; } }
   .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
@@ -11551,9 +11556,15 @@ section.archive-grid {
     @media screen and (max-width: 575px) {
       section.archive-grid .column-holder p {
         font-size: 15px; } }
+    @media (max-width: 360px) {
+      section.archive-grid .column-holder p {
+        font-size: 13px; } }
     section.archive-grid .column-holder .content-holder {
       padding: 20px;
       flex: 1 0 0%; }
+      @media (max-width: 360px) {
+        section.archive-grid .column-holder .content-holder .heading-box {
+          font-size: 1rem; } }
       section.archive-grid .column-holder .content-holder .description-box {
         color: var(--gray-color); }
       @media screen and (max-width: 575px) {
@@ -11593,6 +11604,11 @@ section.archive-grid {
   font-weight: bold;
   line-height: 1;
   display: inline-block; }
+  @media screen and (max-width: 575px) {
+    .ld-status.ld-status {
+      font-size: 13px;
+      font-size: 13px;
+      padding: 5px; } }
   .ld-status.ld-status:hover, .ld-status.ld-status:active, .ld-status.ld-status:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
