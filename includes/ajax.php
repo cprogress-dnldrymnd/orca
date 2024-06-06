@@ -9,7 +9,7 @@ function archive_ajax()
 	$offset = $_POST['offset'];
 	$include_product = $_POST['include_product'];
 	//$sortby = $_POST['sortby'];
-	$posts_per_page = 12;
+	$posts_per_page = 1;
 	$post_type_arr[] = $post_type;
 
 	$args = array();
