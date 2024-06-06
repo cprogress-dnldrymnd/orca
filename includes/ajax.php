@@ -59,6 +59,10 @@ function archive_ajax()
 		),
 	);
 	$query = new WP_Query($argsx);
+	if ($query->have_posts()) {
+		echo get_the_title();
+		echo '<br>';
+	}
 
 	$the_query = new WP_Query($args);
 
