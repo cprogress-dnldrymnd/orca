@@ -155,7 +155,7 @@ function _heading($atts)
                 }
                 $html .= '</ul>';
             } else {
-                $html .= '<p>This course is included in <strong><a href="' . get_the_permalink($bundles[0]) . '">' . get_the_title($bundles[0]) . '</a></strong> bundles. </p>';
+                $html .= '<p>This course is included in <strong><a href="' . get_the_permalink($bundles[0]) . '">' . get_the_title($bundles[0]) . '</a></strong> bundle. </p>';
             }
 
             $html .= '</div>';
