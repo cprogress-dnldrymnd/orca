@@ -17,11 +17,14 @@ $testimonials = get_posts($args);
             <div class="woo-notices">
                 <?php wc_print_notices()  ?>
             </div>
-       
+
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
             </div>
             <div class="single-course-content-holder background-white pt-4">
+
+                <?= do_shortcode('[_ld_certificate]') ?>
+
                 <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
                     <div class="inner background-light-gray">
                         <div class="row gy-3 align-items-center">
