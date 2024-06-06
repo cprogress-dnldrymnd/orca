@@ -48,29 +48,7 @@ function archive_ajax()
 	var_dump($args);
 	echo '</pre>';
 
-	$argsx = array(
-		'post_type' => 'product',
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'product_cat',
-				'field' => 'slug',
-				'terms' => 'bundles',
-			),
-		),
-	);
-	$query = new WP_Query($argsx);
-	if ($query->have_posts()) {
-		while ($query->have_posts()) {
-			$query->the_post();
-			echo get_the_title();
-			echo '<br>';
-		}
-	} else {
-		echo 'no post';
-	}
-	echo '<pre>';
-	var_dump($args);
-	echo '</pre>';
+	
 	$the_query = new WP_Query($argsx);
 
 	$count = $the_query->found_posts;
