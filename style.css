@@ -11708,6 +11708,11 @@ section.archive-grid {
     right: 20px;
     left: 20px;
     z-index: 1; }
+    @media screen and (max-width: 575px) {
+      .image-box-course .meta-box {
+        top: 10px;
+        right: 10px;
+        left: 10px; } }
     .image-box-course .meta-box > div:not(:last-child) {
       margin-right: 10px; }
 
