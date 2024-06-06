@@ -23,7 +23,7 @@ $testimonials = get_posts($args);
             </div>
             <div class="single-course-content-holder background-white pt-4">
 
-               
+                <?= do_shortcode('[_ld_certificate]') ?>
 
                 <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
                     <div class="inner background-light-gray">
