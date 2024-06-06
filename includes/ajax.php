@@ -10,19 +10,24 @@ function archive_ajax()
 	$include_product = $_POST['include_product'];
 	//$sortby = $_POST['sortby'];
 	$posts_per_page = 12;
-
 	$post_type_arr[] = $post_type;
 
+	$args = array();
 	if ($include_product == 'yes') {
 		$post_type_arr[] = 'product';
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'product_cat',
+				'field' => 'slug',
+				'terms' => 'bundles',
+			),
+		);
 	}
+	$args['post_type'] = $post_type_arr;
+	$args['posts_per_page'] = $posts_per_page;
+	$args['menu_order'] = 'menu_order';
+	$args['order'] = 'ASC';
 
-	$args = array(
-		'post_type' => $post_type_arr,
-		'posts_per_page' => $posts_per_page,
-		'orderby' => 'menu_order',
-		'order' => 'ASC'
-	);
 
 	if ($offset) {
 		$args['offset'] = $offset;
