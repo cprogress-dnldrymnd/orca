@@ -717,6 +717,9 @@ function lessons_images()
 add_action('wp_head', 'lessons_images');
 
 
-function custom_certificate() {
-    echo 'test';
+function _ld_certificate() {
+    return $ld_certificate =  learndash_get_certificate_link();
+
 }
+
+add_shortcode('_ld_certificate', '_ld_certificate');
