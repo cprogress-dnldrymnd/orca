@@ -348,18 +348,21 @@ function _learndash_course_button($atts)
     $post_type = get_post_type($id);
     if ($post_type == 'sfwd-courses') {
         $button_text = 'View Course';
+        $class = 'col-lg-6';
     } else {
         $button_text = 'View Bundle';
+        $class = 'col-lg-12';
     }
     $permalink = get_the_permalink($id);
     $html = '<div class="row g-3 button-group">';
 
-    $html .= '<div class="' . ($post_type == 'product') ? 'col-12' : 'col-lg-6' . '">';
+    $html .= '<div class="' . $class . '">';
     $html .= "<a  href='$permalink' class='btn btn-black w-100'>$button_text</a>";
     $html .= '</div>';
 
     if ($post_type == 'sfwd-courses') {
         $html .= '<div class="col-lg-6">';
+
         if (_user_has_access($id) == false && _can_be_purchased($id)) {
             $html .= do_shortcode('[_learndash_linked_product id="' . $id . '" hide_bubble="true"]');
         } else if (_user_has_access($id) == true && _can_be_purchased($id)) {
