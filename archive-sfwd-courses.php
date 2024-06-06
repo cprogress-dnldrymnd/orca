@@ -52,37 +52,7 @@ echo hide_load_more($count, 0, $posts_per_page);
         </div>
         <div id="results">
             <div class="results-holder">
-                <div class="row row-archive g-4">
-                    <?php
-                    if ($course_query->have_posts()) {
-                        while ($course_query->have_posts()) {
-                            $course_query->the_post();
-                    ?>
-                            <div class="col-md-4 col-6 post-item">
-                                <div class="column-holder d-flex flex-column justify-content-between background-white h-100">
-                                    <?= do_shortcode('[_learndash_image id="' . get_the_ID() . '" image_id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
-                                    <div class="content-holder d-flex flex-column justify-content-between">
-                                        <div>
-                                            <?= do_shortcode('[_heading class="color-primary" tag="h3" heading="' . get_the_title() . '"]'); ?>
-                                            <?= do_shortcode('[_description description="' . get_the_excerpt() . '"]'); ?>
-                                            <hr>
-                                            <?= do_shortcode('[_learndash_course_meta]'); ?>
-                                        </div>
-                                        <div>
-                                            <?= do_shortcode('[_learndash_course_button id="' . get_the_ID() . '"]'); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php }
-                        wp_reset_postdata();
-                    } else {
-                        ?>
-                        <h2>No Results Found</h2>
-                    <?php
-                    }
-                    ?>
-                </div>
+             
             </div>
         </div>
         <div class="load-more text-center mt-5 d-none">
@@ -96,3 +66,8 @@ echo hide_load_more($count, 0, $posts_per_page);
     </div>
 </section>
 <?php get_footer() ?>
+<script>
+    jQuery(document).ready(function () {
+        ajax();
+    });
+</script>
