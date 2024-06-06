@@ -411,15 +411,15 @@ function _learndash_course_button($atts)
     $html .= '</div>';
 
     if ($post_type == 'sfwd-courses') {
-        $html .= '<div class="col-lg-6">';
         if (_user_has_access($id) == false && _can_be_purchased($id)) {
-            $html .= 'cond1';
+            $html .= '<div class="col-lg-6">';
             $html .= do_shortcode('[_learndash_linked_product id="' . $id . '" hide_bubble="true"]');
+            $html .= '</div>';
         } else if (_user_has_access($id) == true && _can_be_purchased($id)) {
-            $html .= 'cond2';
+            $html .= '<div class="col-lg-6">';
             $html .= do_shortcode('[_button class="button add_to_cart_button disabled" button_text="Already Enrolled" button_link="#"]');
+            $html .= '</div>';
         }
-        $html .= '</div>';
     }
 
     $html .= '</div>';
