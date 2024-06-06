@@ -70,6 +70,13 @@ function archive_ajax()
 
 	$count = $the_query->found_posts;
 
+       
+	$product = wc_get_product(2329);
+	$price = $product->get_price_html();
+	if ($price) {
+		echo '<p"><strong>Price:</strong> ' . $price . '</p>';
+	}
+
 	echo hide_load_more($count, $offset, $posts_per_page);
 ?>
 	<?php if (!$offset) { ?>
