@@ -147,13 +147,16 @@ function _heading($atts)
 
         if ($bundles) {
             $html .= '<div class="learndash-course-prerequisites">';
-            $html .= '<strong> This course </strong> is included the following bundles.';
-            $html .= '<ul>';
+            if (count($bundles) > 1) {
+                $html .= '<p> This course is included the following bundles.</p>';
+                $html .= '<ul>';
 
-            foreach ($bundles as $bundle) {
-                $html .= '<li><a href="' . get_the_permalink($bundle) . '">' . get_the_title($bundle) . '</a></li>';
+                foreach ($bundles as $bundle) {
+                    $html .= '<li><strong><a href="' . get_the_permalink($bundle) . '">' . get_the_title($bundle) . '</a></strong></li>';
+                }
+                $html .= '</ul>';
+            } else {
             }
-            $html .= '</ul>';
 
             $html .= '</div>';
         }
