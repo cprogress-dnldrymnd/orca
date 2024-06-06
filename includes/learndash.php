@@ -715,3 +715,8 @@ function lessons_images()
     }
 }
 add_action('wp_head', 'lessons_images');
+
+
+function custom_certificate() {
+    echo 'test';
+}
