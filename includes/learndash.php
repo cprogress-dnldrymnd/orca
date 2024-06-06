@@ -92,7 +92,11 @@ function _learndash_course_meta($atts)
             $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
         }
     } else {
-       
+        $product_p = wc_get_product($id);
+        $price_p = $product_p->get_price_html();
+        if ($price_p) {
+            $html .= '<p"><strong>Price:</strong> ' . $price_p . '</p>';
+        }
     }
     $html .= '</div>';
 
