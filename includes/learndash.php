@@ -312,7 +312,7 @@ function _learndash_related_bundles($atts)
 
     return $html;
 }
-add_shortcode('_learndash_sticky_add_to_cart', '_learndash_sticky_add_to_cart');
+add_shortcode('_learndash_related_bundles', '_learndash_related_bundles');
 
 /*
 function _learndash_sticky_add_to_cart()
