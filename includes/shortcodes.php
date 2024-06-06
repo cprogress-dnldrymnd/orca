@@ -130,19 +130,25 @@ function _heading($atts)
 
         if ($prerequisite_enabled && !$enrolled && is_single()) {
             $html .= '<div class="learndash-course-prerequisites">';
-            $html .= '<strong>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </strong>';
 
-            $html .= '<ul>';
-            foreach ($prerequisites as $key => $prerequisite) {
-                $html .= '<li><a href="' . get_the_permalink($prerequisite) . '">' . get_the_title($prerequisite) . '</a></li>';
+            if (count($prerequisites) > 1) {
+                $html .= '<p>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </p>';
+
+                $html .= '<ul>';
+                foreach ($prerequisites as $key => $prerequisite) {
+                    $html .= '<li><a href="' . get_the_permalink($prerequisite) . '">' . get_the_title($prerequisite) . '</a></li>';
+                }
+                $html .= '</ul>';
+                $html .= '</div>';
+            } else {
+                $html .= '<strong>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </strong>';
+
             }
-            $html .= '</ul>';
-            $html .= '</div>';
         }
 
         if ($bundles) {
             $html .= '<div class="learndash-course-prerequisites">';
-            $html .= '<strong> ' . get_the_title() . ' </strong> is included the following bundles.';
+            $html .= '<strong> This course </strong> is included the following bundles.';
             $html .= '<ul>';
 
             foreach ($bundles as $bundle) {
