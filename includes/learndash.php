@@ -350,7 +350,7 @@ function _learndash_course_button($atts)
     $html = '<div class="row g-3 button-group">';
 
     $html .= '<div class="col-lg-6">';
-    $html .= "<a  href='$permalink' class='btn btn-black w-100'>View $button_text</a>";
+    $html .= "<a  href='$permalink' class='btn btn-black w-100'>$button_text</a>";
     $html .= '</div>';
 
     $html .= '<div class="col-lg-6">';
