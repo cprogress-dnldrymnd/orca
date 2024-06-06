@@ -65,10 +65,18 @@ function _learndash_course_progress($atts)
 add_shortcode('_learndash_course_progress', '_learndash_course_progress');
 
 
-function _learndash_course_meta()
+function _learndash_course_meta($atts)
 {
+    extract(
+        shortcode_atts(
+            array(
+                'id' => get_the_ID(),
+            ),
+            $atts
+        )
+    );
     $certification = get__post_meta('certification');
-    $product_id = get_product_by_sku(get_the_ID());
+    $product_id = get_product_by_sku($id);
     $html =  '<div class="course-meta mb-3">';
 
     if ($certification) {
