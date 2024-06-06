@@ -5,31 +5,13 @@ $terms = get_terms(array(
     'hide_empty' => false,
 ));
 
-$posts_per_page = 12;
-
-$args = array(
-    'post_type' => 'sfwd-courses',
-    'posts_per_page' => $posts_per_page,
-    'orderby' => 'menu_order',
-    'order' => 'ASC'
-);
-
-$course_query = new WP_Query($args);
-$count = $course_query->found_posts;
-if ($count >= $posts_per_page) {
-    $final_count = $posts_per_page;
-} else {
-    $final_count = $count;
-}
-
-echo hide_load_more($count, 0, $posts_per_page);
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
     <div class="container large-container">
         <div class="row g-4 filter mb-4 align-items-center">
             <div class="col-lg-6">
                 <div class="showing">
-                    Showing <span class="post-number"><?php echo $final_count ?></span> of <span class="found-post"><?php echo $count ?> </span> Courses
+                    Showing <span class="post-number">0</span> of <span class="found-post">0</span> Courses
                 </div>
             </div>
             <div class="col-lg-6 text-end">
