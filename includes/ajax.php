@@ -10,6 +10,7 @@ function archive_ajax()
 	$include_product = $_POST['include_product'];
 	//$sortby = $_POST['sortby'];
 	$posts_per_page = 12;
+	$post_type_arr[] = $post_type;
 
 	$args = array();
 	if ($include_product == 'yes') {
@@ -43,7 +44,8 @@ function archive_ajax()
 		}
 	}
 
-	var_dump($args);
+	echo '<pre>';
+	echo '</pre>';
 
 	$the_query = new WP_Query($args);
 
