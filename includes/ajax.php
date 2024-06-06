@@ -24,7 +24,22 @@ function archive_ajax()
 			'post_type'  => 'sfwd-courses'
 		));
 
-		$args['post__in'] = $courses_id;
+		$products_id = get_posts(array(
+			'fields'          => 'ids', // Only get post IDs
+			'posts_per_page'  => -1,
+			'post_type'  => 'product',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slub',
+					'terms'    => 'bundles',
+				)
+			)
+		));
+
+		$ids = array_merge($courses_id, $products_id);
+
+		$args['post__in'] = $ids;
 		$args['post_type'] = $post_type_arr;
 	} else {
 		$args['post_type'] = $post_type;
