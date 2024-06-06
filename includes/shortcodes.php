@@ -4,7 +4,7 @@ function breadcrumbs($atts)
     extract(
         shortcode_atts(
             array(
-                'hide_title' => 'true',
+                'hide_title' => 'false',
             ),
             $atts
         )
