@@ -16,7 +16,7 @@ function archive_ajax()
 
 	$args['post_type'] = $post_type_arr;
 	$args['posts_per_page'] = $posts_per_page;
-	$args['menu_order'] = 'menu_order';
+	$args['orderby'] = 'menu_order';
 	$args['order'] = 'ASC';
 
 	if ($offset) {
