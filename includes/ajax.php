@@ -43,6 +43,8 @@ function archive_ajax()
 		}
 	}
 
+	var_dump($args);
+
 	$the_query = new WP_Query($args);
 
 	$count = $the_query->found_posts;
