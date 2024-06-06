@@ -68,8 +68,10 @@ function archive_ajax()
 	} else {
 		echo 'no post';
 	}
-
-	$the_query = new WP_Query($args);
+	echo '<pre>';
+	var_dump($args);
+	echo '</pre>';
+	$the_query = new WP_Query($argsx);
 
 	$count = $the_query->found_posts;
 
