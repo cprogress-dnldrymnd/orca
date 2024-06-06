@@ -16,7 +16,7 @@ section.archive-grid {
             flex: 1 0 0%;
             .heading-box {
                 h3 {
-                    @media(max-width: 360px) {
+                    @include responsive(mobile) {
                         font-size: 1rem;
                     }
                 }
