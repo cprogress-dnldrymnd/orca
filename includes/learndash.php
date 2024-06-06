@@ -434,7 +434,6 @@ function _learndash_linked_product($atts)
             array(
                 'id' => '',
                 'hide_bubble' => 'false',
-                'show_price' => 'false',
                 'hide_add_to_cart' => 'false',
                 'redirect_to_single' => 'false'
             ),
@@ -453,9 +452,6 @@ function _learndash_linked_product($atts)
 
     if ($hide_add_to_cart == 'false') {
         if ($products) {
-            if ($show_price == 'true') {
-                $html .= $product->get_price_html();
-            }
             $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
         }
     }
