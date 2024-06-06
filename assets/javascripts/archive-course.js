@@ -53,7 +53,7 @@ function ajax($offset, $event_type = 'html') {
 
         type: "POST",
 
-        url: "https://learn.orca.org.uk/staging//wp-admin/admin-ajax.php",
+        url: "https://learn.orca.org.uk/staging/wp-admin/admin-ajax.php",
 
         data: {
 
