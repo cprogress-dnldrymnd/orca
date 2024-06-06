@@ -49,7 +49,7 @@ function archive_ajax()
 	echo '</pre>';
 
 	
-	$the_query = new WP_Query($argsx);
+	$the_query = new WP_Query($args);
 
 	$count = $the_query->found_posts;
 
