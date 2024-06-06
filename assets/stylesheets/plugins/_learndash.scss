@@ -394,6 +394,12 @@ body.ld-in-focus-mode.admin-bar {
             color: var(--white-color);
             border-radius: 50px;
             text-decoration: none;
+            border: 2px solid var(--accent-color);
+            @include on-event {
+                background-color: #33a19a17;
+                border-color: var(--accent-color);
+                color: var(--accent-color);
+            }
             svg {
                 width: 20px;
                 height: 20px;
