@@ -171,7 +171,9 @@ function _learndash_status($atts)
     if (_user_has_access($id)) {
         return _learndash_status_bubble($id);
     } else {
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product id="' . $id . '"]</div>');
+        if (_can_be_purchased($id)) {
+            return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product id="' . $id . '"]</div>');
+        }
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
