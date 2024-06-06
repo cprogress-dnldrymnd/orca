@@ -297,22 +297,6 @@ function _learndash_included_in_bundle($id)
 }
 
 
-function _learndash_related_bundles($atts)
-{
-    extract(
-        shortcode_atts(
-            array(
-                'products' => '',
-            ),
-            $atts
-        )
-    );
-    $html = '';
-    $html .= '<strong> '.get_the_title().' </strong>';
-
-    return $html;
-}
-add_shortcode('_learndash_related_bundles', '_learndash_related_bundles');
 
 /*
 function _learndash_sticky_add_to_cart()

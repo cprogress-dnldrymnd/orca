@@ -18,11 +18,7 @@ $testimonials = get_posts($args);
             <div class="woo-notices">
                 <?php wc_print_notices()  ?>
             </div>
-            <?php if (_learndash_included_in_bundle(get_the_ID())) { ?>
-                <div class="learndash-notices">
-                    <?= do_shortcode('[_learndash_related_bundles products="' . _learndash_included_in_bundle(get_the_ID()) . '"]') ?>
-                </div>
-            <?php } ?>
+       
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
             </div>

@@ -117,6 +117,7 @@ function _heading($atts)
         $compare = learndash_get_course_prerequisite_compare(get_the_ID());
         $prerequisites = learndash_get_course_prerequisite(get_the_ID());
         $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
+        $bundles = _learndash_included_in_bundle(get_the_ID());
 
         if ($enrolled && is_single()) {
 
@@ -133,10 +134,15 @@ function _heading($atts)
 
             $html .= '<ul>';
             foreach ($prerequisites as $key => $prerequisite) {
-                $html .= '<li><a href="'.get_the_permalink($prerequisite).'">' . get_the_title($prerequisite) . '</a></li>';
+                $html .= '<li><a href="' . get_the_permalink($prerequisite) . '">' . get_the_title($prerequisite) . '</a></li>';
             }
             $html .= '</ul>';
+            $html .= '</div>';
+        }
 
+        if ($bundles) {
+            $html .= '<div class="learndash-course-prerequisites">';
+            $html .= '<strong> ' . get_the_title() . ' </strong> in include the following bundles.';
             $html .= '</div>';
         }
     }
