@@ -265,6 +265,34 @@ function _learndash_has_linked_product($course_id)
     }
 }
 
+function _learndash_included_in_bundle($id)
+{
+    $args = array(
+        'post_type'  => 'product',
+        'meta_query' => array(
+            array(
+                'key'   => '_related_course',
+                'value' => serialize(intval($id)),
+                'compare' => 'LIKE'
+            )
+        ),
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => 'bundles',
+            )
+        )
+    );
+
+    $products = get_posts($args);
+
+    if (count($products) > 0) {
+        return $products;
+    } else {
+        return false;
+    }
+}
 
 function _learndash_sticky_add_to_cart()
 {
@@ -393,6 +421,8 @@ function _learndash_course_button($atts)
 }
 
 add_shortcode('_learndash_course_button', '_learndash_course_button');
+
+
 
 
 function _learndash_linked_product($atts)
