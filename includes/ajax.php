@@ -22,9 +22,7 @@ function archive_ajax()
 			'post_type'  => 'sfwd-courses'
 		));
 
-		var_dump($courses_id);
-
-		//$args['post__in'] = $courses_id;
+		$args['post__in'] = $courses_id;
 	} else {
 		$args['post_type'] = $post_type;
 	}
