@@ -18,7 +18,7 @@ function archive_ajax()
 		$args['tax_query'][] = array(
 			'taxonomy' => 'product_cat',
 			'field' => 'slug',
-			'terms' => 'bundles',
+			'terms' => array('bundles'),
 		);
 	}
 	$args['post_type'] = $post_type_arr;
