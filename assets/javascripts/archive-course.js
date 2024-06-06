@@ -30,6 +30,9 @@ function ajax($offset, $event_type = 'html') {
 
     var $post_type = jQuery("input[name='post-type']").val();
 
+    var $include_product = jQuery("input[name='include-product']").val();
+
+
     var $taxonomy = jQuery("input[name='taxonomy']").val();
 
     // var $sortby = jQuery("select[name='sortby']").val();
@@ -62,9 +65,10 @@ function ajax($offset, $event_type = 'html') {
 
             taxonomy: $taxonomy,
 
-            // sortby: $sortby,
+            include_product: $include_product,
 
             offset: $offset
+            // sortby: $sortby,
 
 
         },
