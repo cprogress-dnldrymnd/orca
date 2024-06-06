@@ -29,7 +29,7 @@ function archive_ajax()
 		$args['tax_query'][] = array(
 			'taxonomy' => 'product_cat',
 			'field' => 'slug',
-			'terms' => array('bundles'),
+			'terms' => 'bundles',
 		);
 	}
 	if ($taxonomy_terms) {
