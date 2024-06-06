@@ -24,9 +24,9 @@ function archive_ajax()
 	if ($offset) {
 		$args['offset'] = $offset;
 	}
-	
+
 	if ($include_product == 'yes') {
-		$args['tax_query'][] = array(
+		$args['tax_query'] = array(
 			'taxonomy' => 'product_cat',
 			'field' => 'slug',
 			'terms' => array('bundles'),
@@ -34,7 +34,7 @@ function archive_ajax()
 	}
 	if ($taxonomy_terms) {
 		if ($taxonomy != 'category') {
-			$args['tax_query'][] = array(
+			$args['tax_query'] = array(
 				'taxonomy' => $taxonomy,
 				'field'    => 'term_id',
 				'terms'    => $taxonomy_terms,
