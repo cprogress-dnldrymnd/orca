@@ -15,12 +15,10 @@ function archive_ajax()
 	$args = array();
 	if ($include_product == 'yes') {
 		$post_type_arr[] = 'product';
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'product_cat',
-				'field' => 'slug',
-				'terms' => 'bundles',
-			),
+		$args['tax_query'][] = array(
+			'taxonomy' => 'product_cat',
+			'field' => 'slug',
+			'terms' => 'bundles',
 		);
 	}
 	$args['post_type'] = $post_type_arr;
@@ -35,12 +33,10 @@ function archive_ajax()
 
 	if ($taxonomy_terms) {
 		if ($taxonomy != 'category') {
-			$args['tax_query'] = array(
-				array(
-					'taxonomy' => $taxonomy,
-					'field'    => 'term_id',
-					'terms'    => $taxonomy_terms,
-				),
+			$args['tax_query'][] = array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				'terms'    => $taxonomy_terms,
 			);
 		} else {
 			$args['cat'] = $taxonomy_terms;
