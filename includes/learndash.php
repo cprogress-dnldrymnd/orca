@@ -91,7 +91,9 @@ function _learndash_course_meta($atts)
         if ($price) {
             $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
         }
-    } 
+    } else {
+        echo $id;
+    }
     $html .= '</div>';
 
     return $html;
