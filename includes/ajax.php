@@ -52,10 +52,6 @@ function archive_ajax()
 		$args['offset'] = $offset;
 	}
 
-	echo '<pre>';
-	var_dump($args);
-	echo '</pre>';
-
 	if ($taxonomy_terms) {
 		if ($taxonomy != 'category') {
 			$args['tax_query'][] = array(
