@@ -85,7 +85,7 @@ function _learndash_course_meta($atts)
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
     }
 
-    if (!_user_has_access(get_the_ID()) && $product_id && $post_type != 'product') {
+    if (!_user_has_access($id) && $product_id && $post_type != 'product') {
         $product = wc_get_product($product_id);
         $price = $product->get_price_html();
         if ($price) {
