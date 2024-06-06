@@ -395,13 +395,13 @@ function _learndash_course_button($atts)
             $atts
         )
     );
-
+    $post_type = get_post_type($id);
     $permalink = get_the_permalink($id);
     $html = '<div class="row g-3 button-group">';
 
 
     if ($post_type == 'sfwd-courses') {
-        $html .= '<div class="col-lg-12">';
+        $html .= '<div class="col-12">';
         $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
         $html .= '</div>';
         if (_user_has_access($id) == false && _can_be_purchased($id)) {
