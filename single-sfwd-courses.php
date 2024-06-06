@@ -20,7 +20,7 @@ $testimonials = get_posts($args);
             </div>
             <?php if (_learndash_included_in_bundle(get_the_ID())) { ?>
                 <div class="learndash-notices">
-                    <?php var_dump(_learndash_included_in_bundle(get_the_ID())) ?>
+                    <?= do_shortcode('[_learndash_related_bundles products="' . _learndash_included_in_bundle(get_the_ID()) . '"]') ?>
                 </div>
             <?php } ?>
             <div class="learndash-single-banner">

@@ -296,6 +296,25 @@ function _learndash_included_in_bundle($id)
     }
 }
 
+
+function _learndash_related_bundles($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'products' => '',
+            ),
+            $atts
+        )
+    );
+    $html = '';
+    $html .= '<strong> '.get_the_title().' </strong>';
+
+    return $html;
+}
+add_shortcode('_learndash_sticky_add_to_cart', '_learndash_sticky_add_to_cart');
+
+/*
 function _learndash_sticky_add_to_cart()
 {
     if (!_user_has_access(get_the_ID())) {
@@ -304,7 +323,7 @@ function _learndash_sticky_add_to_cart()
 }
 
 add_shortcode('_learndash_sticky_add_to_cart', '_learndash_sticky_add_to_cart');
-
+*/
 
 //modify course the_content
 function new_default_content($content)
