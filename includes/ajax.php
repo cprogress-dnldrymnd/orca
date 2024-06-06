@@ -49,7 +49,7 @@ function archive_ajax()
 	echo '</pre>';
 
 	$argsx = array(
-		'post_type' => 'produc',
+		'post_type' => 'product',
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'product_cat',
