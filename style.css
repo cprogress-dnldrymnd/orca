@@ -11636,8 +11636,7 @@ section.archive-grid {
     border: 1px solid var(--accent-color); }
 
 .added_to_cart {
-  width: 100%;
-  text-align: center; }
+  display: none !important; }
 
 .add_to_cart_button.add_to_cart_button.add_to_cart_button {
   color: var(--white-color);
