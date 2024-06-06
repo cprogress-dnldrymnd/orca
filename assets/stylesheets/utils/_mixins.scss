@@ -596,7 +596,7 @@
     @include responsive(mobile) {
         font-size: 13px;
         font-size: 13px;
-        padding: 5px;
+        padding: 10px;
     }
     @include on-event() {
         background-color: var(--primary-color);

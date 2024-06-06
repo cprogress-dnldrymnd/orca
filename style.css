@@ -11183,7 +11183,7 @@ img {
     .taxonomy-terms a {
       font-size: 13px;
       font-size: 13px;
-      padding: 5px; } }
+      padding: 10px; } }
   .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
@@ -11563,7 +11563,7 @@ section.archive-grid {
       padding: 20px;
       flex: 1 0 0%; }
       @media (max-width: 360px) {
-        section.archive-grid .column-holder .content-holder .heading-box {
+        section.archive-grid .column-holder .content-holder .heading-box h3, section.archive-grid .column-holder .content-holder .heading-box .h3 {
           font-size: 1rem; } }
       section.archive-grid .column-holder .content-holder .description-box {
         color: var(--gray-color); }
@@ -11608,7 +11608,7 @@ section.archive-grid {
     .ld-status.ld-status {
       font-size: 13px;
       font-size: 13px;
-      padding: 5px; } }
+      padding: 10px; } }
   .ld-status.ld-status:hover, .ld-status.ld-status:active, .ld-status.ld-status:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
