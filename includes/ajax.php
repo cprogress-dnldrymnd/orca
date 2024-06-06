@@ -31,7 +31,7 @@ function archive_ajax()
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'product_cat',
-					'field'    => 'slub',
+					'field'    => 'slug',
 					'terms'    => 'bundles',
 				)
 			)
