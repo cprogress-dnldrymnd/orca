@@ -717,9 +717,26 @@ function lessons_images()
 add_action('wp_head', 'lessons_images');
 
 
-function _ld_certificate() {
-    return $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
+function _ld_certificate()
+{
+    $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
+    $html = '';
 
+    if ($ld_certificate) {
+        $html .= '<div class="certificate-box">';
+
+        $html .= '<div class="row g-3">';
+        
+        $html .= '<div class="col-auto">';
+        $html .= 
+        $html .= '</div>';
+
+        $html .= '</div>';
+
+        $html .= '</div>';
+    }
+
+    return $html;
 }
 
 add_shortcode('_ld_certificate', '_ld_certificate');

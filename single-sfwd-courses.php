@@ -12,7 +12,6 @@ $testimonials = get_posts($args);
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
 
-<?= do_shortcode('[_ld_certificate]') ?>
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
             <div class="woo-notices">
