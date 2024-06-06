@@ -60,8 +60,13 @@ function archive_ajax()
 	);
 	$query = new WP_Query($argsx);
 	if ($query->have_posts()) {
-		echo get_the_title();
-		echo '<br>';
+		while ($query->have_posts()) {
+			$query->the_post();
+			echo get_the_title();
+			echo '<br>';
+		}
+	} else {
+		echo 'no post';
 	}
 
 	$the_query = new WP_Query($args);
