@@ -17,9 +17,7 @@ function archive_ajax()
 		$post_type_arr[] = 'product';
 	}
 	$args['post_type'] = $post_type_arr;
-	$args['posts_per_page'] = $posts_per_page;
-	$args['menu_order'] = 'menu_order';
-	$args['order'] = 'ASC';
+	
 
 	if ($offset) {
 		$args['offset'] = $offset;
