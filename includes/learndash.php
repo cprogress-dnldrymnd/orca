@@ -724,6 +724,7 @@ function _ld_certificate()
 
     if ($ld_certificate) {
         $html .= '<div class="certificate-box">';
+        $html .= '<div class="certificate-holder">';
 
         $html .= '<div class="row flex-nowrap g-3">';
 
@@ -741,6 +742,7 @@ function _ld_certificate()
 
         $html .= '</div>';
 
+        $html .= '</div>';
         $html .= '</div>';
     }
 
