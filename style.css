@@ -11639,7 +11639,7 @@ section.archive-grid {
   width: 100%;
   text-align: center;
   border-color: var(--accent-color);
-  color: var(--white-color); }
+  color: var(--white-color) !important; }
 
 .add_to_cart_button.add_to_cart_button.add_to_cart_button {
   color: var(--white-color);
