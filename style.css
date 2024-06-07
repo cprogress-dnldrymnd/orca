@@ -11884,6 +11884,10 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 .learndash-wrapper .ld-profile-card.ld-profile-card.ld-profile-card {
   display: none; }
 
+@media screen and (max-width: 1199px) {
+  .certificates-list .col-label {
+    flex: 1 0 0%; } }
+
 input[type="text"],
 input[type="number"],
 input[type="email"],

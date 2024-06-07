@@ -416,6 +416,18 @@ body.ld-in-focus-mode.admin-bar {
             font-size: 80px;
         }
     }
+    .col-label {
+        @include responsive(xs-md) {
+            flex: 1 0 0%;
+        }
+        .col-button {
+            @include responsive(xs-md) {
+                a {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 .learndash-wrapper {
     .ld-profile-card.ld-profile-card.ld-profile-card {
@@ -424,9 +436,5 @@ body.ld-in-focus-mode.admin-bar {
 }
 
 .certificates-list {
-    @include responsive(xs-md) {
-        .col-button {
-            
-        }
-    }
+   
 }
