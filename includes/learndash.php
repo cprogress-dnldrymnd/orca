@@ -269,9 +269,9 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
     $products = get_posts($args);
 
     if (count($products) > 0) {
-        return $args;
+        return $products;
     } else {
-        return $args;
+        return false;
     }
 }
 
@@ -473,7 +473,6 @@ function _learndash_linked_product($atts)
             if ($products) {
                 if (count($products) == 1) {
                     $html .= _add_to_cart_button($products[0]);
-                    $html .= var_dump($products);
                     //$html .= var_dump($products);
                 } else if (count($products) > 1) {
                     $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
