@@ -416,11 +416,7 @@ body.ld-in-focus-mode.admin-bar {
             font-size: 80px;
         }
     }
-    .col-label {
-        @include responsive(xs-md) {
-            flex: 1 0 0%;
-        }
-    }
+   
     .col-button {
         a {
             @include responsive(xs-sm) {
