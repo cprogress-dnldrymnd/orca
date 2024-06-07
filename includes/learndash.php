@@ -261,6 +261,7 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
                 'taxonomy' => 'product_cat',
                 'field'    => 'slug',
                 'terms'    => 'bundles',
+                'compare' => 'NOT IN'
             )
         );
     }
