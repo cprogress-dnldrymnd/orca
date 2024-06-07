@@ -11880,7 +11880,7 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
     width: 50px;
     height: 50px; }
 
-.ld-profile-card.ld-profile-card {
+.learndash-wrapper .ld-profile-card.ld-profile-card.ld-profile-card {
   display: none; }
 
 input[type="text"],
