@@ -738,7 +738,7 @@ function _ld_certificate($atts)
     extract(
         shortcode_atts(
             array(
-                'id' => false,
+                'id' => get_the_ID(),
             ),
             $atts
         )
