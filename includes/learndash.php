@@ -472,7 +472,7 @@ function _learndash_linked_product($atts)
 
             if ($products) {
                 if (count($products) == 1) {
-                    $html .= _add_to_cart_button($products[0]->ID);
+                    $html .= _add_to_cart_button($products[0]);
                 } else if (count($products) > 1) {
                     $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
                 }
