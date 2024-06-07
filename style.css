@@ -11884,7 +11884,7 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   .certificate-box .col-label {
     flex: 1 0 0%; } }
 @media screen and (max-width: 991px) {
-  .certificate-box .col-label .col-button a {
+  .certificate-box .col-button a {
     width: 100%;
     text-align: center; } }
 

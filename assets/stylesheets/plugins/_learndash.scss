@@ -420,12 +420,12 @@ body.ld-in-focus-mode.admin-bar {
         @include responsive(xs-md) {
             flex: 1 0 0%;
         }
-        .col-button {
-            a {
-                @include responsive(xs-sm) {
-                    width: 100%;
-                    text-align: center;
-                }
+    }
+    .col-button {
+        a {
+            @include responsive(xs-sm) {
+                width: 100%;
+                text-align: center;
             }
         }
     }
