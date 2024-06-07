@@ -100,7 +100,7 @@
             font-weight: bold;
         }
     }
-   
+
     .add_to_cart_button,
     .added_to_cart {
         padding: 10px 5px;
@@ -385,6 +385,9 @@ body.ld-in-focus-mode.admin-bar {
         border: 2px solid var(--accent-color);
         color: var(--accent-color);
         background-color: #33a19a17;
+        .image-box {
+            width: 100px;
+        }
         p {
             font-weight: bold;
             margin-bottom: 0;
@@ -397,21 +400,35 @@ body.ld-in-focus-mode.admin-bar {
             border-radius: 50px;
             text-decoration: none;
             border: 2px solid var(--accent-color);
-            display: inline-block;
             @include on-event {
                 background-color: #33a19a17;
                 border-color: var(--accent-color);
                 color: var(--accent-color);
             }
+          
             svg {
                 width: 20px;
                 height: 20px;
                 margin-right: 15px;
             }
         }
-        .bi-award {
-            width: 50px;
-            height: 50px;
+        .ld-icon {
+            font-size: 80px;
+        }
+    }
+   
+    .col-button {
+        a {
+            @include responsive(xs-sm) {
+                width: 100%;
+            }
         }
     }
 }
+.learndash-wrapper {
+    .ld-profile-card.ld-profile-card.ld-profile-card {
+        display: none;
+    }
+}
+
+

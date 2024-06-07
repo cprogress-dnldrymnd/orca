@@ -11856,6 +11856,8 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   border: 2px solid var(--accent-color);
   color: var(--accent-color);
   background-color: #33a19a17; }
+  .certificate-box .certificate-holder .image-box {
+    width: 100px; }
   .certificate-box .certificate-holder p {
     font-weight: bold;
     margin-bottom: 0; }
@@ -11866,8 +11868,7 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
     color: var(--white-color);
     border-radius: 50px;
     text-decoration: none;
-    border: 2px solid var(--accent-color);
-    display: inline-block; }
+    border: 2px solid var(--accent-color); }
     .certificate-box .certificate-holder a:hover, .certificate-box .certificate-holder a:active, .certificate-box .certificate-holder a:focus {
       background-color: #33a19a17;
       border-color: var(--accent-color);
@@ -11876,9 +11877,14 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
       width: 20px;
       height: 20px;
       margin-right: 15px; }
-  .certificate-box .certificate-holder .bi-award {
-    width: 50px;
-    height: 50px; }
+  .certificate-box .certificate-holder .ld-icon {
+    font-size: 80px; }
+@media screen and (max-width: 991px) {
+  .certificate-box .col-button a {
+    width: 100%; } }
+
+.learndash-wrapper .ld-profile-card.ld-profile-card.ld-profile-card {
+  display: none; }
 
 input[type="text"],
 input[type="number"],
@@ -11965,5 +11971,29 @@ section.single-product {
       border: 1px solid var(--accent-color); }
   section.single-product .woocommerce-product-gallery__image {
     border-radius: 5px; }
+
+.woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  padding: 0; }
+  .woocommerce-MyAccount-navigation ul li a {
+    width: 100%;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid var(--light-gray-color);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none; }
+  .woocommerce-MyAccount-navigation ul li.is-active a {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px;
+    border-radius: 10px 0; }
+
+@media (min-width: 1200px) {
+  .woocommerce-account .page-section .container {
+    max-width: 1060px !important; } }
+@media (min-width: 1400px) {
+  .woocommerce-account .page-section .container {
+    max-width: 1060px !important; } }
 
 /*# sourceMappingURL=style.css.map */

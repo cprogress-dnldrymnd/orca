@@ -462,7 +462,7 @@ function _learndash_linked_product($atts)
     $products = _learndash_has_linked_product($id, true);
 
     $html = '';
-    
+
 
     if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
@@ -733,36 +733,49 @@ function lessons_images()
 add_action('wp_head', 'lessons_images');
 
 
-function _ld_certificate()
+function _ld_certificate($atts)
 {
-    $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
-    $html = '';
+    extract(
+        shortcode_atts(
+            array(
+                'id' => get_the_ID(),
+                'label' => "You've earned a certificate!",
+                'featured_image' => false
+            ),
+            $atts
+        )
+    );
+    $ld_certificate =  learndash_get_course_certificate_link($id);
 
     if ($ld_certificate) {
+        $html = '';
         $html .= '<div class="certificate-box">';
         $html .= '<div class="certificate-holder">';
 
         $html .= '<div class="row align-items-center g-4">';
 
-        $html .= '<div class="col-auto">';
-        $html .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award" viewBox="0 0 16 16"> <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/> <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/> </svg>';
+        $html .= '<div class="col-auto col-lg-2 col-image">';
+        if ($featured_image) {
+            $html .= do_shortcode('[_image size="medium" id="'.get_post_thumbnail_id($id).'"]');
+        } else {
+            $html .= '<span class="ld-icon ld-icon-certificate"></span>';
+        }
         $html .= '</div>';
 
-        $html .= '<div class="col-auto">';
-        $html .= "<p>You've earned a certificate!<p>";
+        $html .= '<div class="col-auto col-lg-5 col-label">';
+        $html .= "<p>$label<p>";
         $html .= '</div>';
 
-        $html .= '<div class="col-lg col-12 text-end">';
-        $html .= '<a target="_blank" href="' . $ld_certificate . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16"> <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/> <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/> </svg>Download Certificate</a>';
-        $html .= '</div>';
-
+        $html .= '<div class="col-lg-5 text-end col-button">';
+        $html .= '<a class="d-inline-flex justify-content-center" target="_blank" href="' . $ld_certificate . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16"> <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/> <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/> </svg><span>Download Certificate</span></a>';
         $html .= '</div>';
 
         $html .= '</div>';
+
         $html .= '</div>';
+        $html .= '</div>';
+        return $html;
     }
-
-    return $html;
 }
 
 add_shortcode('_ld_certificate', '_ld_certificate');

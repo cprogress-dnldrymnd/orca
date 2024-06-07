@@ -202,6 +202,7 @@ add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the las
 function bbloomer_add_premium_support_endpoint()
 {
     add_rewrite_endpoint('courses', EP_ROOT | EP_PAGES);
+    add_rewrite_endpoint('certificates', EP_ROOT | EP_PAGES);
 }
 
 add_action('init', 'bbloomer_add_premium_support_endpoint');
@@ -212,6 +213,7 @@ add_action('init', 'bbloomer_add_premium_support_endpoint');
 function bbloomer_premium_support_query_vars($vars)
 {
     $vars[] = 'courses';
+    $items['certificates'] = 'Certificates';
     return $vars;
 }
 
@@ -223,6 +225,7 @@ add_filter('query_vars', 'bbloomer_premium_support_query_vars', 0);
 function bbloomer_add_premium_support_link_my_account($items)
 {
     $items['courses'] = 'Courses';
+    $items['certificates'] = 'Certificates';
     return $items;
 }
 
@@ -231,14 +234,29 @@ add_filter('woocommerce_account_menu_items', 'bbloomer_add_premium_support_link_
 // ------------------
 // 4. Add content to the new tab
 
-function bbloomer_premium_support_content()
+function action_courses_tab()
 {
     echo '<h3>Courses</h3></p>';
+    echo '<hr>';
     echo do_shortcode('[ld_profile]');
 }
 
-add_action('woocommerce_account_courses_endpoint', 'bbloomer_premium_support_content');
-// Note: add_action must follow 'woocommerce_account_{your-endpoint-slug}_endpoint' format
+add_action('woocommerce_account_courses_endpoint', 'action_courses_tab');
+
+function action_certificates_tab()
+{
+    echo '<h3>Certificates</h3></p>';
+    echo '<hr>';
+
+    $courses = learndash_user_get_enrolled_courses(get_current_user_id());
+    echo '<div class="certificates-list mb-5">';
+    foreach ($courses as $course) {
+        echo do_shortcode('[_ld_certificate featured_image="' . true . '" id="' . $course . '" label="' . get_the_title($course) . '"]');
+    }
+    echo '</div>';
+}
+
+add_action('woocommerce_account_certificates_endpoint', 'action_certificates_tab');
 
 /**
  * @snippet       Reorder tabs @ My Account
@@ -257,6 +275,7 @@ function bbloomer_add_link_my_account($items)
         'edit-address'    => _n('Addresses', 'Address', (int) wc_shipping_enabled(), 'woocommerce'),
         'edit-account'    => __('Account details', 'woocommerce'),
         'courses'          => __('Courses', 'woocommerce'),
+        'certificates'         => __('Certificates', 'woocommerce'),
         'orders'          => __('Orders', 'woocommerce'),
         'downloads'       => __('Downloads', 'woocommerce'),
         'payment-methods' => __('Payment methods', 'woocommerce'),
