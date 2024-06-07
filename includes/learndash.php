@@ -245,6 +245,7 @@ function _add_to_cart_button($product_id)
 function _learndash_has_linked_product($course_id, $exclude_bundles = false)
 {
 
+    $args = array();
     $args['fields'] = 'ids';
     $args['post_type'] = 'product';
     $args['meta_query'] = array(
@@ -255,7 +256,7 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
         )
     );
 
-    if ($exclude_bundles) {
+    if ($exclude_bundles == true) {
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'product_cat',
