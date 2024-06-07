@@ -11638,7 +11638,8 @@ section.archive-grid {
 .added_to_cart.added_to_cart {
   width: 100%;
   text-align: center;
-  border-color: var(--accent-color); }
+  border-color: var(--accent-color);
+  color: var(--white-color); }
 
 .add_to_cart_button.add_to_cart_button.add_to_cart_button {
   color: var(--white-color);
