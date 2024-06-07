@@ -739,6 +739,7 @@ function _ld_certificate($atts)
         shortcode_atts(
             array(
                 'id' => get_the_ID(),
+                'label' => "You've earned a certificate!"
             ),
             $atts
         )
@@ -757,7 +758,7 @@ function _ld_certificate($atts)
         $html .= '</div>';
 
         $html .= '<div class="col-auto">';
-        $html .= "<p>You've earned a certificate!<p>";
+        $html .= "<p>$label<p>";
         $html .= '</div>';
 
         $html .= '<div class="col-lg col-12 text-end">';
