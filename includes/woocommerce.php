@@ -249,7 +249,7 @@ function action_certificates_tab()
     echo '<hr>';
 
     $courses = learndash_user_get_enrolled_courses(get_current_user_id());
-    echo '<div class="certificates-list">';
+    echo '<div class="certificates-list mb-5">';
     foreach ($courses as $course) {
         echo do_shortcode('[_ld_certificate featured_image="' . true . '" id="' . $course . '" label="' . get_the_title($course) . '"]');
     }
