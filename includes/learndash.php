@@ -754,7 +754,7 @@ function _ld_certificate($atts)
 
         $html .= '<div class="row align-items-center g-4">';
 
-        $html .= '<div class="col-auto col-md-2 col-image">';
+        $html .= '<div class="col-auto col-lg-2 col-image">';
         if ($featured_image) {
             $html .= do_shortcode('[_image size="medium" id="'.get_post_thumbnail_id($id).'"]');
         } else {
@@ -762,7 +762,7 @@ function _ld_certificate($atts)
         }
         $html .= '</div>';
 
-        $html .= '<div class="col-auto col-md-5 col-label">';
+        $html .= '<div class="col-auto col-lg-5 col-label">';
         $html .= "<p>$label<p>";
         $html .= '</div>';
 
