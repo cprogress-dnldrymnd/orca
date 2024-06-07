@@ -242,20 +242,29 @@ function _add_to_cart_button($product_id)
     return $html;
 }
 
-function _learndash_has_linked_product($course_id)
+function _learndash_has_linked_product($course_id, $exclude_bundles = false)
 {
 
-    $args = array(
-        'fields' => 'ids',
-        'post_type'  => 'product',
-        'meta_query' => array(
-            array(
-                'key'   => '_related_course',
-                'value' => serialize(intval($course_id)),
-                'compare' => 'LIKE'
-            )
+    $args['fields'] = 'ids';
+    $args['post_type'] = 'product';
+    $args['meta_query'] = 'ids';
+    $args['fields'] = array(
+        array(
+            'key'   => '_related_course',
+            'value' => serialize(intval($course_id)),
+            'compare' => 'LIKE'
         )
     );
+
+    if ($exclude_bundles) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => 'bundles',
+            )
+        );
+    }
 
     $products = get_posts($args);
 
@@ -450,7 +459,7 @@ function _learndash_linked_product($atts)
         )
     );
 
-    $products = _learndash_has_linked_product($id);
+    $products = _learndash_has_linked_product($id, true);
 
     $html = '';
 
@@ -460,6 +469,7 @@ function _learndash_linked_product($atts)
 
     if (_user_has_access($id) == false && _can_be_purchased($id)) {
         if ($hide_add_to_cart == 'false') {
+            if($products)
             if ($products) {
                 $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
             }
