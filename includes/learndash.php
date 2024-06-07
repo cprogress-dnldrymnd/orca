@@ -756,7 +756,7 @@ function _ld_certificate($atts)
 
         $html .= '<div class="col-auto">';
         if ($featured_image) {
-            $html .= do_shortcode('[__image size="medium" id="'.get_post_thumbnail_id($id).'"]');
+            $html .= do_shortcode('[_image size="medium" id="'.get_post_thumbnail_id($id).'"]');
         } else {
             $html .= '<span class="ld-icon ld-icon-certificate"></span>';
         }
