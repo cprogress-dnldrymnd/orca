@@ -223,6 +223,7 @@ add_filter('query_vars', 'bbloomer_premium_support_query_vars', 0);
 function bbloomer_add_premium_support_link_my_account($items)
 {
     $items['courses'] = 'Courses';
+    $items['certificates'] = 'Certificates';
     return $items;
 }
 
@@ -264,7 +265,7 @@ function bbloomer_add_link_my_account($items)
         'edit-address'    => _n('Addresses', 'Address', (int) wc_shipping_enabled(), 'woocommerce'),
         'edit-account'    => __('Account details', 'woocommerce'),
         'courses'          => __('Courses', 'woocommerce'),
-        'certificates'          => __('Certificates', 'woocommerce'),
+        'certificates'         => __('Certificates', 'woocommerce'),
         'orders'          => __('Orders', 'woocommerce'),
         'downloads'       => __('Downloads', 'woocommerce'),
         'payment-methods' => __('Payment methods', 'woocommerce'),
