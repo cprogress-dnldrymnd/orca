@@ -253,7 +253,7 @@ function action_certificates_tab()
     foreach ($courses as $course) {
         $ld_certificate =  learndash_get_course_certificate_link($course);
         if ($ld_certificate) {
-            echo do_shortcode('[_ld_certificate id="' . $id . '" label="' . get_the_title($id) . '"]');
+            echo do_shortcode('[_ld_certificate id="' . $course . '" label="' . get_the_title($course) . '"]');
         }
     }
 }
