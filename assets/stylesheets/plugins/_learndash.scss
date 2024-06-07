@@ -421,9 +421,10 @@ body.ld-in-focus-mode.admin-bar {
             flex: 1 0 0%;
         }
         .col-button {
-            @include responsive(xs-md) {
+            @include responsive(xs-sm) {
                 a {
                     width: 100%;
+                    text-align: center;
                 }
             }
         }
