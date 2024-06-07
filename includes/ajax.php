@@ -52,7 +52,7 @@ function archive_ajax()
 		$args['offset'] = $offset;
 	}
 
-	if ($taxonomy_terms) {
+	if ($taxonomy_terms && $taxonomy_terms != 'bundles') {
 		if ($taxonomy != 'category') {
 			$args['tax_query'][] = array(
 				'taxonomy' => $taxonomy,
@@ -62,6 +62,25 @@ function archive_ajax()
 		} else {
 			$args['cat'] = $taxonomy_terms;
 		}
+	} else if ($taxonomy_terms == 'bundles') {
+		$post_type_arr[] = 'product';
+		$products_id = get_posts(array(
+			'fields'          => 'ids', // Only get post IDs
+			'posts_per_page'  => -1,
+			'post_type'  => 'product',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => 'bundles',
+				)
+			)
+		));
+
+		$ids = $products_id;
+
+		$args['post__in'] = $ids;
+		$args['post_type'] = $post_type_arr;
 	}
 
 
