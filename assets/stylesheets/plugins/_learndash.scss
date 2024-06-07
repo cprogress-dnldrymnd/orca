@@ -435,3 +435,20 @@ body.ld-in-focus-mode.admin-bar {
         display: none;
     }
 }
+
+.woocommerce-MyAccount-navigation {
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            a {
+                width: 100%;
+                display: block;
+                text-decoration: none;
+            }
+            &.is-active {
+                border-bottom: 1px solid var(--light-gray-color);
+            }
+        }
+    }
+}

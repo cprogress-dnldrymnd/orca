@@ -11891,6 +11891,16 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 .learndash-wrapper .ld-profile-card.ld-profile-card.ld-profile-card {
   display: none; }
 
+.woocommerce-MyAccount-navigation ul {
+  list-style: none;
+  padding: 0; }
+  .woocommerce-MyAccount-navigation ul li a {
+    width: 100%;
+    display: block;
+    text-decoration: none; }
+  .woocommerce-MyAccount-navigation ul li.is-active {
+    border-bottom: 1px solid var(--light-gray-color); }
+
 input[type="text"],
 input[type="number"],
 input[type="email"],
