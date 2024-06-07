@@ -99,10 +99,12 @@ section.single-product {
                 text-decoration: none;
             }
             &.is-active {
-                background-color: var(--primary-color);
-                color: var(--white-color);
-                padding: 10px;
-                border-radius: 10px 0;
+                a {
+                    background-color: var(--primary-color);
+                    color: var(--white-color);
+                    padding: 10px;
+                    border-radius: 10px 0;
+                }
             }
         }
     }
