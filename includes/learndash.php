@@ -462,7 +462,7 @@ function _learndash_linked_product($atts)
     $products = _learndash_has_linked_product($id, true);
 
     $html = '';
-    
+
 
     if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
@@ -733,9 +733,17 @@ function lessons_images()
 add_action('wp_head', 'lessons_images');
 
 
-function _ld_certificate()
+function _ld_certificate($atts)
 {
-    $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
+    extract(
+        shortcode_atts(
+            array(
+                'id' => false,
+            ),
+            $atts
+        )
+    );
+    $ld_certificate =  learndash_get_course_certificate_link($id);
     $html = '';
 
     if ($ld_certificate) {

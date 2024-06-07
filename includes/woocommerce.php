@@ -247,7 +247,12 @@ function action_certificates_tab()
 {
     echo '<h3>Certificates</h3></p>';
     echo '<hr>';
-    echo do_shortcode('[ld_profile]');
+
+    $courses = learndash_user_get_enrolled_courses(get_current_user_id());
+
+    foreach($courses as $course) {
+         
+    }
 }
 
 add_action('woocommerce_account_certificates_endpoint', 'action_certificates_tab');
