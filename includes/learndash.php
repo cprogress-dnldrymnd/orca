@@ -469,7 +469,7 @@ function _learndash_linked_product($atts)
 
     if (_user_has_access($id) == false && _can_be_purchased($id)) {
         if ($hide_add_to_cart == 'false') {
-            if($products)
+            
             if ($products) {
                 $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
             }
