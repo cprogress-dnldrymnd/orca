@@ -271,7 +271,7 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
     if (count($products) > 0) {
         return $args;
     } else {
-        return false;
+        return $args;
     }
 }
 
