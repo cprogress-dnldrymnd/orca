@@ -739,7 +739,8 @@ function _ld_certificate($atts)
         shortcode_atts(
             array(
                 'id' => get_the_ID(),
-                'label' => "You've earned a certificate!"
+                'label' => "You've earned a certificate!",
+                'featured_image' => false
             ),
             $atts
         )
@@ -754,7 +755,11 @@ function _ld_certificate($atts)
         $html .= '<div class="row align-items-center g-4">';
 
         $html .= '<div class="col-auto">';
-        $html .= '<span class="ld-icon ld-icon-certificate"></span>';
+        if ($featured_image) {
+            $html .= do_shortcode('[__image size="medium" id="'.get_post_thumbnail_id($id).'"]')
+        } else {
+            $html .= '<span class="ld-icon ld-icon-certificate"></span>';
+        }
         $html .= '</div>';
 
         $html .= '<div class="col-auto">';
