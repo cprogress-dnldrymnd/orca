@@ -70,7 +70,6 @@ function ajax($offset, $event_type = 'html') {
             offset: $offset
             // sortby: $sortby,
 
-
         },
 
         success: function (response) {
