@@ -77,7 +77,7 @@ function _learndash_course_meta($atts)
     );
     $post_type = get_post_type($id);
     $certification = get__post_meta_by_id($id, 'certification');
-    $product_id = _learndash_linked_product($id)[0];
+    $product_id = _learndash_linked_product($id, true)[0];
     $html =  '<div class="course-meta mb-3">';
 
     if ($certification) {
