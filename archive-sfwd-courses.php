@@ -25,6 +25,8 @@ $terms = get_terms(array(
                             <?php foreach ($terms as $term) { ?>
                                 <option value="<?= $term->term_id ?>"><?= $term->name ?></option>
                             <?php } ?>
+                            <option value="bundles">Bundles</option>
+
                         </select>
                     </div>
                     <div class="filter-button">
