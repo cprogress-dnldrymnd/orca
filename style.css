@@ -11897,9 +11897,15 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   .woocommerce-MyAccount-navigation ul li a {
     width: 100%;
     display: block;
-    text-decoration: none; }
+    text-decoration: none;
+    border-bottom: 1px solid var(--light-gray-color);
+    padding-top: 10px;
+    padding-bottom: 10px; }
   .woocommerce-MyAccount-navigation ul li.is-active {
-    border-bottom: 1px solid var(--light-gray-color); }
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px;
+    border-radius: 10px 0; }
 
 input[type="text"],
 input[type="number"],
@@ -11986,5 +11992,9 @@ section.single-product {
       border: 1px solid var(--accent-color); }
   section.single-product .woocommerce-product-gallery__image {
     border-radius: 5px; }
+
+@media (min-width: 1200px) {
+  .woocommerce-account .page-section .container .container.large-container {
+    max-width: 1060px; } }
 
 /*# sourceMappingURL=style.css.map */

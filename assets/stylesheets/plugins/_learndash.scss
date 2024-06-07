@@ -445,9 +445,15 @@ body.ld-in-focus-mode.admin-bar {
                 width: 100%;
                 display: block;
                 text-decoration: none;
+                border-bottom: 1px solid var(--light-gray-color);
+                padding-top: 10px;
+                padding-bottom: 10px;
             }
             &.is-active {
-                border-bottom: 1px solid var(--light-gray-color);
+                background-color: var(--primary-color);
+                color: var(--white-color);
+                padding: 10px;
+                border-radius: 10px 0;
             }
         }
     }

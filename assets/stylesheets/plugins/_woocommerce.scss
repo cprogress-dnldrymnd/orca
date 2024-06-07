@@ -84,3 +84,16 @@ section.single-product {
         border-radius: 5px;
     }
 }
+
+.woocommerce-account {
+    .page-section {
+        .container {
+            @media (min-width: 1200px) {
+                max-width: 1060px;
+            }
+            @media (min-width: 1400px) {
+                max-width: 1060px;
+            }
+        }
+    }
+}
