@@ -237,6 +237,7 @@ add_filter('woocommerce_account_menu_items', 'bbloomer_add_premium_support_link_
 function action_courses_tab()
 {
     echo '<h3>Courses</h3></p>';
+    echo '<hr>';
     echo do_shortcode('[ld_profile]');
 }
 
@@ -244,7 +245,8 @@ add_action('woocommerce_account_courses_endpoint', 'action_courses_tab');
 
 function action_certificates_tab()
 {
-    echo '<h3>certificates</h3></p>';
+    echo '<h3>Certificates</h3></p>';
+    echo '<hr>';
     echo do_shortcode('[ld_profile]');
 }
 
