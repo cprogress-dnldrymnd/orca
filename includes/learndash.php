@@ -745,9 +745,9 @@ function _ld_certificate($atts)
         )
     );
     $ld_certificate =  learndash_get_course_certificate_link($id);
-    $html = '';
 
     if ($ld_certificate) {
+        $html = '';
         $html .= '<div class="certificate-box">';
         $html .= '<div class="certificate-holder">';
 
@@ -769,9 +769,8 @@ function _ld_certificate($atts)
 
         $html .= '</div>';
         $html .= '</div>';
+        return $html;
     }
-
-    return $html;
 }
 
 add_shortcode('_ld_certificate', '_ld_certificate');
