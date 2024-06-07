@@ -100,7 +100,7 @@
             font-weight: bold;
         }
     }
-   
+
     .add_to_cart_button,
     .added_to_cart {
         padding: 10px 5px;
@@ -413,5 +413,10 @@ body.ld-in-focus-mode.admin-bar {
             width: 50px;
             height: 50px;
         }
+    }
+}
+.learndash-wrapper {
+    .ld-profile-card.ld-profile-card.ld-profile-card {
+        display: none;
     }
 }
