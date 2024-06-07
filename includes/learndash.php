@@ -269,7 +269,7 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
     $products = get_posts($args);
 
     if (count($products) > 0) {
-        return $products;
+        return $args;
     } else {
         return false;
     }
