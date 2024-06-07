@@ -436,25 +436,4 @@ body.ld-in-focus-mode.admin-bar {
     }
 }
 
-.woocommerce-MyAccount-navigation {
-    ul {
-        list-style: none;
-        padding: 0;
-        li {
-            a {
-                width: 100%;
-                display: block;
-                text-decoration: none;
-                border-bottom: 1px solid var(--light-gray-color);
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            &.is-active {
-                background-color: var(--primary-color);
-                color: var(--white-color);
-                padding: 10px;
-                border-radius: 10px 0;
-            }
-        }
-    }
-}
+
