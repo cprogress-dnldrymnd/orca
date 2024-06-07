@@ -400,12 +400,12 @@ body.ld-in-focus-mode.admin-bar {
             border-radius: 50px;
             text-decoration: none;
             border: 2px solid var(--accent-color);
-            display: inline-block;
             @include on-event {
                 background-color: #33a19a17;
                 border-color: var(--accent-color);
                 color: var(--accent-color);
             }
+          
             svg {
                 width: 20px;
                 height: 20px;

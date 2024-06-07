@@ -11868,8 +11868,7 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
     color: var(--white-color);
     border-radius: 50px;
     text-decoration: none;
-    border: 2px solid var(--accent-color);
-    display: inline-block; }
+    border: 2px solid var(--accent-color); }
     .certificate-box .certificate-holder a:hover, .certificate-box .certificate-holder a:active, .certificate-box .certificate-holder a:focus {
       background-color: #33a19a17;
       border-color: var(--accent-color);
@@ -11988,7 +11987,7 @@ section.single-product {
     padding-top: 10px;
     padding-bottom: 10px;
     text-decoration: none; }
-  .woocommerce-MyAccount-navigation ul li.is-active {
+  .woocommerce-MyAccount-navigation ul li.is-active a {
     background-color: var(--primary-color);
     color: var(--white-color);
     padding: 10px;
