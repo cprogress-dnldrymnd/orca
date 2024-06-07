@@ -385,6 +385,9 @@ body.ld-in-focus-mode.admin-bar {
         border: 2px solid var(--accent-color);
         color: var(--accent-color);
         background-color: #33a19a17;
+        .image-box {
+            width: 100px;
+        }
         p {
             font-weight: bold;
             margin-bottom: 0;
