@@ -422,3 +422,11 @@ body.ld-in-focus-mode.admin-bar {
         display: none;
     }
 }
+
+.certificates-list {
+    @include responsive(xs-md) {
+        .col-button {
+            
+        }
+    }
+}
