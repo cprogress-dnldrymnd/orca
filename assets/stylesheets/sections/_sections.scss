@@ -7,12 +7,20 @@ section.archive-grid {
         @include box-shadow(0px 3px 3px #00000014);
         p {
             @include responsive(mobile) {
-                font-size: 15px;
+                font-size: 13px;
             }
+          
         }
         .content-holder {
             padding: 20px;
             flex: 1 0 0%;
+            .heading-box {
+                h3 {
+                    @include responsive(mobile) {
+                        font-size: 1rem;
+                    }
+                }
+            }
             .description-box {
                 color: var(--gray-color);
             }

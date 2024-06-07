@@ -11142,6 +11142,9 @@ img {
   background-color: var(--black-color);
   border: 1px solid var(--black-color);
   color: var(--white-color); }
+  .btn.btn.btn-black:hover, .btn.btn.btn-black:active, .btn.btn.btn-black:focus {
+    background-color: var(--white-color);
+    color: var(--black-color); }
 .btn.btn.btn-white {
   background-color: var(--white-color);
   border: 1px solid var(--white-color);
@@ -11162,6 +11165,9 @@ img {
   background-color: var(--black-color);
   border: 1px solid var(--black-color);
   color: var(--white-color); }
+  .wp-element-button.wp-element-button:hover, .wp-element-button.wp-element-button:active, .wp-element-button.wp-element-button:focus {
+    background-color: var(--white-color);
+    color: var(--black-color); }
 
 .taxonomy-terms a {
   padding: 10px 15px;
@@ -11173,6 +11179,11 @@ img {
   background-color: var(--accent-color);
   text-decoration: none;
   color: var(--white-color) !important; }
+  @media screen and (max-width: 575px) {
+    .taxonomy-terms a {
+      font-size: 13px;
+      font-size: 13px;
+      padding: 10px; } }
   .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
@@ -11253,7 +11264,8 @@ section.loading-post select {
     height: 100%;
     object-fit: cover;
     left: 0;
-    top: 0; }
+    top: 0;
+    border: none; }
 .image-box.image-box-background {
   position: absolute;
   left: 0;
@@ -11543,10 +11555,13 @@ section.archive-grid {
     box-shadow: 0px 3px 3px #00000014; }
     @media screen and (max-width: 575px) {
       section.archive-grid .column-holder p {
-        font-size: 15px; } }
+        font-size: 13px; } }
     section.archive-grid .column-holder .content-holder {
       padding: 20px;
       flex: 1 0 0%; }
+      @media screen and (max-width: 575px) {
+        section.archive-grid .column-holder .content-holder .heading-box h3, section.archive-grid .column-holder .content-holder .heading-box .h3 {
+          font-size: 1rem; } }
       section.archive-grid .column-holder .content-holder .description-box {
         color: var(--gray-color); }
       @media screen and (max-width: 575px) {
@@ -11586,6 +11601,11 @@ section.archive-grid {
   font-weight: bold;
   line-height: 1;
   display: inline-block; }
+  @media screen and (max-width: 575px) {
+    .ld-status.ld-status {
+      font-size: 13px;
+      font-size: 13px;
+      padding: 10px; } }
   .ld-status.ld-status:hover, .ld-status.ld-status:active, .ld-status.ld-status:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
@@ -11594,8 +11614,10 @@ section.archive-grid {
     color: var(--white-color); }
   .ld-status.ld-status.ld-status-waiting {
     background-color: #ffd200; }
+  .ld-status.ld-status.ld-status-complete {
+    background-color: var(--green-color); }
 
-.add_to_cart_button,
+.add_to_cart_button.add_to_cart_button.add_to_cart_button,
 .added_to_cart {
   text-decoration: none;
   padding: 10px 20px;
@@ -11605,7 +11627,7 @@ section.archive-grid {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   color: var(--white-color); }
-  .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus,
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button:hover, .add_to_cart_button.add_to_cart_button.add_to_cart_button:active, .add_to_cart_button.add_to_cart_button.add_to_cart_button:focus,
   .added_to_cart:hover,
   .added_to_cart:active,
   .added_to_cart:focus {
@@ -11613,24 +11635,30 @@ section.archive-grid {
     border-color: var(--accent-color);
     border: 1px solid var(--accent-color); }
 
-.added_to_cart {
+.added_to_cart.added_to_cart {
   width: 100%;
-  text-align: center; }
+  text-align: center;
+  border-color: var(--accent-color);
+  color: var(--white-color) !important; }
 
-.add_to_cart_button {
+.add_to_cart_button.add_to_cart_button.add_to_cart_button {
   color: var(--white-color);
   display: flex;
   align-items: center;
   justify-content: center; }
-  .add_to_cart_button svg {
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button svg {
     width: 0; }
-  .add_to_cart_button.loading svg {
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button.loading svg {
     width: 20px;
     margin-left: 5px;
     -webkit-animation: spin 4s infinite linear; }
-  .add_to_cart_button:hover, .add_to_cart_button:active, .add_to_cart_button:focus {
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button:hover, .add_to_cart_button.add_to_cart_button.add_to_cart_button:active, .add_to_cart_button.add_to_cart_button.add_to_cart_button:focus {
     background-color: var(--accent-color);
     color: var(--white-color); }
+  .add_to_cart_button.add_to_cart_button.add_to_cart_button.disabled {
+    background-color: lightgray;
+    border-color: lightgray;
+    opacity: 1; }
 
 .added_to_cart {
   background-color: var(--accent-color);
@@ -11645,11 +11673,12 @@ section.archive-grid {
     padding: 10px 14px;
     font-size: 15px !important;
     font-weight: bold; }
-.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button.added {
-  display: none; }
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button,
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .added_to_cart {
   padding: 10px 5px; }
+
+.add_to_cart_button.added {
+  display: none !important; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--white-color); }
@@ -11682,6 +11711,11 @@ section.archive-grid {
     right: 20px;
     left: 20px;
     z-index: 1; }
+    @media screen and (max-width: 575px) {
+      .image-box-course .meta-box {
+        top: 10px;
+        right: 10px;
+        left: 10px; } }
     .image-box-course .meta-box > div:not(:last-child) {
       margin-right: 10px; }
 
@@ -11816,6 +11850,36 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
   padding: 5px 20px;
   border-radius: 0; }
 
+.certificate-box .certificate-holder {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  background-color: #33a19a17; }
+  .certificate-box .certificate-holder p {
+    font-weight: bold;
+    margin-bottom: 0; }
+  .certificate-box .certificate-holder a {
+    background-color: var(--accent-color);
+    padding: 7px 20px;
+    line-height: 1;
+    color: var(--white-color);
+    border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid var(--accent-color);
+    display: inline-block; }
+    .certificate-box .certificate-holder a:hover, .certificate-box .certificate-holder a:active, .certificate-box .certificate-holder a:focus {
+      background-color: #33a19a17;
+      border-color: var(--accent-color);
+      color: var(--accent-color); }
+    .certificate-box .certificate-holder a svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 15px; }
+  .certificate-box .certificate-holder .bi-award {
+    width: 50px;
+    height: 50px; }
+
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -11827,7 +11891,9 @@ textarea {
   border-radius: 5px;
   border: 1px solid #cfc8d8; }
 
-.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
+.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button,
+.woocommerce-notices-wrapper .button.button.button {
   padding: 10px 20px;
   line-height: 1;
   font-weight: bold;
@@ -11835,9 +11901,69 @@ textarea {
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   color: var(--white-color); }
-  .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus {
+  .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:hover, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:active, .woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button:focus,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:hover,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:active,
+  .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button:focus,
+  .woocommerce-notices-wrapper .button.button.button:hover,
+  .woocommerce-notices-wrapper .button.button.button:active,
+  .woocommerce-notices-wrapper .button.button.button:focus {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     border: 1px solid var(--accent-color); }
+
+.woocommerce-breadcrumb {
+  display: none !important; }
+
+.related-courses {
+  padding: 1rem;
+  border: 1px solid var(--light-gray-color);
+  border-radius: 10px; }
+  .related-courses h3, .related-courses .h3 {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    padding: 1rem;
+    margin-top: -1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 10px 10px 0 0; }
+  .related-courses .course-item .image-box {
+    border-radius: 5px !important; }
+    .related-courses .course-item .image-box .meta-box {
+      top: 10px;
+      right: 10px;
+      left: 10px; }
+      .related-courses .course-item .image-box .meta-box .ld-status {
+        font-size: 12px;
+        padding: 7px; }
+  @media (min-width: 992px) {
+    .related-courses .course-item .button-group .col-12 {
+      width: 50%; } }
+  .related-courses .course-item:not(:last-child) {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--light-gray-color); }
+
+section.single-product {
+  margin-top: 2rem; }
+  section.single-product .summary .product_meta {
+    margin-top: 1rem; }
+  section.single-product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+    padding: 10px 20px;
+    line-height: 1;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--white-color);
+    padding: 1rem 2rem;
+    width: 100%;
+    font-size: 20px; }
+    section.single-product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:hover, section.single-product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:active, section.single-product .summary .cart .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button:focus {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      border: 1px solid var(--accent-color); }
+  section.single-product .woocommerce-product-gallery__image {
+    border-radius: 5px; }
 
 /*# sourceMappingURL=style.css.map */

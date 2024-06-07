@@ -4,7 +4,7 @@ function breadcrumbs($atts)
     extract(
         shortcode_atts(
             array(
-                'hide_title' => false,
+                'hide_title' => 'false',
             ),
             $atts
         )
@@ -37,7 +37,7 @@ function breadcrumbs($atts)
     $html .= '</ul>';
     $html .= '</div>';
     $html .= '</div>';
-    if ($hide_title == false) {
+    if ($hide_title != 'true' && !is_product()) {
         $html .= '<div class="container large-container my-5">';
         $html .= '<div class="row align-items-center">';
         $html .= '<div class="col">';
@@ -73,7 +73,7 @@ function _image($atts)
     extract(
         shortcode_atts(
             array(
-                'id' => '',
+                'id' => get_post_thumbnail_id(),
                 'size' => 'large',
                 'class' => ''
             ),
@@ -117,6 +117,7 @@ function _heading($atts)
         $compare = learndash_get_course_prerequisite_compare(get_the_ID());
         $prerequisites = learndash_get_course_prerequisite(get_the_ID());
         $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
+        $bundles = _learndash_included_in_bundle(get_the_ID());
 
         if ($enrolled && is_single()) {
 
@@ -129,13 +130,33 @@ function _heading($atts)
 
         if ($prerequisite_enabled && !$enrolled && is_single()) {
             $html .= '<div class="learndash-course-prerequisites">';
-            $html .= '<strong>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </strong>';
 
-            $html .= '<ul>';
-            foreach ($prerequisites as $key => $prerequisite) {
-                $html .= '<li><a href="'.get_the_permalink($prerequisite).'">' . get_the_title($prerequisite) . '</a></li>';
+            if (count($prerequisites) > 1) {
+                $html .= '<p>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </p>';
+
+                $html .= '<ul>';
+                foreach ($prerequisites as $key => $prerequisite) {
+                    $html .= '<li><a href="' . get_the_permalink($prerequisite) . '">' . get_the_title($prerequisite) . '</a></li>';
+                }
+                $html .= '</ul>';
+                $html .= '</div>';
+            } else {
+                $html .= '<p>This course requires <strong><a href="' . get_the_permalink($prerequisite[0]) . '">' . get_the_title($prerequisite[0]) . '</a></strong> to be completed in order to purchase. </p>';
             }
-            $html .= '</ul>';
+        }
+
+        if ($bundles && !$enrolled && is_single()) {
+            $html .= '<div class="learndash-course-prerequisites">';
+            if (count($bundles) > 1) {
+                $html .= '<p> This course is included the following bundles.</p>';
+                $html .= '<ul>';
+                foreach ($bundles as $bundle) {
+                    $html .= '<li><strong><a href="' . get_the_permalink($bundle) . '">' . get_the_title($bundle) . '</a></strong></li>';
+                }
+                $html .= '</ul>';
+            } else {
+                $html .= '<p>This course is included in <strong><a href="' . get_the_permalink($bundles[0]) . '">' . get_the_title($bundles[0]) . '</a></strong> bundle. </p>';
+            }
 
             $html .= '</div>';
         }

@@ -40,18 +40,23 @@
     &.ld-status-waiting {
         background-color: #ffd200;
     }
+    &.ld-status-complete {
+        background-color: var(--green-color);
+    }
 }
-.add_to_cart_button,
+.add_to_cart_button.add_to_cart_button.add_to_cart_button,
 .added_to_cart {
     text-decoration: none;
     @include button-style;
     @include button-primary;
 }
-.added_to_cart {
+.added_to_cart.added_to_cart {
     width: 100%;
     text-align: center;
+    border-color: var(--accent-color);
+    color: var(--white-color) !important;
 }
-.add_to_cart_button {
+.add_to_cart_button.add_to_cart_button.add_to_cart_button {
     color: var(--white-color); //white
     display: flex;
     align-items: center;
@@ -72,6 +77,11 @@
         background-color: var(--accent-color);
         color: var(--white-color); //white
     }
+    &.disabled {
+        background-color: lightgray;
+        border-color: lightgray;
+        opacity: 1;
+    }
 }
 .added_to_cart {
     background-color: var(--accent-color);
@@ -90,17 +100,17 @@
             font-weight: bold;
         }
     }
-    .add_to_cart_button {
-        &.added {
-            display: none;
-        }
-    }
+   
     .add_to_cart_button,
     .added_to_cart {
         padding: 10px 5px;
     }
 }
-
+.add_to_cart_button {
+    &.added {
+        display: none !important;
+    }
+}
 .single-sfwd-courses {
     .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
         background-color: var(--white-color); //white
@@ -147,6 +157,11 @@
         right: 20px;
         left: 20px;
         z-index: 1;
+        @include responsive(mobile) {
+            top: 10px;
+            right: 10px;
+            left: 10px;
+        }
         > div {
             @include not-last-child {
                 margin-right: 10px;
@@ -359,6 +374,44 @@ body.ld-in-focus-mode.admin-bar {
             height: 38px;
             padding: 5px 20px;
             border-radius: 0;
+        }
+    }
+}
+
+.certificate-box {
+    .certificate-holder {
+        padding: 1rem;
+        border-radius: 10px;
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        background-color: #33a19a17;
+        p {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        a {
+            background-color: var(--accent-color);
+            padding: 7px 20px;
+            line-height: 1;
+            color: var(--white-color);
+            border-radius: 50px;
+            text-decoration: none;
+            border: 2px solid var(--accent-color);
+            display: inline-block;
+            @include on-event {
+                background-color: #33a19a17;
+                border-color: var(--accent-color);
+                color: var(--accent-color);
+            }
+            svg {
+                width: 20px;
+                height: 20px;
+                margin-right: 15px;
+            }
+        }
+        .bi-award {
+            width: 50px;
+            height: 50px;
         }
     }
 }

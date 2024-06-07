@@ -1,7 +1,7 @@
 <?php
-function _user_has_access()
+function _user_has_access($id)
 {
-    $has_access = ld_course_check_user_access(get_the_ID(), get_current_user_id());
+    $has_access = ld_course_check_user_access($id, get_current_user_id());
 
     if ($has_access) {
         return true;
@@ -10,11 +10,11 @@ function _user_has_access()
     }
 }
 
-function _can_be_purchased()
+function _can_be_purchased($id)
 {
-    $compare = learndash_get_course_prerequisite_compare(get_the_ID());
-    $prerequisites = learndash_get_course_prerequisites(get_the_ID(), get_current_user_id());
-    $prerequisite_enabled =  learndash_get_course_prerequisite_enabled(get_the_ID());
+    $compare = learndash_get_course_prerequisite_compare($id);
+    $prerequisites = learndash_get_course_prerequisites($id, get_current_user_id());
+    $prerequisite_enabled =  learndash_get_course_prerequisite_enabled($id);
     if ($prerequisite_enabled) {
         if (is_user_logged_in()) {
             if ($compare == 'ALL') {
@@ -49,12 +49,12 @@ function _learndash_course_progress($atts)
         )
     );
     $html = '';
-    if (_user_has_access()) {
+    if (_user_has_access(get_the_ID())) {
         if ($wrapper) {
             $html .=  '<div class="' . $wrapper . '">';
         }
         $html .=  do_shortcode('[learndash_course_progress course_id="' . get_the_ID() . '"]');
-        if ($wrapper && _user_has_access()) {
+        if ($wrapper && _user_has_access(get_the_ID())) {
             $html .= '</div>';
         }
 
@@ -65,29 +65,70 @@ function _learndash_course_progress($atts)
 add_shortcode('_learndash_course_progress', '_learndash_course_progress');
 
 
-function _learndash_course_meta()
+function _learndash_course_meta($atts)
 {
-    $certification = get__post_meta('certification');
-    $product_id = get_product_by_sku(get_the_ID());
+    extract(
+        shortcode_atts(
+            array(
+                'id' => get_the_ID(),
+            ),
+            $atts
+        )
+    );
+    $post_type = get_post_type($id);
+    $certification = get__post_meta_by_id($id, 'certification');
+    $product_id = _learndash_has_linked_product($id, true)[0];
     $html =  '<div class="course-meta mb-3">';
-
     if ($certification) {
         $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
     }
-
-    if (!_user_has_access() && $product_id) {
-        $product = wc_get_product($product_id);
-        $price = $product->get_price_html();
-        if ($price) {
-            $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+    if ($post_type == 'product') {
+        $product_p = wc_get_product($id);
+        $price_p = $product_p->get_price_html();
+        if ($price_p) {
+            $html .= '<p"><strong>Price:</strong> ' . $price_p . '</p>';
+        }
+    } else {
+        if (!_user_has_access($id) && $product_id && $post_type != 'product') {
+            $product = wc_get_product($product_id);
+            $price = $product->get_price_html();
+            if ($price) {
+                $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+            }
         }
     }
+
     $html .= '</div>';
 
     return $html;
 }
 add_shortcode('_learndash_course_meta', '_learndash_course_meta');
+
+function _product_meta($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+
+    $html =  '<div class="course-meta mb-3">';
+
+    $product = wc_get_product($id);
+    $price = $product->get_price_html();
+
+    if ($price) {
+        $html .= '<p"><strong>Price:</strong> ' . $price . '</p>';
+    }
+    $html .= '</div>';
+
+    return $html;
+}
+add_shortcode('_product_meta', '_product_meta');
 
 function get_product_by_sku($sku)
 {
@@ -100,31 +141,43 @@ function get_product_by_sku($sku)
 
     return null;
 }
-function _learndash_status_bubble()
+function _learndash_status_bubble($atts)
 {
-    $course_status = learndash_course_status(get_the_ID(), get_current_user_id());
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+    $course_status = learndash_course_status($id, get_current_user_id());
     return learndash_status_bubble($course_status, NULL, false);
 }
 add_shortcode('_learndash_status_bubble', '_learndash_status_bubble');
 
-function _learndash_status()
+function _learndash_status($atts)
 {
-    if (_user_has_access()) {
-        return _learndash_status_bubble();
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+
+    if (_user_has_access($id)) {
+        return _learndash_status_bubble($id);
     } else {
-        if (_can_be_purchased()) {
-            $hide_add_to_cart = 'false';
-        } else {
-            $hide_add_to_cart = 'true';
-        }
-        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product hide_add_to_cart="' . $hide_add_to_cart . '"]</div>');
+        return do_shortcode('<div class="course-add-to-cart d-flex align-items-center justify-content-end">[_learndash_linked_product id="' . $id . '"]</div>');
     }
 }
 add_shortcode('_learndash_status', '_learndash_status');
 
 function learndash_wp_head()
 {
-    if (!_user_has_access()) {
+    if (!_user_has_access(get_the_ID())) {
 ?>
         <style>
             #course-info-left {
@@ -181,26 +234,38 @@ add_action('wp_footer', 'learndash_wp_footer');
 
 function _add_to_cart_button($product_id)
 {
-    $html = '<a href="/shop/?add-to-cart=' . $product_id . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $product_id . '"  aria-describedby="" rel="nofollow">Add to basket';
+    $html = '<a href="/shop/?add-to-cart=' . $product_id . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $product_id . '"  aria-describedby="" rel="nofollow">Add to cart';
     $html .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/> <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/> </svg>';
     $html .= '</a>';
 
     return $html;
 }
 
-function _learndash_has_linked_product()
+function _learndash_has_linked_product($course_id, $exclude_bundles = false)
 {
 
-    $args = array(
-        'post_type'  => 'product',
-        'meta_query' => array(
-            array(
-                'key'   => '_related_course',
-                'value' => serialize(intval(get_the_ID())),
-                'compare' => 'LIKE'
-            )
+    $args = array();
+    $args['fields'] = 'ids';
+    $args['post_type'] = 'product';
+    $args['meta_query'] = array(
+        array(
+            'key'   => '_related_course',
+            'value' => serialize(intval($course_id)),
+            'compare' => 'LIKE'
         )
     );
+
+    if ($exclude_bundles == true) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => array('bundles'),
+                'operator' => 'NOT IN'
+            )
+        );
+    }
+
     $products = get_posts($args);
 
     if (count($products) > 0) {
@@ -210,62 +275,48 @@ function _learndash_has_linked_product()
     }
 }
 
-function _learndash_linked_product($atts)
+function _learndash_included_in_bundle($id)
 {
-    extract(
-        shortcode_atts(
+    $args = array(
+        'fields' => 'ids',
+        'post_type'  => 'product',
+        'meta_query' => array(
             array(
-                'hide_bubble' => 'false',
-                'show_price' => 'false',
-                'hide_add_to_cart' => 'false'
-            ),
-            $atts
+                'key'   => '_related_course',
+                'value' => serialize(intval($id)),
+                'compare' => 'LIKE'
+            )
+        ),
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => 'bundles',
+            )
         )
     );
 
-    $products = _learndash_has_linked_product();
+    $products = get_posts($args);
 
-    $html = '';
-
-    if ($hide_bubble == 'false') {
-        $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
-    }
-
-    if ($hide_add_to_cart == 'false') {
-        if ($products) {
-
-            if (count($products) > 1) {
-                $id = $products[1]->ID;
-            } else {
-                $id = $products[0]->ID;
-            }
-
-            $product = wc_get_product($id);
-
-            if ($show_price == 'true') {
-                $html .= $product->get_price_html();
-            }
-
-            $html .= _add_to_cart_button($id);
-            return $html;
-        }
+    if (count($products) > 0) {
+        return $products;
     } else {
-        return $html;
+        return false;
     }
 }
 
-add_shortcode('_learndash_linked_product', '_learndash_linked_product');
 
 
+/*
 function _learndash_sticky_add_to_cart()
 {
-    if (!_user_has_access()) {
+    if (!_user_has_access(get_the_ID())) {
         return do_shortcode('[elementor-template id="550"]');
     }
 }
 
 add_shortcode('_learndash_sticky_add_to_cart', '_learndash_sticky_add_to_cart');
-
+*/
 
 //modify course the_content
 function new_default_content($content)
@@ -299,7 +350,8 @@ function _learndash_image($atts)
     extract(
         shortcode_atts(
             array(
-                'id' => '',
+                'image_id' => '',
+                'id' => get_the_ID(),
                 'size' => 'large',
                 'learndash_status_bubble' => 'false',
                 'taxonomy' => '',
@@ -307,14 +359,18 @@ function _learndash_image($atts)
             $atts
         )
     );
-    $image_url = wp_get_attachment_image_url($id, $size);
+    $post_type = get_post_type($id);
+    $image_url = wp_get_attachment_image_url($image_id, $size);
     $html = '<div class="image-box image-box-course">';
-    if ($learndash_status_bubble || $taxonomy) {
+    if ($learndash_status_bubble == 'true' || $taxonomy) {
         $html .= '<div class="meta-box d-flex align-items-center justify-content-end flex-wrap">';
     }
     if ($learndash_status_bubble) {
+        $html .= do_shortcode('[_learndash_status_bubble id="' . $id . '"]');
+    }
 
-        $html .= do_shortcode('[_learndash_status_bubble]');
+    if ($post_type == 'product') {
+        $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Bundle</div>';
     }
 
     if ($taxonomy) {
@@ -338,22 +394,48 @@ function _learndash_image($atts)
 add_shortcode('_learndash_image', '_learndash_image');
 
 
-function _learndash_course_button()
+function _learndash_course_button($atts)
 {
-
-
-    $permalink = get_the_permalink();
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+            ),
+            $atts
+        )
+    );
+    $post_type = get_post_type($id);
+    $permalink = get_the_permalink($id);
     $html = '<div class="row g-3 button-group">';
 
-    $html .= '<div class="' . (_user_has_access() == false && _can_be_purchased() ? 'col-lg-6' : 'col-12') . '">';
-    $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
-    $html .= '</div>';
 
-    if (_user_has_access() == false && _can_be_purchased()) {
-        $html .= '<div class="col-lg-6">';
-        $html .= do_shortcode('[_learndash_linked_product hide_bubble="true"]');
+    if ($post_type == 'sfwd-courses') {
+
+        if (_user_has_access($id) == false && _can_be_purchased($id)) {
+            $html .= '<div class="col-6">';
+            $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
+            $html .= '</div>';
+            $html .= '<div class="col-lg-6">';
+            $html .= do_shortcode('[_learndash_linked_product id="' . $id . '" hide_bubble="true"]');
+            $html .= '</div>';
+        } else if (_user_has_access($id) == true && _can_be_purchased($id)) {
+            $html .= '<div class="col-6">';
+            $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
+            $html .= '</div>';
+            $html .= '<div class="col-lg-6">';
+            $html .= do_shortcode('[_button class="button add_to_cart_button disabled" button_text="Already Enrolled" button_link="#"]');
+            $html .= '</div>';
+        } else {
+            $html .= '<div class="col-12">';
+            $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Course</a>";
+            $html .= '</div>';
+        }
+    } else {
+        $html .= '<div class="col-12">';
+        $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Bundle</a>";
         $html .= '</div>';
     }
+
     $html .= '</div>';
     return $html;
 }
@@ -362,6 +444,48 @@ add_shortcode('_learndash_course_button', '_learndash_course_button');
 
 
 
+
+function _learndash_linked_product($atts)
+{
+    extract(
+        shortcode_atts(
+            array(
+                'id' => '',
+                'hide_bubble' => 'false',
+                'hide_add_to_cart' => 'false',
+                'redirect_to_single' => 'false'
+            ),
+            $atts
+        )
+    );
+
+    $products = _learndash_has_linked_product($id, true);
+
+    $html = '';
+    
+
+    if ($hide_bubble == 'false') {
+        $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
+    }
+
+    if (_user_has_access($id) == false && _can_be_purchased($id)) {
+        if ($hide_add_to_cart == 'false') {
+
+            if ($products) {
+                if (count($products) == 1) {
+                    $html .= _add_to_cart_button($products[0]);
+                    //$html .= var_dump($products);
+                } /*else if (count($products) > 1) {
+                    $html .= '<a class="button add_to_cart_button" href="' . get_permalink(wc_get_page_id('shop')) . '?id=' . $id . '" >  Add to cart </a>';
+                }*/
+            }
+        }
+    }
+
+    return $html;
+}
+
+add_shortcode('_learndash_linked_product', '_learndash_linked_product');
 
 function _course_cta()
 {
@@ -542,7 +666,7 @@ add_shortcode('_course_testimonial', '_course_testimonial');
 
 function _course_group()
 {
-    if (_user_has_access()) {
+    if (_user_has_access(get_the_ID())) {
 
         $learndash_get_users_group_ids = learndash_get_users_group_ids(get_current_user_id());
         if ($learndash_get_users_group_ids) {
@@ -607,3 +731,38 @@ function lessons_images()
     }
 }
 add_action('wp_head', 'lessons_images');
+
+
+function _ld_certificate()
+{
+    $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
+    $html = '';
+
+    if ($ld_certificate) {
+        $html .= '<div class="certificate-box">';
+        $html .= '<div class="certificate-holder">';
+
+        $html .= '<div class="row align-items-center g-4">';
+
+        $html .= '<div class="col-auto">';
+        $html .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award" viewBox="0 0 16 16"> <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/> <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/> </svg>';
+        $html .= '</div>';
+
+        $html .= '<div class="col-auto">';
+        $html .= "<p>You've earned a certificate!<p>";
+        $html .= '</div>';
+
+        $html .= '<div class="col-lg col-12 text-end">';
+        $html .= '<a target="_blank" href="' . $ld_certificate . '"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16"> <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/> <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/> </svg>Download Certificate</a>';
+        $html .= '</div>';
+
+        $html .= '</div>';
+
+        $html .= '</div>';
+        $html .= '</div>';
+    }
+
+    return $html;
+}
+
+add_shortcode('_ld_certificate', '_ld_certificate');

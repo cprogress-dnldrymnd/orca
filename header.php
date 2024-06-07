@@ -23,8 +23,6 @@
     </title>
     <?php wp_head(); ?>
 </head>
-<?php update_product_prices() ?>
-
 <body <?php body_class(); ?>>
     <div id="page" class="site">
         <header id="masthead" class="site-header">
@@ -117,5 +115,5 @@
             </nav>
         </header><!-- #masthead -->
 
-
+                                            
         <?= do_shortcode('[breadcrumbs]') ?>

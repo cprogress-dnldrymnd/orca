@@ -90,6 +90,8 @@ function bbloomer_save_name_fields($customer_id)
         update_user_meta($customer_id, 'last_name', sanitize_text_field($_POST['billing_last_name']));
     }
 }
+
+/*
 function course_created($new_status, $old_status, $post)
 {
     if (($new_status == 'publish') && $old_status != 'publish' && $post->post_type == 'sfwd-courses') {
@@ -120,7 +122,7 @@ function create_course_product($post)
 
     update_option('product_price_update', $product_price_update);
 }
-
+*/
 /*
 add_action('save_post', 'product_save');
 
@@ -134,7 +136,7 @@ function product_save($post_id)
         $product->save();
     }
 }
-*/
+
 
 function update_product_prices()
 {
@@ -183,7 +185,7 @@ function action_post_updated($post_ID, $post_after, $post_before)
 }
 
 add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the last argument to allow all three arguments of the function
-
+*/
 
 /**
  * @snippet       WooCommerce Add New Tab @ My Account
@@ -279,6 +281,7 @@ function custom_woocommerce_placeholder_img_src($src)
     return $src;
 }
 
+/*
 
 add_action('after_delete_post', 'action_after_delete_post', 10, 2);
 function action_after_delete_post($post_id, $post)
@@ -299,3 +302,65 @@ function action_wp_trash_post($post_id)
         wp_trash_post($product_id);
     }
 }
+*/
+/**
+ * @snippet       Override & Force Sold Individually @ WooCommerce Products
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 5
+ * @community     https://businessbloomer.com/club/
+ */
+
+add_filter('woocommerce_is_sold_individually', '__return_true');
+
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+
+/**
+ * WooCommerce Loop Product Thumbs
+ **/
+if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
+    function woocommerce_template_loop_product_thumbnail()
+    {
+        echo "<div class='image-box'>";
+        echo woocommerce_get_product_thumbnail();
+        echo "</div>";
+    }
+}
+function product_related_courses()
+{
+    $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
+    $_related_course = array_reverse($_related_course);
+?>
+
+    <div class="related-courses my-4">
+        <h3> Course Included</h3>
+        <?php foreach ($_related_course as $course) { ?>
+            <div class="course-item">
+                <div class="row g-3 align-items-center">
+                    <div class="col-sm-3">
+                        <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                    </div>
+                    <div class="col-sm-9">
+                        <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                        <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                        <div class="mt-3">
+                            <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="important-note mt-4 mb-4">
+        <p>
+            <strong>Important Note </strong>
+        </p>
+        <p>
+            Please refrain from purchasing bundles which includes courses you are already enrolled too.
+        </p>
+    </div>
+<?php
+}
+
+add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');

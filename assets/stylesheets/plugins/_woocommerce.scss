@@ -10,7 +10,77 @@ textarea {
     border: 1px solid #cfc8d8;
 }
 
-.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button, .woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button {
+.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button.woocommerce-button,
+.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button.woocommerce-Button,
+.woocommerce-notices-wrapper .button.button.button {
     @include button-style;
     @include button-primary;
+}
+
+.woocommerce-breadcrumb {
+    display: none !important;
+}
+
+.related-courses {
+    padding: 1rem;
+    border: 1px solid var(--light-gray-color);
+    border-radius: 10px;
+    h3 {
+        background-color: var(--accent-color);
+        color: var(--white-color);
+        padding: 1rem;
+        margin-top: -1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 10px 10px 0 0;
+    }
+    .course-item {
+        .image-box {
+            border-radius: 5px !important;
+            .meta-box {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                .ld-status {
+                    font-size: 12px;
+                    padding: 7px;
+                }
+            }
+        }
+        .button-group {
+            .col-12 {
+                @media (min-width: 992px) {
+                    width: 50%;
+                }
+            }
+        }
+        @include not-last-child {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray-color);
+        }
+    }
+}
+
+section.single-product {
+    margin-top: 2rem;
+    .summary {
+        .product_meta {
+            margin-top: 1rem;
+        }
+
+        .cart {
+            .single_add_to_cart_button.single_add_to_cart_button.single_add_to_cart_button {
+                @include button-style;
+                @include button-primary;
+                padding: 1rem 2rem;
+                width: 100%;
+                font-size: 20px;
+            }
+        }
+    }
+
+    .woocommerce-product-gallery__image {
+        border-radius: 5px;
+    }
 }

@@ -593,6 +593,11 @@
     font-weight: bold;
     line-height: 1;
     display: inline-block;
+    @include responsive(mobile) {
+        font-size: 13px;
+        font-size: 13px;
+        padding: 10px;
+    }
     @include on-event() {
         background-color: var(--primary-color);
         color: var(--accent-color);
@@ -630,6 +635,10 @@
     background-color: var(--black-color);
     border: 1px solid var(--black-color);
     color: var(--white-color);
+    @include on-event() {
+        background-color: var(--white-color);
+        color: var(--black-color);
+    }
 }
 
 @mixin button-white {

@@ -4,7 +4,32 @@ $terms = get_terms(array(
     'taxonomy'   => 'ld_course_category',
     'hide_empty' => false,
 ));
-$current_cat = get_queried_object()->name;
+$current_cat = get_queried_object();
+
+$posts_per_page = 12;
+
+$args = array(
+    'post_type' => 'sfwd-courses',
+    'posts_per_page' => $posts_per_page,
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'ld_course_category',
+            'field'    => 'term_id',
+            'terms'    => array($current_cat->term_id),
+        ),
+    )
+);
+
+$course_query = new WP_Query($args);
+$count = $course_query->found_posts;
+if ($count >= $posts_per_page) {
+    $final_count = $posts_per_page;
+} else {
+    $final_count = $count;
+}
+echo hide_load_more($count, 0, $posts_per_page);
 ?>
 <section class="archive-courses archive-grid archive-section background-light-gray py-5">
     <div class="container large-container">
@@ -23,7 +48,7 @@ $current_cat = get_queried_object()->name;
                             <option value="">All Courses</option>
                             <?php foreach ($terms as $term) { ?>
                                 <?php
-                                if ($current_cat == $term->name) {
+                                if ($current_cat->term_id == $term->term_id) {
                                     $selected = 'selected';
                                 } else {
                                     $selected = '';
@@ -45,8 +70,8 @@ $current_cat = get_queried_object()->name;
 
             </div>
         </div>
-        <div class="load-more text-center mt-5">
-            <a href="#" id="load-more" class="d-none btn btn-accent">
+        <div class="load-more text-center mt-5 d-none">
+            <a href="#" id="load-more" class="btn btn-accent">
                 <span>Load more</span>
                 <svg class="spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path fill="currentColor" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
@@ -57,3 +82,8 @@ $current_cat = get_queried_object()->name;
 </section>
 
 <?php get_footer() ?>
+<script>
+    jQuery(document).ready(function() {
+        ajax();
+    });
+</script>

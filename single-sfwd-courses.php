@@ -12,22 +12,25 @@ $testimonials = get_posts($args);
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
 
-
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
             <div class="woo-notices">
                 <?php wc_print_notices()  ?>
             </div>
+
             <div class="learndash-single-banner">
                 <?= do_shortcode('[_course_banner]') ?>
             </div>
             <div class="single-course-content-holder background-white pt-4">
+
+                <?= do_shortcode('[_ld_certificate]') ?>
+
                 <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
                     <div class="inner background-light-gray">
                         <div class="row gy-3 align-items-center">
                             <?= do_shortcode('[_learndash_course_progress wrapper="col-md-8"]') ?>
-                            <div class="text-end <?= _user_has_access() ? 'col-md-4' : 'col-12' ?>">
-                                <?= do_shortcode('[_learndash_status]') ?>
+                            <div class="text-end <?= _user_has_access(get_the_ID()) ? 'col-md-4' : 'col-12' ?>">
+                                <?= do_shortcode('[_learndash_status id="' . get_the_ID() . '"]') ?>
                             </div>
                         </div>
                     </div>

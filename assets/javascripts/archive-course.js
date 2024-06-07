@@ -1,5 +1,4 @@
 jQuery(document).ready(function ($) {
-    ajax(0);
     ajax_form();
     load_more_button_listener();
 });
@@ -31,6 +30,9 @@ function ajax($offset, $event_type = 'html') {
 
     var $post_type = jQuery("input[name='post-type']").val();
 
+    var $include_product = jQuery("input[name='include-product']").val();
+
+
     var $taxonomy = jQuery("input[name='taxonomy']").val();
 
     // var $sortby = jQuery("select[name='sortby']").val();
@@ -51,7 +53,7 @@ function ajax($offset, $event_type = 'html') {
 
         type: "POST",
 
-        url: "/wp-admin/admin-ajax.php",
+        url: ajax_object.ajax_url,
 
         data: {
 
@@ -63,10 +65,10 @@ function ajax($offset, $event_type = 'html') {
 
             taxonomy: $taxonomy,
 
-            // sortby: $sortby,
+            include_product: $include_product,
 
             offset: $offset
-
+            // sortby: $sortby,
 
         },
 
