@@ -79,7 +79,7 @@ function _learndash_course_meta($atts)
     $certification = get__post_meta_by_id($id, 'certification');
     $product_id = _learndash_has_linked_product($id, true)[0];
     $html =  '<div class="course-meta mb-3">';
-
+    $html .= var_dump(_learndash_has_linked_product($id, true));
     if ($certification) {
         $html .= '<p class="d-none"><strong>Duration:</strong> 2 weeks</p>';
         $html .= '<p><strong>Certification:</strong> ' . $certification . '</p>';
@@ -463,6 +463,7 @@ function _learndash_linked_product($atts)
     $products = _learndash_has_linked_product($id, true);
 
     $html = '';
+    
 
     if ($hide_bubble == 'false') {
         $html .= '<span class="ld-status ld-status-waiting ld-tertiary-background" data-ld-tooltip="Enroll in this course to get access" data-ld-tooltip-id="52073"> Not Enrolled</span>';
