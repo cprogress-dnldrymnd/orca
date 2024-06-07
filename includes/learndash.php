@@ -256,17 +256,7 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
         )
     );
 
-    if ($exclude_bundles == true) {
-        $args['tax_query'] = array(
-            array(
-                'taxonomy' => 'product_cat',
-                'field'    => 'slug',
-                'terms'    => 'bundles',
-                'compare' => 'NOT IN'
-            )
-        );
-    }
-
+   
     $products = get_posts($args);
 
     if (count($products) > 0) {
