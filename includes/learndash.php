@@ -247,8 +247,7 @@ function _learndash_has_linked_product($course_id, $exclude_bundles = false)
 
     $args['fields'] = 'ids';
     $args['post_type'] = 'product';
-    $args['meta_query'] = 'ids';
-    $args['fields'] = array(
+    $args['meta_query'] = array(
         array(
             'key'   => '_related_course',
             'value' => serialize(intval($course_id)),
