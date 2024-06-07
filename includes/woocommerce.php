@@ -202,6 +202,7 @@ add_action('post_updated', 'action_post_updated', 10, 3); //don't forget the las
 function bbloomer_add_premium_support_endpoint()
 {
     add_rewrite_endpoint('courses', EP_ROOT | EP_PAGES);
+    add_rewrite_endpoint('certificates', EP_ROOT | EP_PAGES);
 }
 
 add_action('init', 'bbloomer_add_premium_support_endpoint');
@@ -212,6 +213,7 @@ add_action('init', 'bbloomer_add_premium_support_endpoint');
 function bbloomer_premium_support_query_vars($vars)
 {
     $vars[] = 'courses';
+    $items['certificates'] = 'Certificates';
     return $vars;
 }
 
