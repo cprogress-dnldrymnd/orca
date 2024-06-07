@@ -11635,8 +11635,10 @@ section.archive-grid {
     border-color: var(--accent-color);
     border: 1px solid var(--accent-color); }
 
-.added_to_cart {
-  display: none !important; }
+.added_to_cart.added_to_cart {
+  width: 100%;
+  text-align: center;
+  border-color: var(--accent-color); }
 
 .add_to_cart_button.add_to_cart_button.add_to_cart_button {
   color: var(--white-color);
@@ -11670,11 +11672,12 @@ section.archive-grid {
     padding: 10px 14px;
     font-size: 15px !important;
     font-weight: bold; }
-.post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button.added {
-  display: none; }
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .add_to_cart_button,
 .post-type-archive-sfwd-courses.post-type-archive-sfwd-courses .added_to_cart {
   padding: 10px 5px; }
+
+.add_to_cart_button.added {
+  display: none !important; }
 
 .single-sfwd-courses .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
   background-color: var(--white-color); }

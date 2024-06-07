@@ -50,8 +50,11 @@
     @include button-style;
     @include button-primary;
 }
-.added_to_cart {
-    display: none !important;
+.added_to_cart.added_to_cart {
+    width: 100%;
+    text-align: center;
+    border-color: var(--accent-color);
+    color: var(--white-color);
 }
 .add_to_cart_button.add_to_cart_button.add_to_cart_button {
     color: var(--white-color); //white
@@ -97,17 +100,17 @@
             font-weight: bold;
         }
     }
-    .add_to_cart_button {
-        &.added {
-            display: none;
-        }
-    }
+   
     .add_to_cart_button,
     .added_to_cart {
         padding: 10px 5px;
     }
 }
-
+.add_to_cart_button {
+    &.added {
+        display: none !important;
+    }
+}
 .single-sfwd-courses {
     .learndash-wrapper.learndash-widget .ld-progress .ld-progress-bar {
         background-color: var(--white-color); //white
