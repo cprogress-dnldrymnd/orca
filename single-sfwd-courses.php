@@ -19,7 +19,7 @@ if ($group_users) {
 }
 ?>
 <pre>
-    <?php var_dump(arrayKeyStartsWith(get_post_meta(get_the_ID()), 'learndash_group_enrolled')) ?>
+    <?php var_dump(learndash_get_course_groups(get_the_ID())) ?>
 </pre>
 
 <?php while (have_posts()) { ?>
