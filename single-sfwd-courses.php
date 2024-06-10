@@ -15,7 +15,7 @@ if ($group_users) {
         wp_redirect(get_site_url());
         exit;
     } else {
-        echo 'not in group'
+        echo 'not in group';
     }
 }
 ?>
