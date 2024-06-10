@@ -18,9 +18,6 @@ if ($groups) {
     }
 }
 ?>
-<pre>
-    <?php var_dump() ?>
-</pre>
 
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
