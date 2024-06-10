@@ -108,9 +108,6 @@ function archive_ajax()
 				$the_query->the_post();
 		?>
 				<div class="col-md-4 col-6 post-item">
-					<?php
-					
-					?>
 					<div class="column-holder d-flex flex-column justify-content-between background-white h-100">
 						<?= do_shortcode('[_learndash_image id="' . get_the_ID() . '" image_id="' . get_post_thumbnail_id() . '" size="medium" learndash_status_bubble="true" taxonomy="ld_course_category"]') ?>
 						<div class="content-holder d-flex flex-column justify-content-between">
