@@ -12,9 +12,8 @@ $groups = learndash_get_course_groups(get_the_ID());
 if ($groups) {
     $group_users = learndash_get_course_groups_users_access(get_the_ID());
     if (!in_array(get_current_user_id(), $group_users)) {
-        echo 'in group';
-    } else {
-        echo 'not in group';
+        wp_redirect(get_site_url());
+        exit;
     }
 }
 ?>
