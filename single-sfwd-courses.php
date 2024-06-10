@@ -9,10 +9,10 @@ $args = array(
 $testimonials = get_posts($args);
 
 $groups = learndash_get_course_groups(get_the_ID());
-if ($groups) {
+if ($groups && !curret) {
     $group_users = learndash_get_course_groups_users_access(get_the_ID());
     if (!in_array(get_current_user_id(), $group_users)) {
-        wp_redirect(get_site_url());
+        wp_redirect(get_site_url() . '/courses');
         exit;
     }
 }
