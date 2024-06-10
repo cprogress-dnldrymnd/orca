@@ -7,7 +7,14 @@ $args = array(
 );
 
 $testimonials = get_posts($args);
-var_dump(learndash_get_course_groups_users_access(get_the_ID()));
+
+$group_users = learndash_get_course_groups_users_access(get_the_ID());
+if ($group_users) {
+    if (!in_array(get_current_user_id(), $group_users)) {
+        wp_redirect(get_site_url());
+        exit;
+    }
+}
 ?>
 
 <?php while (have_posts()) { ?>
