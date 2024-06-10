@@ -18,6 +18,9 @@ if ($group_users) {
     }
 }
 ?>
+<pre>
+    <?php var_dump(get_post_meta(get_the_ID())) ?>
+</pre>
 
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
