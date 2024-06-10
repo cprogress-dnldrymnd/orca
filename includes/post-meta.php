@@ -62,6 +62,7 @@ Container::make('post_meta', 'Course Settings')
     Container::make('post_meta', 'Course Settings')
     ->where('post_type', '=', 'product')
     ->add_fields(array(
-            Field::make('hidden', '_ld_price_type', __('Price Type'))->set_default_value('paynow'),
+            Field::make('text', '_ld_price_type', __('Price Type'))->set_default_value('paynow')
+            ->set_attribute('readOnly', 'true'),
         
     ));
