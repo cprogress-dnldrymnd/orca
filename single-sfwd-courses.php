@@ -8,9 +8,9 @@ $args = array(
 
 $testimonials = get_posts($args);
 
-$group_users = learndash_get_course_groups_users_access(get_the_ID());
-if ($group_users) {
-    var_dump($group_users);
+$groups = learndash_get_course_groups(get_the_ID());
+if ($groups) {
+    $group_users = learndash_get_course_groups_users_access(get_the_ID());
     if (!in_array(get_current_user_id(), $group_users)) {
         echo 'in group';
     } else {
@@ -19,7 +19,7 @@ if ($group_users) {
 }
 ?>
 <pre>
-    <?php var_dump(learndash_get_course_groups(get_the_ID())) ?>
+    <?php var_dump() ?>
 </pre>
 
 <?php while (have_posts()) { ?>
