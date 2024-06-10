@@ -13,8 +13,6 @@ if ($group_users) {
     var_dump($group_users);
     if (!in_array(get_current_user_id(), $group_users)) {
         echo 'in group';
-        wp_redirect(get_site_url());
-        exit;
     } else {
         echo 'not in group';
     }
