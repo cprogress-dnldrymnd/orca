@@ -7,6 +7,8 @@ $args = array(
 );
 
 $testimonials = get_posts($args);
+echo 
+learndash_get_course_groups_users_access(get_the_ID());
 ?>
 
 <?php while (have_posts()) { ?>
