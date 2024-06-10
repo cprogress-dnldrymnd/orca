@@ -41,6 +41,14 @@ function archive_ajax()
 
 		$args['post__in'] = $ids;
 		$args['post_type'] = $post_type_arr;
+
+		$args['meta_query'] = array(
+			array(
+				'key'     => '_ld_price_type',
+				'value'   => 'closed',
+				'compare' => 'NOT IN'
+			)
+		);
 	} else {
 		$args['post_type'] = $post_type;
 	}
