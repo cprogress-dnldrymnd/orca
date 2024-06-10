@@ -132,6 +132,7 @@ function _heading($atts)
             $html .= '<div class="learndash-course-prerequisites">';
 
             if (count($prerequisites) > 1) {
+                $html .= var_dump($compare);
                 $html .= '<p>This course requires ' . strtolower($compare) . ' of the following course to be completed in order to purchase. </p>';
 
                 $html .= '<ul>';
