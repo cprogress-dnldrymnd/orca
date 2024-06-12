@@ -58,3 +58,11 @@ Container::make('post_meta', 'Course Settings')
             Field::make('text', 'certification', __('Certification')),
         )
     );
+
+    Container::make('post_meta', 'Course Settings')
+    ->where('post_type', '=', 'product')
+    ->add_fields(array(
+            Field::make('text', 'ld_price_type', __('Price Type'))->set_default_value('paynow')
+            ->set_attribute('readOnly', 'true'),
+        
+    ));

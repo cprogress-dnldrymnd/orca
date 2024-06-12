@@ -141,7 +141,8 @@ function _heading($atts)
                 $html .= '</ul>';
                 $html .= '</div>';
             } else {
-                $html .= '<p>This course requires <strong><a href="' . get_the_permalink($prerequisite[0]) . '">' . get_the_title($prerequisite[0]) . '</a></strong> to be completed in order to purchase. </p>';
+
+                $html .= '<p>This course requires <strong><a href="' . get_the_permalink($prerequisites[0]) . '">' . get_the_title($prerequisites[0]) . '</a></strong> to be completed in order to purchase. </p>';
             }
         }
 

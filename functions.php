@@ -66,6 +66,16 @@ function get__theme_option($value)
 	return get_option('_' . $value);
 }
 
+function arrayKeyStartsWith($array, $prefix) {
+    $matchingKeys = [];
+    foreach ($array as $key => $value) {
+        if (strpos($key, $prefix) === 0) {
+            $matchingKeys[$key] = $value;
+        }
+    }
+    return $matchingKeys;
+}
+
 require_once('includes/bootstrap-navwalker.php');
 require_once('includes/menus.php');
 require_once('includes/theme-widgets.php');
