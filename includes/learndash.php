@@ -783,3 +783,18 @@ add_shortcode('_ld_certificate', '_ld_certificate');
 function _course_access()
 {
 }
+add_filter(
+    'ld_course_access_expires_on',
+    function ($course_access_upto, $course_id, $user_id) {
+        //Change $course_id = 240 and $user_id = 4 by the corresponding user id and course id.
+        if ((!empty($course_id)) && ($course_id == 953) && ($user_id == 1)) {
+            //Change expiration date
+            $course_access_upto = strtotime('2024-06-15');
+        }
+
+        // Always return $course_access_upto.
+        return $course_access_upto;
+    },
+    10,
+    3
+);
