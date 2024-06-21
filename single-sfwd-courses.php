@@ -20,8 +20,6 @@ if ($groups && !current_user_can('administrator')) {
 
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
-
-
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
             <div class="woo-notices">
