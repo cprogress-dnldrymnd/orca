@@ -22,8 +22,7 @@ if ($groups && !current_user_can('administrator')) {
     <?php the_post() ?>
 
     <?php
-    echo 'eststs';
-    echo learndash_course_completed(get_current_user_id(), get_the_ID());
+    echo 
     echo learndash_user_course_complete_all_steps(get_current_user_id(), get_the_ID());
     ?>
 

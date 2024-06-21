@@ -779,3 +779,10 @@ function _ld_certificate($atts)
 }
 
 add_shortcode('_ld_certificate', '_ld_certificate');
+
+function _course_access() {
+    $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
+    if($completed) {
+        
+    }
+}
