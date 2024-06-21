@@ -29,7 +29,7 @@ if ($groups && !current_user_can('administrator')) {
     if ($completed) {
         $users_completed_the_course = carbon_get_the_post_meta('users_completed_the_course');
 
-        $existed = array_search('blue', array_column($users_completed_the_course, 'id'));
+        $existed = array_search($user_id, array_column($users_completed_the_course, 'id'));
 
         if($existed) {
             echo 'existed';
