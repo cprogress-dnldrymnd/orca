@@ -779,3 +779,37 @@ function _ld_certificate($atts)
 }
 
 add_shortcode('_ld_certificate', '_ld_certificate');
+
+function _course_access()
+{
+    
+    $user_id = get_current_user_id();
+    $course_id = get_the_ID();
+    $completed = learndash_course_completed($user_id, $course_id);
+    if ($completed) {
+        $users_completed_the_course = carbon_get_the_post_meta('users_completed_the_course');
+
+        $existed = array_search($user_id, array_column($users_completed_the_course, 'id'));
+
+        if($existed) {
+            echo 'existed';
+        } else {
+            echo 'not existed';
+        }
+
+        $new_user = array(
+            'value' => 'user:user:'.$user_id,
+            'type' => 'user',
+            'subtype' => 'user',
+            'id' => $user_id,
+        );
+
+        $users_completed_the_course[] = $new_user;
+        echo '<pre>';
+        var_dump($users_completed_the_course);
+        echo '</pre>';
+
+        //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
+    }
+}
+
