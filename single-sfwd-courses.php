@@ -27,7 +27,7 @@ if ($groups && !current_user_can('administrator')) {
     //echo learndash_user_course_complete_all_steps(get_current_user_id(), get_the_ID());
     ?>
     <pre>
-        <?php var_dump(get__post_meta('users_completed_the_course')) ?>
+        <?php var_dump(carbon_get_the_post_meta('users_completed_the_course')) ?>
     </pre>
 
     <section class="single-course-section pt-4 background-light-gray">
