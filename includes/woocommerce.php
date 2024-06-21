@@ -248,12 +248,20 @@ function action_certificates_tab()
     echo '<h3>Certificates</h3></p>';
     echo '<hr>';
 
-    $courses = learndash_user_get_enrolled_courses(get_current_user_id());
+    $args = array(
+        'numberposts' => 10,
+        'post_type'   => 'sfwd-courses'
+    );
+
+    $courses = get_posts($args);
     echo '<div class="certificates-list mb-5 row g-4">';
     foreach ($courses as $course) {
-        echo '<div class="col-12">';
-        echo do_shortcode('[_ld_certificate featured_image="' . true . '" id="' . $course . '" label="' . get_the_title($course) . '"]');
-        echo '</div>';
+        $ld_certificate =  learndash_get_course_certificate_link($course->ID);
+        if ($ld_certificate) {
+            echo '<div class="col-12">';
+            echo do_shortcode('[_ld_certificate featured_image="' . true . '" id="' . $course->ID . '" label="' . $course->post_title . '"]');
+            echo '</div>';
+        }
     }
     echo '</div>';
 }

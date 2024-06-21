@@ -21,6 +21,12 @@ if ($groups && !current_user_can('administrator')) {
 <?php while (have_posts()) { ?>
     <?php the_post() ?>
 
+    <?php
+    $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
+    echo $completed;
+    ?>
+
+
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
             <div class="woo-notices">
@@ -32,7 +38,13 @@ if ($groups && !current_user_can('administrator')) {
             </div>
             <div class="single-course-content-holder background-white pt-4">
 
-                <?= do_shortcode('[_ld_certificate]') ?>
+                <?
+                $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
+                if ($ld_certificate) {
+                    echo do_shortcode('[_ld_certificate]');
+                }
+
+                ?>
 
                 <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
                     <div class="inner background-light-gray">
