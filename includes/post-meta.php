@@ -65,7 +65,6 @@ Container::make('post_meta', 'Course Settings')
                 ->set_types(array(
                     array(
                         'type'      => 'user',
-                        'post_type' => 'post',
                     )
                 ))
         )
