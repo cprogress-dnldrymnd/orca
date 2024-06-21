@@ -756,7 +756,7 @@ function _ld_certificate($atts)
 
         $html .= '<div class="col-auto col-lg-2 col-image">';
         if ($featured_image) {
-            $html .= do_shortcode('[_image size="medium" id="'.get_post_thumbnail_id($id).'"]');
+            $html .= do_shortcode('[_image size="medium" id="' . get_post_thumbnail_id($id) . '"]');
         } else {
             $html .= '<span class="ld-icon ld-icon-certificate"></span>';
         }
@@ -780,9 +780,22 @@ function _ld_certificate($atts)
 
 add_shortcode('_ld_certificate', '_ld_certificate');
 
-function _course_access() {
+function _course_access()
+{
     $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
-    if($completed) {
-        
+    if ($completed) {
+        $users_completed_the_course[] = carbon_get_the_post_meta('users_completed_the_course');
+
+        $new_user = array(
+            'value' => 'user:user:11',
+            'type' => 'user',
+            'subtype' => 'user',
+            'id' => '11',
+        );
+
+        $users_completed_the_course[] = $new_user;
+
+
+        carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
     }
 }
