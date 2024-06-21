@@ -38,7 +38,13 @@ if ($groups && !current_user_can('administrator')) {
             </div>
             <div class="single-course-content-holder background-white pt-4">
 
-                <?= do_shortcode('[_ld_certificate]') ?>
+                <?
+                $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
+                if ($ld_certificate) {
+                    echo do_shortcode('[_ld_certificate]');
+                }
+
+                ?>
 
                 <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
                     <div class="inner background-light-gray">
