@@ -64,8 +64,8 @@ Container::make('post_meta', 'Course Settings')
             Field::make('association', 'users_completed_the_course', __('Students'))
                 ->set_types(array(
                     array(
-                        'type'      => 'post',
-                        'post_type' => 'user',
+                        'type'      => 'user',
+                        'post_type' => 'post',
                     )
                 ))
         )
