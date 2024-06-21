@@ -26,7 +26,7 @@ if ($groups && !current_user_can('administrator')) {
     $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
     if ($completed) {
         $users_completed_the_course = carbon_get_the_post_meta('users_completed_the_course');
-
+        $users_completed_the_course_arr[] = $users_completed_the_course;
         $new_user = array(
             'value' => 'user:user:11',
             'type' => 'user',
@@ -34,7 +34,7 @@ if ($groups && !current_user_can('administrator')) {
             'id' => '11',
         );
 
-        $users_completed_the_course_arr = array_merge($users_completed_the_course, $new_user);
+        $users_completed_the_course_arr[] = $new_user;
         echo '<pre>';
         var_dump($users_completed_the_course_arr);
         echo '</pre>';
@@ -42,9 +42,7 @@ if ($groups && !current_user_can('administrator')) {
         //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course_arr);
     }
     ?>
-    <pre>
-        <?php var_dump(carbon_get_the_post_meta('users_completed_the_course')) ?>
-    </pre>
+
 
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
