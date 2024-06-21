@@ -24,6 +24,7 @@ if ($groups && !current_user_can('administrator')) {
     <?php
     echo 'eststs';
     echo learndash_course_completed(get_current_user_id(), get_the_ID());
+     learndash_user_course_complete_all_steps(get_current_user_id(), get_the_ID());
     ?>
 
     <section class="single-course-section pt-4 background-light-gray">
