@@ -784,7 +784,7 @@ function _course_access()
 {
     $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
     if ($completed) {
-        $users_completed_the_course[] = carbon_get_the_post_meta('users_completed_the_course');
+        $users_completed_the_course = carbon_get_the_post_meta('users_completed_the_course');
 
         $new_user = array(
             'value' => 'user:user:11',
@@ -793,7 +793,7 @@ function _course_access()
             'id' => '11',
         );
 
-        $users_completed_the_course[] = $new_user;
+        $users_completed_the_course_arr = array_merge($users_completed_the_course, $new_user);
 
 
         carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
