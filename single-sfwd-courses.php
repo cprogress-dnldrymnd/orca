@@ -35,8 +35,9 @@ if ($groups && !current_user_can('administrator')) {
         );
 
         $users_completed_the_course_arr = array_merge($users_completed_the_course, $new_user);
-
+        echo '<pre>';
         var_dump($users_completed_the_course_arr);
+        echo '</pre>';
 
         //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course_arr);
     }
