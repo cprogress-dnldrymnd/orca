@@ -796,6 +796,6 @@ function _course_access()
         $users_completed_the_course_arr = array_merge($users_completed_the_course, $new_user);
 
 
-        carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
+        carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course_arr);
     }
 }
