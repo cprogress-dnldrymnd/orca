@@ -22,9 +22,13 @@ if ($groups && !current_user_can('administrator')) {
     <?php the_post() ?>
 
     <?php
-    echo learndash_course_completed(get_current_user_id(), get_the_ID());
-    echo learndash_user_course_complete_all_steps(get_current_user_id(), get_the_ID());
+    _course_access();
+    //echo learndash_course_completed(get_current_user_id(), get_the_ID());
+    //echo learndash_user_course_complete_all_steps(get_current_user_id(), get_the_ID());
     ?>
+    <pre>
+        <?php var_dump(get__post_meta('users_completed_the_course')) ?>
+    </pre>
 
     <section class="single-course-section pt-4 background-light-gray">
         <div class="container large-container">
