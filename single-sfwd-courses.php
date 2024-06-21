@@ -23,8 +23,23 @@ if ($groups && !current_user_can('administrator')) {
 
     <?php
     _course_access();
-    //echo learndash_course_completed(get_current_user_id(), get_the_ID());
-    //echo learndash_user_course_complete_all_steps(get_current_user_id(), get_the_ID());
+    $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
+    if ($completed) {
+        $users_completed_the_course = carbon_get_the_post_meta('users_completed_the_course');
+
+        $new_user = array(
+            'value' => 'user:user:11',
+            'type' => 'user',
+            'subtype' => 'user',
+            'id' => '11',
+        );
+
+        $users_completed_the_course_arr = array_merge($users_completed_the_course, $new_user);
+
+        var_dump($users_completed_the_course_arr);
+
+        //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course_arr);
+    }
     ?>
     <pre>
         <?php var_dump(carbon_get_the_post_meta('users_completed_the_course')) ?>
