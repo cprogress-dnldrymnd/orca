@@ -23,14 +23,25 @@ if ($groups && !current_user_can('administrator')) {
 
     <?php
     _course_access();
-    $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
+    $user_id = get_current_user_id();
+    $course_id = get_the_ID();
+    $completed = learndash_course_completed($user_id, $course_id);
     if ($completed) {
         $users_completed_the_course = carbon_get_the_post_meta('users_completed_the_course');
+
+        $existed = array_search('blue', array_column($users_completed_the_course, 'id'));
+
+        if($existed) {
+            echo 'existed';
+        } else {
+            echo 'not existed';
+        }
+
         $new_user = array(
-            'value' => 'user:user:11',
+            'value' => 'user:user:'.$user_id,
             'type' => 'user',
             'subtype' => 'user',
-            'id' => '11',
+            'id' => $user_id,
         );
 
         $users_completed_the_course[] = $new_user;
@@ -38,7 +49,7 @@ if ($groups && !current_user_can('administrator')) {
         var_dump($users_completed_the_course);
         echo '</pre>';
 
-        carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
+        //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
     }
     ?>
 
