@@ -39,7 +39,7 @@ if ($groups && !current_user_can('administrator')) {
         var_dump($users_completed_the_course_arr);
         echo '</pre>';
 
-        //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course_arr);
+        carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course_arr);
     }
     ?>
 
