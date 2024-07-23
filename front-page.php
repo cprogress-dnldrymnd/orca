@@ -17,7 +17,7 @@ $terms = get_terms(array(
             <div class="col-lg-6 text-end">
                 <div class="filter-box d-inline-flex">
                     <div class="filter-select me-3">
-                        <input type="hidden" name="post-type" value="<?= get_post_type() ?>">
+                        <input type="hidden" name="post-type" value="sfwd-courses">
                         <input type="hidden" name="include-product" value="yes">
                         <input type="hidden" name="taxonomy" value="ld_course_category">
                         <select name="taxonomy-terms" id="taxonomy-terms" class="archive-form-filter">
