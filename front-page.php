@@ -1,106 +1,58 @@
 <?php get_header() ?>
-
 <?php
-$args = array(
-    'numberposts' => -1,
-    'post_type'   => 'testimonials'
-);
+$terms = get_terms(array(
+    'taxonomy'   => 'ld_course_category',
+    'hide_empty' => false,
+));
 
-$testimonials = get_posts($args);
-
-$groups = learndash_get_course_groups(get_the_ID());
-if ($groups && !current_user_can('administrator')) {
-    $group_users = learndash_get_course_groups_users_access(get_the_ID());
-    if (!in_array(get_current_user_id(), $group_users)) {
-        wp_redirect(get_site_url() . '/courses');
-        exit;
-    }
-}
 ?>
-
-<?php while (have_posts()) { ?>
-    <?php the_post() ?>
-
-    <?php
-    $completed = learndash_course_completed(get_current_user_id(), get_the_ID());
-    echo $completed;
-    ?>
-
-
-    <section class="single-course-section pt-4 background-light-gray">
-        <div class="container large-container">
-            <div class="woo-notices">
-                <?php wc_print_notices()  ?>
+<section class="archive-courses archive-grid archive-section background-light-gray py-5">
+    <div class="container large-container">
+        <div class="row g-4 filter mb-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="showing">
+                    Showing <span class="post-number">0</span> of <span class="found-post">0</span> Courses
+                </div>
             </div>
+            <div class="col-lg-6 text-end">
+                <div class="filter-box d-inline-flex">
+                    <div class="filter-select me-3">
+                        <input type="hidden" name="post-type" value="<?= get_post_type() ?>">
+                        <input type="hidden" name="include-product" value="yes">
+                        <input type="hidden" name="taxonomy" value="ld_course_category">
+                        <select name="taxonomy-terms" id="taxonomy-terms" class="archive-form-filter">
+                            <option value="">All Courses</option>
+                            <?php foreach ($terms as $term) { ?>
+                                <option value="<?= $term->term_id ?>"><?= $term->name ?></option>
+                            <?php } ?>
+                            <option value="bundles">Bundles</option>
 
-            <div class="learndash-single-banner">
-                <?= do_shortcode('[_course_banner]') ?>
-            </div>
-            <div class="single-course-content-holder background-white pt-4">
-
-                <?
-                $ld_certificate =  learndash_get_course_certificate_link(get_the_ID());
-                if ($ld_certificate) {
-                    echo do_shortcode('[_ld_certificate]');
-                }
-
-                ?>
-
-                <div class="learndash-single-holder learndash-single-status-top" id="course-progress">
-                    <div class="inner background-light-gray">
-                        <div class="row gy-3 align-items-center">
-                            <?= do_shortcode('[_learndash_course_progress wrapper="col-md-8"]') ?>
-                            <div class="text-end <?= _user_has_access(get_the_ID()) ? 'col-md-4' : 'col-12' ?>">
-                                <?= do_shortcode('[_learndash_status id="' . get_the_ID() . '"]') ?>
-                            </div>
-                        </div>
+                        </select>
+                    </div>
+                    <div class="filter-button">
+                        <button id="apply-filter">Apply Filter</button>
                     </div>
                 </div>
-
-                <div class="learndash-single-holder learndash-single-navigation position-sticky background-white">
-                    <ul class="d-flex list-inline">
-                        <li><a href="#about" class="active">About</a></li>
-                        <li><a href="#outcomes">Outcomes</a></li>
-                        <li><a href="#modules">Modules</a></li>
-                        <?php if ($testimonials) { ?>
-                            <li><a href="#testimonials">Testimonials</a></li>
-                        <?php } ?>
-                    </ul>
-                </div>
-                <div class="learndash-single-holder learndash-single-content position-relative">
-                    <div class="anchor-link" id="about"></div>
-                    <?= do_shortcode(get_the_content()) ?>
-                </div>
-
-                <div class="learndash-single-holder learndash-single-cta" id="cta">
-                    <?= do_shortcode('[_course_cta]') ?>
-                </div>
-                <div class="learndash-single-holder learndash-single-course-outcomes position-relative">
-                    <div class="anchor-link" id="outcomes"></div>
-                    <?= do_shortcode('[_course_outcomes]') ?>
-                </div>
-
-                <div class="learndash-single-holder learndash-single-course-highlight background-accent" id="highlight">
-                    <div class="anchor-link" id="highlight"></div>
-                    <?= do_shortcode('[_course_highlight]') ?>
-                </div>
-
-                <div class="learndash-single-holder learndash-single-course-breakdown">
-                    <div class="anchor-link" id="course-breakdown"></div>
-                    <?= do_shortcode('[_course_breakdown]') ?>
-                </div>
-                <div class="learndash-single-holder learndash-single-module position-relative">
-                    <div class="anchor-link" id="modules"></div>
-                    <?= do_shortcode('[course_content]') ?>
-                </div>
-                <div class="learndash-single-holder learndash-single-testimonial position-relative">
-                    <div class="anchor-link" id="testimonials"></div>
-                    <?= do_shortcode('[_course_testimonial]') ?>
-                </div>
+            </div>
+        </div>
+        <div id="results">
+            <div class="results-holder">
 
             </div>
         </div>
-    </section>
-<?php } ?>
-
+        <div class="load-more text-center mt-5 d-none">
+            <a href="#" id="load-more" class="btn btn-accent">
+                <span>Load more</span>
+                <svg class="spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path fill="currentColor" d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
 <?php get_footer() ?>
+<script>
+    jQuery(document).ready(function() {
+        ajax();
+    });
+</script>
