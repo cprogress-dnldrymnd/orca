@@ -393,3 +393,66 @@ function product_related_courses()
 }
 
 add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');
+
+
+/**
+ * Snippet Name:	WooCommerce Show Coupon Code Used In Emails
+ * Snippet Author:	ecommercehints.com
+ */
+
+ add_action( 'woocommerce_email_after_order_table', 'ecommercehints_show_coupons_used_in_emails', 10, 4 );
+ function ecommercehints_show_coupons_used_in_emails( $order, $sent_to_admin, $plain_text, $email ) {
+     if (count( $order->get_coupons() ) > 0 ) {
+         $html = '<div class="used-coupons">
+         <h2>Used coupons<h2>
+         <table class="td" cellspacing="0" cellpadding="6" border="1"><tr>
+         <th>Coupon Code</th>
+         <th>Coupon Amount</th>
+         </tr>';
+ 
+         foreach( $order->get_coupons() as $item ){
+             $coupon_code   = $item->get_code();
+             $coupon = new WC_Coupon($coupon_code);
+             $discount_type = $coupon->get_discount_type();
+             $coupon_amount = $coupon->get_amount();
+ 
+             if ($discount_type == 'percent') {
+                 $output = $coupon_amount . "%";
+             } else {
+                 $output = wc_price($coupon_amount);
+             }
+ 
+             $html .= '<tr>
+                 <td>' . strtoupper($coupon_code) . '</td>
+                 <td>' . $output . '</td>
+             </tr>';
+         }
+         $html .= '</table><br></div>';
+ 
+         $css = '<style>
+             .used-coupons table {
+                 width: 100%;
+                 font-family: \'Helvetica Neue\', Helvetica, Roboto, Arial, sans-serif;
+                 color: #737373;
+                 border: 1px solid #e4e4e4;
+                 margin-bottom:8px;
+             }
+             .used-coupons table th, table.tracking-info td {
+             text-align: left;
+             border-top-width: 4px;
+             color: #737373;
+             border: 1px solid #e4e4e4;
+             padding: 12px;
+             }
+             .used-coupons table td {
+             text-align: left;
+             border-top-width: 4px;
+             color: #737373;
+             border: 1px solid #e4e4e4;
+             padding: 12px;
+             }
+         </style>';
+ 
+         echo $css . $html;
+     }
+ }
