@@ -23,7 +23,7 @@ function action_wp_enqueue_scripts()
 	wp_enqueue_style('style', theme_dir . 'style.css');
 	wp_enqueue_script('bootstrap', vendor_dir . 'bootstrap/dist/js/bootstrap.min.js');
 	wp_register_script('swiper', vendor_dir . 'swiper/js/swiper-bundle.min.js');
-	if (is_post_type_archive('sfwd-courses') || is_tax('ld_course_category') || is_shop()) {
+	if (is_post_type_archive('sfwd-courses') || is_tax('ld_course_category') || is_shop() || is_front_page()) {
 		wp_enqueue_script('archive-course', assets_dir . 'javascripts/archive-course.js', array('jquery'));
 		// in JavaScript, object properties are accessed as ajax_object.ajax_url
 		wp_localize_script(
