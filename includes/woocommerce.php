@@ -459,3 +459,36 @@ function ecommercehints_show_coupons_used_in_emails($order, $sent_to_admin, $pla
         echo $css . $html;
     }
 }
+
+/**
+ * @snippet       WooCommerce: Check if Product ID is in the Order
+ * @how-to        Get CustomizeWoo.com FREE
+ * @author        Rodolfo Melogli
+ * @compatible    WooCommerce 9
+ * @community     https://businessbloomer.com/club/
+ */
+
+function bbloomer_check_order_product_id($order_id, $product_id)
+{
+    $order = wc_get_order($order_id);
+    if (! $order) return;
+    $items = $order->get_items();
+    foreach ($items as $item_id => $item) {
+        $this_product_id = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
+        if ($this_product_id === $product_id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+add_action('woocommerce_thankyou', function ($order_id) {
+    $product_id = 3241; // ID of the product you want to check
+    if (bbloomer_check_order_product_id($order_id, $product_id)) {
+        $order = wc_get_order( $order_id );
+        $to_email = $order->get_billing_email();
+        $headers = 'From: Your Name <learn.orca.org.uk>' . "\r\n";
+        wp_mail($to_email, 'subject', '<h1>This is a test for my new pending email.</h1><p>Agree, this is a test</p>', $headers);
+    }
+});
