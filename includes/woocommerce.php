@@ -55,7 +55,7 @@ function bbloomer_add_name_woo_account_registration()
 
     <div class="clear"></div>
 
-<?php
+    <?php
 }
 
 ///////////////////////////////
@@ -359,37 +359,39 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
 function product_related_courses()
 {
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
-    $_related_course = array_reverse($_related_course);
-?>
+    if ($_related_course) {
+        $_related_course = array_reverse($_related_course);
+    ?>
 
-    <div class="related-courses my-4">
-        <h3> Course Included</h3>
-        <?php foreach ($_related_course as $course) { ?>
-            <div class="course-item">
-                <div class="row g-3 align-items-center">
-                    <div class="col-sm-3">
-                        <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
-                    </div>
-                    <div class="col-sm-9">
-                        <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
-                        <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
-                        <div class="mt-3">
-                            <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+        <div class="related-courses my-4">
+            <h3> Course Included</h3>
+            <?php foreach ($_related_course as $course) { ?>
+                <div class="course-item">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-sm-3">
+                            <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                        </div>
+                        <div class="col-sm-9">
+                            <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                            <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                            <div class="mt-3">
+                                <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
-    </div>
-    <div class="important-note mt-4 mb-4">
-        <p>
-            <strong>Important Note </strong>
-        </p>
-        <p>
-            Please refrain from purchasing bundles which includes courses you are already enrolled too.
-        </p>
-    </div>
+            <?php } ?>
+        </div>
+        <div class="important-note mt-4 mb-4">
+            <p>
+                <strong>Important Note </strong>
+            </p>
+            <p>
+                Please refrain from purchasing bundles which includes courses you are already enrolled too.
+            </p>
+        </div>
 <?php
+    }
 }
 
 add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');
@@ -400,36 +402,37 @@ add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');
  * Snippet Author:	ecommercehints.com
  */
 
- add_action( 'woocommerce_email_after_order_table', 'ecommercehints_show_coupons_used_in_emails', 10, 4 );
- function ecommercehints_show_coupons_used_in_emails( $order, $sent_to_admin, $plain_text, $email ) {
-     if (count( $order->get_coupons() ) > 0 ) {
-         $html = '<div class="used-coupons">
+add_action('woocommerce_email_after_order_table', 'ecommercehints_show_coupons_used_in_emails', 10, 4);
+function ecommercehints_show_coupons_used_in_emails($order, $sent_to_admin, $plain_text, $email)
+{
+    if (count($order->get_coupons()) > 0) {
+        $html = '<div class="used-coupons">
          <h2>Used coupons<h2>
          <table class="td" cellspacing="0" cellpadding="6" border="1"><tr>
          <th>Coupon Code</th>
          <th>Coupon Amount</th>
          </tr>';
- 
-         foreach( $order->get_coupons() as $item ){
-             $coupon_code   = $item->get_code();
-             $coupon = new WC_Coupon($coupon_code);
-             $discount_type = $coupon->get_discount_type();
-             $coupon_amount = $coupon->get_amount();
- 
-             if ($discount_type == 'percent') {
-                 $output = $coupon_amount . "%";
-             } else {
-                 $output = wc_price($coupon_amount);
-             }
- 
-             $html .= '<tr>
+
+        foreach ($order->get_coupons() as $item) {
+            $coupon_code   = $item->get_code();
+            $coupon = new WC_Coupon($coupon_code);
+            $discount_type = $coupon->get_discount_type();
+            $coupon_amount = $coupon->get_amount();
+
+            if ($discount_type == 'percent') {
+                $output = $coupon_amount . "%";
+            } else {
+                $output = wc_price($coupon_amount);
+            }
+
+            $html .= '<tr>
                  <td>' . strtoupper($coupon_code) . '</td>
                  <td>' . $output . '</td>
              </tr>';
-         }
-         $html .= '</table><br></div>';
- 
-         $css = '<style>
+        }
+        $html .= '</table><br></div>';
+
+        $css = '<style>
              .used-coupons table {
                  width: 100%;
                  font-family: \'Helvetica Neue\', Helvetica, Roboto, Arial, sans-serif;
@@ -452,7 +455,7 @@ add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');
              padding: 12px;
              }
          </style>';
- 
-         echo $css . $html;
-     }
- }
+
+        echo $css . $html;
+    }
+}
