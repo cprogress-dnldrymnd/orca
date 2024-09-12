@@ -485,10 +485,8 @@ function bbloomer_check_order_product_id($order_id, $product_id)
 
 add_action('woocommerce_thankyou', function ($order_id) {
     $product_id = 3241; // ID of the product you want to check
-    if (bbloomer_check_order_product_id($order_id, $product_id)) {
-        $order = wc_get_order( $order_id );
-        $to_email = $order->get_billing_email();
-        $headers = 'From: Your Name <website@orca.org.uk>' . "\r\n";
-        wp_mail($to_email, 'subject', '<h1>This is a test for my new pending email.</h1><p>Agree, this is a test</p>', $headers);
-    }
+    $order = wc_get_order($order_id);
+    $to_email = $order->get_billing_email();
+    $headers = 'From: Your Name <website@orca.org.uk>' . "\r\n";
+    wp_mail($to_email, 'subject', '<h1>This is a test for my new pending email.</h1><p>Agree, this is a test</p>', $headers);
 });
