@@ -488,7 +488,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
     if (bbloomer_check_order_product_id($order_id, $product_id)) {
         $order = wc_get_order( $order_id );
         $to_email = $order->get_billing_email();
-        $headers = 'From: Your Name <learn.orca.org.uk>' . "\r\n";
+        $headers = 'From: Your Name <website@orca.org.uk>' . "\r\n";
         wp_mail($to_email, 'subject', '<h1>This is a test for my new pending email.</h1><p>Agree, this is a test</p>', $headers);
     }
 });
