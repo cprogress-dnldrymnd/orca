@@ -484,7 +484,6 @@ function bbloomer_check_order_product_id($order_id, $product_id)
 
 
 add_action('woocommerce_thankyou', function ($order_id) {
-    $product_id = 3241; // ID of the product you want to check
     $product_ids = array(3255, 3241);
     $in_cart = '';
     foreach ($product_ids as $product_id) {
