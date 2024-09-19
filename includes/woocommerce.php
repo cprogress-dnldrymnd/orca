@@ -491,6 +491,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
         $id = bbloomer_check_order_product_id($order_id, $product_id);
         if ($id) {
             $in_cart .= 'true';
+            $id = $product_id;
         } else {
             $in_cart .= 'false';
         }
