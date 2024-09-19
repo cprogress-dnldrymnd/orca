@@ -444,6 +444,8 @@ function _learndash_course_button($atts)
             $button_text = 'View Course';
         } else if (has_term(array('wps_wgm_giftcard'), 'product_cat', $id)) {
             $button_text = 'View Gift Card';
+        } else {
+            $button_text = 'View Course';
         }
 
         $html .= '<div class="col-12">';
