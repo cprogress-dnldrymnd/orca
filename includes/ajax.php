@@ -32,7 +32,7 @@ function archive_ajax()
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => 'bundles',
+					'terms'    => array('bundles', 'online-courses'),
 				)
 			)
 		));
