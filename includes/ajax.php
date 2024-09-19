@@ -32,7 +32,7 @@ function archive_ajax()
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => array('bundles', 'online-courses'),
+					'terms'    => array('bundles', 'online-courses', 'wps_wgm_giftcard'),
 				)
 			)
 		));
