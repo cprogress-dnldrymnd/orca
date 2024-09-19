@@ -160,3 +160,11 @@ section.loading-post select {
     display: none !important;
 }
 
+.button-group {
+    a {
+        min-height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -11243,6 +11243,12 @@ section.loading-post select {
 .ppcp-place-order-description {
   display: none !important; }
 
+.button-group a {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
