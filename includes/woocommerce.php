@@ -491,6 +491,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
         if ($product_is_in_order) {
             $in_cart .= 'true';
             $id = $product_is_in_order;
+            $parent = $product_id;
         } else {
             $in_cart .= 'false';
         }
@@ -498,7 +499,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
     if (str_contains($in_cart, 'true')) {
         $order = wc_get_order($order_id);
         $to_email = $order->get_billing_email();
-        $title = get_the_title($id);
+        $title = str_replace(get_the_title($parent), '', get_the_title($id));
         $subject = 'ORCA training course booking';
 
         $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
