@@ -11996,4 +11996,10 @@ section.single-product {
   .woocommerce-account .page-section .container {
     max-width: 1060px !important; } }
 
+.related.products {
+  width: 100%;
+  border-top: 1px solid var(--gray-color-2);
+  padding-top: 3rem;
+  margin-top: 3rem; }
+
 /*# sourceMappingURL=style.css.map */
