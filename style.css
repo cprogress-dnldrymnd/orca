@@ -11244,7 +11244,7 @@ section.loading-post select {
   display: none !important; }
 
 .button-group a {
-  min-height: 54px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center; }
