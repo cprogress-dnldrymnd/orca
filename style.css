@@ -11243,6 +11243,12 @@ section.loading-post select {
 .ppcp-place-order-description {
   display: none !important; }
 
+.button-group a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
@@ -11252,6 +11258,9 @@ section.loading-post select {
 @media (min-width: 1400px) {
   .container.large-container {
     max-width: 1060px; } }
+@media (min-width: 1500px) {
+  .container.large-container {
+    max-width: 1100px; } }
 
 .image-box:not(.not-absolute) {
   padding: 40%;
@@ -11995,5 +12004,11 @@ section.single-product {
 @media (min-width: 1400px) {
   .woocommerce-account .page-section .container {
     max-width: 1060px !important; } }
+
+.related.products {
+  width: 100%;
+  border-top: 1px solid var(--gray-color-2);
+  padding-top: 3rem;
+  margin-top: 3rem; }
 
 /*# sourceMappingURL=style.css.map */

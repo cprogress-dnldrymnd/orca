@@ -121,3 +121,10 @@ section.single-product {
         }
     }
 }
+
+.related.products {
+    width: 100%;
+    border-top: 1px solid var(--gray-color-2);
+    padding-top: 3rem;
+    margin-top: 3rem;
+}

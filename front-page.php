@@ -26,7 +26,8 @@ $terms = get_terms(array(
                                 <option value="<?= $term->term_id ?>"><?= $term->name ?></option>
                             <?php } ?>
                             <option value="bundles">Bundles</option>
-
+                            <option value="online-courses">Online Courses</option>
+                            <option value="wps_wgm_giftcard">Gift Card</option>
                         </select>
                     </div>
                     <div class="filter-button">
