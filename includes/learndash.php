@@ -440,7 +440,7 @@ function _learndash_course_button($atts)
         } 
 
         $html .= '<div class="col-12">';
-        $html .= "<a  href='$permalink' class='btn btn-black w-100'>View Bundle</a>";
+        $html .= "<a  href='$permalink' class='btn btn-black w-100'>$button_text</a>";
         $html .= '</div>';
     }
 
