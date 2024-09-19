@@ -370,7 +370,14 @@ function _learndash_image($atts)
     }
 
     if ($post_type == 'product') {
-        $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Bundle</div>';
+
+        if (has_term(array('bundles'), 'product_cat', $id)) {
+            $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Bundle</div>';
+        } else if (has_term(array('online-courses'), 'product_cat', $id)) {
+            $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Online Course</div>';
+        } else if (has_term(array('wps_wgm_giftcard'), 'product_cat', $id)) {
+            $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Gift Card</div>';
+        }
     }
 
     if ($taxonomy) {
@@ -437,7 +444,7 @@ function _learndash_course_button($atts)
             $button_text = 'View Course';
         } else if (has_term(array('wps_wgm_giftcard'), 'product_cat', $id)) {
             $button_text = 'View Gift Card';
-        } 
+        }
 
         $html .= '<div class="col-12">';
         $html .= "<a  href='$permalink' class='btn btn-black w-100'>$button_text</a>";
