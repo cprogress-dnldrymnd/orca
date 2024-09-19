@@ -11252,6 +11252,9 @@ section.loading-post select {
 @media (min-width: 1400px) {
   .container.large-container {
     max-width: 1060px; } }
+@media (min-width: 1500px) {
+  .container.large-container {
+    max-width: 1060px; } }
 
 .image-box:not(.not-absolute) {
   padding: 40%;
