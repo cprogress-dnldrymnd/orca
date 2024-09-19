@@ -487,8 +487,8 @@ add_action('woocommerce_thankyou', function ($order_id) {
     $product_ids = array(3255, 3241);
     $in_cart = '';
     foreach ($product_ids as $product_id) {
-        $id = bbloomer_check_order_product_id($order_id, $product_id);
-        if ($id) {
+        $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
+        if ($product_is_in_order) {
             $in_cart .= 'true';
             $id = $product_id;
         } else {
