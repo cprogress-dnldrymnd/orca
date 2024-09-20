@@ -70,7 +70,7 @@ function archive_ajax()
 		} else {
 			$args['cat'] = $taxonomy_terms;
 		}
-	} else if ($taxonomy_terms == 'bundles') {
+	} else  {
 		$post_type_arr[] = 'product';
 		$products_id = get_posts(array(
 			'fields'          => 'ids', // Only get post IDs
@@ -80,7 +80,7 @@ function archive_ajax()
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => 'bundles',
+					'terms'    => $taxonomy_terms,
 				)
 			)
 		));
