@@ -1,4 +1,4 @@
-<?php
+	<?php
 add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in users
 add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
@@ -59,6 +59,7 @@ function archive_ajax()
 	if ($offset) {
 		$args['offset'] = $offset;
 	}
+
 	$product_cat_array = array(
 		'bundles',
 		'online-courses',
@@ -75,7 +76,7 @@ function archive_ajax()
 		} else {
 			$args['cat'] = $taxonomy_terms;
 		}
-	} else if(in_array($taxonomy_terms, $product_cat_array)) {
+	} else {
 		$post_type_arr[] = 'product';
 		$products_id = get_posts(array(
 			'fields'          => 'ids', // Only get post IDs
@@ -95,6 +96,7 @@ function archive_ajax()
 		$args['post__in'] = $ids;
 		$args['post_type'] = $post_type_arr;
 	}
+
 
 
 	$the_query = new WP_Query($args);
