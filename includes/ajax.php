@@ -1,8 +1,11 @@
+
 <?php
 add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in users
 add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
+
+
 
 	$taxonomy_terms = $_POST['taxonomy_terms'];
 	$taxonomy = $_POST['taxonomy'];
@@ -27,11 +30,10 @@ function archive_ajax()
 			'posts_per_page'  => -1,
 			'post_type'  => 'product',
 			'tax_query' => array(
-				'relation' => 'AND',
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => array('bundles', 'online-courses', 'wps_wgm_giftcard'),
+					'terms'    => 'bundles',
 				)
 			)
 		));
@@ -59,13 +61,7 @@ function archive_ajax()
 		$args['offset'] = $offset;
 	}
 
-	$product_cat_array = array(
-		'bundles',
-		'online-courses',
-		'wps_wgm_giftcard'
-	);
-
-	if ($taxonomy_terms && !in_array($taxonomy_terms, $product_cat_array)) {
+	if ($taxonomy_terms && $taxonomy_terms != 'bundles') {
 		if ($taxonomy != 'category') {
 			$args['tax_query'][] = array(
 				'taxonomy' => $taxonomy,
@@ -75,7 +71,7 @@ function archive_ajax()
 		} else {
 			$args['cat'] = $taxonomy_terms;
 		}
-	} else {
+	} else if ($taxonomy_terms == 'bundles') {
 		$post_type_arr[] = 'product';
 		$products_id = get_posts(array(
 			'fields'          => 'ids', // Only get post IDs
@@ -85,7 +81,7 @@ function archive_ajax()
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => $taxonomy_terms,
+					'terms'    => 'bundles',
 				)
 			)
 		));
