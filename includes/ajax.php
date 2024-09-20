@@ -59,8 +59,13 @@ function archive_ajax()
 	if ($offset) {
 		$args['offset'] = $offset;
 	}
+	$product_cat_array = array(
+		'bundles',
+		'online-courses',
+		'wps_wgm_giftcard'
+	);
 
-	if ($taxonomy_terms && $taxonomy_terms != 'bundles') {
+	if ($taxonomy_terms && !in_array($taxonomy_terms, $product_cat_array)) {
 		if ($taxonomy != 'category') {
 			$args['tax_query'][] = array(
 				'taxonomy' => $taxonomy,
@@ -70,7 +75,7 @@ function archive_ajax()
 		} else {
 			$args['cat'] = $taxonomy_terms;
 		}
-	} else  {
+	} else if(in_array($taxonomy_terms, $product_cat_array)) {
 		$post_type_arr[] = 'product';
 		$products_id = get_posts(array(
 			'fields'          => 'ids', // Only get post IDs
@@ -90,7 +95,6 @@ function archive_ajax()
 		$args['post__in'] = $ids;
 		$args['post_type'] = $post_type_arr;
 	}
-
 
 
 	$the_query = new WP_Query($args);
