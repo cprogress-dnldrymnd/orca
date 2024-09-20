@@ -68,7 +68,7 @@ Container::make('post_meta', 'Course Settings')
             ->set_types(array(
                 array(
                     'type'      => 'post',
-                    'post_type' => 'post',
+                    'post_type' => 'product',
                 )
             ))
     ));
