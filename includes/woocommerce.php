@@ -359,6 +359,11 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
 function product_related_courses()
 {
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
+    $online_courses_included = get__post_meta('online_courses_included');
+
+
+
+
     if ($_related_course) {
         $_related_course = array_reverse($_related_course);
     ?>
@@ -366,6 +371,26 @@ function product_related_courses()
         <div class="related-courses my-4">
             <h3> Course Included</h3>
             <?php foreach ($_related_course as $course) { ?>
+                <div class="course-item">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-sm-3">
+                            <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                        </div>
+                        <div class="col-sm-9">
+                            <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                            <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                            <div class="mt-3">
+                                <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <?php foreach ($online_courses_included as $online_course) { ?>
+                <?php
+                $course = $online_course['id'];
+                ?>
                 <div class="course-item">
                     <div class="row g-3 align-items-center">
                         <div class="col-sm-3">
