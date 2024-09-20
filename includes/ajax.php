@@ -27,10 +27,11 @@ function archive_ajax()
 			'posts_per_page'  => -1,
 			'post_type'  => 'product',
 			'tax_query' => array(
+				'relation' => 'AND',
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => array('bundles'),
+					'terms'    => array('bundles', 'online-courses', 'wps_wgm_giftcard'),
 				)
 			)
 		));
