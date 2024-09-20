@@ -1,4 +1,3 @@
-
 <?php
 add_action('wp_ajax_nopriv_archive_ajax', 'archive_ajax'); // for not logged in users
 add_action('wp_ajax_archive_ajax', 'archive_ajax');
@@ -34,6 +33,16 @@ function archive_ajax()
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
 					'terms'    => 'bundles',
+				),
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => 'online-courses',
+				),
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => 'wps_wgm_giftcard',
 				)
 			)
 		));
