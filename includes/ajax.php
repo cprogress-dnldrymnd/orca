@@ -4,8 +4,6 @@ add_action('wp_ajax_archive_ajax', 'archive_ajax');
 function archive_ajax()
 {
 
-
-
 	$taxonomy_terms = $_POST['taxonomy_terms'];
 	$taxonomy = $_POST['taxonomy'];
 	$post_type = $_POST['post_type'];
@@ -32,7 +30,7 @@ function archive_ajax()
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
-					'terms'    => array('bundles', 'online-courses', 'wps_wgm_giftcard'),
+					'terms'    => array('bundles'),
 				)
 			)
 		));
