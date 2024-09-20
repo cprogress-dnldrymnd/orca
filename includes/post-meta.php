@@ -72,3 +72,17 @@ Container::make('post_meta', 'Course Settings')
                 )
             ))
     ));
+
+add_filter('carbon_fields_association_field_options_online_courses_included_post_product', function ($query_arguments) {
+
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'slug',
+        'terms'    => array('online-courses')
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = array('publish', 'private');
+
+    return $query_arguments;
+});
