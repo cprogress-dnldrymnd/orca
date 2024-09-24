@@ -529,16 +529,16 @@ function bbloomer_check_order_product_id($order_id, $product_id)
 
 add_action('woocommerce_thankyou', function ($order_id) {
 
-    $posts = get_posts(array(
+    $coursecustomemails = get_posts(array(
         'post_type' => 'coursecustomemails',
         'numberposts' => -1,
     ));
 
     $product_ids = [];
-    foreach ($posts as $post) {
-        $products = carbon_get_post_meta($post->ID, 'products');
-        foreach ($products as $product) {
-            $product_ids[] = $product['id'];
+    foreach ($coursecustomemails as $coursecustomemail) {
+        $products_list = carbon_get_post_meta($coursecustomemail->ID, 'products');
+        foreach ($products_list as $_product_id) {
+            $product_ids[] = $_product_id['id'];
         }
         $in_cart = '';
         foreach ($product_ids as $product_id) {
@@ -558,7 +558,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
             $subject = 'ORCA training course booking';
 
             $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
-            $content = $post->post_content;
+            $content = $coursecustomemail->post_content;
 
             wp_mail($to_email, $subject, $content, $headers);
         }
