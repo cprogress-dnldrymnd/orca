@@ -168,3 +168,9 @@ section.loading-post select {
         justify-content: center;
     }
 }
+
+.row-archive .description-box {
+    p:not(:first-child) {
+        display: none;
+    }
+}

@@ -175,4 +175,3 @@ $Course_Custom_Emails->publicly_queryable = false;
 $Course_Custom_Emails->show_in_admin_bar = false;
 $Course_Custom_Emails->has_archive = false;
 $Course_Custom_Emails->show_in_rest = true;
-
