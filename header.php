@@ -120,18 +120,5 @@
         <?= do_shortcode('[breadcrumbs]') ?>
 
         <?php
-        $posts = get_posts(array(
-            'post_type' => 'coursecustomemails',
-            'numberposts' => -1,
-        ));
-
-        $product_ids = [];
-        foreach ($posts as $post) {
-            $products = carbon_get_post_meta($post->ID, 'products');
-            foreach ($products as $product) {
-                $product_ids[] = $product['id'];
-            }
-            echo $post->post_content;
-            var_dump($product_ids);
-        }
+     
         ?>
