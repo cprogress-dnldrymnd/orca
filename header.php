@@ -128,7 +128,6 @@
         $order_id = 3283;
 
         foreach ($coursecustomemails as $coursecustomemail) {
-            $product_ids = [];
             $product_ids = carbon_get_post_meta($coursecustomemail->ID, 'products');
 
             $in_cart = '';
