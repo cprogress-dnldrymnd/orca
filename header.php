@@ -152,7 +152,7 @@
 
                 $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
                 echo $coursecustomemail->post_content;
-
             }
+            echo $in_cart;
         }
         ?>
