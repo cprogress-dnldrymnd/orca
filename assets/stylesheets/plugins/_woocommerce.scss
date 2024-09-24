@@ -129,7 +129,17 @@ section.single-product {
     margin-top: 3rem;
 }
 
-.woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
-    position: sticky;
-    top: 50px;
+.woocommerce div.product {
+    div.images .woocommerce-product-gallery__wrapper {
+        position: sticky;
+        top: 50px;
+        @include responsive(xs-sm) {
+            width: 100%;
+        }
+    }
+    .summary {
+        @include responsive(xs-sm) {
+            width: 100%;
+        }
+    }
 }

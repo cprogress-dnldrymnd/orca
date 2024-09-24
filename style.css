@@ -12017,5 +12017,11 @@ section.single-product {
 .woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
   position: sticky;
   top: 50px; }
+  @media screen and (max-width: 991px) {
+    .woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
+      width: 100%; } }
+@media screen and (max-width: 991px) {
+  .woocommerce div.product .summary {
+    width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */
