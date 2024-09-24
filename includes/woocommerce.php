@@ -534,8 +534,8 @@ add_action('woocommerce_thankyou', function ($order_id) {
         'numberposts' => -1,
     ));
 
-    $product_ids = [];
     foreach ($coursecustomemails as $coursecustomemail) {
+        $product_ids = [];
         $products_list = carbon_get_post_meta($coursecustomemail->ID, 'products');
         foreach ($products_list as $_product_id) {
             $product_ids[] = $_product_id['id'];
