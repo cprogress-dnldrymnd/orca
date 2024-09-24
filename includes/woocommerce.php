@@ -529,39 +529,29 @@ function bbloomer_check_order_product_id($order_id, $product_id)
 
 add_action('woocommerce_thankyou', function ($order_id) {
 
-    $coursecustomemails = get_posts(array(
-        'post_type' => 'coursecustomemails',
-        'numberposts' => -1,
-    ));
 
-    foreach ($coursecustomemails as $coursecustomemail) {
-        $product_ids = [];
-        $products_list = carbon_get_post_meta($coursecustomemail->ID, 'products');
-        foreach ($products_list as $_product_id) {
-            $product_ids[] = $_product_id['id'];
+    $product_ids = array(3255, 3241);
+    $in_cart = '';
+    foreach ($product_ids as $product_id) {
+        $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
+        if ($product_is_in_order) {
+            $in_cart .= 'true';
+            $id = $product_is_in_order;
+            $parent = $product_id;
+        } else {
+            $in_cart .= 'false';
         }
-        $in_cart = '';
-        foreach ($product_ids as $product_id) {
-            $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
-            if ($product_is_in_order) {
-                $in_cart .= 'true';
-                $id = $product_is_in_order;
-                $parent = $product_id;
-            } else {
-                $in_cart .= 'false';
-            }
-        }
-        if (str_contains($in_cart, 'true')) {
-            $order = wc_get_order($order_id);
-            $to_email = $order->get_billing_email();
-            $title = str_replace(get_the_title($parent), '', get_the_title($id));
-            $subject = 'ORCA training course booking';
+    }
+    if (str_contains($in_cart, 'true')) {
+        $order = wc_get_order($order_id);
+        $to_email = $order->get_billing_email();
+        $title = str_replace(get_the_title($parent), '', get_the_title($id));
+        $subject = 'ORCA training course booking';
 
-            $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
-            $content = $coursecustomemail->post_content;
+        $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
+        $content = '';
 
-            wp_mail($to_email, $subject, $content, $headers);
-        }
+        wp_mail($to_email, $subject, $content, $headers);
     }
 });
 
