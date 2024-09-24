@@ -155,4 +155,5 @@
             }
             echo $in_cart;
         }
+        var_dump($product_ids);
         ?>
