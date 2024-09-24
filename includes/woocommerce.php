@@ -535,18 +535,15 @@ add_action('woocommerce_thankyou', function ($order_id) {
     ));
 
     foreach ($coursecustomemails as $coursecustomemail) {
-        $product_ids = [];
-        $products_list = carbon_get_post_meta($coursecustomemail->ID, 'products');
-        foreach ($products_list as $_product_id) {
-            $product_ids[] = $_product_id['id'];
-        }
+        $product_ids = carbon_get_post_meta($coursecustomemail->ID, 'products');
+      
         $in_cart = '';
         foreach ($product_ids as $product_id) {
-            $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
+            $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id['id']);
             if ($product_is_in_order) {
                 $in_cart .= 'true';
                 $id = $product_is_in_order;
-                $parent = $product_id;
+                $parent = $product_id['id'];
             } else {
                 $in_cart .= 'false';
             }
