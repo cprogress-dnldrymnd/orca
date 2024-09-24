@@ -556,7 +556,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
 
             $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
             $content = $coursecustomemail->post_content;
-            $content = str_replace('[title]', '', $content);
+            $content = str_replace('[title]', $title, $content);
 
             wp_mail($to_email, $subject, $content, $headers);
         }
