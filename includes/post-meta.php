@@ -86,3 +86,18 @@ add_filter('carbon_fields_association_field_options_online_courses_included_post
 
     return $query_arguments;
 });
+
+
+
+
+Container::make('post_meta', 'Email Settings')
+    ->where('post_type', '=', 'coursecustomemails')
+    ->add_fields(array(
+        Field::make('association', 'products', __('Products'))
+            ->set_types(array(
+                array(
+                    'type'      => 'post',
+                    'post_type' => 'product',
+                )
+            ))
+    ));
