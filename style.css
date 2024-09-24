@@ -12015,13 +12015,13 @@ section.single-product {
   margin-top: 3rem; }
 
 @media screen and (max-width: 991px) {
-  .woocommerce div.product div.images {
+  .woocommerce.woocommerce.woocommerce div.product div.images {
     width: 100%; } }
-.woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
+.woocommerce.woocommerce.woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
   position: sticky;
   top: 50px; }
 @media screen and (max-width: 991px) {
-  .woocommerce div.product .summary {
+  .woocommerce.woocommerce.woocommerce div.product .summary {
     width: 100%; } }
 
 /*# sourceMappingURL=style.css.map */

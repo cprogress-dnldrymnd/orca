@@ -129,7 +129,7 @@ section.single-product {
     margin-top: 3rem;
 }
 
-.woocommerce div.product {
+.woocommerce.woocommerce.woocommerce div.product {
     div.images {
         @include responsive(xs-sm) {
             width: 100%;
