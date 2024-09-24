@@ -362,7 +362,7 @@ function product_related_courses()
     $online_courses_included = get__post_meta('online_courses_included');
 
 
-
+    var_dump($online_courses_included);
 
     if ($_related_course || $online_courses_included) {
         $_related_course = array_reverse($_related_course);
