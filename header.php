@@ -127,9 +127,9 @@
 
         $product_ids = [];
         foreach ($posts as $post) {
-            $products = carbon_get_post_meta($post->ID, 'products');
-            foreach ($products as $product) {
-                $product_ids[] = $product['id'];
+            $products_list = carbon_get_post_meta($post->ID, 'products');
+            foreach ($products_list as $_product_id) {
+                $product_ids[] = $_product_id['id'];
             }
             echo $post->post_content;
             var_dump($product_ids);
