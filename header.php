@@ -154,5 +154,33 @@
                 echo $coursecustomemail->post_content;
             }
             echo $in_cart;
+
+
+
+            $product_ids = array(3255, 3241);
+            $in_cart = '';
+            foreach ($product_ids as $product_id) {
+                $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
+                if ($product_is_in_order) {
+                    $in_cart .= 'true';
+                    $id = $product_is_in_order;
+                    $parent = $product_id;
+                } else {
+                    $in_cart .= 'false';
+                }
+            }
+            if (str_contains($in_cart, 'true')) {
+                $order = wc_get_order($order_id);
+                $to_email = $order->get_billing_email();
+                $title = str_replace(get_the_title($parent), '', get_the_title($id));
+                $subject = 'ORCA training course booking';
+        
+                $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
+                $content = '';
+        
+            }
+
+            echo $in_cart;
+
         }
         ?>
