@@ -128,3 +128,8 @@ section.single-product {
     padding-top: 3rem;
     margin-top: 3rem;
 }
+
+.woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
+    position: sticky;
+    top: 50px;
+}
