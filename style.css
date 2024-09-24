@@ -12014,12 +12014,12 @@ section.single-product {
   padding-top: 3rem;
   margin-top: 3rem; }
 
+@media screen and (max-width: 991px) {
+  .woocommerce div.product div.images {
+    width: 100%; } }
 .woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
   position: sticky;
   top: 50px; }
-  @media screen and (max-width: 991px) {
-    .woocommerce div.product div.images .woocommerce-product-gallery__wrapper {
-      width: 100%; } }
 @media screen and (max-width: 991px) {
   .woocommerce div.product .summary {
     width: 100%; } }

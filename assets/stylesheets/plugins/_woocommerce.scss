@@ -130,11 +130,13 @@ section.single-product {
 }
 
 .woocommerce div.product {
-    div.images .woocommerce-product-gallery__wrapper {
-        position: sticky;
-        top: 50px;
+    div.images {
         @include responsive(xs-sm) {
             width: 100%;
+        }
+        .woocommerce-product-gallery__wrapper {
+            position: sticky;
+            top: 50px;
         }
     }
     .summary {
