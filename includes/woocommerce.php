@@ -379,11 +379,14 @@ function product_related_courses()
 
 
     if ($_related_course || $online_courses_included) {
-        if ($_related_course) {
-            $_related_course = array_reverse($_related_course);
+
     ?>
-            <div class="related-courses my-4">
-                <h3> Course Included</h3>
+        <div class="related-courses my-4">
+            <h3> Course Included</h3>
+            <?php
+            if ($_related_course) {
+                $_related_course = array_reverse($_related_course);
+            ?>
                 <?php foreach ($_related_course as $course) { ?>
                     <div class="course-item">
                         <div class="row g-3 align-items-center">
@@ -422,16 +425,16 @@ function product_related_courses()
                     </div>
                 <?php } ?>
             <?php } ?>
-            </div>
-            <div class="important-note mt-4 mb-4">
-                <p>
-                    <strong>Important Note </strong>
-                </p>
-                <p>
-                    Please refrain from purchasing bundles which includes courses you are already enrolled too.
-                </p>
-            </div>
-    <?php
+        </div>
+        <div class="important-note mt-4 mb-4">
+            <p>
+                <strong>Important Note </strong>
+            </p>
+            <p>
+                Please refrain from purchasing bundles which includes courses you are already enrolled too.
+            </p>
+        </div>
+<?php
     }
 }
 
