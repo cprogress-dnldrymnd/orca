@@ -11249,6 +11249,9 @@ section.loading-post select {
   align-items: center;
   justify-content: center; }
 
+.row-archive .description-box p:not(:first-child) {
+  display: none; }
+
 @media (min-width: 1500px) {
   .container:not(.large-container) {
     max-width: 1470px; } }
