@@ -359,82 +359,85 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
 function product_related_courses()
 {
 
-    $product = wc_get_product(get_the_ID());
+    if (has_term(array('bundles'), 'product_cat', get_the_ID())) {
 
-    if ($product->get_type() == 'variable') {
-        $_related_course_var = [];
-        foreach ($product->get_children() as $var) {
-            $_related_course_v = get_post_meta($var, '_related_course', true);
-            if ($_related_course_v) {
-                $_related_course_var = array_merge($_related_course_var, $_related_course_v);
+        $product = wc_get_product(get_the_ID());
+
+        if ($product->get_type() == 'variable') {
+            $_related_course_var = [];
+            foreach ($product->get_children() as $var) {
+                $_related_course_v = get_post_meta($var, '_related_course', true);
+                if ($_related_course_v) {
+                    $_related_course_var = array_merge($_related_course_var, $_related_course_v);
+                }
             }
+            $_related_course = array_unique($_related_course_var);
+        } else {
+            $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
         }
-        $_related_course = array_unique($_related_course_var);
-    } else {
-        $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
-    }
 
-    $online_courses_included = carbon_get_the_post_meta('online_courses_included');
+        $online_courses_included = carbon_get_the_post_meta('online_courses_included');
 
 
 
-    if ($_related_course || $online_courses_included) {
+        if ($_related_course || $online_courses_included) {
 
     ?>
-        <div class="related-courses my-4">
-            <h3> Course Included</h3>
-            <?php
-            if ($_related_course) {
-                $_related_course = array_reverse($_related_course);
-            ?>
-                <?php foreach ($_related_course as $course) { ?>
-                    <div class="course-item">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-sm-3">
-                                <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
-                            </div>
-                            <div class="col-sm-9">
-                                <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
-                                <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
-                                <div class="mt-3">
-                                    <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+            <div class="related-courses my-4">
+                <h3> Course Included</h3>
+                <?php
+                if ($_related_course) {
+                    $_related_course = array_reverse($_related_course);
+                ?>
+                    <?php foreach ($_related_course as $course) { ?>
+                        <div class="course-item">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-sm-3">
+                                    <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                                </div>
+                                <div class="col-sm-9">
+                                    <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                                    <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                                    <div class="mt-3">
+                                        <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 <?php } ?>
-            <?php } ?>
-            <?php if ($online_courses_included) { ?>
-                <?php foreach ($online_courses_included as $online_course) { ?>
-                    <?php
-                    $course = $online_course['id'];
-                    ?>
-                    <div class="course-item">
-                        <div class="row g-3 align-items-center">
-                            <div class="col-sm-3">
-                                <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
-                            </div>
-                            <div class="col-sm-9">
-                                <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
-                                <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
-                                <div class="mt-3">
-                                    <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                <?php if ($online_courses_included) { ?>
+                    <?php foreach ($online_courses_included as $online_course) { ?>
+                        <?php
+                        $course = $online_course['id'];
+                        ?>
+                        <div class="course-item">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-sm-3">
+                                    <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                                </div>
+                                <div class="col-sm-9">
+                                    <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                                    <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                                    <div class="mt-3">
+                                        <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 <?php } ?>
-            <?php } ?>
-        </div>
-        <div class="important-note mt-4 mb-4">
-            <p>
-                <strong>Important Note </strong>
-            </p>
-            <p>
-                Please refrain from purchasing bundles which includes courses you are already enrolled too.
-            </p>
-        </div>
+            </div>
+            <div class="important-note mt-4 mb-4">
+                <p>
+                    <strong>Important Note </strong>
+                </p>
+                <p>
+                    Please refrain from purchasing bundles which includes courses you are already enrolled too.
+                </p>
+            </div>
 <?php
+        }
     }
 }
 
