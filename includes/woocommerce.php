@@ -364,7 +364,7 @@ function product_related_courses()
 
 
 
-    if ($_related_course) {
+    if ($_related_course || $online_courses_included) {
         $_related_course = array_reverse($_related_course);
     ?>
 
