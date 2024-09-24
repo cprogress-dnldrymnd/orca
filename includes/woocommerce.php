@@ -519,7 +519,7 @@ function bbloomer_check_order_product_id($order_id, $product_id)
     $items = $order->get_items();
     foreach ($items as $item_id => $item) {
         $this_product_id = $item->get_product_id();
-        if ($this_product_id === $product_id) {
+        if ($this_product_id == $product_id) {
             return $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();;
         }
     }
