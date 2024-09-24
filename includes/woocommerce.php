@@ -536,7 +536,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
 
     foreach ($coursecustomemails as $coursecustomemail) {
         $product_ids = carbon_get_post_meta($coursecustomemail->ID, 'products');
-      
+
         $in_cart = '';
         foreach ($product_ids as $product_id) {
             $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id['id']);
@@ -556,6 +556,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
 
             $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
             $content = $coursecustomemail->post_content;
+            $content = str_replace('[title]', '', $content);
 
             wp_mail($to_email, $subject, $content, $headers);
         }
