@@ -133,6 +133,8 @@
             $in_cart = '';
             foreach ($product_ids as $product_id) {
                 $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id['id']);
+                echo $product_id['id'];
+                echo '<br>';
                 if ($product_is_in_order) {
                     $in_cart .= 'true';
                     $id = $product_is_in_order;
@@ -158,6 +160,8 @@
             $in_cart = '';
             foreach ($product_ids as $product_id) {
                 $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
+                echo $product_id;
+                echo '<br>';
                 if ($product_is_in_order) {
                     $in_cart .= 'true';
                     $id = $product_is_in_order;
