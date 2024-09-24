@@ -549,7 +549,7 @@ add_action('woocommerce_thankyou', function ($order_id) {
         $subject = 'ORCA training course booking';
 
         $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
-        $content = '';
+        $content = 'tess';
 
         wp_mail($to_email, $subject, $content, $headers);
     }
