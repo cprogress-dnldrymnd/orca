@@ -378,7 +378,7 @@ function product_related_courses()
 
 
 
-    if ($_related_course || $online_courses_included) {
+    if ($_related_course || $online_courses_included ) {
 
     ?>
         <div class="related-courses my-4">
