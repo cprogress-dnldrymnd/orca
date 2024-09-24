@@ -559,6 +559,8 @@ add_action('woocommerce_thankyou', function ($order_id) {
             $content = str_replace('[title]', $title, $content);
 
             wp_mail($to_email, $subject, $content, $headers);
+
+            update_post_meta($order_id, 'email_sent', true);
         }
     }
 });
