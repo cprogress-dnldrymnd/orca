@@ -120,6 +120,8 @@
         <?= do_shortcode('[breadcrumbs]') ?>
 
         <?php
+        $order_id = 3283;
+
        $product_ids = array(3255, 3241);
        $in_cart = '';
        foreach ($product_ids as $product_id) {
