@@ -133,7 +133,8 @@
 
             $in_cart = '';
             foreach ($products_list as $_product_id) {
-                $product_is_in_order = bbloomer_check_order_product_id(3283, $_product_id['id']);
+                $product_is_in_order = bbloomer_check_order_product_id($order_id, );
+                
                 if ($product_is_in_order) {
                     $in_cart .= 'true';
                     $id = $product_is_in_order;
@@ -141,6 +142,7 @@
                 } else {
                     $in_cart .= 'false';
                 }
+                echo $_product_id['id'];
             }
             if (str_contains($in_cart, 'true')) {
                 $order = wc_get_order($order_id);
