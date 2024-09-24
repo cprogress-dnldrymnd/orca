@@ -362,8 +362,13 @@ function product_related_courses()
     $product = wc_get_product(get_the_ID());
 
     if ($product->get_type() == 'variable') {
+        $_related_course_var = [];
+        foreach($product->get_children() as $var) {
+            $_related_course_var = array_merge($_related_course_var, get_post_meta($var, '_related_course', true));
+        }
 
-        var_dump($product->get_children());
+        var_dump($_related_course_var);
+
     } else {
         $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
     }
