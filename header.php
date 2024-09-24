@@ -151,9 +151,8 @@
                 $subject = 'ORCA training course booking';
 
                 $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
-                $content = $coursecustomemail->post_content;
+                echo $coursecustomemail->post_content;
 
-                wp_mail($to_email, $subject, $content, $headers);
             }
         }
         ?>
