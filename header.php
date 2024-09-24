@@ -131,7 +131,7 @@
             foreach ($products as $product) {
                 $product_ids[] = $product['id'];
             }
-
+            echo $post->post_content;
             var_dump($product_ids);
         }
         ?>
