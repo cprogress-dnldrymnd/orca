@@ -532,7 +532,6 @@ add_action('woocommerce_thankyou', function ($order_id) {
     $posts = get_posts(array(
         'post_type' => 'coursecustomemails',
         'numberposts' => -1,
-        'fields' => 'ids'
     ));
 
     $product_ids = [];
