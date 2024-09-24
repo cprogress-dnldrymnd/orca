@@ -129,7 +129,7 @@
         foreach ($coursecustomemails as $coursecustomemail) {
             $products_list = carbon_get_post_meta($coursecustomemail->ID, 'products');
             foreach ($products_list as $_product_id) {
-                $product_ids[] = $product['id'];
+                $product_ids[] = $_product_id['id'];
             }
             echo $coursecustomemail->post_content;
             var_dump($product_ids);
