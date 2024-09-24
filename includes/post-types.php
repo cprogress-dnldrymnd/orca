@@ -164,3 +164,15 @@ function movies_to_films($args, $post_type)
 
     return $args;
 }
+
+$Course_Custom_Emails = new newPostType();
+$Course_Custom_Emails->name = 'Course Custom Emails';
+$Course_Custom_Emails->singular_name = 'Course Custom Emails';
+$Course_Custom_Emails->icon = 'dashicons-envelope';
+$Course_Custom_Emails->supports = array('title', 'revisions', 'editor', 'thumbnail');
+$Course_Custom_Emails->exclude_from_search = true;
+$Course_Custom_Emails->publicly_queryable = false;
+$Course_Custom_Emails->show_in_admin_bar = false;
+$Course_Custom_Emails->has_archive = false;
+$Course_Custom_Emails->show_in_rest = true;
+
