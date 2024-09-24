@@ -133,11 +133,11 @@
 
             $in_cart = '';
             foreach ($products_list as $_product_id) {
-                $product_is_in_order = bbloomer_check_order_product_id($order_id, $_product_id);
+                $product_is_in_order = bbloomer_check_order_product_id($order_id, $_product_id['id']);
                 if ($product_is_in_order) {
                     $in_cart .= 'true';
                     $id = $product_is_in_order;
-                    $parent = $_product_id;
+                    $parent = $_product_id['id'];
                 } else {
                     $in_cart .= 'false';
                 }
@@ -153,5 +153,4 @@
             }
             echo $in_cart;
         }
-        var_dump($product_ids);
         ?>
