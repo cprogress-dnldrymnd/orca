@@ -23,6 +23,7 @@
     </title>
     <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
     <div id="page" class="site">
         <header id="masthead" class="site-header">
@@ -115,5 +116,22 @@
             </nav>
         </header><!-- #masthead -->
 
-                                            
+
         <?= do_shortcode('[breadcrumbs]') ?>
+
+        <?php
+        $posts = get_posts(array(
+            'post_type' => 'coursecustomemails',
+            'numberposts' => -1,
+        ));
+
+        $product_ids = [];
+        foreach ($posts as $post) {
+            $products = carbon_get_post_meta($post->ID, 'products');
+            foreach ($products as $product) {
+                $product_ids[] = $product['id'];
+            }
+
+            var_dump($product_ids);
+        }
+        ?>
