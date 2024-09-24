@@ -527,6 +527,43 @@ function bbloomer_check_order_product_id($order_id, $product_id)
 }
 
 
+add_action('woocommerce_thankyou', function ($order_id) {
+
+    $posts = get_posts(array(
+        'post_type' => 'coursecustomemails',
+        'numberposts' => -1,
+    ));
+
+    $product_ids = [];
+    foreach ($posts as $post) {
+        $products = carbon_get_post_meta($post->ID, 'products');
+        foreach ($products as $product) {
+            $product_ids[] = $product['id'];
+        }
+        $in_cart = '';
+        foreach ($product_ids as $product_id) {
+            $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
+            if ($product_is_in_order) {
+                $in_cart .= 'true';
+                $id = $product_is_in_order;
+                $parent = $product_id;
+            } else {
+                $in_cart .= 'false';
+            }
+        }
+        if (str_contains($in_cart, 'true')) {
+            $order = wc_get_order($order_id);
+            $to_email = $order->get_billing_email();
+            $title = str_replace(get_the_title($parent), '', get_the_title($id));
+            $subject = 'ORCA training course booking';
+
+            $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
+            $content = $post->post_content;
+
+            wp_mail($to_email, $subject, $content, $headers);
+        }
+    }
+});
 
 
 function wpse27856_set_content_type()
