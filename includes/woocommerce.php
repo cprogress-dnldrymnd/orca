@@ -359,7 +359,7 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
 function product_related_courses()
 {
     $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
-    $online_courses_included = get__post_meta('online_courses_included');
+    $online_courses_included = carbon_get_the_post_meta('online_courses_included');
 
 
     var_dump($online_courses_included);
