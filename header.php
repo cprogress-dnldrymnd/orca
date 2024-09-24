@@ -129,20 +129,18 @@
 
         foreach ($coursecustomemails as $coursecustomemail) {
             $product_ids = [];
-            $products_list = carbon_get_post_meta($coursecustomemail->ID, 'products');
+            $product_ids = carbon_get_post_meta($coursecustomemail->ID, 'products');
 
             $in_cart = '';
-            foreach ($products_list as $_product_id) {
-                $product_is_in_order = bbloomer_check_order_product_id($order_id, $_product_id['id']);
-                
+            foreach ($product_ids as $product_id) {
+                $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id['id']);
                 if ($product_is_in_order) {
                     $in_cart .= 'true';
                     $id = $product_is_in_order;
-                    $parent = $_product_id['id'];
+                    $parent = $product_id['id'];
                 } else {
                     $in_cart .= 'false';
                 }
-                echo $_product_id['id'];
             }
             if (str_contains($in_cart, 'true')) {
                 $order = wc_get_order($order_id);
