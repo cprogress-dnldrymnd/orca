@@ -358,28 +358,72 @@ if (!function_exists('woocommerce_template_loop_product_thumbnail')) {
 }
 function product_related_courses()
 {
-    $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
-    if ($_related_course) {
-        $_related_course = array_reverse($_related_course);
-    ?>
 
+    $product = wc_get_product(get_the_ID());
+
+    if ($product->get_type() == 'variable') {
+        $_related_course_var = [];
+        foreach ($product->get_children() as $var) {
+            $_related_course_v = get_post_meta($var, '_related_course', true);
+            if ($_related_course_v) {
+                $_related_course_var = array_merge($_related_course_var, $_related_course_v);
+            }
+        }
+        $_related_course = array_unique($_related_course_var);
+    } else {
+        $_related_course = get_post_meta(get_the_ID(), '_related_course', true);
+    }
+
+    $online_courses_included = carbon_get_the_post_meta('online_courses_included');
+
+
+
+    if ($_related_course || $online_courses_included) {
+
+    ?>
         <div class="related-courses my-4">
             <h3> Course Included</h3>
-            <?php foreach ($_related_course as $course) { ?>
-                <div class="course-item">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-sm-3">
-                            <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
-                        </div>
-                        <div class="col-sm-9">
-                            <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
-                            <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
-                            <div class="mt-3">
-                                <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+            <?php
+            if ($_related_course) {
+                $_related_course = array_reverse($_related_course);
+            ?>
+                <?php foreach ($_related_course as $course) { ?>
+                    <div class="course-item">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-sm-3">
+                                <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                            </div>
+                            <div class="col-sm-9">
+                                <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                                <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                                <div class="mt-3">
+                                    <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
+            <?php } ?>
+            <?php if ($online_courses_included && has_term(array('bundles'), 'product_cat', get_the_ID())) { ?>
+                <?php foreach ($online_courses_included as $online_course) { ?>
+                    <?php
+                    $course = $online_course['id'];
+                    ?>
+                    <div class="course-item">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-sm-3">
+                                <?= do_shortcode('[_learndash_image learndash_status_bubble="true" id="' . $course . '" image_id="' . get_post_thumbnail_id($course) . '" size="medium"]') ?>
+                            </div>
+                            <div class="col-sm-9">
+                                <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
+                                <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
+                                <div class="mt-3">
+                                    <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             <?php } ?>
         </div>
         <div class="important-note mt-4 mb-4">
@@ -475,7 +519,7 @@ function bbloomer_check_order_product_id($order_id, $product_id)
     $items = $order->get_items();
     foreach ($items as $item_id => $item) {
         $this_product_id = $item->get_product_id();
-        if ($this_product_id === $product_id) {
+        if ($this_product_id == $product_id) {
             return $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();;
         }
     }
@@ -484,28 +528,43 @@ function bbloomer_check_order_product_id($order_id, $product_id)
 
 
 add_action('woocommerce_thankyou', function ($order_id) {
-    $product_ids = array(3255, 3241);
-    $in_cart = '';
-    foreach ($product_ids as $product_id) {
-        $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id);
-        if ($product_is_in_order) {
-            $in_cart .= 'true';
-            $id = $product_is_in_order;
-            $parent = $product_id;
-        } else {
-            $in_cart .= 'false';
+
+    $email_sent = get_post_meta($order_id, 'email_sent', true);
+    if (!$email_sent) {
+        $coursecustomemails = get_posts(array(
+            'post_type' => 'coursecustomemails',
+            'numberposts' => -1,
+        ));
+
+        foreach ($coursecustomemails as $coursecustomemail) {
+            $product_ids = carbon_get_post_meta($coursecustomemail->ID, 'products');
+
+            $in_cart = '';
+            foreach ($product_ids as $product_id) {
+                $product_is_in_order = bbloomer_check_order_product_id($order_id, $product_id['id']);
+                if ($product_is_in_order) {
+                    $in_cart .= 'true';
+                    $id = $product_is_in_order;
+                    $parent = $product_id['id'];
+                } else {
+                    $in_cart .= 'false';
+                }
+            }
+            if (str_contains($in_cart, 'true')) {
+                $order = wc_get_order($order_id);
+                $to_email = $order->get_billing_email();
+                $title = str_replace(get_the_title($parent), '', get_the_title($id));
+                $subject = 'ORCA training course booking';
+
+                $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
+                $content = $coursecustomemail->post_content;
+                $content = str_replace('[title]', $title, $content);
+
+                wp_mail($to_email, $subject, $content, $headers);
+
+                update_post_meta($order_id, 'email_sent', true);
+            }
         }
-    }
-    if (str_contains($in_cart, 'true')) {
-        $order = wc_get_order($order_id);
-        $to_email = $order->get_billing_email();
-        $title = str_replace(get_the_title($parent), '', get_the_title($id));
-        $subject = 'ORCA training course booking';
-
-        $headers = 'From: ORCA <website@orca.org.uk>' . "\r\n";
-        $content = '<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>ORCA</title><style type="text/css">@media screen and (max-width:600px){#header_wrapper{padding:27px 36px!important;font-size:24px}#body_content_inner{font-size:10px!important}}</style><style id="chromane_style">body.chromane_rec_nofollow_link_highlighting_enabled a[rel*=nofollow]{margin-right:8px;margin-left:8px;outline:2px dotted #000!important;outline-offset:2px!important}body.chromane_rec_sponsored_link_highlighting_enabled a[rel*=sponsored]{margin-right:8px;margin-left:8px;outline:2px dotted #000!important;outline-color:#000;outline-offset:2px!important}body.chromane_rec_ugc_link_highlighting_enabled a[rel*=ugc]{margin-right:8px;margin-left:8px;outline:2px dotted #000!important;outline-offset:2px!important}</style></head><body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color:#f7f7f7;padding:0;text-align:center" bgcolor="#f7f7f7" class=""><table width="100%" id="outer_wrapper" style="background-color:#f7f7f7" bgcolor="#f7f7f7"><tbody><tr><td></td><td width="600"><div id="wrapper" dir="ltr" style="margin:0 auto;padding:70px 0;width:100%;max-width:600px;-webkit-text-size-adjust:none" width="100%"><table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%"><tbody><tr><td align="center" valign="top"><div id="template_header_image"><p style="margin-top:0"><img src="https://learn.orca.org.uk/staging/wp-content/uploads/2024/04/orca-logo.png" alt="ORCA" style="border:none;display:inline-block;font-size:14px;font-weight:700;height:auto;outline:0;text-decoration:none;text-transform:capitalize;vertical-align:middle;max-width:100%;margin-left:0;margin-right:0" border="0"></p></div><table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" style="background-color:#fff;border:1px solid #dedede;box-shadow:0 1px 4px rgba(0,0,0,.1);border-radius:3px" bgcolor="#fff"><tbody><tr><td align="center" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" style="background-color:#2a6ebb;color:#fff;border-bottom:0;font-weight:700;line-height:100%;vertical-align:middle;font-family:&quot" bgcolor="#2a6ebb"><tbody><tr><td id="header_wrapper" style="padding:36px 48px;display:block"><h1 style="color:#fff;font-family:&quot;font-weight:300;line-height:150%;margin:0;text-align:left;text-shadow:0 1px 0 #558bc9;color:#fff;background-color:inherit" bgcolor="inherit"><span style="color:#fff">Thank you for your order</span></h1></td></tr></tbody></table></td></tr><tr><td align="center" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_body"><tbody><tr><td valign="top" id="body_content" style="background-color:#fff" bgcolor="#fff"><table border="0" cellpadding="20" cellspacing="0" width="100%"><tbody><tr><td valign="top" style="padding:48px 48px 32px"><div id="body_content_inner" style="color:#636363;font-family:&quot;line-height:150%;text-align:left" align="left"><p>Good morning,</p><p>Thank you for your ORCA training course booking. We have received your course booking and we look forward to welcoming you on an ORCA course soon.</p><p>As a small charity, by just booking onto our courses, you are ensuring that we can continue to tackle the issues threatening whales, dolphins and porpoises through our vital scientific research and public engagement work.</p><p>Further information about the Marine Mammal Surveyor Course you have booked can be found below: Marine Mammal Surveyor Course - online on ' . $title . ':</p><p>About two weeks prior to the course, we will be sending you more information about how to attend the live online course (which will be conducted on Zoom).</p><p>If you have any other questions, please have a look at our <a href="https://cdn2.assets-servd.host/orca-web/production/education/MMS_FAQ_s_2024.pdf?dm=1708947623">MMS FAQs</a>, and if your question is not answered there, please do not hesitate to contact us. We look forward to ‘seeing’ you later in 2024.</p><p>Many thanks for your support.</p><p>Best wishes,</p><p>The ORCA Team</p></div></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td align="center" valign="top"><table border="0" cellpadding="10" cellspacing="0" width="100%" id="template_footer"><tbody><tr><td valign="top" style="padding:0;border-radius:6px"><table border="0" cellpadding="10" cellspacing="0" width="100%"><tbody><tr><td colspan="2" valign="middle" id="credit" style="border-radius:6px;border:0;color:#8a8a8a;font-family:&quot;line-height:150%;text-align:center;padding:24px 0" align="center"><p style="margin:0 0 16px">ORCA | Looking out for whales and dolphins | <a href="https://www.orca.org.uk/">www.orca.org.uk</a></p></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></div></td><td></td></tr></tbody></table></body></html>';
-
-        wp_mail($to_email, $subject, $content, $headers);
     }
 });
 

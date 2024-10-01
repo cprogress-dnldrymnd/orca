@@ -59,10 +59,45 @@ Container::make('post_meta', 'Course Settings')
         )
     );
 
-    Container::make('post_meta', 'Course Settings')
+Container::make('post_meta', 'Course Settings')
     ->where('post_type', '=', 'product')
     ->add_fields(array(
-            Field::make('text', 'ld_price_type', __('Price Type'))->set_default_value('paynow')
+        Field::make('text', 'ld_price_type', __('Price Type'))->set_default_value('paynow')
             ->set_attribute('readOnly', 'true'),
-        
+        Field::make('association', 'online_courses_included', __('Online Courses Included'))
+            ->set_types(array(
+                array(
+                    'type'      => 'post',
+                    'post_type' => 'product',
+                )
+            ))
+    ));
+
+add_filter('carbon_fields_association_field_options_online_courses_included_post_product', function ($query_arguments) {
+
+    $tax_query[] = array(
+        'taxonomy' => 'product_cat',
+        'field'    => 'slug',
+        'terms'    => array('online-courses')
+    );
+
+    $query_arguments['tax_query'] = $tax_query;
+    $query_arguments['post_status'] = array('publish', 'private');
+
+    return $query_arguments;
+});
+
+
+
+
+Container::make('post_meta', 'Email Settings')
+    ->where('post_type', '=', 'coursecustomemails')
+    ->add_fields(array(
+        Field::make('association', 'products', __('Products'))
+            ->set_types(array(
+                array(
+                    'type'      => 'post',
+                    'post_type' => 'product',
+                )
+            ))
     ));

@@ -128,3 +128,20 @@ section.single-product {
     padding-top: 3rem;
     margin-top: 3rem;
 }
+
+.woocommerce.woocommerce.woocommerce div.product {
+    div.images {
+        @include responsive(xs-sm) {
+            width: 100%;
+        }
+        .woocommerce-product-gallery__wrapper {
+            position: sticky;
+            top: 50px;
+        }
+    }
+    .summary {
+        @include responsive(xs-sm) {
+            width: 100%;
+        }
+    }
+}
