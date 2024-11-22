@@ -381,7 +381,8 @@ function _learndash_image($atts)
         $terms = get_the_terms($$id, 'product_tag');
         if ($terms) {
             foreach ($terms as $term) {
-                $html .= '<div class="ld-status ld-status-complete ld-secondary-background">' . $term->name . '</div>';
+                $tag_bg_color = carbon_get_term_meta($term->term_id, 'tag_bg_color');
+                $html .= '<div class="ld-status ld-status-complete ld-secondary-background" style="--bg-color: ' . $tag_bg_color . '">' . $term->name . '</div>';
             }
         }
     }
