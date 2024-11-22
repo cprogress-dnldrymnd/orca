@@ -370,13 +370,19 @@ function _learndash_image($atts)
     }
 
     if ($post_type == 'product') {
-
         if (has_term(array('bundles'), 'product_cat', $id)) {
             $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Bundle</div>';
         } else if (has_term(array('online-courses'), 'product_cat', $id)) {
             $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Live, Online course</div>';
         } else if (has_term(array('wps_wgm_giftcard'), 'product_cat', $id)) {
             $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Gift Card</div>';
+        }
+
+        $terms = get_the_terms($$id, 'product_tag');
+        if ($terms) {
+            foreach ($terms as $term) {
+                $html .= '<div class="ld-status ld-status-complete ld-secondary-background">' . $term->name . '</div>';
+            }
         }
     }
 
