@@ -405,7 +405,7 @@ body.ld-in-focus-mode.admin-bar {
                 border-color: var(--accent-color);
                 color: var(--accent-color);
             }
-          
+
             svg {
                 width: 20px;
                 height: 20px;
@@ -416,7 +416,7 @@ body.ld-in-focus-mode.admin-bar {
             font-size: 80px;
         }
     }
-   
+
     .col-button {
         a {
             @include responsive(xs-sm) {
@@ -431,4 +431,7 @@ body.ld-in-focus-mode.admin-bar {
     }
 }
 
-
+.ld-status-custom-color.ld-status-custom-color.ld-status-custom-color.ld-status-custom-color {
+    background-color: var(--bg-color, var(--green-color));
+    color: var(--text-color);
+}

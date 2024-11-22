@@ -220,7 +220,15 @@ function _post_taxonomy_terms($atts)
         $html = "<div class='taxonomy-terms d-flex'>";
 
         foreach ($terms as $term) {
-            $html .= '<a href="' . get_term_link($term->term_id) . '">';
+            $tag_bg_color = carbon_get_term_meta($term->term_id, 'tag_bg_color');
+            $tag_text_color = carbon_get_term_meta($term->term_id, 'tag_text_color');
+            if ($tag_bg_color) {
+                $bg_color = "--bg-color: $tag_bg_color;";
+            }
+            if ($tag_text_color) {
+                $text_color = "--text-color: $tag_text_color;";
+            }
+            $html .= '<a style="' . $bg_color . $text_color . '" href="' . get_term_link($term->term_id) . '">';
             $html .= $term->name;
             $html .= '</a>';
         }

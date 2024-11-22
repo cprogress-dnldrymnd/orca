@@ -84,12 +84,12 @@ img {
     @include button-style;
     @include button-black;
 }
-.taxonomy-terms {
+.taxonomy-terms.taxonomy-terms.taxonomy-terms {
     a {
         @include status-style;
-        background-color: var(--accent-color);
         text-decoration: none;
-        color: var(--white-color) !important;
+        background-color: var(--bg-color, var(--accent-color)) !important;
+        color: var(--text-color, --white-color) !important;
         @include not-last-child {
             margin-right: 10px;
         }

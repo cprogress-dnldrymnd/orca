@@ -11169,25 +11169,25 @@ img {
     background-color: var(--white-color);
     color: var(--black-color); }
 
-.taxonomy-terms a {
+.taxonomy-terms.taxonomy-terms.taxonomy-terms a {
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 15px;
   font-weight: bold;
   line-height: 1;
   display: inline-block;
-  background-color: var(--accent-color);
   text-decoration: none;
-  color: var(--white-color) !important; }
+  background-color: var(--bg-color, var(--accent-color)) !important;
+  color: var(--text-color, --white-color) !important; }
   @media screen and (max-width: 575px) {
-    .taxonomy-terms a {
+    .taxonomy-terms.taxonomy-terms.taxonomy-terms a {
       font-size: 13px;
       font-size: 13px;
       padding: 10px; } }
-  .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
+  .taxonomy-terms.taxonomy-terms.taxonomy-terms a:hover, .taxonomy-terms.taxonomy-terms.taxonomy-terms a:active, .taxonomy-terms.taxonomy-terms.taxonomy-terms a:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
-  .taxonomy-terms a:not(:last-child) {
+  .taxonomy-terms.taxonomy-terms.taxonomy-terms a:not(:last-child) {
     margin-right: 10px; }
 
 .swiper-button {
@@ -11897,6 +11897,10 @@ body.ld-in-focus-mode.admin-bar div[data-elementor-type="header"] {
 
 .learndash-wrapper .ld-profile-card.ld-profile-card.ld-profile-card {
   display: none; }
+
+.ld-status-custom-color.ld-status-custom-color.ld-status-custom-color.ld-status-custom-color {
+  background-color: var(--bg-color, var(--green-color));
+  color: var(--text-color); }
 
 input[type="text"],
 input[type="number"],
