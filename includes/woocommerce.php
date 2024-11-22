@@ -579,7 +579,7 @@ add_filter('wp_mail_content_type', 'wpse27856_set_content_type');
 
 
 
-add_action('init', 'add_custom_taxonomy_to_post_type');
+add_action('init', 'add_custom_taxonomy_to_post_type',9999);
 
 function add_custom_taxonomy_to_post_type()
 {
