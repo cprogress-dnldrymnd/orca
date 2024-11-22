@@ -105,7 +105,7 @@ Container::make('post_meta', 'Email Settings')
 
 
 Container::make('term_meta', __('Category Properties'))
-    ->where('term_taxonomy', '=', 'product_cat')
+    ->where('term_taxonomy', '=', 'ld_course_category')
     ->add_fields(array(
         Field::make('color', 'tag_bg_color', __('Tag BG Color')),
         Field::make('color', 'tag_text_color', __('Tag Text Color')),

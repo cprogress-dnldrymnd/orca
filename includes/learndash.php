@@ -378,7 +378,7 @@ function _learndash_image($atts)
             $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Gift Card</div>';
         }
 
-        $terms = get_the_terms($$id, 'product_tag');
+        $terms = get_the_terms($$id, 'ld_course_category');
         if ($terms) {
             foreach ($terms as $term) {
                 $tag_bg_color = carbon_get_term_meta($term->term_id, 'tag_bg_color');
