@@ -226,7 +226,7 @@ function _post_taxonomy_terms($atts)
                 $bg_color = "--bg-color: $tag_bg_color;";
             }
             if ($tag_text_color) {
-                $text_color = "--text-color: $tag_bg_color;";
+                $text_color = "--text-color: $tag_text_color;";
             }
             $html .= '<a style="' . $bg_color . $text_color . '" href="' . get_term_link($term->term_id) . '">';
             $html .= $term->name;
