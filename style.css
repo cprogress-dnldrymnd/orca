@@ -11169,7 +11169,7 @@ img {
     background-color: var(--white-color);
     color: var(--black-color); }
 
-.taxonomy-terms a {
+.taxonomy-terms.taxonomy-terms.taxonomy-terms a {
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 15px;
@@ -11178,16 +11178,16 @@ img {
   display: inline-block;
   text-decoration: none;
   background-color: var(--bg-color, var(--accent-color)) !important;
-  color: var(--text-color); }
+  color: var(--text-color) !important; }
   @media screen and (max-width: 575px) {
-    .taxonomy-terms a {
+    .taxonomy-terms.taxonomy-terms.taxonomy-terms a {
       font-size: 13px;
       font-size: 13px;
       padding: 10px; } }
-  .taxonomy-terms a:hover, .taxonomy-terms a:active, .taxonomy-terms a:focus {
+  .taxonomy-terms.taxonomy-terms.taxonomy-terms a:hover, .taxonomy-terms.taxonomy-terms.taxonomy-terms a:active, .taxonomy-terms.taxonomy-terms.taxonomy-terms a:focus {
     background-color: var(--primary-color);
     color: var(--accent-color); }
-  .taxonomy-terms a:not(:last-child) {
+  .taxonomy-terms.taxonomy-terms.taxonomy-terms a:not(:last-child) {
     margin-right: 10px; }
 
 .swiper-button {
