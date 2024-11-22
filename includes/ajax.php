@@ -7,7 +7,7 @@ function archive_ajax()
 	$taxonomy = $_POST['taxonomy'];
 	$post_type = $_POST['post_type'];
 	$offset = $_POST['offset'];
-	$include_product = $_POST['include_product'];
+	$include_product = 'yes';
 	//$sortby = $_POST['sortby'];
 	$posts_per_page = 12;
 
