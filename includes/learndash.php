@@ -378,14 +378,6 @@ function _learndash_image($atts)
             $html .= '<div class="ld-status ld-status-complete ld-secondary-background">Gift Card</div>';
         }
 
-        $terms = get_the_terms($$id, 'ld_course_category');
-        if ($terms) {
-            foreach ($terms as $term) {
-                $tag_bg_color = carbon_get_term_meta($term->term_id, 'tag_bg_color');
-                $tag_text_color = carbon_get_term_meta($term->term_id, 'tag_text_color');
-                $html .= '<div class="ld-status ld-status-custom-color ld-status-complete ld-secondary-background" style="--bg-color: ' . $tag_bg_color . '; --text-color: ' . $tag_text_color . '">' . $term->name . '</div>';
-            }
-        }
     }
 
     if ($taxonomy) {

@@ -11176,9 +11176,9 @@ img {
   font-weight: bold;
   line-height: 1;
   display: inline-block;
-  background-color: var(--accent-color);
   text-decoration: none;
-  color: var(--white-color) !important; }
+  background-color: var(--bg-color, var(--accent-color)) !important;
+  color: var(--text-color); }
   @media screen and (max-width: 575px) {
     .taxonomy-terms a {
       font-size: 13px;
