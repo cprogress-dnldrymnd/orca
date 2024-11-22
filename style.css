@@ -11178,7 +11178,7 @@ img {
   display: inline-block;
   text-decoration: none;
   background-color: var(--bg-color, var(--accent-color)) !important;
-  color: var(--text-color) !important; }
+  color: var(--text-color, --white-color) !important; }
   @media screen and (max-width: 575px) {
     .taxonomy-terms.taxonomy-terms.taxonomy-terms a {
       font-size: 13px;
