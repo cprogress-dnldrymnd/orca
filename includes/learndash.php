@@ -382,7 +382,7 @@ function _learndash_image($atts)
         if ($terms) {
             foreach ($terms as $term) {
                 $tag_bg_color = carbon_get_term_meta($term->term_id, 'tag_bg_color');
-                $html .= '<div class="ld-status ld-status-complete ld-secondary-background" style="--bg-color: ' . $tag_bg_color . '">' . $term->name . '</div>';
+                $html .= '<div class="ld-status ld-status-custom-color ld-status-complete ld-secondary-background" style="--bg-color: ' . $tag_bg_color . '">' . $term->name . '</div>';
             }
         }
     }
