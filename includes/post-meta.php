@@ -101,3 +101,11 @@ Container::make('post_meta', 'Email Settings')
                 )
             ))
     ));
+
+
+
+Container::make('term_meta', __('Category Properties'))
+    ->where('term_taxonomy', '=', 'product_tag')
+    ->add_fields(array(
+        Field::make('color', 'tag_bg_color', __('Tag BG Color')),
+    ));
