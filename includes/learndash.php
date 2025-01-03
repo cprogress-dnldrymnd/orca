@@ -829,14 +829,24 @@ function _course_access()
 }
 
 
-add_action( 'learndash_content_access', 'check_lesson_completion', 10, 3 );
+You're absolutely right! I apologize for the error in the previous code snippet. The learndash_content_access action hook actually passes four arguments to the callback function, not three.
 
-function check_lesson_completion( $return, $user_id, $course_id ) {
+Here's the corrected version:
+
+PHP
+
+add_action( 'learndash_content_access', 'check_lesson_completion', 10, 4 );
+
+function check_lesson_completion( $return, $user_id, $content_id, $post ) {
   // Get the current post ID
-  $post_id = get_the_ID();
+  $post_id = $post->ID;
 
   // Check if the current post is a quiz
   if ( learndash_get_post_type_slug( 'quiz' ) === get_post_type( $post_id ) ) {
+
+    // Get the course ID for this quiz
+    $course_id = learndash_get_course_id( $post_id );
+
     // Get all lessons in the course
     $lessons = learndash_get_course_lessons_list( $course_id );
 
