@@ -827,3 +827,28 @@ function _course_access()
         //carbon_set_post_meta(get_the_ID(), 'users_completed_the_course', $users_completed_the_course);
     }
 }
+
+
+add_action( 'learndash_content_access', 'check_lesson_completion', 10, 3 );
+
+function check_lesson_completion( $return, $user_id, $course_id ) {
+  // Get the current post ID
+  $post_id = get_the_ID();
+
+  // Check if the current post is a quiz
+  if ( learndash_get_post_type_slug( 'quiz' ) === get_post_type( $post_id ) ) {
+    // Get all lessons in the course
+    $lessons = learndash_get_course_lessons_list( $course_id );
+
+    // Check if all lessons are completed
+    foreach ( $lessons as $lesson ) {
+      if ( ! learndash_is_lesson_complete( $user_id, $lesson['post']->ID ) ) {
+        // If any lesson is not complete, restrict access
+        $return = false;
+        break;
+      }
+    }
+  }
+
+  return $return;
+}
