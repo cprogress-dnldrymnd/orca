@@ -829,11 +829,7 @@ function _course_access()
 }
 
 
-You're absolutely right! I apologize for the error in the previous code snippet. The learndash_content_access action hook actually passes four arguments to the callback function, not three.
 
-Here's the corrected version:
-
-PHP
 
 add_action( 'learndash_content_access', 'check_lesson_completion', 10, 4 );
 
