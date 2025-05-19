@@ -51,7 +51,6 @@ function action_woocommerce_new_order($order_id)
     $country  = $order->get_billing_country();
     $items = $order->get_items();
 
-
     $address = [
         "address_line_one" => $address_1,
         "address_line_two" => $address_2,
@@ -78,7 +77,6 @@ function action_woocommerce_new_order($order_id)
         ],
     ];
     $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
-
 
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
