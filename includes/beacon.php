@@ -118,14 +118,6 @@ function action_woocommerce_new_order($order_id)
 
             ];
 
-            // Update post 37
-            $my_post = array(
-                'ID'           => $product,
-                'post_content' => $body_create_training
-            );
-
-            // Update the post into the database
-            wp_update_post($my_post);
             beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
         }
     }
