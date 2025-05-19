@@ -42,18 +42,8 @@ function action_woocommerce_new_order($order_id)
     $state  = $order->get_billing_state();
     $postcode  = $order->get_billing_postcode();
     $country  = $order->get_billing_country();
-    $product_ids = array(); // Initialize an empty array to store product IDs.
-    // Get the order items.  This gets each line item in the order.
     $items = $order->get_items();
 
-    // Iterate through each item in the order.
-    foreach ($items as $item) {
-        // Get the product ID from the item.
-        $product_id = $item->get_product_id();
-
-        // Add the product ID to the array.
-        $product_ids[] = $product_id;
-    }
 
     $address = [
         "address_line_one" => $address_1,
@@ -83,10 +73,12 @@ function action_woocommerce_new_order($order_id)
     $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
 
 
-    foreach ($product_ids as $product) {
-        $c_name = get_the_title($product) . " [Order ID $order_id]";
-        $c_course = get__post_meta_by_id($product, 'beacon_id');
-        $c_course_type = get__post_meta_by_id($product, 'course_type');
+    foreach ($items as $item) {
+        $product_id = $item->get_product_id();
+        $c_name = get_the_title($product_id) . " [Order ID $order_id]";
+        $c_course = get__post_meta_by_id($product_id, 'beacon_id');
+        $c_course_type = get__post_meta_by_id($product_id, 'course_type');
+        
         if ($c_course && $c_course_type) {
 
             $body_create_training = [
