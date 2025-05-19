@@ -4,9 +4,13 @@ function beacon_api_function($api_url, $body, $method = 'PUT')
 
     $encoded_body = json_encode($body);
 
+    $headers = array(
+        'Content-Type' => 'application/json', // It's good practice to specify the content type
+        'Beacon-Application' => 'OrcaTheme/1.0' // Replace with your plugin/theme name and version
+    );
     $response = wp_remote_get($api_url, array(
         'body' => $encoded_body,
-        'headers' =>    beacon_headers(),
+        'headers' =>   $headers,
         'method' => $method
     ));
 
