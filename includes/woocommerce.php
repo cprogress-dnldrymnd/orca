@@ -670,4 +670,4 @@ function custom_action_after_order_created($order_id)
     $training = create_beacon_data($body_training, 'c_training/upsert');
 }
 add_action('woocommerce_thankyou', 'custom_action_after_order_created', 10, 1);
-/*
+*/
