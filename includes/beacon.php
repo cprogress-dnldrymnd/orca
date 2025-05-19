@@ -73,7 +73,8 @@ function action_woocommerce_new_order($order_id)
                 "prefix" => null,
             ],
             'type' => ['Member'],
-            "address" => [$address]
+            "address" => [$address],
+            "notes" => 'Updated via woocommerce checkout'
         ],
     ];
     $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
