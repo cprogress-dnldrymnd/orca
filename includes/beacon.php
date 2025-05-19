@@ -3,8 +3,10 @@ function beacon_api_function($api_url, $body, $method = 'PUT')
 {
 
     $encoded_body = json_encode($body);
+
     $response = wp_remote_get($api_url, array(
         'body' => $encoded_body,
+        'headers' =>    beacon_headers(),
         'method' => 'PUT'
     ));
 
