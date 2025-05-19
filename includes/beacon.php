@@ -6,7 +6,7 @@ function beacon_api_function($api_url, $body, $method = 'PUT')
 
     $response = wp_remote_get($api_url, array(
         'body' => $encoded_body,
-        'headers' =>    beacon_headersx(),
+        'headers' =>    beacon_headers(),
         'method' => $method
     ));
 
