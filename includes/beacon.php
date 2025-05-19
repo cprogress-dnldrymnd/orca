@@ -34,9 +34,9 @@ function beacon_api_function($api_url, $body, $method = 'PUT')
     }
 }
 
-add_action('woocommerce_new_order', 'action_woocommerce_new_order', 10, 1);
+add_action('woocommerce_thankyou', 'action_woocommerce_thankyou', 10, 1);
 
-function action_woocommerce_new_order($order_id)
+function action_woocommerce_thankyou($order_id)
 {
     $order = wc_get_order($order_id);
     $first_name = $order->get_billing_first_name();
