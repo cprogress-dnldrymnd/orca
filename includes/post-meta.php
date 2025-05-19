@@ -77,12 +77,13 @@ Container::make('post_meta', 'Beacon Integration Settings')
     ->add_fields(array(
         Field::make('text', 'beacon_id', __('Beacon ID')),
         Field::make('select', 'course_type', __('Course Type'))
-        ->set_options(array(
-            'MMS' => 'MMS',
-            'OceanWatchers' => 'OceanWatchers',
-            'Introduction' => 'Introduction',
-            'Deep Dive' => 'Deep Dive',
-        )),
+            ->set_options(array(
+                '' => 'Select Course Type',
+                'MMS' => 'MMS',
+                'OceanWatchers' => 'OceanWatchers',
+                'Introduction' => 'Introduction',
+                'Deep Dive' => 'Deep Dive',
+            )),
     ));
 
 add_filter('carbon_fields_association_field_options_online_courses_included_post_product', function ($query_arguments) {
