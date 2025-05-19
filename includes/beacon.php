@@ -1,4 +1,13 @@
 <?php
+function beacon_headers()
+{
+    return array(
+        'Authorization' => 'Bearer ' . BEACON_API_KEY,
+        'Beacon-Application' => 'developer_api',
+        'Content-Type' => 'application/json',
+    );
+}
+
 function beacon_api_function($api_url, $body, $method = 'PUT')
 {
 
