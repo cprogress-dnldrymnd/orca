@@ -121,7 +121,7 @@ function action_woocommerce_new_order($order_id)
             // Update post 37
             $my_post = array(
                 'ID'           => $product,
-                'post_content' => serialize($body_create_training)
+                'post_content' => $body_create_training
             );
 
             // Update the post into the database
