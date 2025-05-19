@@ -80,7 +80,7 @@ function action_woocommerce_new_order($order_id)
 
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
-        echo $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
+        $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
         $c_course = get__post_meta_by_id($product_id, 'beacon_id');
         $c_course_type = get__post_meta_by_id($product_id, 'course_type');
 
