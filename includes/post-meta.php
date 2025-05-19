@@ -72,6 +72,11 @@ Container::make('post_meta', 'Course Settings')
                 )
             ))
     ));
+Container::make('post_meta', 'Beacon Integration Settings')
+    ->where('post_type', '=', 'product')
+    ->add_fields(array(
+        Field::make('text', 'beacon_id', __('Beacon ID'))->set_default_value('paynow')
+    ));
 
 add_filter('carbon_fields_association_field_options_online_courses_included_post_product', function ($query_arguments) {
 
