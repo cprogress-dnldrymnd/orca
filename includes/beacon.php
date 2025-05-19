@@ -25,37 +25,7 @@ function beacon_api_function($api_url, $body, $method = 'PUT')
 }
 
 
-function get_product_ids_from_order($order_id)
-{
-    // Check if WooCommerce is active.
-    if (! function_exists('wc_get_order')) {
-        return array(); // Return empty array if WooCommerce is not active.
-    }
 
-    // Get the order object.
-    $order = wc_get_order($order_id);
-
-    // Check if the order object is valid.
-    if (! $order) {
-        return array(); // Return empty array if order is not found or invalid.
-    }
-
-    $product_ids = array(); // Initialize an empty array to store product IDs.
-
-    // Get the order items.  This gets each line item in the order.
-    $items = $order->get_items();
-
-    // Iterate through each item in the order.
-    foreach ($items as $item) {
-        // Get the product ID from the item.
-        $product_id = $item->get_product_id();
-
-        // Add the product ID to the array.
-        $product_ids[] = $product_id;
-    }
-
-    return $product_ids; // Return the array of product IDs.
-}
 
 add_action('woocommerce_new_order', 'action_woocommerce_new_order', 10, 1);
 
@@ -72,7 +42,19 @@ function action_woocommerce_new_order($order_id)
     $state  = $order->get_billing_state();
     $postcode  = $order->get_billing_postcode();
     $country  = $order->get_billing_country();
-    $product_ids = get_product_ids_from_order($order_id);
+    $product_ids = array(); // Initialize an empty array to store product IDs.
+    // Get the order items.  This gets each line item in the order.
+    $items = $order->get_items();
+
+    // Iterate through each item in the order.
+    foreach ($items as $item) {
+        // Get the product ID from the item.
+        $product_id = $item->get_product_id();
+
+        // Add the product ID to the array.
+        $product_ids[] = $product_id;
+    }
+
     $address = [
         "address_line_one" => $address_1,
         "address_line_two" => $address_2,
