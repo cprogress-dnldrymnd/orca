@@ -83,7 +83,7 @@ function action_woocommerce_new_order($order_id)
                     "c_name" => $c_name,
                     "c_person" => array(intval($c_person)),
                     "c_course" => array(intval($c_course)),
-                    "c_course_type" => [$c_course_type]
+                    "c_course_type" => ['Introduction']
                 ]
 
             ];
