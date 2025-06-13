@@ -50,6 +50,14 @@ function action_woocommerce_thankyou($order_id)
     $postcode  = $order->get_billing_postcode();
     $country  = $order->get_billing_country();
     $items = $order->get_items();
+    $method = $order->get_payment_method();
+    $payment_date = $order->get_date_paid()->format('Y-m-d');
+    $type = 'Course fees';
+    if ($method == 'stripe_cc') {
+        $payment_method = 'Card';
+    } else {
+        $payment_method = 'Cash';
+    }
 
     $address = [
         "address_line_one" => $address_1,
@@ -84,21 +92,32 @@ function action_woocommerce_thankyou($order_id)
         $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
         $c_course = get__post_meta_by_id($product_id, 'beacon_id');
         $c_course_type = get__post_meta_by_id($product_id, 'course_type');
-
+        $price = $item->get_total();
         if ($c_course && $c_course_type) {
-
             $body_create_training = [
                 "primary_field_key" => "c_name",
                 "entity" => [
                     "c_name" => $c_name,
-                    "c_person" => array(intval($c_person)),
-                    "c_course" => array(intval($c_course)),
-                    "c_course_type" => array($c_course_type)
+                    "c_person" => [intval($c_person)],
+                    "c_course" => [intval($c_course)],
+                    "c_course_type" => [$c_course_type]
                 ]
 
             ];
+                   $body_create_payment = [
+                'amount' => [
+                    'value' => $price,
+                    'currency' => 'GBP',
+                ],
+                'type' => [$type],
+                'payment_method' => [$payment_method],
+                'payment_date' => [$payment_date],
+                'customer' => [intval($c_person)]
+            ];
 
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
+            //beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
+     
+            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment);
         }
     }
 }
