@@ -123,7 +123,7 @@ function action_woocommerce_thankyou($order_id)
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
-                    'external_id' => $order_id,
+                    'external_id' => $order_id . '_' . $product_id,
                 ]
             ];
 
