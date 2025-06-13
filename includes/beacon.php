@@ -131,4 +131,5 @@ function action_woocommerce_thankyou($order_id)
             }
         }
     }
+    update_post_meta($order_id, 'beacon_payment_created', true);
 }
