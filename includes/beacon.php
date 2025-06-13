@@ -94,6 +94,7 @@ function action_woocommerce_thankyou($order_id)
     ];
     $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
 
+
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
         $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
@@ -111,23 +112,31 @@ function action_woocommerce_thankyou($order_id)
                 ]
 
             ];
+
             $body_create_payment = [
-                'amount' => [
-                    'value' => $price,
-                    'currency' => 'GBP',
-                ],
-                'type' => [$type],
-                'payment_method' => [$payment_method],
-                'payment_date' => [$payment_date],
-                'customer' => [intval($c_person)],
-                'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
-                'external_id' => $external_id,
+                'primary_field_key' => $external_id,
+                'entity' => [
+                    'amount' => [
+                        'value' => $price,
+                        'currency' => 'GBP',
+                    ],
+                    'type' => [$type],
+                    'payment_method' => [$payment_method],
+                    'payment_date' => [$payment_date],
+                    'customer' => [intval($c_person)],
+                    'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
+                    'external_id' => $external_id,
+                ]
             ];
+
+            echo '<pre>';
+            var_dump($body_create_payment);
+            echo '</pre>';
 
             //beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
 
             if ($payment_date) {
-                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST');
+                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment);
             }
         }
     }
