@@ -52,6 +52,7 @@ function action_woocommerce_thankyou($order_id)
     $items = $order->get_items();
     $method = $order->get_payment_method();
     //$date_paid = $order->get_date_paid();
+    $external_id = $order->get_transaction_id();
     $date_paid = $order->get_date_created();
     if ($date_paid) {
         $payment_date = $date_paid->format('Y-m-d');
@@ -120,7 +121,7 @@ function action_woocommerce_thankyou($order_id)
                 'payment_date' => [$payment_date],
                 'customer' => [intval($c_person)],
                 'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
-                'external_id' => 'Order ID: ' . $order_id,
+                'external_id' => $external_id,
             ];
 
             //beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
