@@ -118,7 +118,9 @@ function action_woocommerce_thankyou($order_id)
                 'type' => [$type],
                 'payment_method' => [$payment_method],
                 'payment_date' => [$payment_date],
-                'customer' => [intval($c_person)]
+                'customer' => [intval($c_person)],
+                'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
+                'external_id' => $order_id,
             ];
 
             //beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
