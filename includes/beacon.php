@@ -125,6 +125,8 @@ function beacon_create_payment($order_id)
     $external_id = $order->get_transaction_id();
     if ($date_paid) {
         $payment_date = $date_paid->format('Y-m-d');
+    } else {
+        $payment_date = false;
     }
     $type = 'Course fees';
     if ($method == 'stripe_cc') {
