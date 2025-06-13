@@ -141,7 +141,7 @@ function action_woocommerce_thankyou($order_id)
     }
     update_post_meta($order_id, 'beacon_payment_created', true);
 }
-
+/*
 add_action('woocommerce_pre_payment_complete', 'action_woocommerce_pre_payment_complete');
 
 function action_woocommerce_pre_payment_complete($order_id)
@@ -168,3 +168,4 @@ function action_woocommerce_pre_payment_complete($order_id)
     // get the order data and do anything
 
 }
+*/
