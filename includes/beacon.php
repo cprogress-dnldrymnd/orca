@@ -112,7 +112,6 @@ function action_woocommerce_thankyou($order_id)
 
 function beacon_create_payment($order_id)
 {
-
     $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
