@@ -160,32 +160,11 @@ function beacon_create_payment($order_id)
         }
     }
 }
-/*
+
 add_action('woocommerce_pre_payment_complete', 'action_woocommerce_pre_payment_complete');
 
 
 function action_woocommerce_pre_payment_complete($order_id)
 {
-
-
-    $order = wc_get_order($order_id);
-    $items = $order->get_items();
-    $method = $order->get_payment_method();
-    $date_paid = $order->get_date_paid();
-    $external_id = $order->get_transaction_id();
-    if ($date_paid) {
-        $payment_date = $date_paid->format('Y-m-d');
-    }
-    $type = 'Course fees';
-    if ($method == 'stripe_cc') {
-        $payment_method = 'Card';
-    } else {
-        $payment_method = 'Cash';
-    }
-
-    $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
-
-    // get the order data and do anything
-
+   beacon_create_payment($order_id);
 }
-*/
