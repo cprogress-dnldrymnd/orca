@@ -124,7 +124,7 @@ function action_woocommerce_thankyou($order_id)
             //beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
 
             if ($payment_date) {
-                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment);
+                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST');
             }
         }
     }
