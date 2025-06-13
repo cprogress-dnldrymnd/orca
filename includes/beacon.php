@@ -51,7 +51,13 @@ function action_woocommerce_thankyou($order_id)
     $country  = $order->get_billing_country();
     $items = $order->get_items();
     $method = $order->get_payment_method();
-    $payment_date = $order->get_date_paid()->format('Y-m-d');
+    //$date_paid = $order->get_date_paid();
+    $date_paid = $order->get_date_created();
+    if ($date_paid) {
+        $payment_date = $date_paid->format('Y-m-d');
+    } else {
+        $payment_date = false;
+    }
     $type = 'Course fees';
     if ($method == 'stripe_cc') {
         $payment_method = 'Card';
@@ -104,7 +110,7 @@ function action_woocommerce_thankyou($order_id)
                 ]
 
             ];
-                   $body_create_payment = [
+            $body_create_payment = [
                 'amount' => [
                     'value' => $price,
                     'currency' => 'GBP',
@@ -116,8 +122,10 @@ function action_woocommerce_thankyou($order_id)
             ];
 
             //beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
-     
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment);
+
+            if ($payment_date) {
+                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment);
+            }
         }
     }
 }
