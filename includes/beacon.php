@@ -96,6 +96,7 @@ function action_woocommerce_thankyou($order_id)
             ],
         ];
         $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
+        update_user_meta($user_id, 'beacon_user_id', $c_person);
     } else {
         $c_person = $beacon_user_id;
     }
@@ -139,7 +140,6 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     update_post_meta($order_id, 'beacon_payment_created', true);
-    update_user_meta($user_id, 'beacon_user_id', $c_person);
 }
 
 add_action('woocommerce_pre_payment_complete', 'action_woocommerce_pre_payment_complete');
