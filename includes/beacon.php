@@ -1,4 +1,6 @@
 <?php
+define('BEACON_API_KEY', '865611a7dca14f72fea75c1c2dfcd51d44b8364f3e54e575f708d9c562d2397de1507738d5f3fe56');
+
 function beacon_headers()
 {
     return array(

@@ -8,7 +8,6 @@ define('theme_dir', get_template_directory_uri() . '/');
 define('assets_dir', theme_dir . 'assets/');
 define('image_dir', assets_dir . 'images/');
 define('vendor_dir', assets_dir . 'vendors/');
-define('BEACON_API_KEY', '865611a7dca14f72fea75c1c2dfcd51d44b8364f3e54e575f708d9c562d2397de1507738d5f3fe56');
 add_action('after_setup_theme', 'setup_woocommerce_support');
 
 function setup_woocommerce_support()
