@@ -79,7 +79,7 @@ function action_woocommerce_thankyou($order_id)
                     "middle" => null,
                     "prefix" => null,
                 ],
-                'type' => ['Member'],
+                'type' => ['Supporter'],
                 "address" => [$address],
                 "notes" => 'Updated via woocommerce checkout'
             ],
