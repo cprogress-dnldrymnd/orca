@@ -123,6 +123,7 @@ function beacon_create_payment($order_id)
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
     $c_person = get_user_meta($user_id, 'beacon_user_id', true);
+    echo $c_person;
 
     $items = $order->get_items();
     $method = $order->get_payment_method();
