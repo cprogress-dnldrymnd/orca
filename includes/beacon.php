@@ -134,7 +134,6 @@ function beacon_create_payment($order_id)
     } else {
         $payment_date = false;
     }
-    $type = 'Course fees';
     if ($method == 'stripe_cc') {
         $payment_method = 'Card';
     } else {
@@ -153,8 +152,8 @@ function beacon_create_payment($order_id)
                         'value' => $price,
                         'currency' => 'GBP',
                     ],
-                    'type' => [$type],
-                    'source' => 'Training Course',
+                    'type' => ['Course fees'],
+                    'source' => ['Training Course'],
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
