@@ -171,6 +171,7 @@ function beacon_create_payment($order_id)
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
     }
+    return;
 }
 
 add_action('woocommerce_pre_payment_complete', 'action_woocommerce_pre_payment_complete');
