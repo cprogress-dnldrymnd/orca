@@ -139,14 +139,6 @@ function beacon_create_payment($order_id)
     } else {
         $payment_method = 'Cash';
     }
-    if (current_user_can('administrator')) {
-        echo '<pre>';
-
-        echo $payment_date;
-        echo $beacon_payment_created;
-        echo $external_id;
-        echo '</pre>';
-    }
 
     if (!$beacon_payment_created) {
         if ($payment_date) {
