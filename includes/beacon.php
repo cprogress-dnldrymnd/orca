@@ -93,10 +93,10 @@ function action_woocommerce_thankyou($order_id)
     }
 
     foreach ($items as $item) {
-        echo $product_id = $item->get_product_id();
-        echo $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
-        echo $c_course = get__post_meta_by_id($product_id, 'beacon_id');
-        echo $c_course_type = get__post_meta_by_id($product_id, 'course_type');
+        $product_id = $item->get_product_id();
+        $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
+        $c_course = get__post_meta_by_id($product_id, 'beacon_id');
+        $c_course_type = get__post_meta_by_id($product_id, 'course_type');
         if ($c_course && $c_course_type) {
             $body_create_training = [
                 "primary_field_key" => "c_name",
@@ -109,6 +109,9 @@ function action_woocommerce_thankyou($order_id)
 
             ];
             beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
+            echo '<pre>';
+            var_dump($body_create_training);
+            echo '</pre>';
         }
     }
 
