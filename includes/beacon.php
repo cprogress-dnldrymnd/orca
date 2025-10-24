@@ -105,7 +105,6 @@ function action_woocommerce_thankyou($order_id)
                     "c_course_type" => [$c_course_type],
                     "c_previous_db_id" => $c_name
                 ]
-
             ];
             beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
         }
