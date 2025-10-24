@@ -108,7 +108,7 @@ function action_woocommerce_thankyou($order_id)
                 ]
 
             ];
-          beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
+            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
         }
     }
     echo '<pre>';
@@ -163,9 +163,7 @@ function beacon_create_payment($order_id)
             }
 
 
-            echo '<pre>';
-            var_dump(beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST'));
-            echo '</pre>';
+            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST');
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
     }
