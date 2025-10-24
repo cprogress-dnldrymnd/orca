@@ -126,7 +126,7 @@ function beacon_create_payment($order_id)
     $items = $order->get_items();
     $method = $order->get_payment_method();
     $date_paid = $order->get_date_paid();
-    //$date_paid = $order->get_date_created();
+    $date_paid = $order->get_date_created();
     $external_id = $order->get_transaction_id();
     if ($date_paid) {
         $payment_date = $date_paid->format('Y-m-d');
@@ -141,7 +141,6 @@ function beacon_create_payment($order_id)
     echo '<pre>';
     echo $date_paid;
     echo $beacon_payment_created;
-    echo var_dump($items);
     echo '</pre>';
 
     if (!$beacon_payment_created) {
