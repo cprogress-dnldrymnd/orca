@@ -111,7 +111,7 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     echo '<pre>';
-    var_dump(beacon_create_payment($order_id));
+    beacon_create_payment($order_id);
     echo '</pre>';
 }
 
@@ -163,6 +163,7 @@ function beacon_create_payment($order_id)
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                     'external_id' => $external_id,
                 ];
+                var_dump($body_create_payment);
             }
 
 
