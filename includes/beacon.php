@@ -147,7 +147,7 @@ function beacon_create_payment($order_id)
         echo '</pre>';
     }
 
-    if (!$beacon_payment_created) {
+    //if (!$beacon_payment_created) {
         if ($payment_date) {
             foreach ($items as $item) {
                 $product_id = $item->get_product_id();
@@ -175,7 +175,7 @@ function beacon_create_payment($order_id)
             var_dump(beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, 'POST'));
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
-    }
+   // }
     return ob_get_clean();
 }
 
