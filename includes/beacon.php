@@ -119,7 +119,6 @@ function beacon_create_payment($order_id)
 {
     ob_start();
 
-    update_post_meta($order_id, 'beacon_payment_created', false);
     $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
@@ -128,7 +127,7 @@ function beacon_create_payment($order_id)
     $items = $order->get_items();
     $method = $order->get_payment_method();
     $date_paid = $order->get_date_paid();
-    $date_paid = $order->get_date_created();
+    // $date_paid = $order->get_date_created();
     $external_id = $order->get_transaction_id();
     if ($date_paid) {
         $payment_date = $date_paid->format('Y-m-d');
