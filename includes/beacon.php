@@ -91,10 +91,12 @@ function action_woocommerce_thankyou($order_id)
         $c_person = $beacon_user_id;
     }
 
+    $c_course_array = [];
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
         $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
         $c_course = get__post_meta_by_id($product_id, 'beacon_id');
+        $c_course_array[] = $c_course;
         $c_course_type = get__post_meta_by_id($product_id, 'course_type');
         if ($c_course && $c_course_type) {
             $body_create_training = [
@@ -111,11 +113,11 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     echo '<pre>';
-    echo beacon_create_payment($order_id, $c_course);
+    echo beacon_create_payment($order_id, $c_course_array);
     echo '</pre>';
 }
 
-function beacon_create_payment($order_id, $c_course)
+function beacon_create_payment($order_id, $c_course_array)
 {
     ob_start();
     update_post_meta($order_id, 'beacon_payment_created', false);
@@ -163,7 +165,7 @@ function beacon_create_payment($order_id, $c_course)
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
-                    'event' => [$c_course],
+                    'event' => [$c_course_array],
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                     'external_id' => $external_id,
                 ];
