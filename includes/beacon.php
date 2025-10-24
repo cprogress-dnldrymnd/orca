@@ -99,12 +99,13 @@ function action_woocommerce_thankyou($order_id)
         $c_course_type = get__post_meta_by_id($product_id, 'course_type');
         if ($c_course && $c_course_type) {
             $body_create_training = [
-                "primary_field_key" => "c_name",
+                "primary_field_key" => "c_order_id",
                 "entity" => [
                     "c_name" => $c_name,
                     "c_person" => [intval($c_person)],
                     "c_course" => [intval($c_course)],
-                    "c_course_type" => [$c_course_type]
+                    "c_course_type" => [$c_course_type],
+                    "c_order_id" => $order_id
                 ]
 
             ];
