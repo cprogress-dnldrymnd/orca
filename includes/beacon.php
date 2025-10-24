@@ -91,12 +91,10 @@ function action_woocommerce_thankyou($order_id)
         $c_person = $beacon_user_id;
     }
 
-    $c_course_array = [];
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
         $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
         $c_course = get__post_meta_by_id($product_id, 'beacon_id');
-        $c_course_array[] = intval($c_course);
         $c_course_type = get__post_meta_by_id($product_id, 'course_type');
         if ($c_course && $c_course_type) {
             $body_create_training = [
@@ -113,11 +111,11 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     echo '<pre>';
-    echo beacon_create_payment($order_id, $c_course_array);
+    echo beacon_create_payment($order_id);
     echo '</pre>';
 }
 
-function beacon_create_payment($order_id, $c_course_array)
+function beacon_create_payment($order_id)
 {
     ob_start();
 
@@ -144,7 +142,6 @@ function beacon_create_payment($order_id, $c_course_array)
     }
     if (current_user_can('administrator')) {
         echo '<pre>';
-    var_dump($c_course_array);
 
         echo $payment_date;
         echo $beacon_payment_created;
@@ -168,7 +165,7 @@ function beacon_create_payment($order_id, $c_course_array)
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
-                    'event' => $c_course_array,
+                    'event' => order_product_ids($order_id),
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                     'external_id' => $external_id,
                 ];
@@ -183,6 +180,18 @@ function beacon_create_payment($order_id, $c_course_array)
 
 add_action('woocommerce_pre_payment_complete', 'action_woocommerce_pre_payment_complete');
 
+function order_product_ids($order_id)
+{
+    $order = wc_get_order($order_id);
+    $items = $order->get_items();
+    $c_course_array = [];
+    foreach ($items as $item) {
+        $product_id = $item->get_product_id();
+        $c_course = get__post_meta_by_id($product_id, 'beacon_id');
+        $c_course_array[] = intval($c_course);
+    }
+    return $c_course_array;
+}
 
 function action_woocommerce_pre_payment_complete($order_id)
 {
