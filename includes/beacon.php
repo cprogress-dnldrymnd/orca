@@ -120,6 +120,7 @@ function action_woocommerce_thankyou($order_id)
 function beacon_create_payment($order_id, $c_course_array)
 {
     ob_start();
+
     update_post_meta($order_id, 'beacon_payment_created', false);
     $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
     $order = wc_get_order($order_id);
@@ -143,6 +144,8 @@ function beacon_create_payment($order_id, $c_course_array)
     }
     if (current_user_can('administrator')) {
         echo '<pre>';
+    var_dump($c_course_array);
+
         echo $payment_date;
         echo $beacon_payment_created;
         echo $external_id;
