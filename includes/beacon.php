@@ -111,7 +111,7 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     echo '<pre>';
-    beacon_create_payment($order_id);
+    echo beacon_create_payment($order_id);
     echo '</pre>';
 }
 
