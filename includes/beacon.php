@@ -139,7 +139,7 @@ function beacon_create_payment($order_id)
         $payment_method = 'Cash';
     }
     echo '<pre>';
-    echo $date_paid;
+    echo $payment_date;
     echo $beacon_payment_created;
     echo '</pre>';
 
