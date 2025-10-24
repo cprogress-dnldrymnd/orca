@@ -101,7 +101,6 @@ function action_woocommerce_thankyou($order_id)
             $body_create_training = [
                 "primary_field_key" => "c_previous_db_id",
                 "entity" => [
-                    "c_name" => $c_name,
                     "c_person" => [intval($c_person)],
                     "c_course" => [intval($c_course)],
                     "c_course_type" => [$c_course_type],
