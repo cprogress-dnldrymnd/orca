@@ -149,6 +149,7 @@ function beacon_create_payment($order_id)
                         'currency' => 'GBP',
                     ],
                     'type' => [$type],
+                    'source' => 'Training Course',
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
