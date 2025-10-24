@@ -168,7 +168,7 @@ function beacon_create_payment($order_id, $c_course_array)
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
-                    'event' => [$c_course_array],
+                    'event' => $c_course_array,
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                     'external_id' => $external_id,
                 ];
