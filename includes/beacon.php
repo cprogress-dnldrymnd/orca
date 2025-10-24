@@ -141,7 +141,7 @@ function beacon_create_payment($order_id)
     echo '<pre>';
     echo $date_paid;
     echo $beacon_payment_created;
-    echo $payment_date;
+    echo var_dump($items);
     echo '</pre>';
 
     if (!$beacon_payment_created) {
