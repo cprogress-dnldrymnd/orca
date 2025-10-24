@@ -108,7 +108,7 @@ function action_woocommerce_thankyou($order_id)
                 ]
 
             ];
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
+           echo beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
             echo '<pre>';
             var_dump($body_create_training);
             echo '</pre>';
