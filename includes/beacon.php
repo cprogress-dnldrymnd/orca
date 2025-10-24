@@ -120,7 +120,6 @@ function beacon_create_payment($order_id)
 {
     ob_start();
     $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
-    echo $beacon_payment_created;
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
     $c_person = get_user_meta($user_id, 'beacon_user_id', true);
@@ -140,7 +139,9 @@ function beacon_create_payment($order_id)
     } else {
         $payment_method = 'Cash';
     }
-
+    echo '<pre>';
+    echo $beacon_payment_created;
+    echo '</pre>';
 
     if (!$beacon_payment_created) {
         if ($payment_date) {
