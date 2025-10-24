@@ -111,11 +111,11 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     echo '<pre>';
-    echo beacon_create_payment($order_id);
+    echo beacon_create_payment($order_id, $c_course);
     echo '</pre>';
 }
 
-function beacon_create_payment($order_id)
+function beacon_create_payment($order_id, $c_course)
 {
     ob_start();
     update_post_meta($order_id, 'beacon_payment_created', false);
@@ -163,6 +163,7 @@ function beacon_create_payment($order_id)
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
+                    'event' => [$c_course],
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                     'external_id' => $external_id,
                 ];
