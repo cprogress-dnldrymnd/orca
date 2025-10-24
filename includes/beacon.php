@@ -118,6 +118,7 @@ function action_woocommerce_thankyou($order_id)
 
 function beacon_create_payment($order_id)
 {
+    ob_start();
     $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
@@ -163,10 +164,11 @@ function beacon_create_payment($order_id)
             }
 
 
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST');
+            var_dump(beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST'));
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
     }
+    return ob_get_clean();
 }
 
 add_action('woocommerce_pre_payment_complete', 'action_woocommerce_pre_payment_complete');
