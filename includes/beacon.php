@@ -141,6 +141,7 @@ function beacon_create_payment($order_id)
     echo '<pre>';
     echo $payment_date;
     echo $beacon_payment_created;
+    echo $external_id;
     echo '</pre>';
 
     if (!$beacon_payment_created) {
