@@ -161,3 +161,9 @@ function beacon_create_payment($order_id)
     return ob_get_clean();
 }
 add_action('woocommerce_payment_complete', 'action_woocommerce_payment_complete');
+
+
+function action_woocommerce_payment_complete($order_id)
+{
+    beacon_create_payment($order_id);
+}
