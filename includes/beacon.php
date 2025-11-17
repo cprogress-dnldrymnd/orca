@@ -124,7 +124,7 @@ function beacon_create_payment($order_id)
     $c_person = get_user_meta($user_id, 'beacon_user_id', true);
 
     $items = $order->get_items();
-    $method = $order->get_payment_method();
+    //$method = $order->get_payment_method();
     $date_paid = $order->get_date_paid();
     // $date_paid = $order->get_date_created();
     $external_id = $order->get_transaction_id();
@@ -133,11 +133,8 @@ function beacon_create_payment($order_id)
     } else {
         $payment_date = false;
     }
-    if ($method == 'stripe_cc') {
-        $payment_method = 'Card';
-    } else {
-        $payment_method = 'Cash';
-    }
+    $payment_method = 'Card';
+
 
     if (!$beacon_payment_created) {
         if ($payment_date) {
