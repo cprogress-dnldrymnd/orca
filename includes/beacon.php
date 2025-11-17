@@ -135,7 +135,6 @@ function beacon_create_payment($order_id)
     }
     $payment_method = 'Card';
 
-
     if (!$beacon_payment_created) {
         if ($payment_date) {
             foreach ($items as $item) {
