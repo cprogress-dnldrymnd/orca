@@ -160,13 +160,10 @@ function beacon_create_payment($order_id)
                 ],
             ];
             $beacon = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, 'PUT');
-            var_dump($beacon);
         }
         //update_post_meta($order_id, 'beacon_payment_created', true);
         //}
     }
-    echo 'xx';
-    var_dump($beacon);
 
     return ob_get_clean();
 }
