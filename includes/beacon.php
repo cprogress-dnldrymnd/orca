@@ -109,7 +109,7 @@ function action_woocommerce_thankyou($order_id)
             beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
         }
     }
-        
+
     echo 'test';
     echo '<pre>';
     echo beacon_create_payment($order_id);
@@ -129,6 +129,7 @@ function beacon_create_payment($order_id)
     $date_paid = $order->get_date_paid();
     // $date_paid = $order->get_date_created();
     $external_id = $order->get_transaction_id();
+    echo $external_id;
     if ($date_paid) {
         $payment_date = $date_paid->format('Y-m-d');
     } else {
