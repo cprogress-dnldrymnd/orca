@@ -109,6 +109,11 @@ function action_woocommerce_thankyou($order_id)
             beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
         }
     }
+
+    echo '<pre>';
+    echo beacon_create_payment($order_id);
+    echo '</pre>';
+
 }
 
 function beacon_create_payment($order_id)
