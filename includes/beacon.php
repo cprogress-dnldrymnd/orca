@@ -110,7 +110,6 @@ function action_woocommerce_thankyou($order_id)
         }
     }
 
-    echo 'test';
     echo '<pre>';
     echo beacon_create_payment($order_id);
     echo '</pre>';
@@ -119,7 +118,7 @@ function action_woocommerce_thankyou($order_id)
 function beacon_create_payment($order_id)
 {
     ob_start();
-   // $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
+    // $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
     $c_person = get_user_meta($user_id, 'beacon_user_id', true);
@@ -128,8 +127,6 @@ function beacon_create_payment($order_id)
     //$method = $order->get_payment_method();
     $date_paid = $order->get_date_paid();
     // $date_paid = $order->get_date_created();
-    $external_id = $order->get_transaction_id();
-    echo $external_id;
     if ($date_paid) {
         $payment_date = $date_paid->format('Y-m-d');
     } else {
@@ -139,7 +136,8 @@ function beacon_create_payment($order_id)
     echo $payment_date;
     //if (!$beacon_payment_created) {
     if ($payment_date) {
-        foreach ($items as $item) {
+        foreach ($items as $key => $item) {
+            $external_id = $order_id . '_' . $key;
             $product_id = $item->get_product_id();
             $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
             $c_course = get__post_meta_by_id($product_id, 'beacon_id');
