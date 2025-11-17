@@ -109,17 +109,17 @@ function action_woocommerce_thankyou($order_id)
             beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
         }
     }
-    /*
+        
     echo 'test';
     echo '<pre>';
     echo beacon_create_payment($order_id);
-    echo '</pre>';*/
+    echo '</pre>';
 }
 
 function beacon_create_payment($order_id)
 {
     ob_start();
-    $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
+   // $beacon_payment_created = get_post_meta($order_id, 'beacon_payment_created', true);
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
     $c_person = get_user_meta($user_id, 'beacon_user_id', true);
@@ -172,9 +172,3 @@ function beacon_create_payment($order_id)
     return ob_get_clean();
 }
 add_action('woocommerce_payment_complete', 'action_woocommerce_payment_complete');
-
-
-function action_woocommerce_payment_complete($order_id)
-{
-    beacon_create_payment($order_id);
-}
