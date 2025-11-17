@@ -143,20 +143,24 @@ function beacon_create_payment($order_id)
                 $c_course = get__post_meta_by_id($product_id, 'beacon_id');
                 $price = $item->get_total();
                 $body_create_payment = [
-                    'amount' => [
-                        'value' => $price,
-                        'currency' => 'GBP',
+                    "primary_field_key" => "external_id",
+                    "entity" => [
+                        'external_id' => $external_id,
+                        'amount' => [
+                            'value' => $price,
+                            'currency' => 'GBP',
+                        ],
+                        'type' => ['Course fees'],
+                        'source' => ['Training Course'],
+                        'payment_method' => [$payment_method],
+                        'payment_date' => [$payment_date],
+                        'customer' => [intval($c_person)],
+                        'event' => [intval($c_course)],
+                        'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                     ],
-                    'type' => ['Course fees'],
-                    'source' => ['Training Course'],
-                    'payment_method' => [$payment_method],
-                    'payment_date' => [$payment_date],
-                    'customer' => [intval($c_person)],
-                    'event' => [intval($c_course)],
-                    'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
-                    'external_id' => $external_id,
                 ];
-                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment', $body_create_payment, 'POST');
+                $body_create_payment = [];
+                beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, 'PUT');
             }
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
