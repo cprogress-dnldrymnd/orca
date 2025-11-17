@@ -134,7 +134,7 @@ function beacon_create_payment($order_id)
         $payment_date = false;
     }
     $payment_method = 'Card';
-
+    echo $payment_date;
     if (!$beacon_payment_created) {
         if ($payment_date) {
             foreach ($items as $item) {
@@ -164,11 +164,9 @@ function beacon_create_payment($order_id)
             }
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
-
-
     }
     echo 'xx';
-                var_dump($beacon);
+    var_dump($beacon);
 
     return ob_get_clean();
 }
