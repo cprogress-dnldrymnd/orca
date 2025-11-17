@@ -166,7 +166,12 @@ function beacon_create_payment($order_id)
             }
             update_post_meta($order_id, 'beacon_payment_created', true);
         }
+
+
     }
+    echo 'xx';
+                var_dump($beacon);
+
     return ob_get_clean();
 }
 add_action('woocommerce_payment_complete', 'action_woocommerce_payment_complete');
