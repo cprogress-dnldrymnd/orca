@@ -171,8 +171,6 @@ function action_woocommerce_payment_complete($order_id)
 
 function view_order_details($order_id)
 {
-    if (current_user_can('administrator')) {
-        echo 'test';
-    }
+   echo 'test';
 }
 add_action('woocommerce_view_order', 'view_order_details');
