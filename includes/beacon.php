@@ -130,8 +130,6 @@ function beacon_create_payment($order_id)
         $payment_date = false;
     }
     $payment_method = 'Card';
-    echo 'xxx';
-    echo $payment_date;
     if ($payment_date) {
         foreach ($items as $key => $item) {
             $external_id = $order_id . '_' . $key;
@@ -156,7 +154,7 @@ function beacon_create_payment($order_id)
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                 ],
             ];
-            var_dump(beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, 'PUT'));
+            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, 'PUT')
         }
     }
 
@@ -170,7 +168,7 @@ function action_woocommerce_payment_complete($order_id)
     beacon_create_payment($order_id);
 }
 
-
+/*
 function view_order_details($order_id)
 {
     echo '<pre>';
@@ -179,3 +177,4 @@ function view_order_details($order_id)
 
 }
 add_action('woocommerce_view_order', 'view_order_details');
+*/
