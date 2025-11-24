@@ -173,6 +173,9 @@ function action_woocommerce_payment_complete($order_id)
 
 function view_order_details($order_id)
 {
-    beacon_create_payment($order_id);
+    echo '<pre>';
+   echo beacon_create_payment($order_id);
+    echo '</pre>';
+
 }
 add_action('woocommerce_view_order', 'view_order_details');
