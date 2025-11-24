@@ -130,7 +130,7 @@ function beacon_create_payment($order_id)
         $payment_date = false;
     }
     $payment_method = 'Card';
-
+    echo 'xxx';
     echo $payment_date;
     if ($payment_date) {
         foreach ($items as $key => $item) {
