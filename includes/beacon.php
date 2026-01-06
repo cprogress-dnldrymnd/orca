@@ -202,6 +202,7 @@ function action_woocommerce_thankyou_test($order_id)
     $items = $order->get_items();
 
     if (!$beacon_user_id) {
+        echo "Creating new Beacon person for user ID: $user_id<br>";
         $address = [
             "address_line_one" => $address_1,
             "address_line_two" => $address_2,
@@ -231,6 +232,7 @@ function action_woocommerce_thankyou_test($order_id)
         $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
         update_user_meta($user_id, 'beacon_user_id', $c_person);
     } else {
+        echo "Using existing Beacon person ID: $beacon_user_id for user ID: $user_id<br>";
         $c_person = $beacon_user_id;
     }
 
