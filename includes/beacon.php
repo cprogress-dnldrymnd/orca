@@ -95,14 +95,18 @@ function beacon_create_payment($order_id)
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                 ],
             ];
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, $order_id, 'PUT');
-            add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
-                'type' => 'Beacon Training',
-                'user_id' => $user_id,
-                'beacon_person_id' => $c_person,
-                'order_id' => $order_id,
-                'product_id' => $product_id,
-            ));
+
+            $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, $order_id, 'PUT');
+
+            if ($beacon_api_function['entity']) {
+                add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
+                    'type' => 'Beacon Training',
+                    'user_id' => $user_id,
+                    'beacon_person_id' => $c_person,
+                    'order_id' => $order_id,
+                    'product_id' => $product_id,
+                ));
+            }
         }
     }
 
@@ -229,7 +233,6 @@ function action_woocommerce_thankyou($order_id)
         }
     }
     beacon_create_payment($order_id);
-
 }
 
 
