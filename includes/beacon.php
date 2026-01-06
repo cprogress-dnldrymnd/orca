@@ -179,12 +179,15 @@ function action_woocommerce_thankyou_test($order_id)
         $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person, $order_id);
         $c_person = $beacon_api_function['entity']['id'];
         update_user_meta($user_id, 'beacon_user_id', $c_person);
-        add_beacon_crm_log("Created Beacon Person for user ID: $user_id", array(
-            'type' => 'Beacon Person',
-            'user_id' => $user_id,
-            'beacon_person_id' => $c_person,
-            'order_id' => $order_id
-        ));
+
+        if ($c_person) {
+            add_beacon_crm_log("Created Beacon Person for user ID: $user_id", array(
+                'type' => 'Beacon Person',
+                'user_id' => $user_id,
+                'beacon_person_id' => $c_person,
+                'order_id' => $order_id
+            ));
+        }
     } else {
         $c_person = $beacon_user_id;
     }
