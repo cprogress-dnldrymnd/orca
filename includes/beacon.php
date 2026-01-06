@@ -10,7 +10,7 @@ function beacon_headers()
     );
 }
 
-function beacon_api_function($api_url, $body, $method = 'PUT', $order_id = '')
+function beacon_api_function($api_url, $body, $order_id = '', $method = 'PUT')
 {
 
     $encoded_body = json_encode($body);
@@ -24,13 +24,20 @@ function beacon_api_function($api_url, $body, $method = 'PUT', $order_id = '')
     if (is_wp_error($response)) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
-      
+        add_beacon_crm_log("Failed Beacon API Response for order ID: $order_id", array(
+            'type' => 'Beacon Failed API Response',
+            'order_id' => $order_id
+        ));
         return false;
     } else {
         $body = wp_remote_retrieve_body($response);
         $data = json_decode($body, true);
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             error_log("Json decode error: " . json_last_error_msg());
+            add_beacon_crm_log("Failed Beacon API Response for order ID: $order_id", array(
+                'type' => 'Beacon Failed API Response',
+                'order_id' => $order_id
+            ));
             return false;
         }
         return $data;
