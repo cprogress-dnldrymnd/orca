@@ -67,7 +67,7 @@ function beacon_create_payment($order_id)
 
     $external_id = $order->get_transaction_id();
 
-    if (empty($external_txn_id)) {
+    if (empty($external_id)) {
         $external_id = 'MANUAL-' . $order_id;
     }
     $payment_method = 'Card';
