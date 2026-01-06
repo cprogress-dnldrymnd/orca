@@ -64,10 +64,18 @@ function beacon_create_payment($order_id)
     } else {
         $payment_date = false;
     }
+
+    $external_id = $order->get_transaction_id();
+
+    if (empty($external_txn_id)) {
+        $external_id = 'MANUAL-' . $order_id;
+    }
     $payment_method = 'Card';
     if ($payment_date) {
         foreach ($items as $key => $item) {
-            $external_id = $order_id . '_' . $key;
+
+
+
             $product_id = $item->get_product_id();
             $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
             $c_course = get__post_meta_by_id($product_id, 'beacon_id');
