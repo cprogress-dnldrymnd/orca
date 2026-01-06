@@ -253,12 +253,7 @@ function action_woocommerce_thankyou_test($order_id)
             'order_id' => $order_id
         ));
 
-        add_beacon_crm_log("Created Beacon Person for user ID: $user_id", array(
-            'type' => 'Beacon Person',
-            'user_id' => $user_id,
-            'beacon_person_id' => $c_person,
-            'order_id' => $order_id
-        ));
+      
     } else {
         $c_person = $beacon_user_id;
     }
