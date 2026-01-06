@@ -135,6 +135,7 @@ function action_woocommerce_thankyou_test($order_id)
     $user_id = $order->get_user_id();
     $beacon_user_id = get_user_meta($user_id, 'beacon_user_id', true);
 
+    echo     $external_id = $order->get_transaction_id();
 
     $first_name = $order->get_billing_first_name();
     $last_name  = $order->get_billing_last_name();
