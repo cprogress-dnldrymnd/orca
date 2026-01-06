@@ -229,9 +229,9 @@ function action_woocommerce_thankyou_test($order_id)
                 "notes" => 'Updated via woocommerce checkout'
             ],
         ];
-        $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
-
-        var_dump($c_person);
+        $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person);
+        $c_person = $beacon_api_function['entity']['id'];
+        var_dump($beacon_api_function);
         var_dump($body_create_person);
         update_user_meta($user_id, 'beacon_user_id', $c_person);
     } else {
