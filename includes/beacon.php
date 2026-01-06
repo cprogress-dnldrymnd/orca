@@ -10,7 +10,7 @@ function beacon_headers()
     );
 }
 
-function beacon_api_function($api_url, $body, $method = 'PUT', $order_id = null)
+function beacon_api_function($api_url, $body, $method = 'PUT', $order_id = '')
 {
 
     $encoded_body = json_encode($body);
