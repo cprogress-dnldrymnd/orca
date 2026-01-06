@@ -240,6 +240,8 @@ function action_woocommerce_thankyou_test($order_id)
         var_dump($beacon_api_function);
         var_dump($body_create_person);
         update_user_meta($user_id, 'beacon_user_id', $c_person);
+
+        
     } else {
         echo "Using existing Beacon person ID: $beacon_user_id for user ID: $user_id<br>";
         $c_person = $beacon_user_id;
@@ -266,4 +268,37 @@ function action_woocommerce_thankyou_test($order_id)
     beacon_create_payment($order_id);
 
     return ob_get_clean();
+}
+
+
+/**
+ * Inserts a log entry into the 'beaconcrmlogs' post type and handles errors internally.
+ *
+ * @param string $title       The title of the log entry.
+ * @param array  $meta_fields An associative array of meta key => value pairs.
+ * @param string $content     Optional. The main content/body of the log.
+ * @return int|bool           Returns the Post ID on success, or false on failure.
+ */
+function add_beacon_crm_log($title, $meta_fields = array())
+{
+
+    $post_data = array(
+        'post_title'    => sanitize_text_field($title),
+        'post_status'   => 'publish',
+        'post_type'     => 'beaconcrmlogs',
+        'meta_input'    => $meta_fields,
+    );
+
+    // We pass 'true' here to ensure we get a WP_Error object if it fails
+    $result = wp_insert_post($post_data, true);
+
+    if (is_wp_error($result)) {
+        // Write the specific error message to the PHP error log
+        error_log('Beacon CRM Log Error: ' . $result->get_error_message());
+
+        // Return false to indicate failure to the caller
+        return false;
+    }
+
+    return $result;
 }
