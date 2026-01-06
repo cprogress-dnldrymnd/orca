@@ -240,8 +240,6 @@ function action_woocommerce_thankyou_test($order_id)
         var_dump($beacon_api_function);
         var_dump($body_create_person);
         update_user_meta($user_id, 'beacon_user_id', $c_person);
-
-        
     } else {
         echo "Using existing Beacon person ID: $beacon_user_id for user ID: $user_id<br>";
         $c_person = $beacon_user_id;
@@ -266,7 +264,7 @@ function action_woocommerce_thankyou_test($order_id)
         }
     }
     beacon_create_payment($order_id);
-
+    delete_user_meta(5630, 'beacon_user_id');
     return ob_get_clean();
 }
 
