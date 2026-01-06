@@ -116,7 +116,7 @@ function action_woocommerce_payment_complete($order_id)
     beacon_create_payment($order_id);
 }
 
-
+/*
 function view_order_details($order_id)
 {
     echo '<pre>';
@@ -125,18 +125,14 @@ function view_order_details($order_id)
 }
 add_action('woocommerce_view_order', 'view_order_details');
 
-
-function action_woocommerce_thankyou_test($order_id)
+*/
+function action_woocommerce_thankyou($order_id)
 {
 
-    ob_start();
 
     $order = wc_get_order($order_id);
     $user_id = $order->get_user_id();
     $beacon_user_id = get_user_meta($user_id, 'beacon_user_id', true);
-
-    echo     $external_id = $order->get_transaction_id();
-
 
 
     $first_name = $order->get_billing_first_name();
@@ -188,7 +184,6 @@ function action_woocommerce_thankyou_test($order_id)
         $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person, $order_id);
         $c_person = $beacon_api_function['entity']['id'];
         update_user_meta($user_id, 'beacon_user_id', $c_person);
-        var_dump($beacon_api_function);
         if ($c_person) {
             add_beacon_crm_log("Created Beacon Person for user ID: $user_id", array(
                 'type' => 'Beacon Person',
@@ -235,7 +230,6 @@ function action_woocommerce_thankyou_test($order_id)
     }
     beacon_create_payment($order_id);
 
-    return ob_get_clean();
 }
 
 
