@@ -172,8 +172,87 @@ function action_woocommerce_payment_complete($order_id)
 function view_order_details($order_id)
 {
     echo '<pre>';
-   echo action_woocommerce_thankyou($order_id);
+   echo action_woocommerce_thankyou_test($order_id);
     echo '</pre>';
 
 }
 add_action('woocommerce_view_order', 'view_order_details');
+
+
+function action_woocommerce_thankyou_test($order_id)
+{
+
+    ob_start();
+
+    $order = wc_get_order($order_id);
+    $user_id = $order->get_user_id();
+    $beacon_user_id = get_user_meta($user_id, 'beacon_user_id', true);
+
+
+    $first_name = $order->get_billing_first_name();
+    $last_name  = $order->get_billing_last_name();
+    $email  = $order->get_billing_email();
+    $phone  = $order->get_billing_phone();
+    $address_1  = $order->get_billing_address_1();
+    $address_2  = $order->get_billing_address_2();
+    $city  = $order->get_billing_city();
+    $state  = $order->get_billing_state();
+    $postcode  = $order->get_billing_postcode();
+    $country  = $order->get_billing_country();
+    $items = $order->get_items();
+
+    if (!$beacon_user_id) {
+        $address = [
+            "address_line_one" => $address_1,
+            "address_line_two" => $address_2,
+            "city" => $city,
+            "region" => $state,
+            "postal_code" => $postcode,
+            "country" => WC()->countries->countries[$country],
+        ];
+
+        $body_create_person = [
+            "primary_field_key" => "emails",
+            "entity" => [
+                "emails" => [["email" => $email, "is_primary" => true]],
+                "phone_numbers" => [["number" => $phone, "is_primary" => true]],
+                "name" => [
+                    "full" => $first_name . ' ' . $last_name,
+                    "last" => $last_name,
+                    "first" => $first_name,
+                    "middle" => null,
+                    "prefix" => null,
+                ],
+                'type' => ['Supporter'],
+                "address" => [$address],
+                "notes" => 'Updated via woocommerce checkout'
+            ],
+        ];
+        $c_person = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person)['entity']['id'];
+        update_user_meta($user_id, 'beacon_user_id', $c_person);
+    } else {
+        $c_person = $beacon_user_id;
+    }
+
+    foreach ($items as $item) {
+        $product_id = $item->get_product_id();
+        $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
+        $c_course = get__post_meta_by_id($product_id, 'beacon_id');
+        $c_course_type = get__post_meta_by_id($product_id, 'course_type');
+        if ($c_course && $c_course_type) {
+            $body_create_training = [
+                "primary_field_key" => "c_previous_db_id",
+                "entity" => [
+                    "c_person" => [intval($c_person)],
+                    "c_course" => [intval($c_course)],
+                    "c_course_type" => [$c_course_type],
+                    "c_previous_db_id" => $c_name
+                ]
+            ];
+            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training);
+        }
+    }
+    beacon_create_payment($order_id);
+
+    return ob_get_clean();
+}
