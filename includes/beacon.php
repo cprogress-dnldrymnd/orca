@@ -222,14 +222,17 @@ function action_woocommerce_thankyou($order_id)
                     "c_previous_db_id" => $c_name
                 ]
             ];
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training, $order_id);
-            add_beacon_crm_log("Created Beacon Training for user ID: $user_id", array(
-                'type' => 'Beacon Training',
-                'user_id' => $user_id,
-                'beacon_person_id' => $c_person,
-                'order_id' => $order_id,
-                'product_id' => $product_id,
-            ));
+            $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training, $order_id);
+
+            if ($beacon_api_function['entity']) {
+                add_beacon_crm_log("Created Beacon Training for user ID: $user_id", array(
+                    'type' => 'Beacon Training',
+                    'user_id' => $user_id,
+                    'beacon_person_id' => $c_person,
+                    'order_id' => $order_id,
+                    'product_id' => $product_id,
+                ));
+            }
         }
     }
     beacon_create_payment($order_id);
