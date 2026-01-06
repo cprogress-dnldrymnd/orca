@@ -137,6 +137,10 @@ function action_woocommerce_thankyou_test($order_id)
 
     echo     $external_id = $order->get_transaction_id();
 
+    echo '<pre>';
+    var_dump(get_post_meta($order_id));
+    echo '</pre>';
+
     $first_name = $order->get_billing_first_name();
     $last_name  = $order->get_billing_last_name();
     $email  = $order->get_billing_email();
