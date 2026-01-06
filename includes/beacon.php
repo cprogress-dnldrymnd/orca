@@ -95,7 +95,7 @@ function beacon_create_payment($order_id)
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                 ],
             ];
-            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, 'PUT', $order_id);
+            beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, $order_id, 'PUT');
             add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
                 'type' => 'Beacon Training',
                 'user_id' => $user_id,
