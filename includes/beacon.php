@@ -200,7 +200,7 @@ function action_woocommerce_thankyou_test($order_id)
     $postcode  = $order->get_billing_postcode();
     $country  = $order->get_billing_country();
     $items = $order->get_items();
-
+echo $phone;
     if (!$beacon_user_id) {
         echo "Creating new Beacon person for user ID: $user_id<br>";
         $address = [
