@@ -175,3 +175,14 @@ $Course_Custom_Emails->publicly_queryable = false;
 $Course_Custom_Emails->show_in_admin_bar = false;
 $Course_Custom_Emails->has_archive = false;
 $Course_Custom_Emails->show_in_rest = true;
+
+
+$Beacon_CRM_Log = new newPostType();
+$Beacon_CRM_Log->name = 'Beacon CRM Logs';
+$Beacon_CRM_Log->singular_name = 'Beacon CRM Log';
+$Beacon_CRM_Log->icon = 'dashicons-info';
+$Beacon_CRM_Log->supports = array('title');
+$Beacon_CRM_Log->exclude_from_search = true;
+$Beacon_CRM_Log->publicly_queryable = false;
+$Beacon_CRM_Log->show_in_admin_bar = false;
+$Beacon_CRM_Log->has_archive = false;

@@ -172,9 +172,8 @@ function action_woocommerce_payment_complete($order_id)
 function view_order_details($order_id)
 {
     echo '<pre>';
-   echo action_woocommerce_thankyou_test($order_id);
+    echo action_woocommerce_thankyou_test($order_id);
     echo '</pre>';
-
 }
 add_action('woocommerce_view_order', 'view_order_details');
 
@@ -200,7 +199,7 @@ function action_woocommerce_thankyou_test($order_id)
     $postcode  = $order->get_billing_postcode();
     $country  = $order->get_billing_country();
     $items = $order->get_items();
-echo $phone;
+
     if (!$beacon_user_id) {
         echo "Creating new Beacon person for user ID: $user_id<br>";
         $address = [
@@ -212,11 +211,12 @@ echo $phone;
             "country" => WC()->countries->countries[$country],
         ];
 
+        // Define the array WITHOUT phone_numbers initially
         $body_create_person = [
             "primary_field_key" => "emails",
             "entity" => [
                 "emails" => [["email" => $email, "is_primary" => true]],
-                "phone_numbers" => [["number" => $phone, "is_primary" => true]],
+                // Phone number removed from here
                 "name" => [
                     "full" => $first_name . ' ' . $last_name,
                     "last" => $last_name,
@@ -229,6 +229,12 @@ echo $phone;
                 "notes" => 'Updated via woocommerce checkout'
             ],
         ];
+
+        // Only add phone_numbers if $phone is not empty
+        if (!empty($phone)) {
+            $body_create_person['entity']['phone_numbers'] = [["number" => $phone, "is_primary" => true]];
+        }
+
         $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person);
         $c_person = $beacon_api_function['entity']['id'];
         var_dump($beacon_api_function);
