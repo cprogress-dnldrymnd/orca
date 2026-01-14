@@ -282,11 +282,15 @@ function action__wp_head()
             $product_id = $item->get_product_id();
             $c_course = get__post_meta_by_id($product_id, 'beacon_id');
 
-            $beaconcourses = carbon_get_post_meta($product_id, 'beacon_courses');
+            $beacon_courses_arr = [];
+            $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
+            foreach ($beacon_courses as $beacon_course) {
+                $beacon_courses_arr[] = $beacon_course['id'];
+            }
             echo '<pre>';
-            var_dump($beaconcourses);
+            var_dump($beacon_courses_arr);
             echo '</pre>';
-              /*
+            /*
             $price = $item->get_total();
 
             $body_create_payment = [
