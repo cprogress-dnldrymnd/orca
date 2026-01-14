@@ -112,7 +112,7 @@ function beacon_create_payment($order_id)
                     'user_id' => $user_id,
                     'beacon_person_id' => $c_person,
                     'order_id' => $order_id,
-                    'product_id' => $product_id,
+                    'args' => $body_create_payment,
                 ));
             }
         }
@@ -201,14 +201,16 @@ function action_woocommerce_thankyou($order_id)
                 'type' => 'Beacon Person',
                 'user_id' => $user_id,
                 'beacon_person_id' => $c_person,
-                'order_id' => $order_id
+                'order_id' => $order_id,
+                'args' => $body_create_person,
             ));
         } else {
             add_beacon_crm_log("Failed to Create Beacon Person for user ID: $user_id", array(
                 'type' => 'Beacon Person',
                 'user_id' => $user_id,
                 'beacon_person_id' => $c_person,
-                'order_id' => $order_id
+                'order_id' => $order_id,
+                'args' => $body_create_person,
             ));
         }
     } else {
@@ -241,7 +243,7 @@ function action_woocommerce_thankyou($order_id)
                         'user_id' => $user_id,
                         'beacon_person_id' => $c_person,
                         'order_id' => $order_id,
-                        'product_id' => $product_id,
+                        'args' => $body_create_training,
                     ));
                 }
             }
