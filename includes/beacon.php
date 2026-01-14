@@ -107,18 +107,15 @@ function beacon_create_payment($order_id)
             $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, $order_id, 'PUT');
 
             var_dump($beacon_api_function);
-            var_dump($body_create_payment);
 
-            if ($beacon_api_function['entity']) {
-                add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
-                    'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert',
-                    'type' => 'Beacon Training',
-                    'user_id' => $user_id,
-                    'beacon_person_id' => $c_person,
-                    'order_id' => $order_id,
-                    'args' => $body_create_payment,
-                ));
-            }
+            add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
+                'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert',
+                'type' => 'Beacon Training',
+                'user_id' => $user_id,
+                'beacon_person_id' => $c_person,
+                'order_id' => $order_id,
+                'args' => $body_create_payment,
+            ));
         }
     }
 
