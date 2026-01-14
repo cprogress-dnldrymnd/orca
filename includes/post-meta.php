@@ -97,6 +97,7 @@ Container::make('post_meta', 'Beacon Integration Settings')
                         'Deep Dive' => 'Deep Dive',
                     )),
             ))
+            ->set_header_template('<%- beacon_id %> - <%- course_type %>')
     ));
 
 add_filter('carbon_fields_association_field_options_online_courses_included_post_product', function ($query_arguments) {
