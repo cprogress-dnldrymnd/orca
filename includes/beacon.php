@@ -222,12 +222,12 @@ function action_woocommerce_thankyou($order_id)
 
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
-        $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
 
         $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
         foreach ($beacon_courses as $beacon_course) {
             $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id');
             $c_course_type = get__post_meta_by_id($beacon_course['id'], 'course_type');
+            $c_name = get_the_title($beacon_course['id']) . " [Order ID: $order_id]";
             if ($c_course && $c_course_type) {
                 $body_create_training = [
                     "primary_field_key" => "c_previous_db_id",
