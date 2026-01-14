@@ -24,7 +24,7 @@ function beacon_api_function($api_url, $body, $order_id = '', $method = 'PUT')
     if (is_wp_error($response)) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
-       
+
         return false;
     } else {
         $body = wp_remote_retrieve_body($response);
@@ -64,6 +64,9 @@ function beacon_create_payment($order_id)
         $external_id = 'MANUAL-' . $order_id;
     }
     $payment_method = 'Card';
+    
+    $api_url = 'https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert';
+
     if ($payment_date) {
         foreach ($items as $key => $item) {
 
@@ -107,6 +110,14 @@ function beacon_create_payment($order_id)
                 'user_id' => $user_id,
                 'beacon_person_id' => $c_person,
                 'order_id' => $order_id,
+                'args' => $body_create_payment,
+                'return' => $beacon_api_function,
+            ));
+
+
+            add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+                'type' => 'payment',
+                'api_url' => $api_url,
                 'args' => $body_create_payment,
                 'return' => $beacon_api_function,
             ));
@@ -191,7 +202,9 @@ function action_woocommerce_thankyou($order_id)
         $beacon_api_function = beacon_api_function($api_url, $body_create_person, $order_id);
         $c_person = $beacon_api_function['entity']['id'];
         update_user_meta($user_id, 'beacon_user_id', $c_person);
+
         add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+            'type' => 'person',
             'api_url' => $api_url,
             'args' => $body_create_person,
             'return' => $beacon_api_function,
@@ -200,9 +213,10 @@ function action_woocommerce_thankyou($order_id)
         $c_person = $beacon_user_id;
     }
 
+    $api_url = 'https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert';
+
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
-
         $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
         foreach ($beacon_courses as $beacon_course) {
             $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id');
@@ -218,18 +232,15 @@ function action_woocommerce_thankyou($order_id)
                         "c_previous_db_id" => $c_name
                     ]
                 ];
-                $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training, $order_id);
 
-                if ($beacon_api_function['entity']) {
-                    add_beacon_crm_log("Created Beacon Training for user ID: $user_id", array(
-                        'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert',
-                        'type' => 'Beacon Training',
-                        'user_id' => $user_id,
-                        'beacon_person_id' => $c_person,
-                        'order_id' => $order_id,
-                        'args' => $body_create_training,
-                    ));
-                }
+                $beacon_api_function = beacon_api_function($api_url, $body_create_training, $order_id);
+
+                add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+                    'type' => 'training',
+                    'api_url' => $api_url,
+                    'args' => $body_create_person,
+                    'return' => $beacon_api_function,
+                ));
             }
         }
     }
