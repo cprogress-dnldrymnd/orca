@@ -282,7 +282,7 @@ function action__wp_head()
             $product_id = $item->get_product_id();
             $c_course = get__post_meta_by_id($product_id, 'beacon_id');
 
-            $beaconcourses = carbon_get_post_meta($product_id, 'beaconcourses');
+            $beaconcourses = carbon_get_post_meta($product_id, 'beacon_courses');
             echo '<pre>';
             var_dump($beaconcourses);
             echo '</pre>';
