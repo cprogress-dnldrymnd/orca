@@ -186,3 +186,13 @@ $Beacon_CRM_Log->exclude_from_search = true;
 $Beacon_CRM_Log->publicly_queryable = false;
 $Beacon_CRM_Log->show_in_admin_bar = false;
 $Beacon_CRM_Log->has_archive = false;
+
+$Beacon_Courses = new newPostType();
+$Beacon_Courses->name = 'Beacon Courses';
+$Beacon_Courses->singular_name = 'Beacon Course';
+$Beacon_Courses->icon = 'dashicons-id-alt';
+$Beacon_Courses->supports = array('title');
+$Beacon_Courses->exclude_from_search = true;
+$Beacon_Courses->publicly_queryable = false;
+$Beacon_Courses->show_in_admin_bar = false;
+$Beacon_Courses->has_archive = false;

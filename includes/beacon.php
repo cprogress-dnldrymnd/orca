@@ -78,6 +78,7 @@ function beacon_create_payment($order_id)
             $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
             $c_course = get__post_meta_by_id($product_id, 'beacon_id');
             $price = $item->get_total();
+            
             $body_create_payment = [
                 "primary_field_key" => "external_id",
                 "entity" => [
