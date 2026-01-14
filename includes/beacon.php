@@ -122,7 +122,7 @@ function action_woocommerce_payment_complete($order_id)
     beacon_create_payment($order_id);
 }
 
-/*
+
 function view_order_details($order_id)
 {
     echo '<pre>';
@@ -130,7 +130,7 @@ function view_order_details($order_id)
     echo '</pre>';
 }
 add_action('woocommerce_view_order', 'view_order_details');
-*/
+
 
 function action_woocommerce_thankyou($order_id)
 {
