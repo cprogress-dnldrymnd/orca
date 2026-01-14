@@ -99,7 +99,7 @@ function beacon_create_payment($order_id)
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
-                    'event' => $beacon_courses_arr,
+                    'event' => [86376],
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                 ],
             ];
