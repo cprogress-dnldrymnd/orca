@@ -108,6 +108,7 @@ function beacon_create_payment($order_id)
 
             if ($beacon_api_function['entity']) {
                 add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
+                    'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert',
                     'type' => 'Beacon Training',
                     'user_id' => $user_id,
                     'beacon_person_id' => $c_person,
@@ -198,6 +199,7 @@ function action_woocommerce_thankyou($order_id)
         update_user_meta($user_id, 'beacon_user_id', $c_person);
         if ($c_person) {
             add_beacon_crm_log("Created Beacon Person for user ID: $user_id", array(
+                'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/person/upsert',
                 'type' => 'Beacon Person',
                 'user_id' => $user_id,
                 'beacon_person_id' => $c_person,
@@ -206,6 +208,7 @@ function action_woocommerce_thankyou($order_id)
             ));
         } else {
             add_beacon_crm_log("Failed to Create Beacon Person for user ID: $user_id", array(
+                'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/person/upsert',
                 'type' => 'Beacon Person',
                 'user_id' => $user_id,
                 'beacon_person_id' => $c_person,
@@ -239,6 +242,7 @@ function action_woocommerce_thankyou($order_id)
 
                 if ($beacon_api_function['entity']) {
                     add_beacon_crm_log("Created Beacon Training for user ID: $user_id", array(
+                        'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert',
                         'type' => 'Beacon Training',
                         'user_id' => $user_id,
                         'beacon_person_id' => $c_person,
