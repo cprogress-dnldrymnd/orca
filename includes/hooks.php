@@ -85,7 +85,7 @@ function beacon_render_crm_log_box($post) {
     <style>
         .beacon-log-row { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         .beacon-log-label { font-weight: bold; display: block; margin-bottom: 5px; font-size: 13px; color: #2c3338; }
-        .beacon-log-code { background: #f0f0f1; padding: 10px; border: 1px solid #ccc; max-height: 300px; overflow: auto; font-family: monospace; }
+        .beacon-log-code { background: #f0f0f1; padding: 10px; border: 1px solid #ccc; overflow: auto; font-family: monospace; }
         .beacon-log-value { font-size: 14px; }
     </style>
 
