@@ -76,6 +76,7 @@ function beacon_create_payment($order_id)
 
             $product_id = $item->get_product_id();
             $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
+
             $beacon_courses_arr = [];
             $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
             foreach ($beacon_courses as $beacon_course) {
@@ -217,28 +218,32 @@ function action_woocommerce_thankyou($order_id)
     foreach ($items as $item) {
         $product_id = $item->get_product_id();
         $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
-        $c_course = get__post_meta_by_id($product_id, 'beacon_id');
-        $c_course_type = get__post_meta_by_id($product_id, 'course_type');
-        if ($c_course && $c_course_type) {
-            $body_create_training = [
-                "primary_field_key" => "c_previous_db_id",
-                "entity" => [
-                    "c_person" => [intval($c_person)],
-                    "c_course" => [intval($c_course)],
-                    "c_course_type" => [$c_course_type],
-                    "c_previous_db_id" => $c_name
-                ]
-            ];
-            $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training, $order_id);
 
-            if ($beacon_api_function['entity']) {
-                add_beacon_crm_log("Created Beacon Training for user ID: $user_id", array(
-                    'type' => 'Beacon Training',
-                    'user_id' => $user_id,
-                    'beacon_person_id' => $c_person,
-                    'order_id' => $order_id,
-                    'product_id' => $product_id,
-                ));
+        $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
+        foreach ($beacon_courses as $beacon_course) {
+            $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id');
+            $c_course_type = get__post_meta_by_id($beacon_course['id'], 'course_type');
+            if ($c_course && $c_course_type) {
+                $body_create_training = [
+                    "primary_field_key" => "c_previous_db_id",
+                    "entity" => [
+                        "c_person" => [intval($c_person)],
+                        "c_course" => [intval($c_course)],
+                        "c_course_type" => [$c_course_type],
+                        "c_previous_db_id" => $c_name
+                    ]
+                ];
+                $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/c_training/upsert', $body_create_training, $order_id);
+
+                if ($beacon_api_function['entity']) {
+                    add_beacon_crm_log("Created Beacon Training for user ID: $user_id", array(
+                        'type' => 'Beacon Training',
+                        'user_id' => $user_id,
+                        'beacon_person_id' => $c_person,
+                        'order_id' => $order_id,
+                        'product_id' => $product_id,
+                    ));
+                }
             }
         }
     }
