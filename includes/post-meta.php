@@ -75,16 +75,6 @@ Container::make('post_meta', 'Course Settings')
 Container::make('post_meta', 'Beacon Integration Settings')
     ->where('post_type', '=', 'product')
     ->add_fields(array(
-        Field::make('text', 'beacon_id', __('Beacon ID')),
-        Field::make('select', 'course_type', __('Course Type'))
-            ->set_options(array(
-                '' => 'Select Course Type',
-                'MMS' => 'MMS',
-                'OceanWatchers' => 'OceanWatchers',
-                'Introduction' => 'Introduction',
-                'Deep Dive' => 'Deep Dive',
-            )),
-
         Field::make('association', 'beacon_courses', __('Beacon Courses'))
             ->set_types(array(
                 array(
