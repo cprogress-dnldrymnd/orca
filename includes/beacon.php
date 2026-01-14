@@ -24,20 +24,13 @@ function beacon_api_function($api_url, $body, $order_id = '', $method = 'PUT')
     if (is_wp_error($response)) {
         $error_message = $response->get_error_message();
         error_log("Something went wrong: $error_message");
-        add_beacon_crm_log("Failed Beacon API Response for order ID: $order_id", array(
-            'type' => 'Beacon Failed API Response',
-            'order_id' => $order_id
-        ));
+       
         return false;
     } else {
         $body = wp_remote_retrieve_body($response);
         $data = json_decode($body, true);
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             error_log("Json decode error: " . json_last_error_msg());
-            add_beacon_crm_log("Failed Beacon API Response for order ID: $order_id", array(
-                'type' => 'Beacon Failed API Response',
-                'order_id' => $order_id
-            ));
             return false;
         }
         return $data;
@@ -115,6 +108,7 @@ function beacon_create_payment($order_id)
                 'beacon_person_id' => $c_person,
                 'order_id' => $order_id,
                 'args' => $body_create_payment,
+                'return' => $beacon_api_function,
             ));
         }
     }
@@ -193,28 +187,15 @@ function action_woocommerce_thankyou($order_id)
             $body_create_person['entity']['phone_numbers'] = [["number" => $phone, "is_primary" => true]];
         }
 
-        $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/person/upsert', $body_create_person, $order_id);
+        $api_url = 'https://api.beaconcrm.org/v1/account/26878/entity/person/upsert';
+        $beacon_api_function = beacon_api_function($api_url, $body_create_person, $order_id);
         $c_person = $beacon_api_function['entity']['id'];
         update_user_meta($user_id, 'beacon_user_id', $c_person);
-        if ($c_person) {
-            add_beacon_crm_log("Created Beacon Person for user ID: $user_id", array(
-                'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/person/upsert',
-                'type' => 'Beacon Person',
-                'user_id' => $user_id,
-                'beacon_person_id' => $c_person,
-                'order_id' => $order_id,
-                'args' => $body_create_person,
-            ));
-        } else {
-            add_beacon_crm_log("Failed to Create Beacon Person for user ID: $user_id", array(
-                'api_url' => 'https://api.beaconcrm.org/v1/account/26878/entity/person/upsert',
-                'type' => 'Beacon Person',
-                'user_id' => $user_id,
-                'beacon_person_id' => $c_person,
-                'order_id' => $order_id,
-                'args' => $body_create_person,
-            ));
-        }
+        add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+            'api_url' => $api_url,
+            'args' => $body_create_person,
+            'return' => $beacon_api_function,
+        ));
     } else {
         $c_person = $beacon_user_id;
     }
