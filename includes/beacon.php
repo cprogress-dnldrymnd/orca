@@ -107,6 +107,7 @@ function beacon_create_payment($order_id)
             $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, $order_id, 'PUT');
 
             var_dump($beacon_api_function);
+            var_dump($body_create_payment);
 
             if ($beacon_api_function['entity']) {
                 add_beacon_crm_log("Created Beacon Payment for user ID: $user_id", array(
