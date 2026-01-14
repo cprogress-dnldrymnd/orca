@@ -285,7 +285,8 @@ function action__wp_head()
             $beacon_courses_arr = [];
             $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
             foreach ($beacon_courses as $beacon_course) {
-                $beacon_courses_arr[] = $beacon_course['id'];
+                $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id');
+                $beacon_courses_arr[] = $c_course;
             }
             echo '<pre>';
             var_dump($beacon_courses_arr);
