@@ -226,7 +226,7 @@ function action_woocommerce_thankyou($order_id)
                 add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
                     'type' => 'training',
                     'api_url' => $api_url,
-                    'args' => $body_create_person,
+                    'args' => $body_create_training,
                     'return' => $beacon_api_function,
                 ));
             }
