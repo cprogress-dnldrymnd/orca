@@ -76,7 +76,13 @@ function beacon_create_payment($order_id)
 
             $product_id = $item->get_product_id();
             $c_name = get_the_title($product_id) . " [Order ID: $order_id]";
-            $c_course = get__post_meta_by_id($product_id, 'beacon_id');
+            $beacon_courses_arr = [];
+            $beacon_courses = carbon_get_post_meta($product_id, 'beacon_courses');
+            foreach ($beacon_courses as $beacon_course) {
+                $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id');
+                $beacon_courses_arr[] = intval($c_course);
+            }
+
             $price = $item->get_total();
 
             $body_create_payment = [
@@ -92,7 +98,7 @@ function beacon_create_payment($order_id)
                     'payment_method' => [$payment_method],
                     'payment_date' => [$payment_date],
                     'customer' => [intval($c_person)],
-                    'event' => [intval($c_course)],
+                    'event' => $beacon_courses_arr,
                     'notes' => 'Payment made via woocommerce checkout for course: ' . $c_name,
                 ],
             ];
