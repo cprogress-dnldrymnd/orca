@@ -103,7 +103,7 @@ function beacon_create_payment($order_id)
             $beacon_api_function = beacon_api_function('https://api.beaconcrm.org/v1/account/26878/entity/payment/upsert', $body_create_payment, $order_id, 'PUT');
 
 
-            add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+            add_beacon_crm_log("[Payment]Beacon CRM Log - " . $order_id, array(
                 'type' => 'payment',
                 'api_url' => $api_url,
                 'args' => $body_create_payment,
@@ -191,7 +191,7 @@ function action_woocommerce_thankyou($order_id)
         $c_person = $beacon_api_function['entity']['id'];
         update_user_meta($user_id, 'beacon_user_id', $c_person);
 
-        add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+        add_beacon_crm_log("[Person]Beacon CRM Log - " . $order_id, array(
             'type' => 'person',
             'api_url' => $api_url,
             'args' => $body_create_person,
@@ -223,7 +223,7 @@ function action_woocommerce_thankyou($order_id)
 
                 $beacon_api_function = beacon_api_function($api_url, $body_create_training, $order_id);
 
-                add_beacon_crm_log("Beacon CRM Log - " . $order_id, array(
+                add_beacon_crm_log("[Training]Beacon CRM Log - " . $order_id, array(
                     'type' => 'training',
                     'api_url' => $api_url,
                     'args' => $body_create_training,
