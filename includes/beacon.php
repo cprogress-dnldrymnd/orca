@@ -232,7 +232,7 @@ function action_woocommerce_thankyou($order_id)
             }
         }
     }
-    beacon_create_payment($order_id);
+    //beacon_create_payment($order_id);
 }
 
 
