@@ -81,7 +81,7 @@ class Beacon_CRM_Integration
 
         echo '<div class="options_group" id="beacon_crm_fields">';
         echo '<h3>Beacon CRM Integration (Courses)</h3>';
-        echo '<p class="description">Add one or more Beacon courses linked to this product.</p>';
+        echo '<p class="description">Add one or more Beacon courses linked to this product. These will trigger for Simple Products AND Variations (if merged).</p>';
 
         // Hidden flag is crucial to detect "empty" submissions
         echo '<input type="hidden" name="_beacon_crm_flag" value="1">';
@@ -515,23 +515,26 @@ class Beacon_CRM_Integration
 
             $collected_beacon_ids = [];
 
+            // 1. ALWAYS Get Parent/General Data (Simple or Variable Parent)
+            $courses_data = get_post_meta($product_id, '_beacon_courses_data', true);
+            if (is_array($courses_data)) {
+                foreach ($courses_data as $c) {
+                    if (!empty($c['id'])) {
+                        $collected_beacon_ids[] = intval($c['id']);
+                    }
+                }
+            }
+
+            // 2. MERGE Variation Data (if exists)
             if ($variation_id) {
-                // Variation logic
                 $v_course_id = get_post_meta($variation_id, '_beacon_id', true);
                 if ($v_course_id) {
                     $collected_beacon_ids[] = intval($v_course_id);
                 }
-            } else {
-                // Simple Product logic
-                $courses_data = get_post_meta($product_id, '_beacon_courses_data', true);
-                if (is_array($courses_data)) {
-                    foreach ($courses_data as $c) {
-                        if (!empty($c['id'])) {
-                            $collected_beacon_ids[] = intval($c['id']);
-                        }
-                    }
-                }
             }
+
+            // Remove duplicates
+            $collected_beacon_ids = array_unique($collected_beacon_ids);
 
             $c_name = $item->get_name() . " [Order ID: $order_id]";
             $is_bundle = has_term('bundles', 'product_cat', $product_id);
@@ -557,7 +560,7 @@ class Beacon_CRM_Integration
             ];
 
             if (!$is_bundle && !empty($collected_beacon_ids)) {
-                $payload['entity']['event'] = $collected_beacon_ids;
+                $payload['entity']['event'] = array_values($collected_beacon_ids);
             }
 
             $response = $this->send_request($resource, $payload, $order_id, 'PUT');
@@ -581,16 +584,18 @@ class Beacon_CRM_Integration
 
             $courses_to_process = [];
 
+            // 1. ALWAYS Get Parent/General Data
+            $data = get_post_meta($product_id, '_beacon_courses_data', true);
+            if (is_array($data)) {
+                $courses_to_process = $data;
+            }
+
+            // 2. MERGE Variation Data (if exists)
             if ($variation_id) {
                 $id = get_post_meta($variation_id, '_beacon_id', true);
                 $type = get_post_meta($variation_id, '_beacon_course_type', true);
                 if ($id && $type) {
                     $courses_to_process[] = ['id' => $id, 'type' => $type];
-                }
-            } else {
-                $data = get_post_meta($product_id, '_beacon_courses_data', true);
-                if (is_array($data)) {
-                    $courses_to_process = $data;
                 }
             }
 
