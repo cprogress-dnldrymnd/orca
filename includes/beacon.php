@@ -599,10 +599,12 @@ class Beacon_CRM_Integration
                 }
             }
 
-            $c_name = $item->get_name() . " [Order ID: $order_id]";
-
             foreach ($courses_to_process as $course) {
                 if (!empty($course['id']) && !empty($course['type'])) {
+
+                    // Modified naming convention as per user request
+                    $c_name = $course['type'] . " [Order ID: $order_id]";
+
                     $payload = [
                         "primary_field_key" => "c_previous_db_id",
                         "entity" => [
