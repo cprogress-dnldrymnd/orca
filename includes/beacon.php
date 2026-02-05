@@ -84,7 +84,6 @@ class Beacon_CRM_Integration
 
         echo '<div id="beacon_courses_wrapper">';
 
-        // Render existing rows or at least one empty row
         if (empty($courses)) {
             $this->render_course_row(0, '', '');
         } else {
@@ -97,7 +96,7 @@ class Beacon_CRM_Integration
 
         echo '<button type="button" class="button" id="add_beacon_course_row">Add Another Course</button>';
 
-        // Simple JS to handle Add/Remove
+        // JS Only handles Repeater Rows (Visibility toggle removed)
 ?>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
@@ -163,6 +162,7 @@ class Beacon_CRM_Integration
      */
     public function save_simple_product_fields($post_id)
     {
+        // Reverted: Removed check for variable product type so this saves on all types.
         if (isset($_POST['_beacon_courses_data'])) {
             $data = $_POST['_beacon_courses_data'];
             $sanitized_data = [];
@@ -177,14 +177,14 @@ class Beacon_CRM_Integration
             }
             update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
 
-            // Clear legacy fields to avoid confusion
+            // Clear legacy fields
             delete_post_meta($post_id, '_beacon_id');
             delete_post_meta($post_id, '_beacon_course_type');
         }
     }
 
     /**
-     * Render fields for Variable Products (Inside each Variation - KEEPING SINGLE for now per request scope)
+     * Render fields for Variable Products (Inside each Variation)
      */
     public function render_variation_fields($loop, $variation_data, $variation)
     {
@@ -507,15 +507,14 @@ class Beacon_CRM_Integration
 
             $collected_beacon_ids = [];
 
-            // 1. Get Course Data
             if ($variation_id) {
-                // Variation logic: Single course
+                // Variation logic
                 $v_course_id = get_post_meta($variation_id, '_beacon_id', true);
                 if ($v_course_id) {
                     $collected_beacon_ids[] = intval($v_course_id);
                 }
             } else {
-                // Simple Product logic: Multiple courses
+                // Simple Product logic
                 $courses_data = get_post_meta($product_id, '_beacon_courses_data', true);
                 if (is_array($courses_data)) {
                     foreach ($courses_data as $c) {
@@ -543,7 +542,6 @@ class Beacon_CRM_Integration
                 ],
             ];
 
-            // Only add 'event' if not bundle AND we have course IDs
             if (!$is_bundle && !empty($collected_beacon_ids)) {
                 $payload['entity']['event'] = $collected_beacon_ids;
             }
@@ -570,14 +568,12 @@ class Beacon_CRM_Integration
             $courses_to_process = [];
 
             if ($variation_id) {
-                // Variation: Single
                 $id = get_post_meta($variation_id, '_beacon_id', true);
                 $type = get_post_meta($variation_id, '_beacon_course_type', true);
                 if ($id && $type) {
                     $courses_to_process[] = ['id' => $id, 'type' => $type];
                 }
             } else {
-                // Simple: Multiple
                 $data = get_post_meta($product_id, '_beacon_courses_data', true);
                 if (is_array($data)) {
                     $courses_to_process = $data;
