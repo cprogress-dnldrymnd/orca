@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Beacon CRM Integration for WooCommerce
  * Handles synchronisation of Orders and Course Data to Beacon CRM.
@@ -27,7 +28,7 @@ class Beacon_CRM_Integration
         // Admin Settings Menu
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_init', [$this, 'register_settings']);
-        
+
         // Handle Test Sync Submission
         add_action('admin_post_beacon_test_sync', [$this, 'handle_test_sync_submission']);
 
@@ -80,9 +81,9 @@ class Beacon_CRM_Integration
         echo '<div class="options_group" id="beacon_crm_fields">';
         echo '<h3>Beacon CRM Integration (Courses)</h3>';
         echo '<p class="description">Add one or more Beacon courses linked to this product.</p>';
-        
+
         echo '<div id="beacon_courses_wrapper">';
-        
+
         // Render existing rows or at least one empty row
         if (empty($courses)) {
             $this->render_course_row(0, '', '');
@@ -91,13 +92,13 @@ class Beacon_CRM_Integration
                 $this->render_course_row($index, isset($course['id']) ? $course['id'] : '', isset($course['type']) ? $course['type'] : '');
             }
         }
-        
+
         echo '</div>'; // End wrapper
 
         echo '<button type="button" class="button" id="add_beacon_course_row">Add Another Course</button>';
-        
+
         // Simple JS to handle Add/Remove
-        ?>
+?>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
                 let wrapper = $('#beacon_courses_wrapper');
@@ -130,12 +131,13 @@ class Beacon_CRM_Integration
                 });
             });
         </script>
-        <?php
+    <?php
         echo '</div>';
     }
 
-    private function render_course_row($index, $id_val, $type_val) {
-        ?>
+    private function render_course_row($index, $id_val, $type_val)
+    {
+    ?>
         <div class="beacon_course_row" style="border:1px solid #eee; padding:10px; margin-bottom:10px; background:#f9f9f9;">
             <p class="form-field">
                 <label>Beacon ID</label>
@@ -153,7 +155,7 @@ class Beacon_CRM_Integration
             </p>
             <button type="button" class="button remove_beacon_row" style="color: #a00;">Remove</button>
         </div>
-        <?php
+    <?php
     }
 
     /**
@@ -164,7 +166,7 @@ class Beacon_CRM_Integration
         if (isset($_POST['_beacon_courses_data'])) {
             $data = $_POST['_beacon_courses_data'];
             $sanitized_data = [];
-            
+
             foreach ($data as $item) {
                 if (!empty($item['id'])) {
                     $sanitized_data[] = [
@@ -174,7 +176,7 @@ class Beacon_CRM_Integration
                 }
             }
             update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
-            
+
             // Clear legacy fields to avoid confusion
             delete_post_meta($post_id, '_beacon_id');
             delete_post_meta($post_id, '_beacon_course_type');
@@ -188,7 +190,7 @@ class Beacon_CRM_Integration
     {
         $beacon_id = get_post_meta($variation->ID, '_beacon_id', true);
         $course_type = get_post_meta($variation->ID, '_beacon_course_type', true);
-        
+
         echo '<div class="beacon_variation_fields form-row form-row-full options_group">';
         echo '<h4>Beacon CRM Integration</h4>';
 
@@ -248,10 +250,10 @@ class Beacon_CRM_Integration
 
     public function render_settings_page()
     {
-        ?>
+    ?>
         <div class="wrap">
             <h1>Beacon CRM Integration Settings</h1>
-            <?php 
+            <?php
             if (isset($_GET['beacon_test_status'])) {
                 $status = sanitize_text_field($_GET['beacon_test_status']);
                 $order_id = isset($_GET['tested_order']) ? intval($_GET['tested_order']) : 0;
@@ -281,18 +283,21 @@ class Beacon_CRM_Integration
                 <?php submit_button('Test Sync Now', 'secondary'); ?>
             </form>
         </div>
-        <?php
+    <?php
     }
 
-    public function render_field_api_key() {
+    public function render_field_api_key()
+    {
         $value = get_option(self::OPT_API_KEY);
         echo '<input type="password" name="' . esc_attr(self::OPT_API_KEY) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
-    public function render_field_account_id() {
+    public function render_field_account_id()
+    {
         $value = get_option(self::OPT_ACCOUNT_ID);
         echo '<input type="text" name="' . esc_attr(self::OPT_ACCOUNT_ID) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
-    public function render_field_api_base() {
+    public function render_field_api_base()
+    {
         $value = get_option(self::OPT_API_BASE, 'https://api.beaconcrm.org/v1/account/');
         echo '<input type="url" name="' . esc_attr(self::OPT_API_BASE) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
@@ -301,29 +306,65 @@ class Beacon_CRM_Integration
     /* LOG & META BOXES                                                           */
     /* -------------------------------------------------------------------------- */
 
-    public function register_log_metabox() {
+    public function register_log_metabox()
+    {
         add_meta_box('beacon_crm_log_details', 'CRM Log Information', [$this, 'render_log_metabox'], 'beaconcrmlogs', 'normal', 'high');
     }
 
-    public function render_log_metabox($post) {
+    public function render_log_metabox($post)
+    {
         $log_type = get_post_meta($post->ID, 'type', true);
         $api_url = get_post_meta($post->ID, 'api_url', true);
         $log_args = get_post_meta($post->ID, 'args', true);
         $log_return = get_post_meta($post->ID, 'return', true);
-        ?>
+    ?>
         <style>
-            .beacon-log-row { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-            .beacon-log-label { font-weight: bold; display: block; margin-bottom: 5px; font-size: 13px; color: #2c3338; }
-            .beacon-log-code { background: #f0f0f1; padding: 10px; border: 1px solid #ccc; overflow: auto; font-family: monospace; max-height: 300px; }
-            .beacon-log-value { font-size: 14px; }
+            .beacon-log-row {
+                margin-bottom: 15px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+
+            .beacon-log-label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+                font-size: 13px;
+                color: #2c3338;
+            }
+
+            .beacon-log-code {
+                background: #f0f0f1;
+                padding: 10px;
+                border: 1px solid #ccc;
+                overflow: auto;
+                font-family: monospace;
+                max-height: 300px;
+            }
+
+            .beacon-log-value {
+                font-size: 14px;
+            }
         </style>
         <div class="beacon-crm-log-container">
-            <div class="beacon-log-row"><span class="beacon-log-label">Type:</span><div class="beacon-log-value"><?php echo esc_html($log_type ?: 'N/A'); ?></div></div>
-            <div class="beacon-log-row"><span class="beacon-log-label">API URL:</span><div class="beacon-log-value"><?php echo $api_url ? esc_html($api_url) : 'N/A'; ?></div></div>
-            <div class="beacon-log-row"><span class="beacon-log-label">Request Args:</span><div class="beacon-log-code"><pre><?php echo esc_html(print_r($log_args, true)); ?></pre></div></div>
-            <div class="beacon-log-row" style="border-bottom:none;"><span class="beacon-log-label">API Return:</span><div class="beacon-log-code"><pre><?php echo esc_html(print_r($log_return, true)); ?></pre></div></div>
+            <div class="beacon-log-row"><span class="beacon-log-label">Type:</span>
+                <div class="beacon-log-value"><?php echo esc_html($log_type ?: 'N/A'); ?></div>
+            </div>
+            <div class="beacon-log-row"><span class="beacon-log-label">API URL:</span>
+                <div class="beacon-log-value"><?php echo $api_url ? esc_html($api_url) : 'N/A'; ?></div>
+            </div>
+            <div class="beacon-log-row"><span class="beacon-log-label">Request Args:</span>
+                <div class="beacon-log-code">
+                    <pre><?php echo esc_html(print_r($log_args, true)); ?></pre>
+                </div>
+            </div>
+            <div class="beacon-log-row" style="border-bottom:none;"><span class="beacon-log-label">API Return:</span>
+                <div class="beacon-log-code">
+                    <pre><?php echo esc_html(print_r($log_return, true)); ?></pre>
+                </div>
+            </div>
         </div>
-        <?php
+<?php
     }
 
     /* -------------------------------------------------------------------------- */
@@ -348,8 +389,8 @@ class Beacon_CRM_Integration
             exit;
         }
 
-        $this->handle_payment_complete($order_id); 
-        $this->handle_training_logic($order_id);   
+        $this->handle_payment_complete($order_id);
+        $this->handle_training_logic($order_id);
 
         wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'success', 'tested_order' => $order_id], admin_url('options-general.php')));
         exit;
@@ -461,9 +502,9 @@ class Beacon_CRM_Integration
         $resource = 'entity/payment/upsert';
 
         foreach ($order->get_items() as $item) {
-            $product_id = $item->get_product_id(); 
+            $product_id = $item->get_product_id();
             $variation_id = $item->get_variation_id();
-            
+
             $collected_beacon_ids = [];
 
             // 1. Get Course Data
@@ -486,7 +527,7 @@ class Beacon_CRM_Integration
             }
 
             $c_name = $item->get_name() . " [Order ID: $order_id]";
-            $is_bundle = has_term('bundles', 'product_cat', $product_id); 
+            $is_bundle = has_term('bundles', 'product_cat', $product_id);
 
             $payload = [
                 "primary_field_key" => "external_id",
@@ -525,7 +566,7 @@ class Beacon_CRM_Integration
         foreach ($order->get_items() as $item) {
             $product_id = $item->get_product_id();
             $variation_id = $item->get_variation_id();
-            
+
             $courses_to_process = [];
 
             if ($variation_id) {
@@ -571,12 +612,24 @@ class Beacon_CRM_Integration
         return $result;
     }
 
-    public function add_beacon_id_user_column($columns) { $columns['beacon_id'] = 'Beacon ID'; return $columns; }
-    public function fill_beacon_id_user_column($output, $column_name, $user_id) {
-        if ($column_name === 'beacon_id') { $id = get_user_meta($user_id, 'beacon_user_id', true); return $id ? esc_html($id) : '—'; }
+    public function add_beacon_id_user_column($columns)
+    {
+        $columns['beacon_id'] = 'Beacon ID';
+        return $columns;
+    }
+    public function fill_beacon_id_user_column($output, $column_name, $user_id)
+    {
+        if ($column_name === 'beacon_id') {
+            $id = get_user_meta($user_id, 'beacon_user_id', true);
+            return $id ? esc_html($id) : '—';
+        }
         return $output;
     }
-    public function make_beacon_id_column_sortable($columns) { $columns['beacon_id'] = 'beacon_user_id'; return $columns; }
+    public function make_beacon_id_column_sortable($columns)
+    {
+        $columns['beacon_id'] = 'beacon_user_id';
+        return $columns;
+    }
 }
 
 new Beacon_CRM_Integration();
