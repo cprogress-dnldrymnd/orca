@@ -26,6 +26,9 @@ class Beacon_CRM_Integration
         // Admin Settings Menu
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_init', [$this, 'register_settings']);
+        
+        // Handle Test Sync Submission
+        add_action('admin_post_beacon_test_sync', [$this, 'handle_test_sync_submission']);
 
         // Order Hooks
         add_action('woocommerce_payment_complete', [$this, 'handle_payment_complete']);
@@ -41,9 +44,6 @@ class Beacon_CRM_Integration
     /* ADMIN SETTINGS PAGE                                                        */
     /* -------------------------------------------------------------------------- */
 
-    /**
-     * Registers the settings page under "Settings".
-     */
     public function add_admin_menu()
     {
         add_options_page(
@@ -55,74 +55,40 @@ class Beacon_CRM_Integration
         );
     }
 
-    /**
-     * Registers settings, sections, and fields.
-     */
     public function register_settings()
     {
-        // Register API Key
-        register_setting('beacon_crm_options', self::OPT_API_KEY, [
-            'type' => 'string',
-            'sanitize_callback' => 'sanitize_text_field',
-            'default' => ''
-        ]);
+        register_setting('beacon_crm_options', self::OPT_API_KEY, ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('beacon_crm_options', self::OPT_ACCOUNT_ID, ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('beacon_crm_options', self::OPT_API_BASE, ['sanitize_callback' => 'esc_url_raw', 'default' => 'https://api.beaconcrm.org/v1/account/']);
 
-        // Register Account ID
-        register_setting('beacon_crm_options', self::OPT_ACCOUNT_ID, [
-            'type' => 'string',
-            'sanitize_callback' => 'sanitize_text_field',
-            'default' => ''
-        ]);
+        add_settings_section('beacon_crm_main_section', 'API Configuration', null, 'beacon-crm-settings');
 
-        // Register API Base URL
-        register_setting('beacon_crm_options', self::OPT_API_BASE, [
-            'type' => 'string',
-            'sanitize_callback' => 'esc_url_raw',
-            'default' => 'https://api.beaconcrm.org/v1/account/'
-        ]);
-
-        // Add Section
-        add_settings_section(
-            'beacon_crm_main_section',
-            'API Configuration',
-            null,
-            'beacon-crm-settings'
-        );
-
-        // Add Fields
-        add_settings_field(
-            self::OPT_API_KEY,
-            'API Key',
-            [$this, 'render_field_api_key'],
-            'beacon-crm-settings',
-            'beacon_crm_main_section'
-        );
-
-        add_settings_field(
-            self::OPT_ACCOUNT_ID,
-            'Account ID',
-            [$this, 'render_field_account_id'],
-            'beacon-crm-settings',
-            'beacon_crm_main_section'
-        );
-
-        add_settings_field(
-            self::OPT_API_BASE,
-            'API Base URL',
-            [$this, 'render_field_api_base'],
-            'beacon-crm-settings',
-            'beacon_crm_main_section'
-        );
+        add_settings_field(self::OPT_API_KEY, 'API Key', [$this, 'render_field_api_key'], 'beacon-crm-settings', 'beacon_crm_main_section');
+        add_settings_field(self::OPT_ACCOUNT_ID, 'Account ID', [$this, 'render_field_account_id'], 'beacon-crm-settings', 'beacon_crm_main_section');
+        add_settings_field(self::OPT_API_BASE, 'API Base URL', [$this, 'render_field_api_base'], 'beacon-crm-settings', 'beacon_crm_main_section');
     }
 
-    /**
-     * Render the Settings Page HTML.
-     */
     public function render_settings_page()
     {
         ?>
         <div class="wrap">
             <h1>Beacon CRM Integration Settings</h1>
+            
+            <?php // Display Admin Notices for Test Sync
+            if (isset($_GET['beacon_test_status'])) {
+                $status = sanitize_text_field($_GET['beacon_test_status']);
+                $order_id = isset($_GET['tested_order']) ? intval($_GET['tested_order']) : 0;
+                
+                if ($status === 'success') {
+                    echo '<div class="notice notice-success is-dismissible"><p><strong>Success!</strong> Sync triggered for Order #' . $order_id . '. Check the <a href="edit.php?post_type=beaconcrmlogs">Beacon CRM Logs</a> for API responses.</p></div>';
+                } elseif ($status === 'invalid_order') {
+                    echo '<div class="notice notice-error is-dismissible"><p><strong>Error:</strong> Order #' . $order_id . ' not found or invalid.</p></div>';
+                } elseif ($status === 'missing_auth') {
+                    echo '<div class="notice notice-error is-dismissible"><p><strong>Error:</strong> API Key or Account ID is missing.</p></div>';
+                }
+            }
+            ?>
+
             <form action="options.php" method="post">
                 <?php
                 settings_fields('beacon_crm_options');
@@ -130,47 +96,93 @@ class Beacon_CRM_Integration
                 submit_button();
                 ?>
             </form>
+
+            <hr style="margin-top: 40px;">
+
+            <h2>Test Integration</h2>
+            <p>Manually trigger the sync process for a specific order. This will create/update the Person, add the Payment, and add Training records.</p>
+            
+            <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+                <input type="hidden" name="action" value="beacon_test_sync">
+                <?php wp_nonce_field('beacon_test_sync_nonce', 'beacon_test_nonce'); ?>
+                
+                <table class="form-table">
+                    <tr>
+                        <th scope="row"><label for="beacon_test_order_id">WooCommerce Order ID</label></th>
+                        <td>
+                            <input name="beacon_test_order_id" type="number" id="beacon_test_order_id" class="regular-text" required>
+                            <p class="description">Enter the ID of an existing order to test (e.g., 12345).</p>
+                        </td>
+                    </tr>
+                </table>
+                <?php submit_button('Test Sync Now', 'secondary'); ?>
+            </form>
         </div>
         <?php
     }
 
-    /**
-     * Render API Key Field
-     */
     public function render_field_api_key()
     {
         $value = get_option(self::OPT_API_KEY);
         echo '<input type="password" name="' . esc_attr(self::OPT_API_KEY) . '" value="' . esc_attr($value) . '" class="regular-text">';
-        echo '<p class="description">Your private API key (Developer API).</p>';
     }
 
-    /**
-     * Render Account ID Field
-     */
     public function render_field_account_id()
     {
         $value = get_option(self::OPT_ACCOUNT_ID);
         echo '<input type="text" name="' . esc_attr(self::OPT_ACCOUNT_ID) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
 
-    /**
-     * Render API Base URL Field
-     */
     public function render_field_api_base()
     {
         $value = get_option(self::OPT_API_BASE, 'https://api.beaconcrm.org/v1/account/');
         echo '<input type="url" name="' . esc_attr(self::OPT_API_BASE) . '" value="' . esc_attr($value) . '" class="regular-text">';
-        echo '<p class="description">Default: <code>https://api.beaconcrm.org/v1/account/</code></p>';
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* TEST SUBMISSION HANDLER                                                    */
+    /* -------------------------------------------------------------------------- */
+
+    public function handle_test_sync_submission()
+    {
+        // 1. Security Check
+        if (!isset($_POST['beacon_test_nonce']) || !wp_verify_nonce($_POST['beacon_test_nonce'], 'beacon_test_sync_nonce')) {
+            wp_die('Invalid security nonce.');
+        }
+
+        if (!current_user_can('manage_options')) {
+            wp_die('Unauthorized user.');
+        }
+
+        // 2. Validate Input
+        $order_id = isset($_POST['beacon_test_order_id']) ? intval($_POST['beacon_test_order_id']) : 0;
+        $order = wc_get_order($order_id);
+
+        if (!$order) {
+            wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'invalid_order', 'tested_order' => $order_id], admin_url('options-general.php')));
+            exit;
+        }
+
+        // 3. Validate Auth
+        if (!$this->get_credentials()) {
+            wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'missing_auth'], admin_url('options-general.php')));
+            exit;
+        }
+
+        // 4. Run Logic
+        // We explicitly call both handlers. The logic inside them handles deduplication/updates safely.
+        $this->handle_payment_complete($order_id); // Handles Person + Payment
+        $this->handle_training_logic($order_id);   // Handles Training Records
+
+        // 5. Redirect back with Success
+        wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'success', 'tested_order' => $order_id], admin_url('options-general.php')));
+        exit;
     }
 
     /* -------------------------------------------------------------------------- */
     /* API UTILITIES                                                              */
     /* -------------------------------------------------------------------------- */
 
-    /**
-     * Helper to retrieve API credentials safely.
-     * @return array|false Credentials array or false if missing.
-     */
     private function get_credentials()
     {
         $api_key = get_option(self::OPT_API_KEY);
@@ -180,22 +192,15 @@ class Beacon_CRM_Integration
         if (empty($api_key) || empty($account_id)) {
             return false;
         }
-
-        // Ensure API Base has trailing slash
         $api_base = trailingslashit($api_base);
 
         return [
             'api_key'    => $api_key,
             'account_id' => $account_id,
-            'base_url'   => $api_base . $account_id . '/' // Append Account ID to base
+            'base_url'   => $api_base . $account_id . '/'
         ];
     }
 
-    /**
-     * Returns the standard headers for Beacon API requests.
-     * @param string $api_key
-     * @return array
-     */
     private function get_headers($api_key)
     {
         return [
@@ -205,24 +210,11 @@ class Beacon_CRM_Integration
         ];
     }
 
-    /**
-     * Sends a request to the Beacon CRM API.
-     * @param string $resource The resource path (e.g. 'entity/person/upsert').
-     * @param array  $body     The payload body.
-     * @param int    $order_id context for logging.
-     * @param string $method   HTTP method (PUT, POST, GET).
-     * @return array|false     Decoded JSON response or false on failure.
-     */
     private function send_request($resource, $body, $order_id = 0, $method = 'PUT')
     {
         $creds = $this->get_credentials();
+        if (!$creds) return false;
 
-        if (!$creds) {
-            error_log("Beacon CRM Error: Missing API Key or Account ID in settings.");
-            return false;
-        }
-
-        // Construct full URL dynamically
         $full_url = $creds['base_url'] . $resource;
 
         $args = [
@@ -235,8 +227,7 @@ class Beacon_CRM_Integration
         $response = wp_remote_request($full_url, $args);
 
         if (is_wp_error($response)) {
-            $error_message = $response->get_error_message();
-            error_log("Beacon API Error (Order $order_id): $error_message");
+            error_log("Beacon API Error (Order $order_id): " . $response->get_error_message());
             return false;
         }
 
@@ -255,22 +246,17 @@ class Beacon_CRM_Integration
     /* CORE BUSINESS LOGIC                                                        */
     /* -------------------------------------------------------------------------- */
 
-    /**
-     * CORE LOGIC: Ensures a Person exists in Beacon CRM.
-     * @param WC_Order $order The WooCommerce order object.
-     * @return int|false The Beacon Person ID or false on failure.
-     */
     private function get_or_create_person($order)
     {
         $user_id = $order->get_user_id();
 
-        // 1. Check local cache (User Meta)
+        // Check local cache
         $existing_id = get_user_meta($user_id, 'beacon_user_id', true);
         if (!empty($existing_id)) {
             return $existing_id;
         }
 
-        // 2. Prepare data for creation
+        // Prepare data
         $first_name = $order->get_billing_first_name();
         $last_name  = $order->get_billing_last_name();
         $email      = $order->get_billing_email();
@@ -312,7 +298,6 @@ class Beacon_CRM_Integration
         $resource = 'entity/person/upsert';
         $response = $this->send_request($resource, $payload, $order->get_id());
 
-        // 3. Process Response
         if ($response && isset($response['entity']['id'])) {
             $beacon_id = $response['entity']['id'];
             update_user_meta($user_id, 'beacon_user_id', $beacon_id);
@@ -330,17 +315,11 @@ class Beacon_CRM_Integration
         return false;
     }
 
-    /**
-     * Hook: woocommerce_payment_complete
-     * Handles the creation of the Payment entity in Beacon.
-     * @param int $order_id
-     */
     public function handle_payment_complete($order_id)
     {
         $order = wc_get_order($order_id);
         if (!$order) return;
 
-        // Ensure user exists first
         $beacon_person_id = $this->get_or_create_person($order);
 
         if (!$beacon_person_id) {
@@ -368,8 +347,11 @@ class Beacon_CRM_Integration
             
             if (is_array($beacon_courses)) {
                 foreach ($beacon_courses as $beacon_course) {
-                    $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id'); 
-                    $beacon_courses_arr[] = intval($c_course);
+                    // Check if 'id' exists before accessing
+                    if (isset($beacon_course['id'])) {
+                        $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id'); 
+                        $beacon_courses_arr[] = intval($c_course);
+                    }
                 }
             }
 
@@ -402,11 +384,6 @@ class Beacon_CRM_Integration
         }
     }
 
-    /**
-     * Hook: woocommerce_thankyou
-     * Handles the creation of Training records.
-     * @param int $order_id
-     */
     public function handle_training_logic($order_id)
     {
         $order = wc_get_order($order_id);
@@ -429,29 +406,32 @@ class Beacon_CRM_Integration
             if (is_array($beacon_courses)) {
                 foreach ($beacon_courses as $beacon_course) {
                     $c_course_id = isset($beacon_course['id']) ? $beacon_course['id'] : 0;
-                    $c_course = get__post_meta_by_id($c_course_id, 'beacon_id');
-                    $c_course_type = get__post_meta_by_id($c_course_id, 'course_type');
-                    $c_name = get_the_title($c_course_id) . " [Order ID: $order_id]";
+                    
+                    if ($c_course_id) {
+                        $c_course = get__post_meta_by_id($c_course_id, 'beacon_id');
+                        $c_course_type = get__post_meta_by_id($c_course_id, 'course_type');
+                        $c_name = get_the_title($c_course_id) . " [Order ID: $order_id]";
 
-                    if ($c_course && $c_course_type) {
-                        $payload = [
-                            "primary_field_key" => "c_previous_db_id",
-                            "entity" => [
-                                "c_person"         => [intval($beacon_person_id)],
-                                "c_course"         => [intval($c_course)],
-                                "c_course_type"    => [$c_course_type],
-                                "c_previous_db_id" => $c_name
-                            ]
-                        ];
+                        if ($c_course && $c_course_type) {
+                            $payload = [
+                                "primary_field_key" => "c_previous_db_id",
+                                "entity" => [
+                                    "c_person"         => [intval($beacon_person_id)],
+                                    "c_course"         => [intval($c_course)],
+                                    "c_course_type"    => [$c_course_type],
+                                    "c_previous_db_id" => $c_name
+                                ]
+                            ];
 
-                        $response = $this->send_request($resource, $payload, $order_id);
+                            $response = $this->send_request($resource, $payload, $order_id);
 
-                        $this->log_to_db("[Training] Order " . $order_id, [
-                            'type'    => 'training',
-                            'api_url' => $resource,
-                            'args'    => $payload,
-                            'return'  => $response,
-                        ]);
+                            $this->log_to_db("[Training] Order " . $order_id, [
+                                'type'    => 'training',
+                                'api_url' => $resource,
+                                'args'    => $payload,
+                                'return'  => $response,
+                            ]);
+                        }
                     }
                 }
             }
