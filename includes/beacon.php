@@ -146,31 +146,23 @@ class Beacon_CRM_Integration
     /* LOG & META BOXES                                                           */
     /* -------------------------------------------------------------------------- */
 
-    /**
-     * Register the Meta Box
-     */
     public function register_log_metabox() {
         add_meta_box(
             'beacon_crm_log_details',      // Unique ID
             'CRM Log Information',         // Title
-            [$this, 'render_log_metabox'], // Callback (Using $this)
+            [$this, 'render_log_metabox'], // Callback
             'beaconcrmlogs',               // Post type
             'normal',                      // Context
             'high'                         // Priority
         );
     }
 
-    /**
-     * Render the Meta Box Content
-     */
     public function render_log_metabox($post) {
-        // Fetch the meta values
         $log_type   = get_post_meta($post->ID, 'type', true);
         $api_url    = get_post_meta($post->ID, 'api_url', true);
         $log_args   = get_post_meta($post->ID, 'args', true);
         $log_return = get_post_meta($post->ID, 'return', true);
 
-        // CSS for basic styling
         ?>
         <style>
             .beacon-log-row { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
@@ -223,7 +215,6 @@ class Beacon_CRM_Integration
 
     public function handle_test_sync_submission()
     {
-        // 1. Security Check
         if (!isset($_POST['beacon_test_nonce']) || !wp_verify_nonce($_POST['beacon_test_nonce'], 'beacon_test_sync_nonce')) {
             wp_die('Invalid security nonce.');
         }
@@ -232,7 +223,6 @@ class Beacon_CRM_Integration
             wp_die('Unauthorized user.');
         }
 
-        // 2. Validate Input
         $order_id = isset($_POST['beacon_test_order_id']) ? intval($_POST['beacon_test_order_id']) : 0;
         $order = wc_get_order($order_id);
 
@@ -241,17 +231,14 @@ class Beacon_CRM_Integration
             exit;
         }
 
-        // 3. Validate Auth
         if (!$this->get_credentials()) {
             wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'missing_auth'], admin_url('options-general.php')));
             exit;
         }
 
-        // 4. Run Logic
         $this->handle_payment_complete($order_id); 
         $this->handle_training_logic($order_id);   
 
-        // 5. Redirect back with Success
         wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'success', 'tested_order' => $order_id], admin_url('options-general.php')));
         exit;
     }
@@ -327,13 +314,11 @@ class Beacon_CRM_Integration
     {
         $user_id = $order->get_user_id();
 
-        // Check local cache
         $existing_id = get_user_meta($user_id, 'beacon_user_id', true);
         if (!empty($existing_id)) {
             return $existing_id;
         }
 
-        // Prepare data
         $first_name = $order->get_billing_first_name();
         $last_name  = $order->get_billing_last_name();
         $email      = $order->get_billing_email();
@@ -431,6 +416,9 @@ class Beacon_CRM_Integration
                 }
             }
 
+            // Check if product category is 'bundles'
+            $is_bundle = has_term('bundles', 'product_cat', $product_id);
+
             $payload = [
                 "primary_field_key" => "external_id",
                 "entity" => [
@@ -444,10 +432,15 @@ class Beacon_CRM_Integration
                     'payment_method' => ['Card'],
                     'payment_date'   => [$payment_date],
                     'customer'       => [intval($beacon_person_id)],
-                    'event'          => $beacon_courses_arr,
+                    // 'event' is intentionally omitted here and added conditionally below
                     'notes'          => 'Payment made via woocommerce checkout for course: ' . $c_name,
                 ],
             ];
+
+            // Only add 'event' if it is NOT a bundle
+            if (!$is_bundle) {
+                $payload['entity']['event'] = $beacon_courses_arr;
+            }
 
             $response = $this->send_request($resource, $payload, $order_id, 'PUT');
 
