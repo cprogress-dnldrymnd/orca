@@ -38,6 +38,9 @@ class Beacon_CRM_Integration
         add_filter('manage_users_columns', [$this, 'add_beacon_id_user_column']);
         add_filter('manage_users_custom_column', [$this, 'fill_beacon_id_user_column'], 10, 3);
         add_filter('manage_sortable_columns', [$this, 'make_beacon_id_column_sortable']);
+
+        // Meta Boxes for Logs
+        add_action('add_meta_boxes', [$this, 'register_log_metabox']);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -140,6 +143,81 @@ class Beacon_CRM_Integration
     }
 
     /* -------------------------------------------------------------------------- */
+    /* LOG & META BOXES                                                           */
+    /* -------------------------------------------------------------------------- */
+
+    /**
+     * Register the Meta Box
+     */
+    public function register_log_metabox() {
+        add_meta_box(
+            'beacon_crm_log_details',      // Unique ID
+            'CRM Log Information',         // Title
+            [$this, 'render_log_metabox'], // Callback (Using $this)
+            'beaconcrmlogs',               // Post type
+            'normal',                      // Context
+            'high'                         // Priority
+        );
+    }
+
+    /**
+     * Render the Meta Box Content
+     */
+    public function render_log_metabox($post) {
+        // Fetch the meta values
+        $log_type   = get_post_meta($post->ID, 'type', true);
+        $api_url    = get_post_meta($post->ID, 'api_url', true);
+        $log_args   = get_post_meta($post->ID, 'args', true);
+        $log_return = get_post_meta($post->ID, 'return', true);
+
+        // CSS for basic styling
+        ?>
+        <style>
+            .beacon-log-row { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+            .beacon-log-label { font-weight: bold; display: block; margin-bottom: 5px; font-size: 13px; color: #2c3338; }
+            .beacon-log-code { background: #f0f0f1; padding: 10px; border: 1px solid #ccc; overflow: auto; font-family: monospace; max-height: 300px; }
+            .beacon-log-value { font-size: 14px; }
+        </style>
+
+        <div class="beacon-crm-log-container">
+            <div class="beacon-log-row">
+                <span class="beacon-log-label">Type:</span>
+                <div class="beacon-log-value">
+                    <?php echo esc_html($log_type ? $log_type : 'N/A'); ?>
+                </div>
+            </div>
+
+            <div class="beacon-log-row">
+                <span class="beacon-log-label">API URL:</span>
+                <div class="beacon-log-value">
+                    <?php if ($api_url): ?>
+                        <a href="<?php echo esc_url($api_url); ?>" target="_blank">
+                            <?php echo esc_html($api_url); ?>
+                        </a>
+                    <?php else: ?>
+                        N/A
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="beacon-log-row">
+                <span class="beacon-log-label">Request Arguments (Args):</span>
+                <div class="beacon-log-code">
+                    <pre><?php echo esc_html(print_r($log_args, true)); ?></pre>
+                </div>
+            </div>
+
+            <div class="beacon-log-row" style="border-bottom: none;">
+                <span class="beacon-log-label">API Response (Return):</span>
+                <div class="beacon-log-code">
+                    <pre><?php echo esc_html(print_r($log_return, true)); ?></pre>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    /* -------------------------------------------------------------------------- */
     /* TEST SUBMISSION HANDLER                                                    */
     /* -------------------------------------------------------------------------- */
 
@@ -170,9 +248,8 @@ class Beacon_CRM_Integration
         }
 
         // 4. Run Logic
-        // We explicitly call both handlers. The logic inside them handles deduplication/updates safely.
-        $this->handle_payment_complete($order_id); // Handles Person + Payment
-        $this->handle_training_logic($order_id);   // Handles Training Records
+        $this->handle_payment_complete($order_id); 
+        $this->handle_training_logic($order_id);   
 
         // 5. Redirect back with Success
         wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'success', 'tested_order' => $order_id], admin_url('options-general.php')));
@@ -347,7 +424,6 @@ class Beacon_CRM_Integration
             
             if (is_array($beacon_courses)) {
                 foreach ($beacon_courses as $beacon_course) {
-                    // Check if 'id' exists before accessing
                     if (isset($beacon_course['id'])) {
                         $c_course = get__post_meta_by_id($beacon_course['id'], 'beacon_id'); 
                         $beacon_courses_arr[] = intval($c_course);
