@@ -267,3 +267,47 @@ function add_beacon_crm_log($title, $meta_fields = array())
 
     return $result;
 }
+
+
+/**
+ * Adds a 'Beacon ID' column to the WordPress User Admin Dashboard.
+ * * @param array $columns Existing column headers.
+ * @return array Modified column headers.
+ */
+function add_beacon_id_user_column($columns) {
+    // Injecting the new column; key is 'beacon_id', label is 'Beacon ID'
+    $columns['beacon_id'] = 'Beacon ID';
+    return $columns;
+}
+add_filter('manage_users_columns', 'add_beacon_id_user_column');
+
+/**
+ * Populates the 'Beacon ID' column with user meta data.
+ * * @param string $output      The column content.
+ * @param string $column_name The name of the column currently being rendered.
+ * @param int    $user_id     The ID of the user for the current row.
+ * @return string The filtered column content.
+ */
+function fill_beacon_id_user_column($output, $column_name, $user_id) {
+    // Only target our specific custom column
+    if ($column_name === 'beacon_id') {
+        // Retrieve the user meta with key 'beacon_user_id'
+        $beacon_id = get_user_meta($user_id, 'beacon_user_id', true);
+        
+        // Return the value or a dash if empty for UI consistency
+        return !empty($beacon_id) ? esc_html($beacon_id) : '—';
+    }
+    return $output;
+}
+add_filter('manage_users_custom_column', 'fill_beacon_id_user_column', 10, 3);
+
+/**
+ * Makes the 'Beacon ID' column sortable.
+ * * @param array $columns Sortable columns.
+ * @return array Modified sortable columns.
+ */
+function make_beacon_id_column_sortable($columns) {
+    $columns['beacon_id'] = 'beacon_user_id';
+    return $columns;
+}
+add_filter('manage_sortable_columns', 'make_beacon_id_column_sortable');
