@@ -72,6 +72,7 @@ Container::make('post_meta', 'Course Settings')
                 )
             ))
     ));
+    /*
 Container::make('post_meta', 'Beacon Integration Settings')
     ->where('post_type', '=', 'product')
     ->add_fields(array(
@@ -96,7 +97,7 @@ Container::make('post_meta', 'Beacon  Settings')
                 'Introduction' => 'Introduction',
                 'Deep Dive' => 'Deep Dive',
             )),
-    ));
+    ));*/
 
 add_filter('carbon_fields_association_field_options_online_courses_included_post_product', function ($query_arguments) {
 
