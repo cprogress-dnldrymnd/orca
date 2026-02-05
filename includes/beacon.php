@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Beacon CRM Integration for WooCommerce
  * Handles synchronisation of Orders and Course Data to Beacon CRM.
@@ -28,7 +27,7 @@ class Beacon_CRM_Integration
         // Admin Settings Menu
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_init', [$this, 'register_settings']);
-
+        
         // Handle Test Sync Submission
         add_action('admin_post_beacon_test_sync', [$this, 'handle_test_sync_submission']);
 
@@ -44,51 +43,117 @@ class Beacon_CRM_Integration
         // Meta Boxes for Logs
         add_action('add_meta_boxes', [$this, 'register_log_metabox']);
 
-        // --- NEW: Product Meta Fields (Simple) ---
+        // --- NEW: Product Meta Fields (Simple - MULTIPLE) ---
         add_action('woocommerce_product_options_general_product_data', [$this, 'render_simple_product_fields']);
         add_action('woocommerce_process_product_meta', [$this, 'save_simple_product_fields']);
 
-        // --- NEW: Product Meta Fields (Variations) ---
+        // --- Product Meta Fields (Variations - SINGLE) ---
         add_action('woocommerce_product_after_variable_attributes', [$this, 'render_variation_fields'], 10, 3);
         add_action('woocommerce_save_product_variation', [$this, 'save_variation_fields'], 10, 2);
     }
 
     /* -------------------------------------------------------------------------- */
-    /* PRODUCT ADMIN FIELDS (NEW)                                                 */
+    /* PRODUCT ADMIN FIELDS                                                       */
     /* -------------------------------------------------------------------------- */
 
     /**
-     * Render fields for Simple Products (General Tab)
+     * Render Repeater fields for Simple Products (General Tab)
      */
     public function render_simple_product_fields()
     {
-        echo '<div class="options_group">';
+        global $post;
+        // Retrieve existing data
+        $courses = get_post_meta($post->ID, '_beacon_courses_data', true);
+        if (!is_array($courses) || empty($courses)) {
+            // Check for legacy single field data just in case
+            $legacy_id = get_post_meta($post->ID, '_beacon_id', true);
+            if ($legacy_id) {
+                $courses = [[
+                    'id' => $legacy_id,
+                    'type' => get_post_meta($post->ID, '_beacon_course_type', true)
+                ]];
+            } else {
+                $courses = []; // Empty start
+            }
+        }
 
-        echo '<h3>Beacon CRM Integration</h3>';
+        echo '<div class="options_group" id="beacon_crm_fields">';
+        echo '<h3>Beacon CRM Integration (Courses)</h3>';
+        echo '<p class="description">Add one or more Beacon courses linked to this product.</p>';
+        
+        echo '<div id="beacon_courses_wrapper">';
+        
+        // Render existing rows or at least one empty row
+        if (empty($courses)) {
+            $this->render_course_row(0, '', '');
+        } else {
+            foreach ($courses as $index => $course) {
+                $this->render_course_row($index, isset($course['id']) ? $course['id'] : '', isset($course['type']) ? $course['type'] : '');
+            }
+        }
+        
+        echo '</div>'; // End wrapper
 
-        woocommerce_wp_text_input([
-            'id'          => '_beacon_id',
-            'label'       => 'Beacon ID',
-            'desc_tip'    => 'true',
-            'description' => 'Enter the Beacon Course ID associated with this product.',
-            'type'        => 'text',
-        ]);
+        echo '<button type="button" class="button" id="add_beacon_course_row">Add Another Course</button>';
+        
+        // Simple JS to handle Add/Remove
+        ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                let wrapper = $('#beacon_courses_wrapper');
+                $('#add_beacon_course_row').on('click', function() {
+                    let count = wrapper.find('.beacon_course_row').length;
+                    let template = `
+                        <div class="beacon_course_row" style="border:1px solid #eee; padding:10px; margin-bottom:10px; background:#f9f9f9;">
+                            <p class="form-field">
+                                <label>Beacon ID</label>
+                                <input type="text" class="short" name="_beacon_courses_data[${count}][id]" value="" placeholder="Course ID">
+                            </p>
+                            <p class="form-field">
+                                <label>Course Type</label>
+                                <select class="select short" name="_beacon_courses_data[${count}][type]">
+                                    <option value="">Select Type...</option>
+                                    <option value="MMS">MMS</option>
+                                    <option value="OceanWatchers">OceanWatchers</option>
+                                    <option value="Introduction">Introduction</option>
+                                    <option value="Deep Dive">Deep Dive</option>
+                                </select>
+                            </p>
+                            <button type="button" class="button remove_beacon_row" style="color: #a00;">Remove</button>
+                        </div>
+                    `;
+                    wrapper.append(template);
+                });
 
-        woocommerce_wp_select([
-            'id'          => '_beacon_course_type',
-            'label'       => 'Course Type',
-            'options'     => [
-                ''              => 'Select Type...',
-                'MMS'           => 'MMS',
-                'OceanWatchers' => 'OceanWatchers',
-                'Introduction'  => 'Introduction',
-                'Deep Dive'     => 'Deep Dive',
-            ],
-            'desc_tip'    => 'true',
-            'description' => 'Select the type of course.',
-        ]);
-
+                wrapper.on('click', '.remove_beacon_row', function() {
+                    $(this).closest('.beacon_course_row').remove();
+                });
+            });
+        </script>
+        <?php
         echo '</div>';
+    }
+
+    private function render_course_row($index, $id_val, $type_val) {
+        ?>
+        <div class="beacon_course_row" style="border:1px solid #eee; padding:10px; margin-bottom:10px; background:#f9f9f9;">
+            <p class="form-field">
+                <label>Beacon ID</label>
+                <input type="text" class="short" name="_beacon_courses_data[<?php echo $index; ?>][id]" value="<?php echo esc_attr($id_val); ?>" placeholder="Course ID">
+            </p>
+            <p class="form-field">
+                <label>Course Type</label>
+                <select class="select short" name="_beacon_courses_data[<?php echo $index; ?>][type]">
+                    <option value="">Select Type...</option>
+                    <option value="MMS" <?php selected($type_val, 'MMS'); ?>>MMS</option>
+                    <option value="OceanWatchers" <?php selected($type_val, 'OceanWatchers'); ?>>OceanWatchers</option>
+                    <option value="Introduction" <?php selected($type_val, 'Introduction'); ?>>Introduction</option>
+                    <option value="Deep Dive" <?php selected($type_val, 'Deep Dive'); ?>>Deep Dive</option>
+                </select>
+            </p>
+            <button type="button" class="button remove_beacon_row" style="color: #a00;">Remove</button>
+        </div>
+        <?php
     }
 
     /**
@@ -96,29 +161,40 @@ class Beacon_CRM_Integration
      */
     public function save_simple_product_fields($post_id)
     {
-        if (isset($_POST['_beacon_id'])) {
-            update_post_meta($post_id, '_beacon_id', sanitize_text_field($_POST['_beacon_id']));
-        }
-        if (isset($_POST['_beacon_course_type'])) {
-            update_post_meta($post_id, '_beacon_course_type', sanitize_text_field($_POST['_beacon_course_type']));
+        if (isset($_POST['_beacon_courses_data'])) {
+            $data = $_POST['_beacon_courses_data'];
+            $sanitized_data = [];
+            
+            foreach ($data as $item) {
+                if (!empty($item['id'])) {
+                    $sanitized_data[] = [
+                        'id' => sanitize_text_field($item['id']),
+                        'type' => sanitize_text_field($item['type'])
+                    ];
+                }
+            }
+            update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
+            
+            // Clear legacy fields to avoid confusion
+            delete_post_meta($post_id, '_beacon_id');
+            delete_post_meta($post_id, '_beacon_course_type');
         }
     }
 
     /**
-     * Render fields for Variable Products (Inside each Variation)
+     * Render fields for Variable Products (Inside each Variation - KEEPING SINGLE for now per request scope)
      */
     public function render_variation_fields($loop, $variation_data, $variation)
     {
         $beacon_id = get_post_meta($variation->ID, '_beacon_id', true);
         $course_type = get_post_meta($variation->ID, '_beacon_course_type', true);
-
+        
         echo '<div class="beacon_variation_fields form-row form-row-full options_group">';
         echo '<h4>Beacon CRM Integration</h4>';
 
-        // Beacon ID Field
         woocommerce_wp_text_input([
             'id'            => '_beacon_id[' . $loop . ']',
-            'name'          => '_beacon_id[' . $loop . ']', // required for variations
+            'name'          => '_beacon_id[' . $loop . ']',
             'value'         => $beacon_id,
             'label'         => 'Beacon ID',
             'wrapper_class' => 'form-row form-row-full',
@@ -126,10 +202,9 @@ class Beacon_CRM_Integration
             'description'   => 'Enter the Beacon Course ID associated with this variation.',
         ]);
 
-        // Course Type Field
         woocommerce_wp_select([
             'id'            => '_beacon_course_type[' . $loop . ']',
-            'name'          => '_beacon_course_type[' . $loop . ']', // required for variations
+            'name'          => '_beacon_course_type[' . $loop . ']',
             'value'         => $course_type,
             'label'         => 'Course Type',
             'wrapper_class' => 'form-row form-row-full',
@@ -141,21 +216,13 @@ class Beacon_CRM_Integration
                 'Deep Dive'     => 'Deep Dive',
             ]
         ]);
-
         echo '</div>';
     }
 
-    /**
-     * Save fields for Variations
-     */
     public function save_variation_fields($variation_id, $i)
     {
-        if (isset($_POST['_beacon_id'][$i])) {
-            update_post_meta($variation_id, '_beacon_id', sanitize_text_field($_POST['_beacon_id'][$i]));
-        }
-        if (isset($_POST['_beacon_course_type'][$i])) {
-            update_post_meta($variation_id, '_beacon_course_type', sanitize_text_field($_POST['_beacon_course_type'][$i]));
-        }
+        if (isset($_POST['_beacon_id'][$i])) update_post_meta($variation_id, '_beacon_id', sanitize_text_field($_POST['_beacon_id'][$i]));
+        if (isset($_POST['_beacon_course_type'][$i])) update_post_meta($variation_id, '_beacon_course_type', sanitize_text_field($_POST['_beacon_course_type'][$i]));
     }
 
     /* -------------------------------------------------------------------------- */
@@ -181,10 +248,10 @@ class Beacon_CRM_Integration
 
     public function render_settings_page()
     {
-?>
+        ?>
         <div class="wrap">
             <h1>Beacon CRM Integration Settings</h1>
-            <?php
+            <?php 
             if (isset($_GET['beacon_test_status'])) {
                 $status = sanitize_text_field($_GET['beacon_test_status']);
                 $order_id = isset($_GET['tested_order']) ? intval($_GET['tested_order']) : 0;
@@ -214,21 +281,18 @@ class Beacon_CRM_Integration
                 <?php submit_button('Test Sync Now', 'secondary'); ?>
             </form>
         </div>
-    <?php
+        <?php
     }
 
-    public function render_field_api_key()
-    {
+    public function render_field_api_key() {
         $value = get_option(self::OPT_API_KEY);
         echo '<input type="password" name="' . esc_attr(self::OPT_API_KEY) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
-    public function render_field_account_id()
-    {
+    public function render_field_account_id() {
         $value = get_option(self::OPT_ACCOUNT_ID);
         echo '<input type="text" name="' . esc_attr(self::OPT_ACCOUNT_ID) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
-    public function render_field_api_base()
-    {
+    public function render_field_api_base() {
         $value = get_option(self::OPT_API_BASE, 'https://api.beaconcrm.org/v1/account/');
         echo '<input type="url" name="' . esc_attr(self::OPT_API_BASE) . '" value="' . esc_attr($value) . '" class="regular-text">';
     }
@@ -237,65 +301,29 @@ class Beacon_CRM_Integration
     /* LOG & META BOXES                                                           */
     /* -------------------------------------------------------------------------- */
 
-    public function register_log_metabox()
-    {
+    public function register_log_metabox() {
         add_meta_box('beacon_crm_log_details', 'CRM Log Information', [$this, 'render_log_metabox'], 'beaconcrmlogs', 'normal', 'high');
     }
 
-    public function render_log_metabox($post)
-    {
+    public function render_log_metabox($post) {
         $log_type = get_post_meta($post->ID, 'type', true);
         $api_url = get_post_meta($post->ID, 'api_url', true);
         $log_args = get_post_meta($post->ID, 'args', true);
         $log_return = get_post_meta($post->ID, 'return', true);
-    ?>
+        ?>
         <style>
-            .beacon-log-row {
-                margin-bottom: 15px;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 15px;
-            }
-
-            .beacon-log-label {
-                font-weight: bold;
-                display: block;
-                margin-bottom: 5px;
-                font-size: 13px;
-                color: #2c3338;
-            }
-
-            .beacon-log-code {
-                background: #f0f0f1;
-                padding: 10px;
-                border: 1px solid #ccc;
-                overflow: auto;
-                font-family: monospace;
-                max-height: 300px;
-            }
-
-            .beacon-log-value {
-                font-size: 14px;
-            }
+            .beacon-log-row { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+            .beacon-log-label { font-weight: bold; display: block; margin-bottom: 5px; font-size: 13px; color: #2c3338; }
+            .beacon-log-code { background: #f0f0f1; padding: 10px; border: 1px solid #ccc; overflow: auto; font-family: monospace; max-height: 300px; }
+            .beacon-log-value { font-size: 14px; }
         </style>
         <div class="beacon-crm-log-container">
-            <div class="beacon-log-row"><span class="beacon-log-label">Type:</span>
-                <div class="beacon-log-value"><?php echo esc_html($log_type ?: 'N/A'); ?></div>
-            </div>
-            <div class="beacon-log-row"><span class="beacon-log-label">API URL:</span>
-                <div class="beacon-log-value"><?php echo $api_url ? esc_html($api_url) : 'N/A'; ?></div>
-            </div>
-            <div class="beacon-log-row"><span class="beacon-log-label">Request Args:</span>
-                <div class="beacon-log-code">
-                    <pre><?php echo esc_html(print_r($log_args, true)); ?></pre>
-                </div>
-            </div>
-            <div class="beacon-log-row" style="border-bottom:none;"><span class="beacon-log-label">API Return:</span>
-                <div class="beacon-log-code">
-                    <pre><?php echo esc_html(print_r($log_return, true)); ?></pre>
-                </div>
-            </div>
+            <div class="beacon-log-row"><span class="beacon-log-label">Type:</span><div class="beacon-log-value"><?php echo esc_html($log_type ?: 'N/A'); ?></div></div>
+            <div class="beacon-log-row"><span class="beacon-log-label">API URL:</span><div class="beacon-log-value"><?php echo $api_url ? esc_html($api_url) : 'N/A'; ?></div></div>
+            <div class="beacon-log-row"><span class="beacon-log-label">Request Args:</span><div class="beacon-log-code"><pre><?php echo esc_html(print_r($log_args, true)); ?></pre></div></div>
+            <div class="beacon-log-row" style="border-bottom:none;"><span class="beacon-log-label">API Return:</span><div class="beacon-log-code"><pre><?php echo esc_html(print_r($log_return, true)); ?></pre></div></div>
         </div>
-<?php
+        <?php
     }
 
     /* -------------------------------------------------------------------------- */
@@ -320,8 +348,8 @@ class Beacon_CRM_Integration
             exit;
         }
 
-        $this->handle_payment_complete($order_id);
-        $this->handle_training_logic($order_id);
+        $this->handle_payment_complete($order_id); 
+        $this->handle_training_logic($order_id);   
 
         wp_redirect(add_query_arg(['page' => 'beacon-crm-settings', 'beacon_test_status' => 'success', 'tested_order' => $order_id], admin_url('options-general.php')));
         exit;
@@ -433,23 +461,32 @@ class Beacon_CRM_Integration
         $resource = 'entity/payment/upsert';
 
         foreach ($order->get_items() as $item) {
-            // Determine Product ID (Variation takes precedence)
-            $product_id = $item->get_product_id(); // Parent ID
+            $product_id = $item->get_product_id(); 
             $variation_id = $item->get_variation_id();
+            
+            $collected_beacon_ids = [];
 
-            // Check Variation first, then Parent
-            $item_id_to_check = $variation_id ? $variation_id : $product_id;
-
-            // Fetch Native Meta
-            $c_course = get_post_meta($item_id_to_check, '_beacon_id', true);
-
-            // If Variation is empty, fallback to Parent (Optional, remove if strict separation needed)
-            if (empty($c_course) && $variation_id) {
-                $c_course = get_post_meta($product_id, '_beacon_id', true);
+            // 1. Get Course Data
+            if ($variation_id) {
+                // Variation logic: Single course
+                $v_course_id = get_post_meta($variation_id, '_beacon_id', true);
+                if ($v_course_id) {
+                    $collected_beacon_ids[] = intval($v_course_id);
+                }
+            } else {
+                // Simple Product logic: Multiple courses
+                $courses_data = get_post_meta($product_id, '_beacon_courses_data', true);
+                if (is_array($courses_data)) {
+                    foreach ($courses_data as $c) {
+                        if (!empty($c['id'])) {
+                            $collected_beacon_ids[] = intval($c['id']);
+                        }
+                    }
+                }
             }
 
             $c_name = $item->get_name() . " [Order ID: $order_id]";
-            $is_bundle = has_term('bundles', 'product_cat', $product_id); // Categories are on Parent
+            $is_bundle = has_term('bundles', 'product_cat', $product_id); 
 
             $payload = [
                 "primary_field_key" => "external_id",
@@ -465,9 +502,9 @@ class Beacon_CRM_Integration
                 ],
             ];
 
-            // Logic: Only add 'event' if not bundle AND a course ID exists
-            if (!$is_bundle && !empty($c_course)) {
-                $payload['entity']['event'] = [intval($c_course)];
+            // Only add 'event' if not bundle AND we have course IDs
+            if (!$is_bundle && !empty($collected_beacon_ids)) {
+                $payload['entity']['event'] = $collected_beacon_ids;
             }
 
             $response = $this->send_request($resource, $payload, $order_id, 'PUT');
@@ -488,33 +525,41 @@ class Beacon_CRM_Integration
         foreach ($order->get_items() as $item) {
             $product_id = $item->get_product_id();
             $variation_id = $item->get_variation_id();
-            $item_id_to_check = $variation_id ? $variation_id : $product_id;
+            
+            $courses_to_process = [];
 
-            // Fetch Native Meta
-            $c_course = get_post_meta($item_id_to_check, '_beacon_id', true);
-            $c_course_type = get_post_meta($item_id_to_check, '_beacon_course_type', true);
-
-            // Fallback to parent if empty on variation
-            if (empty($c_course) && $variation_id) {
-                $c_course = get_post_meta($product_id, '_beacon_id', true);
-                $c_course_type = get_post_meta($product_id, '_beacon_course_type', true);
+            if ($variation_id) {
+                // Variation: Single
+                $id = get_post_meta($variation_id, '_beacon_id', true);
+                $type = get_post_meta($variation_id, '_beacon_course_type', true);
+                if ($id && $type) {
+                    $courses_to_process[] = ['id' => $id, 'type' => $type];
+                }
+            } else {
+                // Simple: Multiple
+                $data = get_post_meta($product_id, '_beacon_courses_data', true);
+                if (is_array($data)) {
+                    $courses_to_process = $data;
+                }
             }
 
             $c_name = $item->get_name() . " [Order ID: $order_id]";
 
-            if (!empty($c_course) && !empty($c_course_type)) {
-                $payload = [
-                    "primary_field_key" => "c_previous_db_id",
-                    "entity" => [
-                        "c_person"         => [intval($beacon_person_id)],
-                        "c_course"         => [intval($c_course)],
-                        "c_course_type"    => [$c_course_type],
-                        "c_previous_db_id" => $c_name
-                    ]
-                ];
+            foreach ($courses_to_process as $course) {
+                if (!empty($course['id']) && !empty($course['type'])) {
+                    $payload = [
+                        "primary_field_key" => "c_previous_db_id",
+                        "entity" => [
+                            "c_person"         => [intval($beacon_person_id)],
+                            "c_course"         => [intval($course['id'])],
+                            "c_course_type"    => [$course['type']],
+                            "c_previous_db_id" => $c_name
+                        ]
+                    ];
 
-                $response = $this->send_request($resource, $payload, $order_id);
-                $this->log_to_db("[Training] Order " . $order_id, ['type' => 'training', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
+                    $response = $this->send_request($resource, $payload, $order_id);
+                    $this->log_to_db("[Training] Order " . $order_id, ['type' => 'training', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
+                }
             }
         }
     }
@@ -526,24 +571,12 @@ class Beacon_CRM_Integration
         return $result;
     }
 
-    public function add_beacon_id_user_column($columns)
-    {
-        $columns['beacon_id'] = 'Beacon ID';
-        return $columns;
-    }
-    public function fill_beacon_id_user_column($output, $column_name, $user_id)
-    {
-        if ($column_name === 'beacon_id') {
-            $id = get_user_meta($user_id, 'beacon_user_id', true);
-            return $id ? esc_html($id) : '—';
-        }
+    public function add_beacon_id_user_column($columns) { $columns['beacon_id'] = 'Beacon ID'; return $columns; }
+    public function fill_beacon_id_user_column($output, $column_name, $user_id) {
+        if ($column_name === 'beacon_id') { $id = get_user_meta($user_id, 'beacon_user_id', true); return $id ? esc_html($id) : '—'; }
         return $output;
     }
-    public function make_beacon_id_column_sortable($columns)
-    {
-        $columns['beacon_id'] = 'beacon_user_id';
-        return $columns;
-    }
+    public function make_beacon_id_column_sortable($columns) { $columns['beacon_id'] = 'beacon_user_id'; return $columns; }
 }
 
 new Beacon_CRM_Integration();
