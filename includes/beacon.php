@@ -88,8 +88,6 @@ class Beacon_CRM_Integration
 
         echo '<div id="beacon_courses_wrapper">';
 
-        // FIX: Removed the logic that forced an empty row if $courses was empty.
-        // Now, if data is empty, 0 rows are rendered.
         if (!empty($courses)) {
             foreach ($courses as $index => $course) {
                 $this->render_course_row($index, isset($course['id']) ? $course['id'] : '', isset($course['type']) ? $course['type'] : '');
@@ -106,7 +104,6 @@ class Beacon_CRM_Integration
                 let wrapper = $('#beacon_courses_wrapper');
                 $('#add_beacon_course_row').on('click', function() {
                     let count = wrapper.find('.beacon_course_row').length;
-                    // Random ID ensures unique index if rows are added/removed quickly
                     let unique_index = count + Math.floor(Math.random() * 1000);
 
                     let template = `
@@ -168,15 +165,12 @@ class Beacon_CRM_Integration
      */
     public function save_simple_product_fields($post_id)
     {
-        // Only proceed if our flag is present (confirms we are on product edit screen)
         if (!isset($_POST['_beacon_crm_flag'])) {
             return;
         }
 
         $sanitized_data = [];
 
-        // If the user removed all rows, $_POST['_beacon_courses_data'] will be missing.
-        // We initialize $sanitized_data as [], which effectively clears the data.
         if (isset($_POST['_beacon_courses_data']) && is_array($_POST['_beacon_courses_data'])) {
             foreach ($_POST['_beacon_courses_data'] as $item) {
                 if (!empty($item['id'])) {
@@ -188,10 +182,8 @@ class Beacon_CRM_Integration
             }
         }
 
-        // Save the array (even if empty)
         update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
 
-        // Clean up legacy fields to prevent conflicts
         delete_post_meta($post_id, '_beacon_id');
         delete_post_meta($post_id, '_beacon_course_type');
     }
@@ -544,6 +536,12 @@ class Beacon_CRM_Integration
             $c_name = $item->get_name() . " [Order ID: $order_id]";
             $is_bundle = has_term('bundles', 'product_cat', $product_id);
 
+            // Generate Notes
+            $note_text = 'Payment via WC: ' . $c_name;
+            if ($is_bundle) {
+                $note_text .= ' (Bundle Payment)';
+            }
+
             $payload = [
                 "primary_field_key" => "external_id",
                 "entity" => [
@@ -554,7 +552,7 @@ class Beacon_CRM_Integration
                     'payment_method' => ['Card'],
                     'payment_date'   => [$date_paid],
                     'customer'       => [intval($beacon_person_id)],
-                    'notes'          => 'Payment via WC: ' . $c_name,
+                    'notes'          => $note_text,
                 ],
             ];
 
