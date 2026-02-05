@@ -65,8 +65,9 @@ class Beacon_CRM_Integration
         global $post;
         // Retrieve existing data
         $courses = get_post_meta($post->ID, '_beacon_courses_data', true);
-        if (!is_array($courses) || empty($courses)) {
-            // Check for legacy single field data just in case
+
+        // Handle legacy data migration or initialization
+        if (!is_array($courses)) {
             $legacy_id = get_post_meta($post->ID, '_beacon_id', true);
             if ($legacy_id) {
                 $courses = [[
@@ -74,23 +75,22 @@ class Beacon_CRM_Integration
                     'type' => get_post_meta($post->ID, '_beacon_course_type', true)
                 ]];
             } else {
-                $courses = []; // Empty start
+                $courses = [];
             }
         }
 
         echo '<div class="options_group" id="beacon_crm_fields">';
         echo '<h3>Beacon CRM Integration (Courses)</h3>';
-        echo '<p class="description">Add one or more Beacon courses linked to this product. Leave empty if not applicable.</p>';
+        echo '<p class="description">Add one or more Beacon courses linked to this product.</p>';
 
-        // Hidden flag to detect form submission even if repeater is empty
+        // Hidden flag is crucial to detect "empty" submissions
         echo '<input type="hidden" name="_beacon_crm_flag" value="1">';
 
         echo '<div id="beacon_courses_wrapper">';
 
-        if (empty($courses)) {
-            // Render one empty row by default for convenience, but it won't save if left empty
-            $this->render_course_row(0, '', '');
-        } else {
+        // FIX: Removed the logic that forced an empty row if $courses was empty.
+        // Now, if data is empty, 0 rows are rendered.
+        if (!empty($courses)) {
             foreach ($courses as $index => $course) {
                 $this->render_course_row($index, isset($course['id']) ? $course['id'] : '', isset($course['type']) ? $course['type'] : '');
             }
@@ -106,18 +106,18 @@ class Beacon_CRM_Integration
                 let wrapper = $('#beacon_courses_wrapper');
                 $('#add_beacon_course_row').on('click', function() {
                     let count = wrapper.find('.beacon_course_row').length;
-                    // Ensure unique index if user adds/removes rapidly
-                    count = count + Math.floor(Math.random() * 1000);
+                    // Random ID ensures unique index if rows are added/removed quickly
+                    let unique_index = count + Math.floor(Math.random() * 1000);
 
                     let template = `
                         <div class="beacon_course_row" style="border:1px solid #eee; padding:10px; margin-bottom:10px; background:#f9f9f9;">
                             <p class="form-field">
                                 <label>Beacon ID</label>
-                                <input type="text" class="short" name="_beacon_courses_data[${count}][id]" value="" placeholder="Course ID">
+                                <input type="text" class="short" name="_beacon_courses_data[${unique_index}][id]" value="" placeholder="Course ID">
                             </p>
                             <p class="form-field">
                                 <label>Course Type</label>
-                                <select class="select short" name="_beacon_courses_data[${count}][type]">
+                                <select class="select short" name="_beacon_courses_data[${unique_index}][type]">
                                     <option value="">Select Type...</option>
                                     <option value="MMS">MMS</option>
                                     <option value="OceanWatchers">OceanWatchers</option>
@@ -168,17 +168,17 @@ class Beacon_CRM_Integration
      */
     public function save_simple_product_fields($post_id)
     {
-        // Only run if our flag is present (means we are on the product edit screen)
+        // Only proceed if our flag is present (confirms we are on product edit screen)
         if (!isset($_POST['_beacon_crm_flag'])) {
             return;
         }
 
         $sanitized_data = [];
 
-        // If data exists, sanitize and store it
+        // If the user removed all rows, $_POST['_beacon_courses_data'] will be missing.
+        // We initialize $sanitized_data as [], which effectively clears the data.
         if (isset($_POST['_beacon_courses_data']) && is_array($_POST['_beacon_courses_data'])) {
             foreach ($_POST['_beacon_courses_data'] as $item) {
-                // We only save rows that have a Beacon ID
                 if (!empty($item['id'])) {
                     $sanitized_data[] = [
                         'id' => sanitize_text_field($item['id']),
@@ -188,10 +188,10 @@ class Beacon_CRM_Integration
             }
         }
 
-        // Save (even if empty, to allow clearing of fields)
+        // Save the array (even if empty)
         update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
 
-        // Clear legacy fields
+        // Clean up legacy fields to prevent conflicts
         delete_post_meta($post_id, '_beacon_id');
         delete_post_meta($post_id, '_beacon_course_type');
     }
@@ -236,7 +236,6 @@ class Beacon_CRM_Integration
 
     public function save_variation_fields($variation_id, $i)
     {
-        // Allow saving empty values to clear them
         $id_val = isset($_POST['_beacon_id'][$i]) ? sanitize_text_field($_POST['_beacon_id'][$i]) : '';
         update_post_meta($variation_id, '_beacon_id', $id_val);
 
