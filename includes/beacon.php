@@ -80,11 +80,15 @@ class Beacon_CRM_Integration
 
         echo '<div class="options_group" id="beacon_crm_fields">';
         echo '<h3>Beacon CRM Integration (Courses)</h3>';
-        echo '<p class="description">Add one or more Beacon courses linked to this product.</p>';
+        echo '<p class="description">Add one or more Beacon courses linked to this product. Leave empty if not applicable.</p>';
+
+        // Hidden flag to detect form submission even if repeater is empty
+        echo '<input type="hidden" name="_beacon_crm_flag" value="1">';
 
         echo '<div id="beacon_courses_wrapper">';
 
         if (empty($courses)) {
+            // Render one empty row by default for convenience, but it won't save if left empty
             $this->render_course_row(0, '', '');
         } else {
             foreach ($courses as $index => $course) {
@@ -96,13 +100,15 @@ class Beacon_CRM_Integration
 
         echo '<button type="button" class="button" id="add_beacon_course_row">Add Another Course</button>';
 
-        // JS Only handles Repeater Rows (Visibility toggle removed)
 ?>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
                 let wrapper = $('#beacon_courses_wrapper');
                 $('#add_beacon_course_row').on('click', function() {
                     let count = wrapper.find('.beacon_course_row').length;
+                    // Ensure unique index if user adds/removes rapidly
+                    count = count + Math.floor(Math.random() * 1000);
+
                     let template = `
                         <div class="beacon_course_row" style="border:1px solid #eee; padding:10px; margin-bottom:10px; background:#f9f9f9;">
                             <p class="form-field">
@@ -162,25 +168,32 @@ class Beacon_CRM_Integration
      */
     public function save_simple_product_fields($post_id)
     {
-        // Reverted: Removed check for variable product type so this saves on all types.
-        if (isset($_POST['_beacon_courses_data'])) {
-            $data = $_POST['_beacon_courses_data'];
-            $sanitized_data = [];
+        // Only run if our flag is present (means we are on the product edit screen)
+        if (!isset($_POST['_beacon_crm_flag'])) {
+            return;
+        }
 
-            foreach ($data as $item) {
+        $sanitized_data = [];
+
+        // If data exists, sanitize and store it
+        if (isset($_POST['_beacon_courses_data']) && is_array($_POST['_beacon_courses_data'])) {
+            foreach ($_POST['_beacon_courses_data'] as $item) {
+                // We only save rows that have a Beacon ID
                 if (!empty($item['id'])) {
                     $sanitized_data[] = [
                         'id' => sanitize_text_field($item['id']),
-                        'type' => sanitize_text_field($item['type'])
+                        'type' => isset($item['type']) ? sanitize_text_field($item['type']) : ''
                     ];
                 }
             }
-            update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
-
-            // Clear legacy fields
-            delete_post_meta($post_id, '_beacon_id');
-            delete_post_meta($post_id, '_beacon_course_type');
         }
+
+        // Save (even if empty, to allow clearing of fields)
+        update_post_meta($post_id, '_beacon_courses_data', $sanitized_data);
+
+        // Clear legacy fields
+        delete_post_meta($post_id, '_beacon_id');
+        delete_post_meta($post_id, '_beacon_course_type');
     }
 
     /**
@@ -223,8 +236,12 @@ class Beacon_CRM_Integration
 
     public function save_variation_fields($variation_id, $i)
     {
-        if (isset($_POST['_beacon_id'][$i])) update_post_meta($variation_id, '_beacon_id', sanitize_text_field($_POST['_beacon_id'][$i]));
-        if (isset($_POST['_beacon_course_type'][$i])) update_post_meta($variation_id, '_beacon_course_type', sanitize_text_field($_POST['_beacon_course_type'][$i]));
+        // Allow saving empty values to clear them
+        $id_val = isset($_POST['_beacon_id'][$i]) ? sanitize_text_field($_POST['_beacon_id'][$i]) : '';
+        update_post_meta($variation_id, '_beacon_id', $id_val);
+
+        $type_val = isset($_POST['_beacon_course_type'][$i]) ? sanitize_text_field($_POST['_beacon_course_type'][$i]) : '';
+        update_post_meta($variation_id, '_beacon_course_type', $type_val);
     }
 
     /* -------------------------------------------------------------------------- */
