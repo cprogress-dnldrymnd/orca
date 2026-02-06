@@ -543,6 +543,9 @@ class Beacon_CRM_Integration
             $note_text = 'Payment via WC: ' . $c_name;
             if ($is_bundle) {
                 $note_text .= ' (Bundle Payment)';
+                $type = 'Course fees - bundle';
+            } else {
+                $type = 'Course fees - individual';
             }
 
             $payload = [
@@ -550,7 +553,7 @@ class Beacon_CRM_Integration
                 "entity" => [
                     'external_id'    => $external_id,
                     'amount'         => ['value' => $item->get_total(), 'currency' => 'GBP'],
-                    'type'           => ['Course fees'],
+                    'type'           => [$type],
                     'source'         => ['Training Course'],
                     'payment_method' => ['Card'],
                     'payment_date'   => [$date_paid],
