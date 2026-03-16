@@ -1095,7 +1095,8 @@ class Beacon_CRM_Integration
 
         $product_names = [];
         $has_bundle    = false;
-        $order_items   = $order->get_items();
+        $type = 'Course fees';
+
 
         // Iterate through items solely to aggregate names and check for bundle categories
         foreach ($order->get_items() as $item) {
@@ -1112,12 +1113,7 @@ class Beacon_CRM_Integration
         // Construct aggregated CRM note
         $aggregated_names = implode(', ', $product_names);
         $note_text        = 'Payment via WC: ' . $aggregated_names . " [Order ID: {$order_id}]";
-        // Determine payment type based on the distinct line item count
-        if (count($order_items) > 1 || $has_bundle) {
-            $type = 'Course fees - bundle';
-        } else {
-            $type = 'Course fees - individual';
-        }
+
         // Construct a single, unified payment payload using the full order total
         $payload = [
             "primary_field_key" => "external_id",
