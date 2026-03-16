@@ -796,11 +796,13 @@ class Beacon_CRM_Integration
 
         // Iterate through items solely to aggregate names and check for bundle categories
         foreach ($order->get_items() as $item) {
-            $product_names[] = $item->get_name();
+            $name = $item->get_name();
 
             if (! $has_bundle && has_term('bundles', 'product_cat', $item->get_product_id())) {
-                $has_bundle = true;
+                $name .= ' (Bundle Payment)';
             }
+
+            $product_names[] = $item->get_name();
         }
 
         // Construct aggregated CRM note
@@ -808,7 +810,6 @@ class Beacon_CRM_Integration
         $note_text        = 'Payment via WC: ' . $aggregated_names . " [Order ID: {$order_id}]";
 
         if ($has_bundle) {
-            $note_text .= ' (Bundle Payment)';
             $type = 'Course fees - bundle';
         } else {
             $type = 'Course fees - individual';
