@@ -769,7 +769,8 @@ class Beacon_CRM_Integration
 
     /**
      * Parses a finalized transaction to sync financial payment objects up to Beacon CRM endpoints.
-     * Triggered on WooCommerce payment completion hooks.
+     * Triggered on WooCommerce payment completion hooks. Consolidates multi-item orders into 
+     * a single payment payload and aggregates product names for CRM notation.
      *
      * @param int $order_id Standard WC Order ID numeric value.
      */
@@ -790,45 +791,47 @@ class Beacon_CRM_Integration
         $external_id = $order->get_transaction_id() ?: 'MANUAL-' . $order_id;
         $resource    = 'entity/payment/upsert';
 
+        $product_names = [];
+        $has_bundle    = false;
+
+        // Iterate through items solely to aggregate names and check for bundle categories
         foreach ($order->get_items() as $item) {
-            $product_id   = $item->get_product_id();
-            $variation_id = $item->get_variation_id();
+            $product_names[] = $item->get_name();
 
-            $collected_beacon_ids = $this->get_item_course_ids($product_id, $variation_id);
-
-            $c_name    = $item->get_name() . " [Order ID: {$order_id}]";
-            $is_bundle = has_term('bundles', 'product_cat', $product_id);
-
-            // Generate Notes
-            $note_text = 'Payment via WC: ' . $c_name;
-            if ($is_bundle) {
-                $note_text .= ' (Bundle Payment)';
-                $type = 'Course fees - bundle';
-            } else {
-                $type = 'Course fees - individual';
+            if (! $has_bundle && has_term('bundles', 'product_cat', $item->get_product_id())) {
+                $has_bundle = true;
             }
-
-            $payload = [
-                "primary_field_key" => "external_id",
-                "entity"            => [
-                    'external_id'    => $external_id,
-                    'amount'         => ['value' => $item->get_total(), 'currency' => 'GBP'],
-                    'type'           => [$type],
-                    'source'         => ['Training Course'],
-                    'payment_method' => ['Card'],
-                    'payment_date'   => [$date_paid],
-                    'customer'       => [intval($beacon_person_id)],
-                    'notes'          => $note_text,
-                ],
-            ];
-
-            if (! $is_bundle && ! empty($collected_beacon_ids)) {
-                $payload['entity']['event'] = array_values($collected_beacon_ids);
-            }
-
-            $response = $this->send_request($resource, $payload, $order_id, 'PUT');
-            $this->log_to_db("[Payment] Order " . $order_id, ['type' => 'payment', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
         }
+
+        // Construct aggregated CRM note
+        $aggregated_names = implode(', ', $product_names);
+        $note_text        = 'Payment via WC: ' . $aggregated_names . " [Order ID: {$order_id}]";
+
+        if ($has_bundle) {
+            $note_text .= ' (Bundle Payment)';
+            $type = 'Course fees - bundle';
+        } else {
+            $type = 'Course fees - individual';
+        }
+
+        // Construct a single, unified payment payload using the full order total
+        $payload = [
+            "primary_field_key" => "external_id",
+            "entity"            => [
+                'external_id'    => $external_id,
+                'amount'         => ['value' => $order->get_total(), 'currency' => 'GBP'],
+                'type'           => [$type],
+                'source'         => ['Training Course'],
+                'payment_method' => ['Card'],
+                'payment_date'   => [$date_paid],
+                'customer'       => [intval($beacon_person_id)],
+                'notes'          => $note_text,
+            ],
+        ];
+
+        // Execute the singular API request for the transaction
+        $response = $this->send_request($resource, $payload, $order_id, 'PUT');
+        $this->log_to_db("[Payment] Order " . $order_id, ['type' => 'payment', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
     }
 
     /**
