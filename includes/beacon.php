@@ -460,20 +460,55 @@ class Beacon_CRM_Integration
                 <?php elseif ($active_tab === 'test') : ?>
                     <h2>Test Single Order Sync</h2>
                     <p class="description">Search for a specific order to manually trigger the Beacon CRM sync workflow.</p>
+
+                    <style>
+                        /* Target SelectWoo specifically for the Beacon CRM search field to ensure WP Admin UI consistency */
+                        .beacon-order-search-container .select2-container {
+                            width: 100% !important;
+                            max-width: 500px;
+                        }
+
+                        .beacon-order-search-container .select2-selection--single {
+                            min-height: 32px;
+                            border: 1px solid #8c8f94;
+                            border-radius: 3px;
+                            box-shadow: 0 0 0 transparent;
+                        }
+
+                        .beacon-order-search-container .select2-selection__rendered {
+                            line-height: 30px;
+                            padding-left: 12px;
+                            color: #2c3338;
+                        }
+
+                        .beacon-order-search-container .select2-selection__arrow {
+                            height: 30px;
+                        }
+
+                        .beacon-order-search-container .select2-container--focus .select2-selection--single {
+                            border-color: #2271b1;
+                            box-shadow: 0 0 0 1px #2271b1;
+                        }
+                    </style>
+
                     <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
                         <input type="hidden" name="action" value="beacon_test_sync">
                         <?php wp_nonce_field('beacon_test_sync_nonce', 'beacon_test_nonce'); ?>
-                        <table class="form-table">
+                        <table class="form-table beacon-order-search-container">
                             <tr>
                                 <th scope="row"><label for="beacon_test_order_id">Select WooCommerce Order</label></th>
                                 <td>
-                                    <select name="beacon_test_order_id" id="beacon_test_order_id" class="wc-order-search" style="width: 50%;" data-placeholder="Search for an order by ID or Name..." required></select>
+                                    <select name="beacon_test_order_id" id="beacon_test_order_id" class="wc-order-search" data-placeholder="Search for an order by ID, Name, or Email..." required></select>
                                 </td>
                             </tr>
                         </table>
                         <?php submit_button('Sync Order Now', 'primary'); ?>
                     </form>
                     <script>
+                        /**
+                         * Initializes the SelectWoo instance for asynchronous WooCommerce Order retrieval.
+                         * Maps search queries to the custom 'beacon_search_orders' AJAX endpoint.
+                         */
                         jQuery(document).ready(function($) {
                             $('#beacon_test_order_id').selectWoo({
                                 ajax: {
@@ -495,6 +530,7 @@ class Beacon_CRM_Integration
                                     cache: true
                                 },
                                 minimumInputLength: 1,
+                                allowClear: true
                             });
                         });
                     </script>
