@@ -61,10 +61,11 @@ class Beacon_CRM_Integration
 
         // AJAX Order Search
         add_action('wp_ajax_beacon_search_orders', [$this, 'ajax_search_orders']);
+        add_action('wp_ajax_beacon_init_bulk_sync', [$this, 'ajax_init_bulk_sync']);
+        add_action('wp_ajax_beacon_process_chunk', [$this, 'ajax_process_chunk']);
 
         // Handle Test Sync Submission
         add_action('admin_post_beacon_test_sync', [$this, 'handle_test_sync_submission']);
-        add_action('admin_post_beacon_bulk_sync', [$this, 'handle_bulk_sync_submission']);
 
         // Order Hooks
         add_action('woocommerce_payment_complete', [$this, 'handle_payment_complete']);
@@ -537,22 +538,106 @@ class Beacon_CRM_Integration
 
                 <?php elseif ($active_tab === 'bulk') : ?>
                     <h2>Bulk Sync by Date Range</h2>
-                    <p class="description">Select a date range to find and push all orders created within that timeframe to Beacon CRM. <em>Warning: Large date ranges may take a moment to process.</em></p>
-                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
-                        <input type="hidden" name="action" value="beacon_bulk_sync">
-                        <?php wp_nonce_field('beacon_bulk_sync_nonce', 'beacon_bulk_nonce'); ?>
+                    <p class="description">Select a date range to find and push all orders created within that timeframe to Beacon CRM. Processing happens in batches to prevent server timeouts.</p>
+
+                    <div id="beacon-bulk-form-container">
                         <table class="form-table">
                             <tr>
                                 <th scope="row"><label for="beacon_date_from">Date From</label></th>
-                                <td><input type="date" name="beacon_date_from" id="beacon_date_from" required></td>
+                                <td><input type="date" id="beacon_date_from" required></td>
                             </tr>
                             <tr>
                                 <th scope="row"><label for="beacon_date_to">Date To</label></th>
-                                <td><input type="date" name="beacon_date_to" id="beacon_date_to" required></td>
+                                <td><input type="date" id="beacon_date_to" required></td>
                             </tr>
                         </table>
-                        <?php submit_button('Run Bulk Sync', 'primary'); ?>
-                    </form>
+                        <p>
+                            <button type="button" id="beacon-run-bulk" class="button button-primary">Run Bulk Sync</button>
+                        </p>
+                    </div>
+
+                    <div id="beacon-progress-container" style="display: none; margin-top: 20px; max-width: 600px;">
+                        <div style="background: #e0e0e0; width: 100%; height: 24px; border-radius: 3px; overflow: hidden; position: relative;">
+                            <div id="beacon-progress-bar" style="background: #2271b1; width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+                            <span id="beacon-progress-percentage" style="position: absolute; top: 0; left: 0; width: 100%; line-height: 24px; text-align: center; color: #fff; font-weight: bold; mix-blend-mode: difference;">0%</span>
+                        </div>
+                        <p id="beacon-progress-status" style="font-weight: 600; margin-top: 8px;">Initializing...</p>
+                    </div>
+
+                    <script>
+                        jQuery(document).ready(function($) {
+                            $('#beacon-run-bulk').on('click', function() {
+                                const dateFrom = $('#beacon_date_from').val();
+                                const dateTo = $('#beacon_date_to').val();
+
+                                if (!dateFrom || !dateTo) {
+                                    alert('Please select both a From and To date.');
+                                    return;
+                                }
+
+                                $('#beacon-bulk-form-container').slideUp();
+                                $('#beacon-progress-container').slideDown();
+                                $('#beacon-progress-status').text('Locating orders...');
+
+                                // 1. Initialize Sync and gather IDs
+                                $.post(ajaxurl, {
+                                    action: 'beacon_init_bulk_sync',
+                                    security: '<?php echo wp_create_nonce("beacon_bulk_sync"); ?>',
+                                    date_from: dateFrom,
+                                    date_to: dateTo
+                                }, function(response) {
+                                    if (!response.success) {
+                                        $('#beacon-progress-status').html('<span style="color:#d63638;">Error: ' + response.data + '</span>');
+                                        return;
+                                    }
+
+                                    const orderIds = response.data.order_ids;
+                                    const totalOrders = response.data.total;
+                                    let processedCount = 0;
+                                    const chunkSize = 5; // Process 5 orders per request
+
+                                    $('#beacon-progress-status').text('Processing 0 of ' + totalOrders + ' orders...');
+
+                                    // 2. Recursive function to process chunks
+                                    function processNextChunk() {
+                                        if (orderIds.length === 0) {
+                                            $('#beacon-progress-bar').css('width', '100%');
+                                            $('#beacon-progress-percentage').text('100%');
+                                            $('#beacon-progress-status').html('<span style="color:#00a32a;">Sync Complete! Successfully processed ' + totalOrders + ' orders.</span>');
+                                            return;
+                                        }
+
+                                        const chunk = orderIds.splice(0, chunkSize);
+
+                                        $.post(ajaxurl, {
+                                            action: 'beacon_process_chunk',
+                                            security: '<?php echo wp_create_nonce("beacon_bulk_sync"); ?>',
+                                            order_ids: chunk
+                                        }, function(chunkResponse) {
+                                            if (chunkResponse.success) {
+                                                processedCount += chunk.length;
+                                                const percentage = Math.round((processedCount / totalOrders) * 100);
+
+                                                $('#beacon-progress-bar').css('width', percentage + '%');
+                                                $('#beacon-progress-percentage').text(percentage + '%');
+                                                $('#beacon-progress-status').text('Processing ' + processedCount + ' of ' + totalOrders + ' orders...');
+
+                                                // Trigger next batch
+                                                processNextChunk();
+                                            } else {
+                                                $('#beacon-progress-status').html('<span style="color:#d63638;">Sync failed during chunk processing. Check console.</span>');
+                                            }
+                                        }).fail(function() {
+                                            $('#beacon-progress-status').html('<span style="color:#d63638;">Server error occurred during processing.</span>');
+                                        });
+                                    }
+
+                                    // Start processing the first chunk
+                                    processNextChunk();
+                                });
+                            });
+                        });
+                    </script>
                 <?php endif; ?>
             </div>
         </div>
@@ -612,6 +697,64 @@ class Beacon_CRM_Integration
         }
 
         wp_send_json($results);
+    }
+
+
+    /**
+     * AJAX Endpoint: Initializes the bulk sync by retrieving all relevant Order IDs.
+     */
+    public function ajax_init_bulk_sync()
+    {
+        check_ajax_referer('beacon_bulk_sync', 'security');
+        if (! current_user_can('manage_options')) wp_send_json_error('Unauthorized');
+
+        $date_from = isset($_POST['date_from']) ? sanitize_text_field(wp_unslash($_POST['date_from'])) : '';
+        $date_to   = isset($_POST['date_to']) ? sanitize_text_field(wp_unslash($_POST['date_to'])) : '';
+
+        if (empty($date_from) || empty($date_to)) {
+            wp_send_json_error('Invalid date range.');
+        }
+
+        if (! $this->get_credentials()) {
+            wp_send_json_error('API credentials missing. Please configure them in the API tab.');
+        }
+
+        $orders = wc_get_orders([
+            'limit'        => -1,
+            'date_created' => $date_from . '...' . $date_to,
+            'return'       => 'ids',
+        ]);
+
+        if (empty($orders)) {
+            wp_send_json_error('No orders found in this date range.');
+        }
+
+        wp_send_json_success(['order_ids' => $orders, 'total' => count($orders)]);
+    }
+
+    /**
+     * AJAX Endpoint: Processes a specific chunk of Order IDs to prevent timeouts.
+     */
+    public function ajax_process_chunk()
+    {
+        check_ajax_referer('beacon_bulk_sync', 'security');
+        if (! current_user_can('manage_options')) wp_send_json_error('Unauthorized');
+
+        $order_ids = isset($_POST['order_ids']) ? array_map('intval', (array) $_POST['order_ids']) : [];
+
+        if (empty($order_ids)) {
+            wp_send_json_success();
+        }
+
+        foreach ($order_ids as $order_id) {
+            $this->handle_payment_complete($order_id);
+            $this->handle_training_logic($order_id);
+        }
+
+        // Enforce a strict 500ms delay per chunk to safeguard against API rate-limiting
+        usleep(500000);
+
+        wp_send_json_success();
     }
 
     /**
