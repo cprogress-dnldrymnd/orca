@@ -57,9 +57,14 @@ class Beacon_CRM_Integration
         // Admin Settings Menu
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_init', [$this, 'register_settings']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+
+        // AJAX Order Search
+        add_action('wp_ajax_beacon_search_orders', [$this, 'ajax_search_orders']);
 
         // Handle Test Sync Submission
         add_action('admin_post_beacon_test_sync', [$this, 'handle_test_sync_submission']);
+        add_action('admin_post_beacon_bulk_sync', [$this, 'handle_bulk_sync_submission']);
 
         // Order Hooks
         add_action('woocommerce_payment_complete', [$this, 'handle_payment_complete']);
@@ -389,12 +394,20 @@ class Beacon_CRM_Integration
     }
 
     /* -------------------------------------------------------------------------- */
-    /* ADMIN SETTINGS PAGE                                                        */
+    /* ADMIN SETTINGS PAGE & UI                                                   */
     /* -------------------------------------------------------------------------- */
 
     /**
-     * Registers the plugin's administration menu under Settings.
+     * Enqueues WooCommerce Select2 (SelectWoo) for the order search dropdown.
      */
+    public function enqueue_admin_scripts($hook)
+    {
+        if (strpos($hook, 'beacon-crm-settings') !== false) {
+            wp_enqueue_script('selectWoo');
+            wp_enqueue_style('select2');
+        }
+    }
+
     public function add_admin_menu()
     {
         add_options_page('Beacon CRM Settings', 'Beacon CRM', 'manage_options', 'beacon-crm-settings', [$this, 'render_settings_page']);
@@ -415,50 +428,154 @@ class Beacon_CRM_Integration
         add_settings_field(self::OPT_API_BASE, 'API Base URL', [$this, 'render_field_api_base'], 'beacon-crm-settings', 'beacon_crm_main_section');
     }
 
+
     /**
-     * Renders the administrative settings page, encompassing option fields and test sync utilities.
+     * Renders the administrative settings page with a tabbed interface.
      */
     public function render_settings_page()
     {
+        $active_tab = isset($_GET['tab']) ? sanitize_text_field(wp_unslash($_GET['tab'])) : 'api';
     ?>
         <div class="wrap">
-            <h1>Beacon CRM Integration Settings</h1>
-            <?php
-            if (isset($_GET['beacon_test_status'])) {
-                $status   = sanitize_text_field(wp_unslash($_GET['beacon_test_status']));
-                $order_id = isset($_GET['tested_order']) ? intval($_GET['tested_order']) : 0;
+            <h1>Beacon CRM Integration</h1>
 
-                if ($status === 'success') {
-                    echo '<div class="notice notice-success is-dismissible"><p><strong>Success!</strong> Sync triggered for Order #' . esc_html($order_id) . '. Check Logs.</p></div>';
-                } elseif ($status === 'invalid_order') {
-                    echo '<div class="notice notice-error is-dismissible"><p><strong>Error:</strong> Order #' . esc_html($order_id) . ' not found.</p></div>';
-                } elseif ($status === 'missing_auth') {
-                    echo '<div class="notice notice-error is-dismissible"><p><strong>Error:</strong> API Key or Account ID missing.</p></div>';
-                }
-            }
-            ?>
-            <form action="options.php" method="post">
-                <?php
-                settings_fields('beacon_crm_options');
-                do_settings_sections('beacon-crm-settings');
-                submit_button();
-                ?>
-            </form>
-            <hr style="margin-top: 40px;">
-            <h2>Test Integration</h2>
-            <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
-                <input type="hidden" name="action" value="beacon_test_sync">
-                <?php wp_nonce_field('beacon_test_sync_nonce', 'beacon_test_nonce'); ?>
-                <table class="form-table">
-                    <tr>
-                        <th scope="row"><label for="beacon_test_order_id">WooCommerce Order ID</label></th>
-                        <td><input name="beacon_test_order_id" type="number" id="beacon_test_order_id" class="regular-text" required></td>
-                    </tr>
-                </table>
-                <?php submit_button('Test Sync Now', 'secondary'); ?>
-            </form>
+            <h2 class="nav-tab-wrapper">
+                <a href="?page=beacon-crm-settings&tab=api" class="nav-tab <?php echo $active_tab === 'api' ? 'nav-tab-active' : ''; ?>">API Configuration</a>
+                <a href="?page=beacon-crm-settings&tab=test" class="nav-tab <?php echo $active_tab === 'test' ? 'nav-tab-active' : ''; ?>">Test Integration</a>
+                <a href="?page=beacon-crm-settings&tab=bulk" class="nav-tab <?php echo $active_tab === 'bulk' ? 'nav-tab-active' : ''; ?>">Bulk Date Sync</a>
+            </h2>
+
+            <?php $this->render_admin_notices(); ?>
+
+            <div class="beacon-tab-content" style="margin-top: 20px; background: #fff; padding: 20px; border: 1px solid #c3c4c7;">
+                <?php if ($active_tab === 'api') : ?>
+                    <form action="options.php" method="post">
+                        <?php
+                        settings_fields('beacon_crm_options');
+                        do_settings_sections('beacon-crm-settings');
+                        submit_button();
+                        ?>
+                    </form>
+
+                <?php elseif ($active_tab === 'test') : ?>
+                    <h2>Test Single Order Sync</h2>
+                    <p class="description">Search for a specific order to manually trigger the Beacon CRM sync workflow.</p>
+                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+                        <input type="hidden" name="action" value="beacon_test_sync">
+                        <?php wp_nonce_field('beacon_test_sync_nonce', 'beacon_test_nonce'); ?>
+                        <table class="form-table">
+                            <tr>
+                                <th scope="row"><label for="beacon_test_order_id">Select WooCommerce Order</label></th>
+                                <td>
+                                    <select name="beacon_test_order_id" id="beacon_test_order_id" class="wc-order-search" style="width: 50%;" data-placeholder="Search for an order by ID or Name..." required></select>
+                                </td>
+                            </tr>
+                        </table>
+                        <?php submit_button('Sync Order Now', 'primary'); ?>
+                    </form>
+                    <script>
+                        jQuery(document).ready(function($) {
+                            $('#beacon_test_order_id').selectWoo({
+                                ajax: {
+                                    url: ajaxurl,
+                                    dataType: 'json',
+                                    delay: 250,
+                                    data: function(params) {
+                                        return {
+                                            q: params.term,
+                                            action: 'beacon_search_orders',
+                                            security: '<?php echo wp_create_nonce("beacon_search_orders"); ?>'
+                                        };
+                                    },
+                                    processResults: function(data) {
+                                        return {
+                                            results: data
+                                        };
+                                    },
+                                    cache: true
+                                },
+                                minimumInputLength: 1,
+                            });
+                        });
+                    </script>
+
+                <?php elseif ($active_tab === 'bulk') : ?>
+                    <h2>Bulk Sync by Date Range</h2>
+                    <p class="description">Select a date range to find and push all orders created within that timeframe to Beacon CRM. <em>Warning: Large date ranges may take a moment to process.</em></p>
+                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+                        <input type="hidden" name="action" value="beacon_bulk_sync">
+                        <?php wp_nonce_field('beacon_bulk_sync_nonce', 'beacon_bulk_nonce'); ?>
+                        <table class="form-table">
+                            <tr>
+                                <th scope="row"><label for="beacon_date_from">Date From</label></th>
+                                <td><input type="date" name="beacon_date_from" id="beacon_date_from" required></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="beacon_date_to">Date To</label></th>
+                                <td><input type="date" name="beacon_date_to" id="beacon_date_to" required></td>
+                            </tr>
+                        </table>
+                        <?php submit_button('Run Bulk Sync', 'primary'); ?>
+                    </form>
+                <?php endif; ?>
+            </div>
         </div>
     <?php
+    }
+
+    /**
+     * Renders success/error notices passed via URL parameters.
+     */
+    private function render_admin_notices()
+    {
+        if (! isset($_GET['beacon_test_status'])) return;
+
+        $status = sanitize_text_field(wp_unslash($_GET['beacon_test_status']));
+
+        if ($status === 'success') {
+            $order_id = isset($_GET['tested_order']) ? intval($_GET['tested_order']) : 0;
+            echo '<div class="notice notice-success is-dismissible"><p><strong>Success!</strong> Sync triggered for Order #' . esc_html($order_id) . '. Check Logs.</p></div>';
+        } elseif ($status === 'bulk_success') {
+            $count = isset($_GET['processed_count']) ? intval($_GET['processed_count']) : 0;
+            echo '<div class="notice notice-success is-dismissible"><p><strong>Bulk Sync Complete!</strong> Successfully processed ' . esc_html($count) . ' orders.</p></div>';
+        } elseif ($status === 'invalid_order') {
+            echo '<div class="notice notice-error is-dismissible"><p><strong>Error:</strong> Valid order(s) not found.</p></div>';
+        } elseif ($status === 'missing_auth') {
+            echo '<div class="notice notice-error is-dismissible"><p><strong>Error:</strong> API Key or Account ID missing.</p></div>';
+        }
+    }
+
+    /**
+     * AJAX Endpoint: Searches WooCommerce orders by ID, Name, or Email for the SelectWoo dropdown.
+     */
+    public function ajax_search_orders()
+    {
+        check_ajax_referer('beacon_search_orders', 'security');
+
+        if (! current_user_can('manage_options')) {
+            wp_send_json_error('Unauthorized');
+        }
+
+        $term = isset($_GET['q']) ? wc_clean(wp_unslash($_GET['q'])) : '';
+        if (empty($term)) {
+            wp_send_json([]);
+        }
+
+        $orders = wc_get_orders([
+            's'      => $term,
+            'limit'  => 20,
+            'return' => 'objects',
+        ]);
+
+        $results = [];
+        foreach ($orders as $order) {
+            $results[] = [
+                'id'   => $order->get_id(),
+                'text' => '#' . $order->get_id() . ' - ' . $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() . ' (' . $order->get_billing_email() . ')'
+            ];
+        }
+
+        wp_send_json($results);
     }
 
     /**
