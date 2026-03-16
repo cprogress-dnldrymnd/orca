@@ -80,6 +80,12 @@ class Beacon_CRM_Integration
         // --- Product Meta Fields (Variations - SINGLE) ---
         add_action('woocommerce_product_after_variable_attributes', [$this, 'render_variation_fields'], 10, 3);
         add_action('woocommerce_save_product_variation', [$this, 'save_variation_fields'], 10, 2);
+
+        // Log Admin Columns & Filters
+        add_filter('manage_beaconcrmlogs_posts_columns', [$this, 'add_log_columns']);
+        add_action('manage_beaconcrmlogs_posts_custom_column', [$this, 'fill_log_columns'], 10, 2);
+        add_action('restrict_manage_posts', [$this, 'add_log_filters']);
+        add_action('pre_get_posts', [$this, 'filter_logs_by_meta']);
     }
 
     /* -------------------------------------------------------------------------- */
@@ -552,7 +558,7 @@ class Beacon_CRM_Integration
                 </div>
             </div>
         </div>
-<?php
+    <?php
     }
 
     /* -------------------------------------------------------------------------- */
@@ -901,6 +907,7 @@ class Beacon_CRM_Integration
 
     /**
      * Commits transaction logs contextively into the WP database utilizing the 'beaconcrmlogs' CPT.
+     * Evaluates the API response to assign a success/error status for list filtering.
      *
      * @param string $title       Primary log identifier.
      * @param array  $meta_fields Mapped log data to insert into post meta.
@@ -908,6 +915,16 @@ class Beacon_CRM_Integration
      */
     private function log_to_db($title, $meta_fields = [])
     {
+        // Automatically determine success/error status based on API return
+        $status = 'success';
+        if (empty($meta_fields['return'])) {
+            $status = 'error'; // send_request returns false on failure
+        } elseif (is_array($meta_fields['return']) && isset($meta_fields['return']['errors'])) {
+            $status = 'error'; // Catch internal Beacon API error wrappers if present
+        }
+
+        $meta_fields['status'] = $status;
+
         $result = wp_insert_post([
             'post_title'  => sanitize_text_field($title),
             'post_status' => 'publish',
@@ -920,6 +937,122 @@ class Beacon_CRM_Integration
         }
 
         return $result;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /* LOG FILTERING & ADMIN COLUMNS                                              */
+    /* -------------------------------------------------------------------------- */
+
+    /**
+     * Injects custom columns (Payload Type and Status) into the logs list table.
+     *
+     * @param array $columns Existing column headers.
+     * @return array Modified column headers.
+     */
+    public function add_log_columns($columns)
+    {
+        $new_columns = [];
+        foreach ($columns as $key => $title) {
+            if ($key === 'date') {
+                $new_columns['log_type']   = 'Payload Type';
+                $new_columns['log_status'] = 'Status';
+            }
+            $new_columns[$key] = $title;
+        }
+        return $new_columns;
+    }
+
+    /**
+     * Populates the custom columns with respective meta values for each log entry.
+     *
+     * @param string $column  The column identifier currently being rendered.
+     * @param int    $post_id The ID of the log post.
+     */
+    public function fill_log_columns($column, $post_id)
+    {
+        if ('log_type' === $column) {
+            $type = get_post_meta($post_id, 'type', true);
+            echo $type ? esc_html(ucfirst($type)) : '&mdash;';
+        }
+        if ('log_status' === $column) {
+            $status = get_post_meta($post_id, 'status', true);
+            if ($status === 'success') {
+                echo '<span style="color: #00a32a; font-weight: 600;">Success</span>';
+            } elseif ($status === 'error') {
+                echo '<span style="color: #d63638; font-weight: 600;">Error</span>';
+            } else {
+                echo '&mdash;';
+            }
+        }
+    }
+
+    /**
+     * Renders dropdown filters above the log list table for Type and Status.
+     *
+     * @param string $post_type The post type currently being viewed.
+     */
+    public function add_log_filters($post_type)
+    {
+        if ('beaconcrmlogs' !== $post_type) {
+            return;
+        }
+
+        $current_type   = isset($_GET['beacon_log_type']) ? sanitize_text_field(wp_unslash($_GET['beacon_log_type'])) : '';
+        $current_status = isset($_GET['beacon_log_status']) ? sanitize_text_field(wp_unslash($_GET['beacon_log_status'])) : '';
+
+    ?>
+        <select name="beacon_log_type">
+            <option value="">All Payload Types</option>
+            <option value="person" <?php selected($current_type, 'person'); ?>>Person</option>
+            <option value="payment" <?php selected($current_type, 'payment'); ?>>Payment</option>
+            <option value="training" <?php selected($current_type, 'training'); ?>>Training</option>
+        </select>
+
+        <select name="beacon_log_status">
+            <option value="">All Statuses</option>
+            <option value="success" <?php selected($current_status, 'success'); ?>>Success</option>
+            <option value="error" <?php selected($current_status, 'error'); ?>>Error</option>
+        </select>
+<?php
+    }
+
+    /**
+     * intercepts the main query to apply meta_query filters based on admin selections.
+     *
+     * @param WP_Query $query The active WordPress query object.
+     */
+    public function filter_logs_by_meta($query)
+    {
+        global $pagenow;
+
+        // Ensure we are modifying the correct admin query
+        if ('edit.php' !== $pagenow || ! $query->is_main_query() || 'beaconcrmlogs' !== $query->get('post_type')) {
+            return;
+        }
+
+        $meta_query = $query->get('meta_query') ?: [];
+
+        // Apply Type Filter
+        if (! empty($_GET['beacon_log_type'])) {
+            $meta_query[] = [
+                'key'     => 'type',
+                'value'   => sanitize_text_field(wp_unslash($_GET['beacon_log_type'])),
+                'compare' => '='
+            ];
+        }
+
+        // Apply Status Filter
+        if (! empty($_GET['beacon_log_status'])) {
+            $meta_query[] = [
+                'key'     => 'status',
+                'value'   => sanitize_text_field(wp_unslash($_GET['beacon_log_status'])),
+                'compare' => '='
+            ];
+        }
+
+        if (! empty($meta_query)) {
+            $query->set('meta_query', $meta_query);
+        }
     }
 
     /**
