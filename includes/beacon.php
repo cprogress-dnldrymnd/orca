@@ -23,7 +23,7 @@ class Beacon_CRM_Integration
     /**
      * Constructor: Hooks into WordPress and WooCommerce actions.
      */
-    private function __construct()
+    public function __construct()
     {
         // Admin Settings Menu
         add_action('admin_menu', [$this, 'add_admin_menu']);
@@ -44,7 +44,7 @@ class Beacon_CRM_Integration
         // Meta Boxes for Logs
         add_action('add_meta_boxes', [$this, 'register_log_metabox']);
 
-        // --- Product Meta Fields (Simple - MULTIPLE) ---
+        // --- NEW: Product Meta Fields (Simple - MULTIPLE) ---
         add_action('woocommerce_product_options_general_product_data', [$this, 'render_simple_product_fields']);
         add_action('woocommerce_process_product_meta', [$this, 'save_simple_product_fields']);
 
