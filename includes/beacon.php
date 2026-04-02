@@ -5,7 +5,7 @@
  * Description: Handles synchronisation of Orders and Course Data to Beacon CRM. Settings managed via Settings > Beacon CRM. Product Fields managed via Product Data > Beacon CRM Tab or Variations.
  * Author: Digitally Disruptive - Donald Raymundo
  * Author URI: https://digitallydisruptive.co.uk/
- * Version: 1.1.0
+ * Version: 1.1.1
  */
 
 if (! defined('ABSPATH')) {
@@ -14,7 +14,7 @@ if (! defined('ABSPATH')) {
 
 /**
  * Class Beacon_CRM_Integration
- * * Core class responsible for handling the Beacon CRM Integration within WooCommerce.
+ * Core class responsible for handling the Beacon CRM Integration within WooCommerce.
  * Utilises OOP principles to encapsulate API interactions, administrative interfaces,
  * and core business logic for order and course synchronisation.
  */
@@ -1026,11 +1026,20 @@ class Beacon_CRM_Integration
         $resource = 'entity/person/upsert';
         $response = $this->send_request($resource, $payload, $order->get_id());
 
+        // Check if the response is valid and contains an entity ID
         if ($response && isset($response['entity']['id'])) {
             update_user_meta($user_id, 'beacon_user_id', $response['entity']['id']);
             $this->log_to_db("[Person Created] Order " . $order->get_id(), ['type' => 'person', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
             return $response['entity']['id'];
         }
+
+        // ADDITION: Explicitly log the API failure to the CPT so it is visible in the UI
+        $this->log_to_db("[Person Sync Failed] Order " . $order->get_id(), [
+            'type'    => 'person',
+            'api_url' => $resource,
+            'args'    => $payload,
+            'return'  => $response // This will capture the API error array or boolean false
+        ]);
 
         return false;
     }
@@ -1085,7 +1094,16 @@ class Beacon_CRM_Integration
 
         $beacon_person_id = $this->get_or_create_person($order);
         if (! $beacon_person_id) {
+            // Existing logic pushes to PHP error log
             error_log("Beacon Error: No Person ID for Order #{$order_id}");
+            
+            // ADDITION: Log the aborted payment sequence to the CPT for diagnostic visibility
+            $this->log_to_db("[Payment Aborted] Order " . $order_id, [
+                'type'    => 'payment',
+                'api_url' => 'N/A',
+                'args'    => ['error' => 'Sequence aborted: Missing or failed Person ID generation. Check Person logs for details.'],
+                'return'  => false
+            ]);
             return;
         }
 
