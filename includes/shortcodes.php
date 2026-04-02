@@ -14,7 +14,7 @@ function breadcrumbs($atts)
     $html .= '<div class="breadcrumbs-holder">';
     $html .= '<ul class="mb-0">';
     $html .= '<li><a href="' . get_site_url() . '">Home</a></li>';
-
+    $title = '';
     if (is_post_type_archive()) {
         $title = get_the_archive_title();
         $html .= '<li><span>' . $title . '</span></li>';
