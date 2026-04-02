@@ -1026,13 +1026,96 @@ class Beacon_CRM_Integration
         $resource = 'entity/person/upsert';
         $response = $this->send_request($resource, $payload, $order->get_id());
 
+        // Check if the response is valid and contains an entity ID
         if ($response && isset($response['entity']['id'])) {
             update_user_meta($user_id, 'beacon_user_id', $response['entity']['id']);
             $this->log_to_db("[Person Created] Order " . $order->get_id(), ['type' => 'person', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
             return $response['entity']['id'];
         }
 
+        // ADDITION: Explicitly log the API failure to the CPT so it is visible in the UI
+        $this->log_to_db("[Person Sync Failed] Order " . $order->get_id(), [
+            'type'    => 'person',
+            'api_url' => $resource,
+            'args'    => $payload,
+            'return'  => $response // This will capture the API error array or boolean false
+        ]);
+
         return false;
+    }
+
+    /**
+     * Parses a finalized transaction to sync financial payment objects up to Beacon CRM endpoints.
+     * Triggered on WooCommerce payment completion hooks. Consolidates multi-item orders into 
+     * a single payment payload and aggregates product names for CRM notation.
+     *
+     * @param int $order_id Standard WC Order ID numeric value.
+     */
+    public function handle_payment_complete($order_id)
+    {
+        $order = wc_get_order($order_id);
+        if (! $order) {
+            return;
+        }
+
+        $beacon_person_id = $this->get_or_create_person($order);
+        if (! $beacon_person_id) {
+            // Existing logic pushes to PHP error log
+            error_log("Beacon Error: No Person ID for Order #{$order_id}");
+
+            // ADDITION: Log the aborted payment sequence to the CPT for diagnostic visibility
+            $this->log_to_db("[Payment Aborted] Order " . $order_id, [
+                'type'    => 'payment',
+                'api_url' => 'N/A',
+                'args'    => ['error' => 'Sequence aborted: Missing or failed Person ID generation. Check Person logs for details.'],
+                'return'  => false
+            ]);
+            return;
+        }
+
+        $date_paid   = $order->get_date_paid() ? $order->get_date_paid()->format('Y-m-d') : date('Y-m-d');
+        $external_id = $order->get_transaction_id() ?: 'MANUAL-' . $order_id;
+        $resource    = 'entity/payment/upsert';
+
+        $product_names = [];
+        $has_bundle    = false;
+        $type = 'Course fees';
+
+
+        // Iterate through items solely to aggregate names and check for bundle categories
+        foreach ($order->get_items() as $item) {
+            $name = $item->get_name();
+
+            if (! $has_bundle && has_term('bundles', 'product_cat', $item->get_product_id())) {
+                $name .= ' (Bundle Payment)';
+                $has_bundle = true;
+            }
+
+            $product_names[] = $item->get_name();
+        }
+
+        // Construct aggregated CRM note
+        $aggregated_names = implode(', ', $product_names);
+        $note_text        = 'Payment via WC: ' . $aggregated_names . " [Order ID: {$order_id}]";
+
+        // Construct a single, unified payment payload using the full order total
+        $payload = [
+            "primary_field_key" => "external_id",
+            "entity"            => [
+                'external_id'    => $external_id,
+                'amount'         => ['value' => $order->get_total(), 'currency' => 'GBP'],
+                'type'           => [$type],
+                'source'         => ['Training Course'],
+                'payment_method' => ['Card'],
+                'payment_date'   => [$date_paid],
+                'customer'       => [intval($beacon_person_id)],
+                'notes'          => $note_text,
+            ],
+        ];
+
+        // Execute the singular API request for the transaction
+        $response = $this->send_request($resource, $payload, $order_id, 'PUT');
+        $this->log_to_db("[Payment] Order " . $order_id, ['type' => 'payment', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
     }
 
     /**
