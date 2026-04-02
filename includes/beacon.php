@@ -981,6 +981,7 @@ class Beacon_CRM_Integration
 
     /**
      * Retrieves an existing Person ID via User Meta mapping or generates a new entity via API upsert.
+     * Includes intelligent sanitization and fallback mechanisms for strict CRM data validation.
      *
      * @param WC_Order $order The initialized WooCommerce order instance.
      * @return string|bool Beacon user ID on success, false on failure.
@@ -1019,26 +1020,50 @@ class Beacon_CRM_Integration
             ],
         ];
 
+        // Sanitize phone number: strip all characters except digits and the plus sign
         if (! empty($phone)) {
-            $payload['entity']['phone_numbers'] = [["number" => $phone, "is_primary" => true]];
+            $clean_phone = preg_replace('/[^\d+]/', '', $phone);
+            if (! empty($clean_phone)) {
+                $payload['entity']['phone_numbers'] = [["number" => $clean_phone, "is_primary" => true]];
+            }
         }
 
         $resource = 'entity/person/upsert';
         $response = $this->send_request($resource, $payload, $order->get_id());
 
-        // Check if the response is valid and contains an entity ID
+        // PRIMARY ATTEMPT: Check if the response is valid and contains an entity ID
         if ($response && isset($response['entity']['id'])) {
             update_user_meta($user_id, 'beacon_user_id', $response['entity']['id']);
             $this->log_to_db("[Person Created] Order " . $order->get_id(), ['type' => 'person', 'api_url' => $resource, 'args' => $payload, 'return' => $response]);
             return $response['entity']['id'];
         }
 
-        // ADDITION: Explicitly log the API failure to the CPT so it is visible in the UI
+        // FALLBACK SEQUENCE: If CRM strictly rejects the phone number format, retry without it
+        if (isset($response['error']['raw']) && strpos($response['error']['raw'], 'phone_numbers') !== false) {
+
+            // Remove the offending phone data and append a diagnostic note
+            unset($payload['entity']['phone_numbers']);
+            $payload['entity']['notes'] .= ' | Notice: Original phone number rejected by CRM validation and omitted.';
+
+            // Execute secondary request
+            $retry_response = $this->send_request($resource, $payload, $order->get_id());
+
+            if ($retry_response && isset($retry_response['entity']['id'])) {
+                update_user_meta($user_id, 'beacon_user_id', $retry_response['entity']['id']);
+                $this->log_to_db("[Person Created - Phone Omitted] Order " . $order->get_id(), ['type' => 'person', 'api_url' => $resource, 'args' => $payload, 'return' => $retry_response]);
+                return $retry_response['entity']['id'];
+            }
+
+            // If the retry still fails, inherit the new response for final logging
+            $response = $retry_response;
+        }
+
+        // TERMINAL FAILURE: Explicitly log the API failure to the CPT so it is visible in the UI
         $this->log_to_db("[Person Sync Failed] Order " . $order->get_id(), [
             'type'    => 'person',
             'api_url' => $resource,
             'args'    => $payload,
-            'return'  => $response // This will capture the API error array or boolean false
+            'return'  => $response
         ]);
 
         return false;
@@ -1096,7 +1121,7 @@ class Beacon_CRM_Integration
         if (! $beacon_person_id) {
             // Existing logic pushes to PHP error log
             error_log("Beacon Error: No Person ID for Order #{$order_id}");
-            
+
             // ADDITION: Log the aborted payment sequence to the CPT for diagnostic visibility
             $this->log_to_db("[Payment Aborted] Order " . $order_id, [
                 'type'    => 'payment',
