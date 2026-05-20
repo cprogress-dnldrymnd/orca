@@ -75,6 +75,44 @@ function arrayKeyStartsWith($array, $prefix) {
     }
     return $matchingKeys;
 }
+/* opt in to marketing fields at checkout */
+add_action( 'woocommerce_init', function() {
+    if ( ! function_exists( 'woocommerce_register_additional_checkout_field' ) ) {
+        return;
+    }
+    woocommerce_register_additional_checkout_field(
+        array(
+            'id'       => 'orca-learn/training-opt-in',
+            'label'    => __( "Yes, I'd like to receive emails on how to access this training course, information regarding our OceanWatchers app, and how to access the app.", 'orca-learn' ),
+            'location' => 'contact',
+            'type'     => 'checkbox',
+            'required' => false,
+        )
+    );
+    woocommerce_register_additional_checkout_field(
+        array(
+            'id'       => 'orca-learn/communications-opt-in',
+            'label'    => __( "Yes, I'd like to receive additional communications about ORCA's work, updates, fundraising, and opportunities to get involved.", 'orca-learn' ),
+            'location' => 'contact',
+            'type'     => 'checkbox',
+            'required' => false,
+        )
+    );
+} );
+add_action( 'woocommerce_store_api_checkout_order_processed', function( $order ) {
+    $training_opt_in       = $order->get_meta( 'orca-learn/training-opt-in' );
+    $communications_opt_in = $order->get_meta( 'orca-learn/communications-opt-in' );
+    if ( $training_opt_in === '1' ) {
+        $email = $order->get_billing_email();
+        // e.g. subscribe to training/app email list
+    }
+    if ( $communications_opt_in === '1' ) {
+        $email = $order->get_billing_email();
+        // e.g. subscribe to ORCA communications list
+    }
+} );
+
+
 
 require_once('includes/bootstrap-navwalker.php');
 require_once('includes/menus.php');
