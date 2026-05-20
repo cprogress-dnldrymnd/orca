@@ -122,3 +122,4 @@ require_once('includes/shortcodes.php');
 require_once('includes/hooks.php');
 require_once('includes/woocommerce.php');
 require_once('includes/ajax.php');
+require_once('includes/wc-redirect-manager.php');
