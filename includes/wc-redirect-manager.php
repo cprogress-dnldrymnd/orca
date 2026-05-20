@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WooCommerce Custom Redirect Manager
  * Description: Dynamically evaluates completed orders and redirects users based on configurable backend rules.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Digitally Disruptive - Donald Raymundo
  * Author URI:  https://digitallydisruptive.co.uk/
  * Text Domain: dd-wc-redirect
@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class DD_WC_Redirect_Manager
- * * Handles the registration of the admin interface, saving of repeater rules,
+ * Handles the registration of the admin interface, saving of repeater rules,
  * and the frontend logic for order-received redirections.
  */
 class DD_WC_Redirect_Manager {
 
     /**
      * Initializes the plugin hooks.
-     * * @return void
+     * @return void
      */
     public function __construct() {
         add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
@@ -32,7 +32,7 @@ class DD_WC_Redirect_Manager {
 
     /**
      * Registers the custom submenu page under the main WooCommerce menu.
-     * * @return void
+     * @return void
      */
     public function register_admin_menu() {
         add_submenu_page(
@@ -48,7 +48,7 @@ class DD_WC_Redirect_Manager {
     /**
      * Enqueues necessary scripts and styles for the backend UI, specifically
      * WooCommerce's selectWoo for dynamic product searching.
-     * * @param string $hook The current admin page hook.
+     * @param string $hook The current admin page hook.
      * @return void
      */
     public function enqueue_admin_assets( $hook ) {
@@ -63,7 +63,7 @@ class DD_WC_Redirect_Manager {
     /**
      * Intercepts POST requests on the admin page to sanitize and serialize 
      * the repeater field data into the options table.
-     * * @return void
+     * @return void
      */
     public function save_settings() {
         if ( ! isset( $_POST['dd_redirect_nonce'] ) || ! wp_verify_nonce( $_POST['dd_redirect_nonce'], 'dd_save_redirects' ) ) {
@@ -99,7 +99,7 @@ class DD_WC_Redirect_Manager {
     /**
      * Renders the HTML for the backend admin page, including the tabbed interface 
      * and the interactive repeater fields.
-     * * @return void
+     * @return void
      */
     public function render_admin_page() {
         $rules = get_option( 'dd_wc_redirect_rules', array() );
@@ -115,7 +115,6 @@ class DD_WC_Redirect_Manager {
 
             <h2 class="nav-tab-wrapper" id="dd-tabs">
                 <a href="#tab-rules" class="nav-tab nav-tab-active">Redirect Rules</a>
-                <a href="#tab-settings" class="nav-tab">General Settings</a>
             </h2>
 
             <form method="POST" action="">
@@ -133,21 +132,6 @@ class DD_WC_Redirect_Manager {
                     <button type="button" class="button button-primary" id="dd-add-rule">Add New Rule</button>
                 </div>
 
-                <div id="tab-settings" class="dd-tab-content" style="display:none;">
-                    <p>Global plugin settings can be configured here in the future.</p>
-                    <table class="form-table">
-                        <tr>
-                            <th scope="row">Enable Redirects</th>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="dd_global_enable" value="1" checked disabled>
-                                    Globally enable or disable all redirect logic (Placeholder).
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
                 <p class="submit">
                     <button type="submit" class="button button-primary">Save Changes</button>
                 </p>
@@ -160,7 +144,7 @@ class DD_WC_Redirect_Manager {
 
     /**
      * Outputs the HTML structure for a single repeater row.
-     * * @param int|string $index The array index for field naming.
+     * @param int|string $index The array index for field naming.
      * @param array $rule The saved values for this rule instance.
      * @return void
      */
@@ -229,7 +213,7 @@ class DD_WC_Redirect_Manager {
 
     /**
      * Outputs the CSS and JavaScript required for the UI logic (Tabs and Repeater behavior).
-     * * @return void
+     * @return void
      */
     private function render_inline_styles_and_scripts() {
         ?>
@@ -243,7 +227,7 @@ class DD_WC_Redirect_Manager {
 
         <script>
         jQuery(document).ready(function($) {
-            // Tab Interface Logic
+            // Tab Interface Logic (Preserved for future tab implementations)
             $('#dd-tabs a').on('click', function(e) {
                 e.preventDefault();
                 $('#dd-tabs a').removeClass('nav-tab-active');
