@@ -113,7 +113,6 @@ add_action( 'woocommerce_store_api_checkout_order_processed', function( $order )
 } );
 
 
-
 require_once('includes/bootstrap-navwalker.php');
 require_once('includes/menus.php');
 require_once('includes/theme-widgets.php');
