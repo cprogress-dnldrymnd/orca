@@ -123,3 +123,113 @@ require_once('includes/hooks.php');
 require_once('includes/woocommerce.php');
 require_once('includes/ajax.php');
 require_once('includes/wc-redirect-manager.php');
+
+
+/**
+ * Temporary Utility: Export Legacy Beacon CRM Product Mappings
+ * Adds a page under Tools > Beacon Data Export to view all mapped products.
+ */
+
+add_action('admin_menu', function() {
+    add_management_page(
+        'Beacon CRM Data Export',
+        'Beacon Data Export',
+        'manage_options',
+        'beacon-data-export',
+        'render_beacon_data_export_page'
+    );
+});
+
+function render_beacon_data_export_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    echo '<div class="wrap"><h1>Beacon CRM Product Mappings (Legacy)</h1>';
+    echo '<p>Use this reference table to map your existing Beacon CRM data to your LearnDash courses after updating the plugin.</p>';
+    echo '<table class="wp-list-table widefat fixed striped" style="margin-top: 15px;">';
+    echo '<thead><tr>
+            <th style="width: 15%;">WC Product ID</th>
+            <th style="width: 35%;">Product Name</th>
+            <th style="width: 20%;">Linked LearnDash Course ID</th>
+            <th style="width: 30%;">Beacon Data</th>
+          </tr></thead>';
+    echo '<tbody>';
+
+    $args = [
+        'post_type'      => ['product', 'product_variation'],
+        'posts_per_page' => -1,
+        'post_status'    => 'any',
+        'meta_query'     => [
+            'relation' => 'OR',
+            [
+                'key'     => '_beacon_courses_data',
+                'compare' => 'EXISTS'
+            ],
+            [
+                'key'     => '_beacon_id',
+                'compare' => 'EXISTS'
+            ]
+        ]
+    ];
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $post_id    = get_the_ID();
+            $post_title = get_the_title();
+            
+            // Format Variation Titles
+            if (get_post_type() === 'product_variation') {
+                $parent_id  = wp_get_post_parent_id($post_id);
+                $post_title = get_the_title($parent_id) . ' <strong>(Variation #' . $post_id . ')</strong>';
+            }
+
+            // Retrieve linked LearnDash Course ID(s) to make manual migration easier
+            $ld_courses = get_post_meta($post_id, '_related_course', true);
+            if (is_array($ld_courses)) {
+                $ld_courses_display = implode(', ', array_map('intval', $ld_courses));
+            } else {
+                $ld_courses_display = $ld_courses ? intval($ld_courses) : '<em>None Linked</em>';
+            }
+
+            $beacon_data_display = [];
+
+            // 1. Extract Parent/Simple Repeater Data
+            $repeater_data = get_post_meta($post_id, '_beacon_courses_data', true);
+            if (!empty($repeater_data) && is_array($repeater_data)) {
+                foreach ($repeater_data as $row) {
+                    if (!empty($row['id']) && !empty($row['type'])) {
+                        $beacon_data_display[] = 'ID: <strong>' . esc_html($row['id']) . '</strong> | Type: <strong>' . esc_html($row['type']) . '</strong>';
+                    }
+                }
+            }
+
+            // 2. Extract Variation Data
+            $var_id   = get_post_meta($post_id, '_beacon_id', true);
+            $var_type = get_post_meta($post_id, '_beacon_course_type', true);
+            if ($var_id && $var_type) {
+                $beacon_data_display[] = 'ID: <strong>' . esc_html($var_id) . '</strong> | Type: <strong>' . esc_html($var_type) . '</strong>';
+            }
+
+            // Skip rendering if meta keys exist but the arrays/strings are actually empty
+            if (empty($beacon_data_display)) {
+                continue; 
+            }
+
+            echo '<tr>';
+            echo '<td>' . esc_html($post_id) . '</td>';
+            echo '<td>' . wp_kses_post($post_title) . '</td>';
+            echo '<td>' . wp_kses_post($ld_courses_display) . '</td>';
+            echo '<td>' . implode('<br>', $beacon_data_display) . '</td>';
+            echo '</tr>';
+        }
+        wp_reset_postdata();
+    } else {
+        echo '<tr><td colspan="4">No Beacon CRM mapping data found.</td></tr>';
+    }
+
+    echo '</tbody></table></div>';
+}
