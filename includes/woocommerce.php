@@ -579,3 +579,31 @@ function add_custom_taxonomy_to_post_type()
 {
     register_taxonomy_for_object_type('ld_course_category', 'product');
 }
+
+/**
+ * Modifies the WooCommerce sale badge text to "Free" if the product price is exactly zero.
+ * 
+ * This function intercepts the default sale flash HTML and checks the current 
+ * active price of the WooCommerce product. If the product is on sale and the 
+ * resulting price is 0 (e.g., Regular Price: $10, Sale Price: $0), the badge 
+ * string is replaced with "Free".
+ *
+ * @param string     $html    The default WooCommerce sale flash HTML string.
+ * @param WP_Post    $post    The current WordPress post object.
+ * @param WC_Product $product The current WooCommerce product object instance.
+ * @return string             The modified or original sale flash HTML string.
+ */
+function dd_modify_sale_badge_for_zero_price( $html, $post, $product ) {
+    // Retrieve the active calculated price of the product and cast to float for strict comparison
+    $price = (float) $product->get_price();
+
+    // Evaluate if the price is strictly equal to zero
+    if ( 0.0 === $price ) {
+        // Return the overridden HTML structure with the localized 'Free' string
+        return '<span class="onsale">' . esc_html__( 'Free', 'woocommerce' ) . '</span>';
+    }
+
+    // Pass the unmodified HTML back to the filter if the price is greater than zero
+    return $html;
+}
+add_filter( 'woocommerce_sale_flash', 'dd_modify_sale_badge_for_zero_price', 10, 3 );
