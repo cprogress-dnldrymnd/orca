@@ -396,9 +396,6 @@ function product_related_courses()
                             <div class="col-sm-9">
                                 <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
                                 <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
-                                <div class="mt-3">
-                                    <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -417,9 +414,6 @@ function product_related_courses()
                             <div class="col-sm-9">
                                 <?= do_shortcode('[_heading tag="h4" heading="' . get_the_title($course) . '"]') ?>
                                 <?= do_shortcode('[_description description="' . get_the_excerpt($course) . '"]'); ?>
-                                <div class="mt-3">
-                                    <?= do_shortcode('[_learndash_course_button id="' . $course . '"]'); ?>
-                                </div>
                             </div>
                         </div>
                     </div>
