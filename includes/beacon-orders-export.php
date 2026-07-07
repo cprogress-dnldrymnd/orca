@@ -179,6 +179,47 @@ function orca_get_attribution_keys() {
 }
 
 /**
+ * IDs of orders that carry any non-empty theme custom `_utm_*` / click-id meta,
+ * newest first. Uses one indexed query against the order-meta table (HPOS or
+ * legacy) rather than a multi-key OR meta_query, which is far too slow.
+ */
+function orca_get_attributed_order_ids() {
+	global $wpdb;
+
+	$keys = array();
+
+	foreach ( array_keys( orca_get_attribution_keys() ) as $key ) {
+		$keys[] = '_' . $key;
+	}
+
+	$placeholders = implode( ', ', array_fill( 0, count( $keys ), '%s' ) );
+
+	$hpos = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' )
+		&& \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+
+	if ( $hpos ) {
+		$table = $wpdb->prefix . 'wc_orders_meta';
+		$sql   = $wpdb->prepare(
+			"SELECT DISTINCT order_id FROM {$table}
+			 WHERE meta_key IN ( {$placeholders} ) AND meta_value <> ''
+			 ORDER BY order_id DESC",
+			$keys
+		);
+	} else {
+		$sql = $wpdb->prepare(
+			"SELECT DISTINCT pm.post_id FROM {$wpdb->postmeta} pm
+			 INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+			 WHERE pm.meta_key IN ( {$placeholders} ) AND pm.meta_value <> ''
+			 AND p.post_type = 'shop_order'
+			 ORDER BY pm.post_id DESC",
+			$keys
+		);
+	}
+
+	return array_map( 'absint', (array) $wpdb->get_col( $sql ) );
+}
+
+/**
  * Register the "Order Attribution" admin page under the WooCommerce menu.
  */
 add_action( 'admin_menu', function() {
@@ -208,28 +249,10 @@ function orca_render_order_attribution_page() {
 
 	$status = array_keys( wc_get_order_statuses() );
 
-	// Match orders that have any non-empty theme custom `_utm_*` / click-id meta.
-	$meta_query = array( 'relation' => 'OR' );
-
-	foreach ( array_keys( $attribution_keys ) as $key ) {
-		$meta_query[] = array(
-			'key'     => '_' . $key,
-			'value'   => '',
-			'compare' => '!=',
-		);
-	}
-
-	// IDs of attributed orders, newest first.
-	$with_ids = wc_get_orders(
-		array(
-			'limit'      => -1,
-			'status'     => $status,
-			'orderby'    => 'date',
-			'order'      => 'DESC',
-			'return'     => 'ids',
-			'meta_query' => $meta_query,
-		)
-	);
+	// IDs of attributed orders (any non-empty theme custom `_utm_*` / click-id meta),
+	// via a single indexed query. An OR meta_query across 8 keys with limit -1 builds
+	// one JOIN per key and is prohibitively slow / hangs on real order volumes.
+	$with_ids = orca_get_attributed_order_ids();
 
 	if ( $utm_only ) {
 		$ordered_ids = $with_ids;

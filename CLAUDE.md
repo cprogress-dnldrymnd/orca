@@ -57,7 +57,12 @@ files in this repo and deployed as-is.
     a CSV download link; when not filtering, attributed orders are listed first
     (each group still newest-first) rather than by plain date order, since orders
     are fetched as ID lists and merged rather than via WooCommerce's built-in
-    pagination. The CSV export (`admin_post_orca_beacon_orders_export`) covers
+    pagination. Attributed-order IDs come from `orca_get_attributed_order_ids()`,
+    one direct `$wpdb` query keyed on the theme's `_utm_*`/click-id meta (against
+    `wc_orders_meta` under HPOS, or `postmeta` joined to `posts` otherwise) — this
+    replaced an earlier `wc_get_orders()` OR `meta_query` across all 8 keys with
+    `limit => -1`, which built one JOIN per key and was too slow at real order
+    volumes. The CSV export (`admin_post_orca_beacon_orders_export`) covers
     all orders with order/customer info, the two checkout opt-ins, and attribution data
     (UTM params plus gclid/fbclid/msclkid) via `orca_get_attribution_value()`, which
     reads the theme's `_utm_*`/`_gclid`-style order meta (classic checkout) and falls
