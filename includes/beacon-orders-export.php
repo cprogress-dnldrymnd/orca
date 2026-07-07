@@ -22,6 +22,31 @@ add_action( 'admin_notices', function() {
 	echo '</div>';
 } );
 
+/**
+ * Resolve an order-attribution value for a given UTM/click-id key.
+ *
+ * Reads the theme's custom `_utm_*` meta first (saved from the classic checkout
+ * in functions.php), and falls back to WooCommerce's native Order Attribution
+ * meta (`_wc_order_attribution_*`), which is what's captured on the block-based
+ * checkout. Either mechanism can be the one populated depending on the checkout
+ * in use, so we check both.
+ */
+function orca_get_attribution_value( $order, $key ) {
+	if ( ! $order instanceof WC_Order ) {
+		return '';
+	}
+
+	// Theme custom meta: `_utm_source`, `_gclid`, etc.
+	$value = $order->get_meta( '_' . $key );
+
+	if ( '' !== $value && null !== $value ) {
+		return $value;
+	}
+
+	// WooCommerce native Order Attribution: `_wc_order_attribution_utm_source`, etc.
+	return (string) $order->get_meta( '_wc_order_attribution_' . $key );
+}
+
 add_action( 'admin_post_orca_beacon_orders_export', function() {
 	if ( ! current_user_can( 'manage_woocommerce' ) ) {
 		wp_die( 'Permission denied.' );
@@ -88,14 +113,14 @@ add_action( 'admin_post_orca_beacon_orders_export', function() {
 				implode( ' | ', $products ),
 				orca_get_training_opt_in_value( $order ),
 				orca_get_communications_opt_in_value( $order ),
-				$order->get_meta( '_utm_source' ),
-				$order->get_meta( '_utm_medium' ),
-				$order->get_meta( '_utm_campaign' ),
-				$order->get_meta( '_utm_term' ),
-				$order->get_meta( '_utm_content' ),
-				$order->get_meta( '_gclid' ),
-				$order->get_meta( '_fbclid' ),
-				$order->get_meta( '_msclkid' ),
+				orca_get_attribution_value( $order, 'utm_source' ),
+				orca_get_attribution_value( $order, 'utm_medium' ),
+				orca_get_attribution_value( $order, 'utm_campaign' ),
+				orca_get_attribution_value( $order, 'utm_term' ),
+				orca_get_attribution_value( $order, 'utm_content' ),
+				orca_get_attribution_value( $order, 'gclid' ),
+				orca_get_attribution_value( $order, 'fbclid' ),
+				orca_get_attribution_value( $order, 'msclkid' ),
 			)
 		);
 	}
