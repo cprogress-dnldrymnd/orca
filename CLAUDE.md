@@ -51,11 +51,18 @@ files in this repo and deployed as-is.
     redirect (internal page or external URL); applied on the `order-received` endpoint
     via `template_redirect`. Rules stored in the `dd_wc_redirect_rules` option.
   - `beacon-orders-export.php` — adds a "Download Beacon Orders CSV" button (admin
-    notice) to WooCommerce → Orders. Exports all orders to CSV with order/customer
-    info, the two checkout opt-ins, and attribution data (UTM params plus
-    gclid/fbclid/msclkid) via `orca_get_attribution_value()`, which reads the theme's
-    `_utm_*`/`_gclid`-style order meta (classic checkout) and falls back to
-    WooCommerce's native `_wc_order_attribution_*` meta (block-based checkout). Also
+    notice) to WooCommerce → Orders, plus its own WooCommerce → "Order Attribution"
+    submenu page (`orca_render_order_attribution_page()`) showing a paginated table of
+    orders and their UTM/click-id meta, with an "only orders with UTM data" filter and
+    a CSV download link; when not filtering, attributed orders are listed first
+    (each group still newest-first) rather than by plain date order, since orders
+    are fetched as ID lists and merged rather than via WooCommerce's built-in
+    pagination. The CSV export (`admin_post_orca_beacon_orders_export`) covers
+    all orders with order/customer info, the two checkout opt-ins, and attribution data
+    (UTM params plus gclid/fbclid/msclkid) via `orca_get_attribution_value()`, which
+    reads the theme's `_utm_*`/`_gclid`-style order meta (classic checkout) and falls
+    back to WooCommerce's native `_wc_order_attribution_*` meta (block-based checkout);
+    `orca_get_attribution_keys()` is the shared list of tracked UTM/click-id keys. Also
     adds "Training Opt-In"/"Comms Opt-In" columns to the WooCommerce → Orders list
     table. Despite the "beacon" name (kept for continuity with the removed Beacon
     Data Export tool), this is a general orders/attribution export, unrelated to the

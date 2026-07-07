@@ -206,34 +206,62 @@ function orca_render_order_attribution_page() {
 	$paged    = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1;
 	$utm_only = isset( $_GET['utm_only'] ) && '1' === $_GET['utm_only'];
 
-	$args = array(
-		'limit'    => $per_page,
-		'paged'    => $paged,
-		'status'   => array_keys( wc_get_order_statuses() ),
-		'orderby'  => 'date',
-		'order'    => 'DESC',
-		'paginate' => true,
-		'return'   => 'objects',
+	$status = array_keys( wc_get_order_statuses() );
+
+	// Match orders that have any non-empty theme custom `_utm_*` / click-id meta.
+	$meta_query = array( 'relation' => 'OR' );
+
+	foreach ( array_keys( $attribution_keys ) as $key ) {
+		$meta_query[] = array(
+			'key'     => '_' . $key,
+			'value'   => '',
+			'compare' => '!=',
+		);
+	}
+
+	// IDs of attributed orders, newest first.
+	$with_ids = wc_get_orders(
+		array(
+			'limit'      => -1,
+			'status'     => $status,
+			'orderby'    => 'date',
+			'order'      => 'DESC',
+			'return'     => 'ids',
+			'meta_query' => $meta_query,
+		)
 	);
 
 	if ( $utm_only ) {
-		$meta_query = array( 'relation' => 'OR' );
-
-		foreach ( array_keys( $attribution_keys ) as $key ) {
-			$meta_query[] = array(
-				'key'     => '_' . $key,
-				'value'   => '',
-				'compare' => '!=',
-			);
-		}
-
-		$args['meta_query'] = $meta_query;
+		$ordered_ids = $with_ids;
+	} else {
+		// All orders newest first, then list attributed ones first while keeping
+		// each group in date order (array_diff preserves the first array's order).
+		$all_ids     = wc_get_orders(
+			array(
+				'limit'   => -1,
+				'status'  => $status,
+				'orderby' => 'date',
+				'order'   => 'DESC',
+				'return'  => 'ids',
+			)
+		);
+		$without_ids = array_values( array_diff( $all_ids, $with_ids ) );
+		$ordered_ids = array_merge( $with_ids, $without_ids );
 	}
 
-	$results   = wc_get_orders( $args );
-	$orders    = $results->orders;
-	$total     = (int) $results->total;
-	$max_pages = (int) $results->max_num_pages;
+	$total     = count( $ordered_ids );
+	$max_pages = (int) ceil( $total / $per_page );
+
+	$page_ids = array_slice( $ordered_ids, ( $paged - 1 ) * $per_page, $per_page );
+	$orders   = array();
+
+	foreach ( $page_ids as $order_id ) {
+		$order = wc_get_order( $order_id );
+
+		if ( $order ) {
+			$orders[] = $order;
+		}
+	}
 
 	$export_url = wp_nonce_url(
 		admin_url( 'admin-post.php?action=orca_beacon_orders_export' ),
