@@ -160,3 +160,168 @@ add_action( 'manage_woocommerce_page_wc-orders_custom_column', function( $column
 		echo esc_html( orca_get_communications_opt_in_value( $order ) );
 	}
 }, 20, 2 );
+
+/**
+ * The UTM / click-id keys tracked by the theme (see functions.php).
+ * Keyed by the theme custom meta suffix => human label.
+ */
+function orca_get_attribution_keys() {
+	return array(
+		'utm_source'   => 'UTM Source',
+		'utm_medium'   => 'UTM Medium',
+		'utm_campaign' => 'UTM Campaign',
+		'utm_term'     => 'UTM Term',
+		'utm_content'  => 'UTM Content',
+		'gclid'        => 'GCLID',
+		'fbclid'       => 'FBCLID',
+		'msclkid'      => 'MSCLKID',
+	);
+}
+
+/**
+ * Register the "Order Attribution" admin page under the WooCommerce menu.
+ */
+add_action( 'admin_menu', function() {
+	add_submenu_page(
+		'woocommerce',
+		'Order Attribution (UTM)',
+		'Order Attribution',
+		'manage_woocommerce',
+		'orca-order-attribution',
+		'orca_render_order_attribution_page'
+	);
+}, 20 );
+
+/**
+ * Render a paginated table of orders with their theme custom `_utm_*` attribution.
+ */
+function orca_render_order_attribution_page() {
+	if ( ! current_user_can( 'manage_woocommerce' ) ) {
+		wp_die( 'Permission denied.' );
+	}
+
+	$attribution_keys = orca_get_attribution_keys();
+
+	$per_page = 25;
+	$paged    = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1;
+	$utm_only = isset( $_GET['utm_only'] ) && '1' === $_GET['utm_only'];
+
+	$args = array(
+		'limit'    => $per_page,
+		'paged'    => $paged,
+		'status'   => array_keys( wc_get_order_statuses() ),
+		'orderby'  => 'date',
+		'order'    => 'DESC',
+		'paginate' => true,
+		'return'   => 'objects',
+	);
+
+	if ( $utm_only ) {
+		$meta_query = array( 'relation' => 'OR' );
+
+		foreach ( array_keys( $attribution_keys ) as $key ) {
+			$meta_query[] = array(
+				'key'     => '_' . $key,
+				'value'   => '',
+				'compare' => '!=',
+			);
+		}
+
+		$args['meta_query'] = $meta_query;
+	}
+
+	$results   = wc_get_orders( $args );
+	$orders    = $results->orders;
+	$total     = (int) $results->total;
+	$max_pages = (int) $results->max_num_pages;
+
+	$export_url = wp_nonce_url(
+		admin_url( 'admin-post.php?action=orca_beacon_orders_export' ),
+		'orca_beacon_orders_export'
+	);
+
+	$base_url = admin_url( 'admin.php?page=orca-order-attribution' );
+
+	echo '<div class="wrap">';
+	echo '<h1 class="wp-heading-inline">Order Attribution (UTM)</h1>';
+	echo ' <a href="' . esc_url( $export_url ) . '" class="page-title-action">Download CSV</a>';
+	echo '<hr class="wp-header-end">';
+
+	// Filter links.
+	echo '<ul class="subsubsub">';
+	printf(
+		'<li><a href="%s"%s>All</a> | </li>',
+		esc_url( $base_url ),
+		$utm_only ? '' : ' class="current"'
+	);
+	printf(
+		'<li><a href="%s"%s>With UTM data</a></li>',
+		esc_url( add_query_arg( 'utm_only', '1', $base_url ) ),
+		$utm_only ? ' class="current"' : ''
+	);
+	echo '</ul>';
+
+	echo '<p style="clear:both;">Showing ' . esc_html( number_format_i18n( $total ) ) . ' order(s).</p>';
+
+	echo '<div style="overflow-x:auto;">';
+	echo '<table class="wp-list-table widefat fixed striped" style="min-width:1100px;">';
+
+	// Header.
+	echo '<thead><tr>';
+	echo '<th style="width:70px;">Order</th>';
+	echo '<th style="width:150px;">Date</th>';
+	echo '<th>Customer</th>';
+	foreach ( $attribution_keys as $label ) {
+		echo '<th>' . esc_html( $label ) . '</th>';
+	}
+	echo '</tr></thead>';
+
+	echo '<tbody>';
+
+	if ( empty( $orders ) ) {
+		echo '<tr><td colspan="' . esc_attr( 3 + count( $attribution_keys ) ) . '">No orders found.</td></tr>';
+	}
+
+	foreach ( $orders as $order ) {
+		$customer = trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() );
+
+		echo '<tr>';
+		printf(
+			'<td><a href="%s">#%s</a></td>',
+			esc_url( $order->get_edit_order_url() ),
+			esc_html( $order->get_id() )
+		);
+		echo '<td>' . esc_html( $order->get_date_created() ? $order->get_date_created()->date( 'Y-m-d H:i' ) : '' ) . '</td>';
+		echo '<td>' . esc_html( '' !== $customer ? $customer : $order->get_billing_email() ) . '</td>';
+
+		foreach ( array_keys( $attribution_keys ) as $key ) {
+			$value = $order->get_meta( '_' . $key );
+			echo '<td>' . ( '' !== $value ? esc_html( $value ) : '&mdash;' ) . '</td>';
+		}
+
+		echo '</tr>';
+	}
+
+	echo '</tbody></table>';
+	echo '</div>';
+
+	// Pagination.
+	if ( $max_pages > 1 ) {
+		$page_links = paginate_links(
+			array(
+				'base'      => add_query_arg( 'paged', '%#%', $utm_only ? add_query_arg( 'utm_only', '1', $base_url ) : $base_url ),
+				'format'    => '',
+				'prev_text' => '&laquo;',
+				'next_text' => '&raquo;',
+				'total'     => $max_pages,
+				'current'   => $paged,
+			)
+		);
+
+		if ( $page_links ) {
+			echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post( $page_links ) . '</div></div>';
+		}
+	}
+
+	echo '</div>';
+}

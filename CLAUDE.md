@@ -18,13 +18,20 @@ files in this repo and deployed as-is.
   `orca_get_order_opt_in_value()` / `orca_get_training_opt_in_value()` /
   `orca_get_communications_opt_in_value()` reading them back off an order (checking the
   field ID, a `_`-prefixed key, the label, and finally a full meta-key scan, since
-  WooCommerce's Additional Checkout Fields can persist under any of these), a
-  `wp_footer` script (`disruptive_retain_utm_parameters`) that persists UTM/click-id
-  query params (`utm_source/medium/campaign/term/content`, `gclid`, `fbclid`,
-  `msclkid`) in `sessionStorage` and appends them to same-site link clicks, and
-  `require_once`s everything in `includes/`. The old temporary "Beacon Data Export"
-  admin tool (remapping legacy `_beacon_courses_data`/`_beacon_id` product meta to
-  LearnDash courses) has been removed now that migration is complete.
+  WooCommerce's Additional Checkout Fields can persist under any of these), and the
+  classic-checkout UTM/click-id capture pipeline: a `wp_footer` script
+  (`disruptive_retain_utm_parameters`) that persists `utm_source/medium/campaign/term/
+  content`, `gclid`, `fbclid`, `msclkid` in `sessionStorage` and appends them to
+  same-site link clicks, an `init` handler that also stores them in cookies on
+  landing, hidden fields injected into checkout (`woocommerce_after_order_notes`) from
+  those cookies, and a `woocommerce_checkout_create_order` handler that saves them onto
+  the order as `_utm_*`/`_gclid`-style meta (this is the meta
+  `orca_get_attribution_value()` in `beacon-orders-export.php` reads first, before
+  falling back to WooCommerce's native order attribution meta from the block
+  checkout). `functions.php` then `require_once`s everything in `includes/`. The old
+  temporary "Beacon Data Export" admin tool (remapping legacy
+  `_beacon_courses_data`/`_beacon_id` product meta to LearnDash courses) has been
+  removed now that migration is complete.
 - `includes/`
   - `post-types.php` — registers custom post types (Testimonials, Course Custom
     Emails, Beacon CRM Logs) via a small `newPostType`/`newTaxonomy` helper class.
