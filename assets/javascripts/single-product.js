@@ -24,15 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
         stickyBar.setAttribute('aria-hidden', 'true');
     }
 
+    // Trigger the sticky bar a bit before the native button is fully out of
+    // view rather than only once it has completely left the viewport.
+    var revealBufferPx = 150;
+
     if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
             entries[0].isIntersecting ? hideSticky() : showSticky();
-        });
+        }, { rootMargin: '0px 0px -' + revealBufferPx + 'px 0px' });
         observer.observe(nativeButton);
     } else {
         window.addEventListener('scroll', function () {
             var rect = nativeButton.getBoundingClientRect();
-            (rect.bottom > 0 && rect.top < window.innerHeight) ? hideSticky() : showSticky();
+            (rect.bottom > 0 && rect.top < window.innerHeight - revealBufferPx) ? hideSticky() : showSticky();
         });
     }
 
