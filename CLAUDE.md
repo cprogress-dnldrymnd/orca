@@ -52,10 +52,13 @@ files in this repo and deployed as-is.
     pages; `assets/javascripts/single-product.js` (enqueued with a `jquery` dependency)
     toggles its visibility via `IntersectionObserver` on the native
     `.single_add_to_cart_button` (scroll-listener fallback) and forwards clicks to the
-    native add-to-cart form. For variable products it mirrors WooCommerce's
-    `found_variation`/`reset_data`/`hide_variation` jQuery events on the variation form
-    to sync the sticky bar's price and disabled state with the native button, and
-    scrolls to the variation picker instead of submitting if no variation is selected.
+    native add-to-cart form. For variable products it clones the variation `<select>`(s)
+    into the sticky bar (kept in sync with the originals in both directions via `change`
+    listeners) so a shopper can pick a variation without scrolling back up, mirrors
+    WooCommerce's `found_variation`/`reset_data`/`hide_variation` jQuery events on the
+    variation form to sync the sticky bar's price and disabled state with the native
+    button, and scrolls to the variation picker instead of submitting if no variation is
+    selected.
   - `wc-redirect-manager.php` — `DD_WC_Redirect_Manager` class. Admin UI under
     WooCommerce → "Redirect Rules" lets admins map products/variations to a post-purchase
     redirect (internal page or external URL); applied on the `order-received` endpoint

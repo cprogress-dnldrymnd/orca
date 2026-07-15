@@ -12056,8 +12056,16 @@ section.single-product {
     flex-wrap: wrap;
     gap: 0.5rem;
     flex-shrink: 0; }
-    #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations select {
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variation-field {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; }
+    #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variation-field select {
       max-width: 200px; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variation-label {
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 14px; }
   #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__text {
     display: flex;
     flex-direction: column;
@@ -12102,11 +12110,15 @@ section.single-product {
         max-width: 60vw; }
       #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations {
         flex: 1 1 auto; }
-        #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations select {
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variation-field {
+        flex: 1 1 auto; }
+        #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variation-field select {
           max-width: none;
           width: 100%;
           font-size: 14px;
           padding: 8px; }
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variation-label {
+        font-size: 13px; }
       #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button {
         padding: 8px 14px;
         font-size: 14px;

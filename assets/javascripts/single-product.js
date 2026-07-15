@@ -61,13 +61,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             selects.forEach(function (original) {
                 var label = original.id ? document.querySelector('label[for="' + original.id + '"]') : null;
+                var labelText = label ? label.textContent.trim() : '';
                 var clone = original.cloneNode(true);
 
                 clone.removeAttribute('id');
                 clone.removeAttribute('name');
                 clone.value = original.value;
-                if (label) {
-                    clone.setAttribute('aria-label', label.textContent.trim());
+                if (labelText) {
+                    clone.setAttribute('aria-label', labelText);
                 }
 
                 clone.addEventListener('change', function () {
@@ -79,7 +80,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     clone.value = original.value;
                 });
 
-                variationsGroup.appendChild(clone);
+                var field = document.createElement('div');
+                field.className = 'orca-sticky-atc__variation-field';
+
+                if (labelText) {
+                    var cloneLabel = document.createElement('span');
+                    cloneLabel.className = 'orca-sticky-atc__variation-label';
+                    cloneLabel.textContent = labelText;
+                    field.appendChild(cloneLabel);
+                }
+
+                field.appendChild(clone);
+                variationsGroup.appendChild(field);
                 variationPairs.push({ original: original, clone: clone });
             });
 

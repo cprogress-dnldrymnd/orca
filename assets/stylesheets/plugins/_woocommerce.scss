@@ -179,10 +179,22 @@ section.single-product {
         flex-wrap: wrap;
         gap: 0.5rem;
         flex-shrink: 0;
+    }
+
+    .orca-sticky-atc__variation-field {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
 
         select {
             max-width: 200px;
         }
+    }
+
+    .orca-sticky-atc__variation-label {
+        font-weight: bold;
+        white-space: nowrap;
+        font-size: 14px;
     }
 
     .orca-sticky-atc__text {
@@ -240,6 +252,10 @@ section.single-product {
 
         .orca-sticky-atc__variations {
             flex: 1 1 auto;
+        }
+
+        .orca-sticky-atc__variation-field {
+            flex: 1 1 auto;
 
             select {
                 max-width: none;
@@ -247,6 +263,10 @@ section.single-product {
                 font-size: 14px;
                 padding: 8px;
             }
+        }
+
+        .orca-sticky-atc__variation-label {
+            font-size: 13px;
         }
 
         .orca-sticky-atc__button.orca-sticky-atc__button {
