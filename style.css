@@ -12078,6 +12078,8 @@ section.single-product {
       background-color: var(--accent-color);
       border-color: var(--accent-color);
       border: 1px solid var(--accent-color); }
+    #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button--disabled {
+      opacity: 0.5; }
   @media screen and (max-width: 991px) {
     #sticky-add-to-cart.orca-sticky-atc {
       padding: 0.5rem 0; }

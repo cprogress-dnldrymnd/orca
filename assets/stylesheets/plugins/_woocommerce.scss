@@ -200,6 +200,10 @@ section.single-product {
         flex-shrink: 0;
         border: 1px solid var(--primary-color);
         cursor: pointer;
+
+        &--disabled {
+            opacity: 0.5;
+        }
     }
 
     @include responsive(xs-sm) {

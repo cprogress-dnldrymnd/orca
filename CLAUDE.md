@@ -31,7 +31,8 @@ files in this repo and deployed as-is.
   checkout). `functions.php` then `require_once`s everything in `includes/`. The old
   temporary "Beacon Data Export" admin tool (remapping legacy
   `_beacon_courses_data`/`_beacon_id` product meta to LearnDash courses) has been
-  removed now that migration is complete.
+  removed now that migration is complete. Also enqueues `single-product.js` on
+  `is_product()` pages for the sticky add-to-cart bar (see `woocommerce.php` below).
 - `includes/`
   - `post-types.php` — registers custom post types (Testimonials, Course Custom
     Emails, Beacon CRM Logs) via a small `newPostType`/`newTaxonomy` helper class.
@@ -45,7 +46,16 @@ files in this repo and deployed as-is.
     `_course_cta`, `_course_banner`, `_course_testimonial`, `_ld_certificate`, etc.).
   - `shortcodes.php` — general layout shortcodes (breadcrumbs, headings, images, etc.).
   - `woocommerce.php` — WooCommerce hooks: cart redirect-after-error tied to
-    `_related_course`, extra billing first/last name fields on registration.
+    `_related_course`, extra billing first/last name fields on registration, and
+    `orca_sticky_add_to_cart()` (hooked on `wp_footer`) which renders a fixed bottom
+    bar (thumbnail, title, price, add-to-cart button) on purchasable/in-stock product
+    pages; `assets/javascripts/single-product.js` (enqueued with a `jquery` dependency)
+    toggles its visibility via `IntersectionObserver` on the native
+    `.single_add_to_cart_button` (scroll-listener fallback) and forwards clicks to the
+    native add-to-cart form. For variable products it mirrors WooCommerce's
+    `found_variation`/`reset_data`/`hide_variation` jQuery events on the variation form
+    to sync the sticky bar's price and disabled state with the native button, and
+    scrolls to the variation picker instead of submitting if no variation is selected.
   - `wc-redirect-manager.php` — `DD_WC_Redirect_Manager` class. Admin UI under
     WooCommerce → "Redirect Rules" lets admins map products/variations to a post-purchase
     redirect (internal page or external URL); applied on the `order-received` endpoint
@@ -87,9 +97,9 @@ files in this repo and deployed as-is.
 - Templates: `front-page.php`, `archive-product.php`, `archive-sfwd-courses.php`,
   `single-sfwd-courses.php`, `taxonomy-ld_course_category.php`, `search.php`,
   `header.php`, `footer.php`, `index.php`, `page.php`, `single.php`, `404.php`.
-- `assets/` — `javascripts/` (archive-course.js, single-course.js), `stylesheets/`
-  (SCSS sources compiled into `style.css`/`style.css.map`), `vendors/bootstrap`,
-  `vendors/swiper`, `images/`.
+- `assets/` — `javascripts/` (archive-course.js, single-course.js, single-product.js),
+  `stylesheets/` (SCSS sources compiled into `style.css`/`style.css.map`, e.g.
+  `plugins/_woocommerce.scss`), `vendors/bootstrap`, `vendors/swiper`, `images/`.
 
 ## Key conventions / gotchas
 

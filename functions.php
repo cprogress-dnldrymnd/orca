@@ -36,7 +36,7 @@ function action_wp_enqueue_scripts()
 	} else if (is_single() && get_post_type() == 'sfwd-courses') {
 		wp_enqueue_script('single-course', assets_dir . 'javascripts/single-course.js', array('jquery', 'swiper'));
 	} else if (is_product()) {
-		wp_enqueue_script('single-product', assets_dir . 'javascripts/single-product.js', array(), orca_version, true);
+		wp_enqueue_script('single-product', assets_dir . 'javascripts/single-product.js', array('jquery'), orca_version, true);
 	}
 }
 add_action('wp_enqueue_scripts', 'action_wp_enqueue_scripts', 20);
