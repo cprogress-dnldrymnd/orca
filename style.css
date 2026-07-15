@@ -12038,19 +12038,26 @@ section.single-product {
   #sticky-add-to-cart.orca-sticky-atc .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem; }
   #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    min-width: 0; }
+    min-width: 0;
+    flex: 1 1 auto; }
     #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info img {
       width: 48px;
       height: 48px;
       object-fit: cover;
       border-radius: 5px;
       flex-shrink: 0; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    flex-shrink: 0; }
+    #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations select {
+      max-width: 200px; }
   #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__text {
     display: flex;
     flex-direction: column;
@@ -12084,14 +12091,25 @@ section.single-product {
     #sticky-add-to-cart.orca-sticky-atc {
       padding: 0.5rem 0; }
       #sticky-add-to-cart.orca-sticky-atc .container {
+        flex-wrap: wrap;
         gap: 0.5rem; }
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info {
+        flex: 1 1 100%; }
       #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info img {
         display: none; }
       #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__title {
         font-size: 14px;
-        max-width: 40vw; }
+        max-width: 60vw; }
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations {
+        flex: 1 1 auto; }
+        #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__variations select {
+          max-width: none;
+          width: 100%;
+          font-size: 14px;
+          padding: 8px; }
       #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button {
         padding: 8px 14px;
-        font-size: 14px; } }
+        font-size: 14px;
+        flex-shrink: 0; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    var stickyContainer = stickyBar.querySelector('.container');
     var stickyButton = stickyBar.querySelector('.orca-sticky-atc__button');
     var stickyPrice = stickyBar.querySelector('.orca-sticky-atc__price');
     var isVariable = form.classList.contains('variations_form');
     var defaultPriceHtml = stickyPrice ? stickyPrice.innerHTML : '';
+    var variationPairs = [];
 
     function showSticky() {
         stickyBar.classList.add('show-sticky');
@@ -40,10 +42,55 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Variable products: the native button stays disabled until a variation is
-    // selected, and its price is a range until then. Mirror both via the
-    // jQuery events WooCommerce's own variation-form script triggers on this
-    // form, rather than assuming the button is always ready to submit.
+    function syncClonesFromOriginals() {
+        variationPairs.forEach(function (pair) {
+            pair.clone.value = pair.original.value;
+        });
+    }
+
+    // Variable products: clone the real variation select(s) into the sticky
+    // bar so a shopper can pick one without scrolling back to the main form,
+    // keeping both in sync in either direction.
+    if (isVariable) {
+        var variationsWrap = form.querySelector('.variations');
+        var selects = variationsWrap ? variationsWrap.querySelectorAll('select') : [];
+
+        if (selects.length && stickyContainer) {
+            var variationsGroup = document.createElement('div');
+            variationsGroup.className = 'orca-sticky-atc__variations';
+
+            selects.forEach(function (original) {
+                var label = original.id ? document.querySelector('label[for="' + original.id + '"]') : null;
+                var clone = original.cloneNode(true);
+
+                clone.removeAttribute('id');
+                clone.removeAttribute('name');
+                clone.value = original.value;
+                if (label) {
+                    clone.setAttribute('aria-label', label.textContent.trim());
+                }
+
+                clone.addEventListener('change', function () {
+                    original.value = clone.value;
+                    original.dispatchEvent(new Event('change', { bubbles: true }));
+                });
+
+                original.addEventListener('change', function () {
+                    clone.value = original.value;
+                });
+
+                variationsGroup.appendChild(clone);
+                variationPairs.push({ original: original, clone: clone });
+            });
+
+            stickyContainer.insertBefore(variationsGroup, stickyButton);
+        }
+    }
+
+    // WooCommerce's own variation-form script triggers these jQuery events on
+    // the form as selections change; mirror the price/disabled state (and
+    // resync the cloned selects on reset) rather than assuming the native
+    // button is always ready to submit.
     if (isVariable && window.jQuery) {
         var $form = window.jQuery(form);
 
@@ -59,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 stickyPrice.innerHTML = defaultPriceHtml;
             }
             syncStickyButtonState();
+            syncClonesFromOriginals();
         });
 
         syncStickyButtonState();
