@@ -434,6 +434,40 @@ function product_related_courses()
 
 add_action('woocommerce_before_add_to_cart_form', 'product_related_courses');
 
+/**
+ * Renders a fixed bottom bar with the product thumbnail, title, price, and an
+ * add-to-cart button that triggers the page's native add-to-cart form. Shown
+ * once the native button scrolls out of view (see single-product.js).
+ */
+function orca_sticky_add_to_cart()
+{
+    if (!is_product()) {
+        return;
+    }
+
+    $product = wc_get_product(get_the_ID());
+
+    if (!$product || !$product->is_purchasable() || !$product->is_in_stock()) {
+        return;
+    }
+
+?>
+    <div id="sticky-add-to-cart" class="orca-sticky-atc" aria-hidden="true">
+        <div class="container">
+            <div class="orca-sticky-atc__info">
+                <?php echo get_the_post_thumbnail(get_the_ID(), 'thumbnail'); ?>
+                <div class="orca-sticky-atc__text">
+                    <span class="orca-sticky-atc__title"><?php echo esc_html(get_the_title()); ?></span>
+                    <span class="orca-sticky-atc__price"><?php echo wp_kses_post($product->get_price_html()); ?></span>
+                </div>
+            </div>
+            <button type="button" class="orca-sticky-atc__button">Add to cart</button>
+        </div>
+    </div>
+<?php
+}
+add_action('wp_footer', 'orca_sticky_add_to_cart');
+
 
 /**
  * Snippet Name:	WooCommerce Show Coupon Code Used In Emails

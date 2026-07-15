@@ -12028,4 +12028,68 @@ section.single-product {
   .woocommerce.woocommerce.woocommerce div.product .summary {
     width: 100%; } }
 
+#sticky-add-to-cart.orca-sticky-atc {
+  background-color: var(--white-color);
+  border-top: 1px solid var(--light-gray-color);
+  padding: 0.75rem 0;
+  -webkit-box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px -2px 10px 0px rgba(0, 0, 0, 0.1); }
+  #sticky-add-to-cart.orca-sticky-atc .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0; }
+    #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 5px;
+      flex-shrink: 0; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__title {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__price .woocommerce-Price-amount {
+    font-size: 14px; }
+  #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button {
+    padding: 10px 20px;
+    line-height: 1;
+    font-weight: bold;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--white-color);
+    white-space: nowrap;
+    flex-shrink: 0;
+    border: 1px solid var(--primary-color);
+    cursor: pointer; }
+    #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button:hover, #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button:active, #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button:focus {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      border: 1px solid var(--accent-color); }
+  @media screen and (max-width: 991px) {
+    #sticky-add-to-cart.orca-sticky-atc {
+      padding: 0.5rem 0; }
+      #sticky-add-to-cart.orca-sticky-atc .container {
+        gap: 0.5rem; }
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__info img {
+        display: none; }
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__title {
+        font-size: 14px;
+        max-width: 40vw; }
+      #sticky-add-to-cart.orca-sticky-atc .orca-sticky-atc__button.orca-sticky-atc__button {
+        padding: 8px 14px;
+        font-size: 14px; } }
+
 /*# sourceMappingURL=style.css.map */
