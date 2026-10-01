@@ -54,3 +54,32 @@ add_action('init', function () {
         remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
     }
 });
+
+/**
+ * Output custom scripts from Appearance → Theme Scripts.
+ *
+ * Values are stored as raw markup (admin-only) so tracking snippets
+ * and similar embeds are not stripped by kses.
+ */
+function orca_output_theme_script( $option_key ) {
+	$script = get__theme_option( $option_key );
+
+	if ( ! is_string( $script ) || '' === trim( $script ) ) {
+		return;
+	}
+
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- intentional raw script output for admin-managed embeds
+	echo $script . "\n";
+}
+
+add_action( 'wp_head', function () {
+	orca_output_theme_script( 'head_scripts' );
+}, 99 );
+
+add_action( 'wp_body_open', function () {
+	orca_output_theme_script( 'body_scripts' );
+}, 10 );
+
+add_action( 'wp_footer', function () {
+	orca_output_theme_script( 'footer_scripts' );
+}, 99 );
