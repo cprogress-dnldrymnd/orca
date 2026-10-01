@@ -136,3 +136,21 @@ Container::make('term_meta', __('Category Properties'))
         Field::make('color', 'tag_bg_color', __('Tag BG Color')),
         Field::make('color', 'tag_text_color', __('Tag Text Color')),
     ));
+
+/*-----------------------------------------------------------------------------------*/
+/* Theme Options — Head / Body / Footer Scripts
+/*-----------------------------------------------------------------------------------*/
+
+Container::make('theme_options', __('Theme Scripts'))
+    ->set_page_parent('themes.php')
+    ->add_fields(array(
+        Field::make('textarea', 'head_scripts', __('Head Scripts'))
+            ->set_help_text(__('Printed in the document head (wp_head). Use for meta tags, analytics, and CSS.'))
+            ->set_rows(10),
+        Field::make('textarea', 'body_scripts', __('Body Scripts'))
+            ->set_help_text(__('Printed right after the opening body tag (wp_body_open). Use for tag manager noscript fallbacks.'))
+            ->set_rows(10),
+        Field::make('textarea', 'footer_scripts', __('Footer Scripts'))
+            ->set_help_text(__('Printed before the closing body tag (wp_footer). Use for tracking pixels and deferred JS.'))
+            ->set_rows(10),
+    ));
