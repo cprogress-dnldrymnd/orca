@@ -397,6 +397,7 @@ require_once('includes/menus.php');
 require_once('includes/theme-widgets.php');
 require_once('includes/post-types.php');
 require_once('includes/learndash.php');
+require_once('includes/pay-what-you-want.php');
 require_once('includes/shortcodes.php');
 require_once('includes/hooks.php');
 require_once('includes/woocommerce.php');

@@ -128,6 +128,21 @@ document.addEventListener('DOMContentLoaded', function () {
         syncStickyButtonState();
     }
 
+    // Name Your Price: keep sticky price in sync with the amount field.
+    var nypInput = form.querySelector('input.nyp-input, input#nyp, input[name="nyp"]');
+    if (nypInput && stickyPrice) {
+        var syncNypPrice = function () {
+            var val = nypInput.value;
+            if (val) {
+                stickyPrice.textContent = val;
+            } else {
+                stickyPrice.innerHTML = defaultPriceHtml;
+            }
+        };
+        nypInput.addEventListener('input', syncNypPrice);
+        nypInput.addEventListener('change', syncNypPrice);
+    }
+
     if (stickyButton) {
         stickyButton.addEventListener('click', function () {
             if (isVariable && nativeButton.disabled) {
@@ -135,6 +150,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // instead of submitting, which WooCommerce would reject anyway.
                 var variationsEl = form.querySelector('.variations') || form;
                 variationsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            if (nypInput && !nypInput.value) {
+                nypInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                nypInput.focus();
                 return;
             }
 

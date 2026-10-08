@@ -124,7 +124,11 @@ function _heading($atts)
             $html .= '<div class="learndash-course-access">';
             $html .= '<strong>Enrolled Date:</strong> ' . date('F j, Y g:i A', $enrolled);
             $html .= '&nbsp;|&nbsp;';
-            $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
+            if (!empty($expires)) {
+                $html .= '<strong>Expires:</strong> ' . date('F j, Y g:i A', $expires);
+            } else {
+                $html .= '<strong>Expires:</strong> Never';
+            }
             $html .= '</div>';
         }
 

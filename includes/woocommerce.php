@@ -451,8 +451,11 @@ function orca_sticky_add_to_cart()
         return;
     }
 
+    $is_nyp       = function_exists( 'orca_product_is_nyp' ) && orca_product_is_nyp( $product );
+    $button_label = $is_nyp ? 'Choose amount' : 'Add to cart';
+
 ?>
-    <div id="sticky-add-to-cart" class="orca-sticky-atc" aria-hidden="true">
+    <div id="sticky-add-to-cart" class="orca-sticky-atc" aria-hidden="true"<?php echo $is_nyp ? ' data-orca-nyp="1"' : ''; ?>>
         <div class="container">
             <div class="orca-sticky-atc__info">
                 <?php echo get_the_post_thumbnail(get_the_ID(), 'thumbnail'); ?>
@@ -461,7 +464,7 @@ function orca_sticky_add_to_cart()
                     <span class="orca-sticky-atc__price"><?php echo wp_kses_post($product->get_price_html()); ?></span>
                 </div>
             </div>
-            <button type="button" class="orca-sticky-atc__button">Add to cart</button>
+            <button type="button" class="orca-sticky-atc__button"><?php echo esc_html( $button_label ); ?></button>
         </div>
     </div>
 <?php

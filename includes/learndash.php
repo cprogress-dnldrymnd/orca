@@ -1,4 +1,11 @@
 <?php
+/**
+ * Permanently disable LearnDash course access expiry site-wide.
+ * Course Access Expiration settings are ignored even if re-enabled in admin.
+ */
+add_filter( 'ld_course_access_expires_on', '__return_zero', 99 );
+add_filter( 'learndash_process_user_course_access_expire', '__return_false', 99 );
+
 function _user_has_access($id)
 {
     $has_access = ld_course_check_user_access($id, get_current_user_id());
@@ -232,13 +239,55 @@ function learndash_wp_footer()
 
 add_action('wp_footer', 'learndash_wp_footer');
 
+/**
+ * Whether a WooCommerce product uses Name Your Price (open amount).
+ *
+ * @param int|WC_Product $product Product ID or object.
+ * @return bool
+ */
+function orca_product_is_nyp( $product ) {
+	if ( function_exists( 'orca_product_is_open_amount' ) ) {
+		return orca_product_is_open_amount( $product );
+	}
+	if ( is_numeric( $product ) ) {
+		$product = wc_get_product( $product );
+	}
+	if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+		return false;
+	}
+	if ( 'pay_as_you_want' === $product->get_type() ) {
+		return true;
+	}
+	if ( function_exists( 'WC_Name_Your_Price_Helpers' ) && method_exists( 'WC_Name_Your_Price_Helpers', 'is_nyp' ) ) {
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
+			return true;
+		}
+	}
+	if ( 'yes' === $product->get_meta( '_nyp' ) ) {
+		return true;
+	}
+	return 'yes' === $product->get_meta( '_orca_pwyw' );
+}
+
 function _add_to_cart_button($product_id)
 {
-    $html = '<a href="/shop/?add-to-cart=' . $product_id . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $product_id . '"  aria-describedby="" rel="nofollow">Add to cart';
-    $html .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/> <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/> </svg>';
-    $html .= '</a>';
+	$product_id = absint( $product_id );
+	$svg        = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/> <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/> </svg>';
 
-    return $html;
+	// Name Your Price needs the product page so the customer can enter an amount.
+	if ( orca_product_is_nyp( $product_id ) ) {
+		$url  = get_permalink( $product_id );
+		$html = '<a href="' . esc_url( $url ) . '" class="button product_type_pay_as_you_want" data-product_id="' . esc_attr( $product_id ) . '" rel="nofollow">Choose amount';
+		$html .= $svg;
+		$html .= '</a>';
+		return $html;
+	}
+
+	$html = '<a href="/shop/?add-to-cart=' . $product_id . '" data-quantity="1" class="button product_type_course add_to_cart_button ajax_add_to_cart" data-product_id="' . $product_id . '"  aria-describedby="" rel="nofollow">Add to cart';
+	$html .= $svg;
+	$html .= '</a>';
+
+	return $html;
 }
 
 function _learndash_has_linked_product($course_id, $exclude_bundles = false)
